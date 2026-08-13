@@ -1,0 +1,138 @@
+[
+  {
+    "sg": "prieten",
+    "pl": "prieteni",
+    "expected": {
+      "sg": "prieten",
+      "pl": "prieten<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "carte",
+    "pl": "cărți",
+    "expected": {
+      "sg": "c<b class=\"st\">a</b>r<b class=\"st\">t</b><b class=\"mk\">e</b>",
+      "pl": "c<b class=\"st\">ă</b>r<b class=\"st\">ț</b><b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "masă",
+    "pl": "mese",
+    "expected": {
+      "sg": "m<b class=\"st\">a</b>s<b class=\"mk\">ă</b>",
+      "pl": "m<b class=\"st\">e</b>s<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "oraș",
+    "pl": "orașe",
+    "expected": {
+      "sg": "oraș",
+      "pl": "oraș<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "lucru",
+    "pl": "lucruri",
+    "expected": {
+      "sg": "lucr<b class=\"mk\">u</b>",
+      "pl": "lucr<b class=\"mk\">uri</b>"
+    }
+  },
+  {
+    "sg": "calculator",
+    "pl": "calculatoare",
+    "expected": {
+      "sg": "calculat<b class=\"st\">o</b>r",
+      "pl": "calculat<b class=\"st\">oa</b>r<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "telefon",
+    "pl": "telefoane",
+    "expected": {
+      "sg": "telef<b class=\"st\">o</b>n",
+      "pl": "telef<b class=\"st\">oa</b>n<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "țară",
+    "pl": "țări",
+    "expected": {
+      "sg": "ț<b class=\"st\">a</b>r<b class=\"mk\">ă</b>",
+      "pl": "ț<b class=\"st\">ă</b>r<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "stradă",
+    "pl": "străzi",
+    "expected": {
+      "sg": "str<b class=\"st\">ad</b><b class=\"mk\">ă</b>",
+      "pl": "str<b class=\"st\">ăz</b><b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "fereastră",
+    "pl": "ferestre",
+    "expected": {
+      "sg": "fer<b class=\"st\">ea</b>str<b class=\"mk\">ă</b>",
+      "pl": "fer<b class=\"st\">e</b>str<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "ochi",
+    "pl": "ochi",
+    "expected": {
+      "sg": "ochi",
+      "pl": "ochi"
+    }
+  },
+  {
+    "sg": "nume",
+    "pl": "nume",
+    "expected": {
+      "sg": "nume",
+      "pl": "nume"
+    }
+  },
+  {
+    "sg": "perete",
+    "pl": "pereți",
+    "expected": {
+      "sg": "pere<b class=\"st\">t</b><b class=\"mk\">e</b>",
+      "pl": "pere<b class=\"st\">ț</b><b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "cheie",
+    "pl": "chei",
+    "expected": {
+      "sg": "che<b class=\"mk\">ie</b>",
+      "pl": "che<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "baie",
+    "pl": "băi",
+    "expected": {
+      "sg": "b<b class=\"st\">a</b><b class=\"mk\">ie</b>",
+      "pl": "b<b class=\"st\">ă</b><b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "soră",
+    "pl": "surori",
+    "expected": {
+      "sg": "<b class=\"st\">s</b>or<b class=\"mk\">ă</b>",
+      "pl": "<b class=\"st\">sur</b>or<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "zi",
+    "pl": "zile",
+    "expected": {
+      "sg": "zi",
+      "pl": "zi<b class=\"mk\">le</b>"
+    }
+  }
+]

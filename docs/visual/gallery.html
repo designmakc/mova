@@ -1,0 +1,421 @@
+<!-- mova:engine -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mova — component gallery</title>
+<!--
+  docs/visual/gallery.html — every approved component, rendered, with when-to-use notes.
+  Engine-owned reference: read it, do not copy from it — copy docs/visual/starter.html.
+  Language samples on this page are reference-pack (ro) examples, labeled as such.
+-->
+<style>
+  :root{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    --g-m:oklch(47% 0.13 250); --g-mBg:oklch(94% 0.030 250);
+    --g-f:oklch(47% 0.15 350); --g-fBg:oklch(94% 0.035 350);
+    --g-n:oklch(47% 0.11 120); --g-nBg:oklch(94% 0.040 120);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+      --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+      --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+      --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+      --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+      --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+      --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+      --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+      --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+      --g-m:oklch(76% 0.10 250); --g-mBg:oklch(27% 0.050 250);
+      --g-f:oklch(78% 0.12 350); --g-fBg:oklch(27% 0.050 350);
+      --g-n:oklch(80% 0.10 120); --g-nBg:oklch(27% 0.050 120);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+    --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+    --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+    --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+    --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+    --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+    --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+    --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+    --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+    --g-m:oklch(76% 0.10 250); --g-mBg:oklch(27% 0.050 250);
+    --g-f:oklch(78% 0.12 350); --g-fBg:oklch(27% 0.050 350);
+    --g-n:oklch(80% 0.10 120); --g-nBg:oklch(27% 0.050 120);
+  }
+  :root[data-theme="light"]{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    --g-m:oklch(47% 0.13 250); --g-mBg:oklch(94% 0.030 250);
+    --g-f:oklch(47% 0.15 350); --g-fBg:oklch(94% 0.035 350);
+    --g-n:oklch(47% 0.11 120); --g-nBg:oklch(94% 0.040 120);
+  }
+  :root{
+    --font-display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:24px; --space-6:40px; --space-7:64px;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.7,0,.84,0);
+    --ease-in-out:cubic-bezier(.65,0,.35,1); --dur-1:120ms; --dur-2:240ms;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:2.2rem 1.2rem 4rem;background:var(--bg);color:var(--fg);
+    font:16px/1.6 var(--font-body)}
+  .wrap{max-width:1020px;margin:0 auto}
+  h1{font:700 1.7rem/1.25 var(--font-display);margin:0 0 .2rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 2rem;font-size:.95rem}
+  h2{font-size:1.05rem;margin:2.8rem 0 .9rem;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);font-weight:600}
+  h2 .n{color:var(--hi);margin-right:.35rem}
+  h3{font-size:.95rem;margin:1.6rem 0 .6rem;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:1.1rem 1.2rem;margin-bottom:.7rem}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .l2{font-weight:600;color:var(--l2)}
+  .l1{color:var(--l1)}
+  .ok{color:var(--ok);font-weight:600}
+  .bad{color:var(--bad);font-weight:600}
+  .muted{color:var(--muted)}
+  code{font:.88em var(--font-mono);background:var(--hiBg);color:var(--hi);
+    padding:.1rem .35rem;border-radius:4px}
+  b.mk{color:var(--mk);background:var(--mkBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  b.st{color:var(--st);background:var(--stBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  .key{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.84rem;color:var(--muted);
+    margin:.2rem 0 1.4rem;align-items:center;border:1px solid var(--line);
+    border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+  .lede{border-left:3px solid var(--hi);background:var(--hiBg);padding:.8rem 1rem;
+    border-radius:0 8px 8px 0;margin:.9rem 0}
+  .rule{border-left:3px solid var(--ok);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0;font-weight:600}
+  .warn{border-left:3px solid var(--bad);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .anchor{border-left:3px solid var(--l1);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .rev{margin-top:.5rem;padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--fg);cursor:pointer;font-size:.85rem;
+    transition:background var(--dur-1) var(--ease-out),border-color var(--dur-1) var(--ease-out)}
+  .rev:hover{background:var(--hiBg);border-color:var(--hi)}
+  .rev:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+  .ans{display:none;margin-top:.5rem;padding:.6rem .8rem;border-left:3px solid var(--ok);
+    background:var(--card);border-radius:0 8px 8px 0}
+  .ans.show{display:block}
+  .q{font-weight:600;margin-bottom:.1rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:.1rem .45rem;border-radius:5px;text-transform:uppercase;white-space:nowrap}
+  .tag.g-m{color:var(--g-m);background:var(--g-mBg)}
+  .tag.g-f{color:var(--g-f);background:var(--g-fBg)}
+  .tag.g-n{color:var(--g-n);background:var(--g-nBg)}
+  .big{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin:.4rem 0}
+  .stripe{border-top:2px dashed var(--line);margin:1.6rem 0 1.2rem}
+  .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
+    color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
+    border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
+    border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
+  .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--muted);font-size:.78rem;cursor:pointer}
+  /* gallery-only: specimen + usage-note layout */
+  .spec{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--space-4);
+    align-items:start;margin-bottom:var(--space-5)}
+  @media (max-width:760px){.spec{grid-template-columns:minmax(0,1fr)}}
+  .note{border-left:3px solid var(--line);padding:.2rem 0 .2rem 1rem;font-size:.88rem;color:var(--muted)}
+  .note b{color:var(--fg)}
+  .note .no{color:var(--bad);font-weight:600}
+  .note .yes{color:var(--ok);font-weight:600}
+  /* gallery-only: static specimen of the tts-embed OUTPUT. Deliberately NOT the real
+     .tts-play/.tts-row classes — a page carrying play buttons without the embedded player
+     is a defect visualcheck rejects, and the gallery must itself pass visualcheck. */
+  .demo-tts{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;align-items:center;padding:.55rem 0}
+  .demo-play{width:2.4rem;height:2.4rem;border-radius:50%;border:1px solid var(--line);
+    background:var(--bg);color:var(--fg);font-size:.85rem;line-height:1}
+  .demo-label b{font-weight:600}
+  .demo-en{color:var(--muted);font-size:.86rem}
+  /* two-layer drill surface (same as starter) */
+  .vocab .modes{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+  .vocab .modes button{padding:.35rem .8rem;border:1px solid var(--line);border-radius:999px;
+    background:var(--bg);color:var(--muted);cursor:pointer;font-size:.82rem}
+  .vocab .modes button.on{background:var(--hi);border-color:var(--hi);color:var(--bg)}
+  .vocab th.au,.vocab td.au{width:2.9rem;padding-right:0}
+  .vocab .cover{display:none;color:var(--muted);letter-spacing:.2em}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .val,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .val{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .cover,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .cover{display:inline}
+  .vocab.m-l2l1 tr.row,.vocab.m-l1l2 tr.row{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="tohub" href="../../work/visuals/index.html">← hub</a>
+<button class="themebtn" id="themeBtn" aria-label="Switch theme">theme: auto</button>
+
+<h1>Component gallery</h1>
+<p class="sub">Every approved component, live, with when-to-use notes. Copy
+  <code>docs/visual/starter.html</code> to build a page; rules in <code>docs/visual/SPEC.md</code>.
+  Language samples here are <b>reference-pack (ro) examples</b> — an instance renders its own
+  pack's labels and its own pinned theme values.</p>
+
+<h2><span class="n">①</span> Frame: hub link, title, key legend</h2>
+<div class="spec">
+  <div>
+    <div class="card">
+      <a class="tohub" href="../../work/visuals/index.html" style="pointer-events:none">← hub</a>
+      <h1 style="font-size:1.4rem">Acordul</h1>
+      <p class="sub" style="margin-bottom:.6rem">The adjective copies its noun — U04, part 1.</p>
+      <div class="key" style="margin-bottom:0">
+        <span><b class="mk">e</b> the ending that changes</span>
+        <span><b class="st">oa</b> a change inside the stem</span>
+        <span><span class="tag g-m">m</span> <span class="tag g-f">f</span> <span class="tag g-n">n</span> gender</span>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>.tohub</b> — first thing inside <code>.wrap</code>, on every page, relative
+    href (in <code>work/visuals/</code>: exactly <code>index.html</code>). A page without it is a
+    dead end from a bookmark (limba, 2026-08-10).<br><br>
+    <b>.key</b> — legend of the marks the page uses. <span class="yes">Use</span> when the page
+    marks morphemes or genders. <span class="no">Skip</span> marks the page never shows.</div>
+</div>
+
+<h2><span class="n">②</span> Cards, tables, morpheme marking</h2>
+<div class="spec">
+  <div>
+    <div class="card scroll">
+      <table>
+        <tr><th></th><th>singular</th><th>plural</th><th>what ran</th></tr>
+        <tr><td><span class="tag g-m">m</span></td>
+            <td><span class="l2">prieten</span></td>
+            <td><span class="l2">prieten<b class="mk">i</b></span></td>
+            <td class="muted">ending added</td></tr>
+        <tr><td><span class="tag g-f">f</span></td>
+            <td><span class="l2">casă</span></td>
+            <td><span class="l2">cas<b class="mk">e</b></span></td>
+            <td class="muted">ending swapped</td></tr>
+        <tr><td><span class="tag g-f">f</span></td>
+            <td><span class="l2">fereastră</span></td>
+            <td><span class="l2">fer<b class="st">e</b>str<b class="mk">e</b></span></td>
+            <td class="muted">stem shifts, ending swaps</td></tr>
+        <tr><td class="muted">verb</td>
+            <td><span class="l2">a vorbi</span></td>
+            <td><span class="l2">vorb<b class="mk">esc</b></span></td>
+            <td class="muted">infix + ending</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="note"><b>.card</b> — one idea per card. Tables always sit in
+    <code>.card.scroll</code> so they scroll inside the card, never the page.<br><br>
+    <b>b.mk / b.st</b> — every inflection table marks the changing morpheme
+    (<code>b.mk</code>) and any stem shift (<code>b.st</code>), marked segments lining up down
+    the column so the pattern is visible without reading. Required when the pack declares
+    inflection; a no-inflection pack's pages carry neither token.<br><br>
+    <b>.l2</b> — every target-language string. <b>.l1</b> — support-language contrasts.
+    Never colour a full sentence of meta prose.</div>
+</div>
+
+<h2><span class="n">③</span> Gender colouring</h2>
+<div class="spec">
+  <div>
+    <div class="card">
+      <p style="margin:.2rem 0"><span class="tag g-m">m</span> <span class="l2">un prieten</span>
+        · <span class="tag g-f">f</span> <span class="l2">o casă</span>
+        · <span class="tag g-n">n</span> <span class="l2">un scaun</span></p>
+    </div>
+  </div>
+  <div class="note"><b>.tag.g-&lt;label&gt;</b> — one class and one token pair per gender the
+    pack declares (ro: <code>m f n</code>). <span class="yes">Use</span> wherever a noun's
+    gender is a fact the learner needs. <span class="no">Never</span> invent labels the pack
+    does not declare — <code>visualcheck</code> fails the page. Zero-gender packs drop the
+    layer entirely.</div>
+</div>
+
+<h2><span class="n">④</span> Callouts</h2>
+<div class="spec">
+  <div>
+    <div class="lede"><b>The point.</b> The one insight the page exists for — at most one or two per page.</div>
+    <div class="rule">The carry-away rule, stated once, in one sentence.</div>
+    <div class="warn"><b>The trap.</b> What will catch the learner, and why.</div>
+    <div class="anchor"><b>The concept maps directly.</b> A support-language parallel the learner already holds.</div>
+  </div>
+  <div class="note"><b>.lede</b> (accent) · <b>.rule</b> (green) · <b>.warn</b> (red) ·
+    <b>.anchor</b> (support-language blue). Four voices, fixed meanings.
+    <span class="no">Don't</span> repurpose a colour for emphasis — the learner reads these
+    borders as semantics, and consistency across months of pages is the product.</div>
+</div>
+
+<h2><span class="n">⑤</span> Worked example, counter chip, inline code</h2>
+<div class="spec">
+  <div>
+    <div class="card">
+      <div class="big"><span class="l2">un frate bun → doi frați bun<b class="mk">i</b></span></div>
+      <p class="muted" style="margin-bottom:.2rem"><span class="cnt">4</span> forms — plural noun takes
+        <b>-i</b>, so the adjective takes <b>-i</b> too. Cited as <code>work/visuals/…acord.html</code>.</p>
+    </div>
+  </div>
+  <div class="note"><b>.big</b> — a full worked example the learner should read as one line.
+    <b>.cnt</b> — a small counted fact (number of forms, of classes).
+    <b>code</b> — repo paths and literal fragments only, never target-language words.</div>
+</div>
+
+<h2><span class="n">⑥</span> Guided attempt (.rev/.ans) — live</h2>
+<div class="spec">
+  <div>
+    <div class="card">
+      <div class="q">1. <span class="l2">o stradă</span> + <b>curat</b> — say the phrase, then reveal</div>
+      <button class="rev">Show</button>
+      <div class="ans"><span class="l2">o stradă curat<b class="mk">ă</b></span> — feminine singular,
+        so <b>-ă</b>; and the adjective goes after the noun.</div>
+    </div>
+  </div>
+  <div class="note"><b>.rev/.ans</b> — always 1:1 (<code>visualcheck</code> counts them). Concealed
+    answers live on pages, not in chat — chat renders <code>&lt;details&gt;</code> as raw tags
+    (limba convention). <span class="yes">Use</span> for beat-⑦ guided attempts whose answers
+    appear nowhere else on the page. <span class="no">Not</span> for word lists — those get the
+    two-layer surface below.</div>
+</div>
+
+<h2><span class="n">⑦</span> Audio: authored placeholder → embedded row</h2>
+<div class="spec">
+  <div>
+    <div class="card">
+      <p class="muted" style="margin-top:0;font-size:.85rem">You author only this:</p>
+      <pre class="scroll" style="margin:0 0 .8rem;font:.8rem var(--font-mono)"><code>&lt;div class="tts" data-text="un frate, doi frați"
+     data-en="brother — singular, then plural"&gt;&lt;/div&gt;</code></pre>
+      <p class="muted" style="font-size:.85rem"><code>node scripts/tts-embed.mjs &lt;file&gt;</code> turns it into
+        this (static specimen — real buttons exist only after embedding):</p>
+      <div class="demo-tts">
+        <button class="demo-play" disabled aria-hidden="true">▶</button>
+        <div class="demo-label"><b lang="ro">un frate, doi frați</b>
+          <div class="demo-en">brother — singular, then plural</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>Audio lives in the row it voices</b> — a button in the item's own row,
+    never a parallel list duplicating a table (limba learner, 2026-08-10: "why is there a need
+    to have two tables?"). A standalone stack is right only where the page prints nothing to
+    attach to.<br><br>
+    <b>Never author the player script.</b> <code>tts-embed.mjs</code> appends it once. A
+    hand-copied second player gives every button two handlers that cancel each other — every
+    clip valid, total silence (limba, 2026-08-12).</div>
+</div>
+
+<h2><span class="n">⑧</span> Two-layer drill surface — live (no audio in this demo)</h2>
+<div class="spec">
+  <div>
+    <div class="vocab m-browse" id="vocab">
+      <div class="modes">
+        <button data-m="m-browse" class="on">browse</button>
+        <button data-m="m-l2l1">RO → EN</button>
+        <button data-m="m-l1l2">EN → RO</button>
+      </div>
+      <div class="card scroll">
+        <table>
+          <tr><th>Romanian</th><th>English</th><th>Gender + plural</th><th>Anchor</th></tr>
+          <tr class="row">
+            <td class="l2-side"><span class="val"><span class="l2">mamă</span></span><span class="cover">···</span></td>
+            <td class="l1-side"><span class="val">mother</span><span class="cover">···</span></td>
+            <td class="ans-side"><span class="val"><span class="tag g-f">f</span> <span class="l2">mam<b class="mk">e</b></span></span><span class="cover">···</span></td>
+            <td class="ans-side"><span class="val">UA <i class="l1">мама</i> — the same word.</span><span class="cover">···</span></td>
+          </tr>
+          <tr class="row">
+            <td class="l2-side"><span class="val"><span class="l2">frate</span></span><span class="cover">···</span></td>
+            <td class="l1-side"><span class="val">brother</span><span class="cover">···</span></td>
+            <td class="ans-side"><span class="val"><span class="tag g-m">m</span> <span class="l2">fra<b class="st">ț</b><b class="mk">i</b></span></span><span class="cover">···</span></td>
+            <td class="ans-side"><span class="val">EN <i>fraternal</i> — Latin <i>frater</i>.</span><span class="cover">···</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>.vocab</b> — the two-layer reveal: a page-wide mode filter (browse /
+    L2→L1 / L1→L2) plus per-row reveal on click. <b>Everything that names the answer conceals
+    with it</b> — translation, gender, plural, the note (a mode hiding only one row type leaks
+    the rest — limba u01-deck defect, 2026-08-10).<br><br>
+    Required on <b>every drill surface and every teach-page word list</b> — a table that can
+    only be read is a table the learner re-drills somewhere else. On real pages each row also
+    carries <b>two clips</b> (prompt alone / full pair) swapped by state, so audio never
+    out-speaks the concealment; playback stops on every state change. Scope to a wrapper,
+    never <code>&lt;body&gt;</code>.</div>
+</div>
+
+<h2><span class="n">⑨</span> Section divider</h2>
+<div class="spec">
+  <div><div class="stripe"></div></div>
+  <div class="note"><b>.stripe</b> — the one divider, between the teach half and the drill half
+    of a page. <span class="no">Don't</span> multiply dividers; numbered <code>h2</code>
+    sections already pace the page.</div>
+</div>
+
+<p class="muted" style="margin-top:2.2rem;font-size:.85rem">
+  Engine reference · <code>docs/visual/gallery.html</code> · start from
+  <code>docs/visual/starter.html</code></p>
+
+</div>
+
+<script>
+  (function(){
+    var b=document.getElementById("themeBtn"),order=["","light","dark"],i=0;
+    b.addEventListener("click",function(){
+      i=(i+1)%order.length;
+      if(order[i]) document.documentElement.setAttribute("data-theme",order[i]);
+      else document.documentElement.removeAttribute("data-theme");
+      b.textContent="theme: "+(order[i]||"auto");
+    });
+  })();
+</script>
+<script>
+  (function(){
+    var box=document.getElementById("vocab");
+    box.querySelectorAll(".modes button").forEach(function(b){
+      b.addEventListener("click",function(){
+        box.className="vocab "+b.dataset.m;
+        box.querySelectorAll(".modes button").forEach(function(o){o.classList.toggle("on",o===b);});
+        box.querySelectorAll("tr.row").forEach(function(r){r.classList.remove("open");});
+      });
+    });
+    box.querySelectorAll("tr.row").forEach(function(r){
+      r.addEventListener("click",function(){
+        if(box.classList.contains("m-browse"))return;
+        r.classList.toggle("open");
+      });
+    });
+  })();
+</script>
+<script>
+  document.querySelectorAll('.rev').forEach(function(b){
+    b.addEventListener('click',function(){
+      var a=b.nextElementSibling;
+      a.classList.toggle('show');
+      b.textContent=a.classList.contains('show')?'Hide':'Show';
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!-- mova:engine -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TARGET}} — starter page</title>
+<!--
+  docs/visual/starter.html — COPY THIS FILE TO START ANY VISUAL. An agent building a page
+  starts here and figures out nothing: tokens, components, reveal machinery and audio
+  placeholders are already correct. Rules: docs/visual/SPEC.md. Component usage notes:
+  docs/visual/gallery.html.
+
+  When you copy this into work/visuals/YYYY-MM-DD_slug.html:
+    1. Change the first line to the instance marker: <!- - mova:instance - ->
+    2. Change the hub link href to "index.html" (the sibling hub — visualcheck enforces).
+    3. Replace every {{TARGET}} (target-language string) and {{META}} (support/meta-language
+       string) placeholder; delete the exemplar sections you do not need.
+    4. Token VALUES come from the pinned docs/visual/tokens.css of this workspace — if
+       setup has re-crafted the theme, copy the pinned block over the one below.
+    5. Author audio as <div class="tts"> placeholders, then run
+       node scripts/tts-embed.mjs <file>. NEVER author the player script.
+    6. Finish with: node scripts/visualcheck.mjs <file>
+-->
+<style>
+  /* ============ TOKEN BLOCK — keys are the contract, values are the pinned theme ==== */
+  :root{
+    /* CORE */
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    /* LANGUAGE */
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    /* MORPHEME — delete if the pack declares inflection: false */
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    /* GENDER — one pair per pack gender label (ro reference: m f n) */
+    --g-m:oklch(47% 0.13 250); --g-mBg:oklch(94% 0.030 250);
+    --g-f:oklch(47% 0.15 350); --g-fBg:oklch(94% 0.035 350);
+    --g-n:oklch(47% 0.11 120); --g-nBg:oklch(94% 0.040 120);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+      --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+      --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+      --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+      --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+      --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+      --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+      --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+      --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+      --g-m:oklch(76% 0.10 250); --g-mBg:oklch(27% 0.050 250);
+      --g-f:oklch(78% 0.12 350); --g-fBg:oklch(27% 0.050 350);
+      --g-n:oklch(80% 0.10 120); --g-nBg:oklch(27% 0.050 120);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+    --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+    --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+    --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+    --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+    --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+    --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+    --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+    --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+    --g-m:oklch(76% 0.10 250); --g-mBg:oklch(27% 0.050 250);
+    --g-f:oklch(78% 0.12 350); --g-fBg:oklch(27% 0.050 350);
+    --g-n:oklch(80% 0.10 120); --g-nBg:oklch(27% 0.050 120);
+  }
+  :root[data-theme="light"]{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    --g-m:oklch(47% 0.13 250); --g-mBg:oklch(94% 0.030 250);
+    --g-f:oklch(47% 0.15 350); --g-fBg:oklch(94% 0.035 350);
+    --g-n:oklch(47% 0.11 120); --g-nBg:oklch(94% 0.040 120);
+  }
+  :root{
+    --font-display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:24px; --space-6:40px; --space-7:64px;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.7,0,.84,0);
+    --ease-in-out:cubic-bezier(.65,0,.35,1); --dur-1:120ms; --dur-2:240ms;
+  }
+  /* ============ COMPONENTS — the functional layer (docs/visual/SPEC.md) ============ */
+  *{box-sizing:border-box}
+  body{margin:0;padding:2.2rem 1.2rem 4rem;background:var(--bg);color:var(--fg);
+    font:16px/1.6 var(--font-body)}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font:700 1.7rem/1.25 var(--font-display);margin:0 0 .2rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 2rem;font-size:.95rem}
+  h2{font-size:1.05rem;margin:2.8rem 0 .9rem;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);font-weight:600}
+  h2 .n{color:var(--hi);margin-right:.35rem}
+  h3{font-size:.95rem;margin:1.6rem 0 .6rem;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:1.1rem 1.2rem;margin-bottom:.7rem}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .l2{font-weight:600;color:var(--l2)}
+  .l1{color:var(--l1)}
+  .ok{color:var(--ok);font-weight:600}
+  .bad{color:var(--bad);font-weight:600}
+  .muted{color:var(--muted)}
+  code{font:.88em var(--font-mono);background:var(--hiBg);color:var(--hi);
+    padding:.1rem .35rem;border-radius:4px}
+  b.mk{color:var(--mk);background:var(--mkBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  b.st{color:var(--st);background:var(--stBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  .key{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.84rem;color:var(--muted);
+    margin:.2rem 0 1.4rem;align-items:center;border:1px solid var(--line);
+    border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+  .lede{border-left:3px solid var(--hi);background:var(--hiBg);padding:.8rem 1rem;
+    border-radius:0 8px 8px 0;margin:.9rem 0}
+  .rule{border-left:3px solid var(--ok);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0;font-weight:600}
+  .warn{border-left:3px solid var(--bad);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .anchor{border-left:3px solid var(--l1);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .rev{margin-top:.5rem;padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--fg);cursor:pointer;font-size:.85rem;
+    transition:background var(--dur-1) var(--ease-out),border-color var(--dur-1) var(--ease-out)}
+  .rev:hover{background:var(--hiBg);border-color:var(--hi)}
+  .rev:focus-visible,.tts-play:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+  .ans{display:none;margin-top:.5rem;padding:.6rem .8rem;border-left:3px solid var(--ok);
+    background:var(--card);border-radius:0 8px 8px 0}
+  .ans.show{display:block}
+  .q{font-weight:600;margin-bottom:.1rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:.1rem .45rem;border-radius:5px;text-transform:uppercase;white-space:nowrap}
+  /* one rule per pack gender label — trim or extend to the active pack's declared set */
+  .tag.g-m{color:var(--g-m);background:var(--g-mBg)}
+  .tag.g-f{color:var(--g-f);background:var(--g-fBg)}
+  .tag.g-n{color:var(--g-n);background:var(--g-nBg)}
+  .big{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin:.4rem 0}
+  .stripe{border-top:2px dashed var(--line);margin:1.6rem 0 1.2rem}
+  .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
+    color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
+    border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
+    border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
+  .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--muted);font-size:.78rem;cursor:pointer}
+</style>
+<style>
+  /* Two-layer drill surface (SPEC.md → "Two-layer reveal"). Scoped to .vocab so the rest
+     of the page is untouched. A test mode hides the answer side and EVERYTHING that names
+     it — translation, gender, plural, the note — a mode that hides only one row type
+     leaks the rest (limba u01-deck defect, 2026-08-10). */
+  .vocab .modes{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+  .vocab .modes button{padding:.35rem .8rem;border:1px solid var(--line);border-radius:999px;
+    background:var(--bg);color:var(--muted);cursor:pointer;font-size:.82rem}
+  .vocab .modes button.on{background:var(--hi);border-color:var(--hi);color:var(--bg)}
+  .vocab th.au,.vocab td.au{width:2.9rem;padding-right:0}
+  .vocab td.au .tts-row{display:block;padding:0;border-bottom:0}
+  .vocab td.au .tts-label{display:none}
+  .vocab .cover{display:none;color:var(--muted);letter-spacing:.2em}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .val,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .val{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .cover,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .cover{display:inline}
+  /* The audio must not out-speak the concealment: L2→L1 plays the prompt clip alone until
+     the row is revealed, and the paired clip after; L1→L2 has no prompt to offer, so its
+     button stays hidden until reveal. The fix is a second clip, not a hidden button
+     (limba learner, 2026-08-10). */
+  .vocab .au-sg{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .au-sg{display:block}
+  .vocab.m-l2l1 tr.row:not(.open) .au-pair{display:none}
+  .vocab.m-l1l2 tr.row:not(.open) td.au .tts-row{visibility:hidden}
+  .vocab.m-l2l1 tr.row,.vocab.m-l1l2 tr.row{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- In work/visuals/ this href must become "index.html" (visualcheck enforces). -->
+<a class="tohub" href="../../work/visuals/index.html">← hub</a>
+
+<button class="themebtn" id="themeBtn" aria-label="Switch theme">theme: auto</button>
+
+<h1>{{TARGET}}</h1>
+<p class="sub">{{META — one line: what this page teaches, which unit, which part}}</p>
+
+<!-- The key legend: only the marks this page actually uses. -->
+<div class="key">
+  <span><b class="mk">{{x}}</b> the ending that changes</span>
+  <span><b class="st">{{y}}</b> a change inside the stem</span>
+  <span><span class="tag g-m">m</span> <span class="tag g-f">f</span> <span class="tag g-n">n</span> gender</span>
+</div>
+
+<h2><span class="n">①</span> {{META — section title}}</h2>
+<p>{{META — teaching prose. Target-language words inline look like}}
+  <span class="l2">{{TARGET}}</span>{{META — and support-language contrasts like}}
+  <i class="l1">{{META}}</i>.</p>
+
+<!-- Inflection table: EVERY inflection table marks the changing morpheme (b.mk), and stem
+     changes (b.st), with marked segments lining up down the column. -->
+<div class="card scroll">
+<table>
+  <tr><th>{{META}}</th><th>{{META singular}}</th><th>{{META plural}}</th></tr>
+  <tr><td><span class="tag g-m">m</span></td>
+      <td><span class="l2">{{TARGET}}</span></td>
+      <td><span class="l2">{{TARGET stem}}<b class="mk">{{ending}}</b></span></td></tr>
+  <tr><td><span class="tag g-f">f</span></td>
+      <td><span class="l2">{{TARGET}}</span></td>
+      <td><span class="l2">{{st}}<b class="st">{{shift}}</b>{{em}}<b class="mk">{{ending}}</b></span></td></tr>
+</table>
+</div>
+
+<!-- Audio placeholder: author ONLY this div, in the row/card it voices; then run
+     node scripts/tts-embed.mjs <file> — it fills these with playable clips and appends
+     the shared player once. NEVER author the player script (limba, 2026-08-12: a
+     hand-copied player silences every button on the page). -->
+<div class="card">
+  <div class="tts" data-text="{{TARGET sentence to voice}}" data-en="{{META gloss}}"></div>
+</div>
+
+<!-- Callouts: .lede (the point), .rule (carry-away rule), .warn (trap), .anchor
+     (support-language contrast). -->
+<div class="lede"><b>{{META — the one insight this page exists for.}}</b></div>
+<div class="rule">{{META — the rule to carry away, stated in one sentence.}}</div>
+<div class="warn"><b>{{META — the trap.}}</b> {{META — why it will catch the learner.}}</div>
+<div class="anchor"><b>{{META — the concept maps directly.}}</b> {{META — support-language parallel.}}</div>
+
+<h2><span class="n">②</span> Worked example</h2>
+<div class="card">
+  <div class="big"><span class="l2">{{TARGET}} → {{TARGET stem}}<b class="mk">{{ending}}</b></span></div>
+  <p class="muted">{{META — why: name the operations that ran, in order.}}</p>
+</div>
+
+<h2><span class="n">③</span> Try it</h2>
+<p class="muted">{{META — items whose answers appear nowhere else on the page.}}</p>
+<div class="card">
+  <div class="q">1. <span class="l2">{{TARGET prompt}}</span> — {{META instruction}}</div>
+  <button class="rev">Show</button>
+  <div class="ans"><span class="l2">{{TARGET answer}}</span> — {{META — why, in one line.}}</div>
+</div>
+
+<div class="stripe"></div>
+
+<h2><span class="n">④</span> The new words</h2>
+<p class="muted">{{META — n words. Switch mode to hide one side, then click a row to reveal it.}}</p>
+
+<!-- Two-layer drill surface: page-wide mode filter + per-row reveal. Everything that
+     names the answer conceals with it. Two clips per row: au-sg = the prompt alone,
+     au-pair = the full pair (the answer in either direction). -->
+<div class="vocab m-browse" id="vocab">
+<div class="modes">
+  <button data-m="m-browse" class="on">browse</button>
+  <button data-m="m-l2l1">{{L2}} → {{L1}}</button>
+  <button data-m="m-l1l2">{{L1}} → {{L2}}</button>
+</div>
+<div class="card scroll">
+<table>
+<tr><th class="au"></th><th>{{L2 name}}</th><th>{{L1 name}}</th><th>{{META — gender + plural}}</th><th>{{META — note/anchor}}</th></tr>
+<tr class="row">
+  <td class="au">
+    <div class="au-sg"><div class="tts" data-text="{{TARGET singular}}" data-en="{{META gloss}}"></div></div>
+    <div class="au-pair"><div class="tts" data-text="{{TARGET singular, TARGET plural}}" data-en="{{META gloss — singular, then plural}}"></div></div>
+  </td>
+  <td class="l2-side"><span class="val"><span class="l2">{{TARGET}}</span></span><span class="cover">···</span></td>
+  <td class="l1-side"><span class="val">{{META translation}}</span><span class="cover">···</span></td>
+  <td class="ans-side"><span class="val"><span class="tag g-f">f</span> <span class="l2">{{stem}}<b class="mk">{{ending}}</b></span></span><span class="cover">···</span></td>
+  <td class="ans-side"><span class="val">{{META — anchor or note; it conceals with the answer.}}</span><span class="cover">···</span></td>
+</tr>
+</table>
+</div>
+</div>
+
+<p class="muted" style="margin-top:2.2rem;font-size:.85rem">
+  Generated {{DATE}} · {{UNITS}} · <code>work/visuals/{{FILE}}.html</code>
+</p>
+
+</div>
+
+<script>
+  /* Theme switcher: auto (system) → light → dark. */
+  (function(){
+    var b=document.getElementById("themeBtn"),order=["","light","dark"],i=0;
+    b.addEventListener("click",function(){
+      i=(i+1)%order.length;
+      if(order[i]) document.documentElement.setAttribute("data-theme",order[i]);
+      else document.documentElement.removeAttribute("data-theme");
+      b.textContent="theme: "+(order[i]||"auto");
+    });
+  })();
+</script>
+<script>
+  /* Two-layer drill surface: mode filter + per-row reveal. Playback stops on every state
+     change — a clip started before a reveal toggles keeps speaking the answer after the
+     text is gone (limba, 2026-08-10). */
+  (function(){
+    var box=document.getElementById("vocab");
+    if(!box) return;
+    function hush(scope){
+      scope.querySelectorAll("audio").forEach(function(a){a.pause();a.currentTime=0;});
+      scope.querySelectorAll(".tts-play").forEach(function(b){b.classList.remove("on");b.textContent="▶";});
+    }
+    box.querySelectorAll(".modes button").forEach(function(b){
+      b.addEventListener("click",function(){
+        box.className="vocab "+b.dataset.m;
+        box.querySelectorAll(".modes button").forEach(function(o){o.classList.toggle("on",o===b);});
+        box.querySelectorAll("tr.row").forEach(function(r){r.classList.remove("open");});
+        hush(box);
+      });
+    });
+    box.querySelectorAll("tr.row").forEach(function(r){
+      r.addEventListener("click",function(ev){
+        if(box.classList.contains("m-browse"))return;
+        if(ev.target.closest(".tts-play"))return;
+        r.classList.toggle("open");
+        hush(r);
+      });
+    });
+  })();
+</script>
+<script>
+  /* Per-item reveal for guided attempts (.rev/.ans pairs). */
+  document.querySelectorAll('.rev').forEach(function(b){
+    b.addEventListener('click',function(){
+      var a=b.nextElementSibling;
+      a.classList.toggle('show');
+      b.textContent=a.classList.contains('show')?'Hide':'Show';
+    });
+  });
+</script>
+<!-- No player script here: tts-embed.mjs appends it once, behind its own marker. -->
+</body>
+</html>

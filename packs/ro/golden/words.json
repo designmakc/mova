@@ -1,0 +1,167 @@
+[
+  {
+    "target": "prieten (m, prieteni)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "limbă (f, limbi)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "timp (n, timpuri)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "carte (f, cărți)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "oraș (n, orașe)",
+    "id": "V-0035",
+    "expected": "noun"
+  },
+  {
+    "target": "nume (n, nume)",
+    "id": "V-0033",
+    "expected": "noun"
+  },
+  {
+    "target": "perete (m, pereți)",
+    "id": "V-0076",
+    "expected": "noun"
+  },
+  {
+    "target": "ochi (m, ochi)",
+    "id": "V-0075",
+    "expected": "noun"
+  },
+  {
+    "target": "România (f)",
+    "id": "V-0036",
+    "expected": "noun"
+  },
+  {
+    "target": "român (m, români) · româncă (f, românce)",
+    "id": "V-0038",
+    "expected": "noun"
+  },
+  {
+    "target": "a vorbi",
+    "id": "V-0005",
+    "expected": "verb"
+  },
+  {
+    "target": "a înțelege",
+    "id": "V-0007",
+    "expected": "verb"
+  },
+  {
+    "target": "a lucra",
+    "id": "V-0046",
+    "expected": "verb"
+  },
+  {
+    "target": "mulțumesc (v)",
+    "id": "V-0002",
+    "expected": "verb"
+  },
+  {
+    "target": "prost (adj, proastă, proști, proaste)",
+    "id": "V-0016",
+    "expected": "adj"
+  },
+  {
+    "target": "bun (adj, bună, buni, bune)",
+    "id": "V-0104",
+    "expected": "adj"
+  },
+  {
+    "target": "mare (adj, mare, mari, mari)",
+    "id": "V-0107",
+    "expected": "adj"
+  },
+  {
+    "target": "cine (interog)",
+    "id": "V-0058",
+    "expected": "interog"
+  },
+  {
+    "target": "câți (interog, m) · câte (f)",
+    "id": "V-0061",
+    "expected": "interog"
+  },
+  {
+    "target": "unde (interog)",
+    "id": "V-0062",
+    "expected": "interog"
+  },
+  {
+    "target": "fără (prep)",
+    "id": "V-0012",
+    "expected": "word"
+  },
+  {
+    "target": "din (prep)",
+    "id": "V-0040",
+    "expected": "word"
+  },
+  {
+    "target": "nu (part)",
+    "id": "V-0024",
+    "expected": "word"
+  },
+  {
+    "target": "bine (adv)",
+    "id": "V-0025",
+    "expected": "word"
+  },
+  {
+    "target": "salut (interj)",
+    "id": "V-0021",
+    "expected": "word"
+  },
+  {
+    "target": "bună ziua",
+    "id": "V-0001",
+    "expected": "phrase"
+  },
+  {
+    "target": "cu plăcere",
+    "id": "V-0026",
+    "expected": "phrase"
+  },
+  {
+    "target": "la revedere",
+    "id": "V-0022",
+    "expected": "phrase"
+  },
+  {
+    "target": "îmi pare rău",
+    "id": "V-0027",
+    "expected": "phrase"
+  },
+  {
+    "target": "noapte bună",
+    "id": "V-0020",
+    "expected": "phrase"
+  },
+  {
+    "target": "a fi, prezent (sunt, ești, este, suntem, sunteți, sunt)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "articolul hotărât ca sufix (băiat→băiatul, casă→casa)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "azi",
+    "id": "V-9999",
+    "expected": null
+  }
+]

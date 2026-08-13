@@ -1,0 +1,57 @@
+[
+  {
+    "input": "fǎrǎ",
+    "expected": "fără",
+    "note": "ǎ U+01CE (a with caron, Czech/pinyin) → ă U+0103 (a with breve) — ERR-002's original offender"
+  },
+  {
+    "input": "şcoală",
+    "expected": "școală",
+    "note": "ş U+015F (s with cedilla, Turkish) → ș U+0219 (s with comma below)"
+  },
+  {
+    "input": "ţară",
+    "expected": "țară",
+    "note": "ţ U+0163 (t with cedilla) → ț U+021B (t with comma below)"
+  },
+  {
+    "input": "śi",
+    "expected": "și",
+    "note": "ś U+015B (s with acute) → ș U+0219 — the look-alike that proved the list is open, not closed"
+  },
+  {
+    "input": "Ţi-am spus",
+    "expected": "Ți-am spus",
+    "note": "uppercase look-alikes fold too"
+  },
+  {
+    "input": "fārā",
+    "expected": "fără",
+    "note": "ā U+0101 (a with macron) → ă"
+  },
+  {
+    "input": "fără",
+    "expected": "fără",
+    "note": "NFD paste (a + combining breve U+0306) — macOS paste often produces NFD; NFC composes it"
+  },
+  {
+    "input": "şi",
+    "expected": "și",
+    "note": "combining cedilla U+0327 arriving decomposed: NFC composes to ş, the fold then lands on ș"
+  },
+  {
+    "input": "înţeleg",
+    "expected": "înțeleg",
+    "note": "look-alike in the middle of a word"
+  },
+  {
+    "input": "înțeleg",
+    "expected": "înțeleg",
+    "note": "already canonical — unchanged"
+  },
+  {
+    "input": "adresa",
+    "expected": "adresa",
+    "note": "a MISSING diacritic (adresa for adresă) is a language error (ORTH-DIA), never folded — normalize only repairs the input method"
+  }
+]

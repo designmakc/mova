@@ -92,6 +92,7 @@ any session sharing the tree. Never discard uncommitted work you did not create.
 
 ## Status
 
-Template under construction (see CHANGELOG.md). Engine extraction from limba is in
-progress; playbooks and setup land in the next phases. This file's verb table and document
-map name the target state — a file it names that doesn't exist yet is unbuilt, not missing.
+Template under construction (see CHANGELOG.md). The engine is extracted: mechanics,
+scripts, contract tests, the visual system, and the Romanian reference pack are in place
+and CI-green. Playbooks and the setup system land next — until they do, the verb table
+names the target state; a file it names that doesn't exist yet is unbuilt, not missing.
