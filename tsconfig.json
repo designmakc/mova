@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    // The contract tests import the plain-JS helpers in scripts/ (state/ledgers.test.ts
+    // classifies rows with scripts/pos.mjs, the same module the deck renders with) — one
+    // classifier, two consumers. checkJs stays off: the scripts are not typed, only read.
+    "allowJs": true,
+    "types": ["node"],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "moduleDetection": "force"
+  },
+  "include": ["docs", "state"]
+}

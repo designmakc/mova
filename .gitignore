@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+*.tsbuildinfo
+
+# Copyrighted study materials (manuals, sample-test PDFs, audio) stay local.
+# See materials/README.md for the acquisition checklist.
+materials/*
+!materials/README.md
+
+# Obsidian vault state — local editor config, per house convention
+.obsidian/
+
+# Voice recordings — personal data, stays local
+work/speaking/recordings/
+
+# TTS audio cache — regenerable, sha1-keyed
+.tts-cache/

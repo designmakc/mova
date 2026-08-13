@@ -1,0 +1,17 @@
+{
+  // Division of labour: VS Code edits Markdown as PLAIN TEXT (source of truth for
+  // git + AI coding agents); rich/WYSIWYG editing is done in Obsidian (open docs/ as
+  // a vault — Obsidian is markdown-native, so it never round-trips through HTML and
+  // can't flatten the [name](projects/name.md) links in docs/plan.md's Projects
+  // Index that docs/projects.index.test.ts requires).
+  //
+  // Force every *.md to open in the built-in text editor here, so a WYSIWYG custom
+  // editor never claims a Markdown file in VS Code (those re-serialize on save and
+  // strip links inside table cells).
+  "workbench.editorAssociations": {
+    "*.md": "default"
+  },
+  // Belt-and-suspenders: if a file is ever opened in a WYSIWYG markdown editor
+  // anyway, don't let it silently rewrite the file on open.
+  "markdownStudio.autoSave": false
+}
