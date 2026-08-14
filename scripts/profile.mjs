@@ -9,19 +9,26 @@
  *   pack: ro
  *   target_language: Romanian
  *   meta_language: English
+ *   native_languages: uk, ru
  *   contrast_ranking: uk > ru > en > de
- *   level_scale: cefr
  *   goal_kind: exam            # exam | level | functional | ledger
- *   goal_date: 2027-02-01      # omit when the goal has no date
+ *   goal_label: Romanian B1 exam    # short display phrase (the hub's subtitle)
+ *   goal_date: 2027-02-01      # OMIT the line when the goal has no date
  *   sections: R W L S
  *   units: 30
+ *   focus: full                # full | drill | vocab | writing — gates which verbs are live
  *   mode: enforced             # enforced | unenforced (node/git missing)
  *   agent: claude-code         # claude-code | opencode | codex | antigravity | other
  *   audio: true
  *   tts: edge                  # edge | say | none
  *   publishing: none           # none | claude-artifacts
- *   template_version: 0.1.0
+ *   template_version: 0.2.0
+ *   template_source: <url>     # optional — where /update fetches from; accretes on first update
  *   ```
+ *
+ * The canonical key list lives in setup/templates/profile.template.md; this block is a
+ * worked example of it. The level scale is the PACK's (`level_scale:` in pack.md), not a
+ * profile key — the target language decides which scale exists, not the learner.
  *
  * WHY ONE BLOCK. limba kept the learner profile as four partially-circular prose copies
  * plus exactly one machine-read line (the exam date, regex-parsed out of exam.md by

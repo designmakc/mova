@@ -62,13 +62,26 @@ template_version: {{TEMPLATE_VERSION}}
 ## The contrast ladder — which language a hook comes from
 
 <!-- Numbered, strongest anchor first, mirroring contrast_ranking above. State the why
-     per rung. Close with the never-stack rule — it is engine doctrine, keep it. -->
+     per rung. Close with the never-stack rule — it is engine doctrine, keep it.
+     ONE-LANGUAGE LEARNERS: write the inverted form below instead; the ladder has a single
+     rung and the rule that matters flips. Do not pad the ladder to look complete. -->
 
 1. **{{FIRST_ANCHOR}} first**, whenever a contrast exists and is meaningful — {{WHY}}.
 2. {{FURTHER_RUNGS}}
 
 **Never stack.** One anchor carries the point; a second is noise and a third is a
 lecture. (limba, learner-confirmed.)
+
+**When the ladder has one rung** (the learner holds only their native language), the
+never-stack rule is satisfied for free and stops being the useful discipline. Its live
+form is the opposite: **never manufacture an anchor to fill a silence.** Where the one
+language offers no hook, say so and teach the system on its own terms — an invented
+half-parallel is worse than none, because the learner will trust it. Expect the transfer
+map to come out *asymmetric*, not thin: long where the languages genuinely touch (sounds,
+shared vocabulary layers, word order), and a list of **absences** where they do not. An
+absence is a finding: the learner will not produce a form wrongly, they will not produce
+it at all, because nothing in what they know opens that slot. (Found generating an
+English-only instance, 2026-08-14.)
 
 ## Operational profile
 

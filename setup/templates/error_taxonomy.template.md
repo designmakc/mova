@@ -65,6 +65,15 @@
 - Entries are append-only, newest-first, IDs strictly increasing (log test enforces).
 - Every correction names the interference when there is one, per the contrast ranking —
   and that claim follows `docs/mechanics/verification.md` like any other.
+- **"none identified" is a value, not a shrug** — and the distinction it draws decides how
+  the error gets repaired. An error a held language *caused* (its pattern pushed the wrong
+  form through) is repaired by contrast: name the source, show the two systems side by
+  side, and it can stop today. An error a held language merely *failed to prevent* — the
+  target has a system the learner's languages do not, so nothing filled the slot — has no
+  contrast to draw and is repaired only by drilling the system itself. Recording them the
+  same way sends the second kind to the first kind's remedy, which does nothing. Expect
+  the second kind to dominate when the contrast ladder is short. (Found generating an
+  English-only instance, 2026-08-14.)
 
 ## The tokens the tally reads
 

@@ -4,7 +4,7 @@ verb: mock
 summary: Timed mock of one assessment section, scored and frozen as a snapshot.
 triggers: mock, test me, timed practice, exam rehearsal
 requires: node, audio, git
-scenarios: full write
+scenarios: full writing
 ---
 
 # mock — a timed assessment section under real conditions

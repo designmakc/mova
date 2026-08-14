@@ -4,7 +4,7 @@ verb: setup
 summary: Generate a personalized workspace - interview, generate, verify. Runs once, before any study verb works.
 triggers: set up my workspace, I want to start learning a language, any arrival when no profile exists and the human wants to learn
 requires: nothing - this is the verb that creates what the other verbs require
-scenarios: all
+scenarios: none
 ---
 
 # setup — the onboarding driver
@@ -14,6 +14,11 @@ order: **interview** ([setup/interview.md](../setup/interview.md)), **generation
 templates in [setup/templates/](../setup/templates/), per the scenario deltas in
 [setup/scenarios/](../setup/scenarios/)), **verification**
 ([setup/smoke.md](../setup/smoke.md)).
+
+**No adapter is generated for this verb** (`scenarios: none`). Setup runs exactly once,
+from the bare template, routed by AGENTS.md's verb table — which is why it needs no shim;
+a finished instance shipping an auto-invocable `setup` skill would advertise the one verb
+whose first act is to refuse (§ 0 Gate).
 
 **The human's total burden is answering the interview — nothing else.** Every command,
 every fix, every re-run is yours. A generation failure routes back to the step that
@@ -50,9 +55,25 @@ Do not begin generation with an unconfirmed picture.
 
 Each step: fill the template (drop its guidance comments, flip its marker to
 `mova:instance`, leave no `{{PLACEHOLDER}}` behind), then run that step's validation.
+
+**Marker placement — the one exception.** The `<!-- mova:instance -->` comment goes on
+line 1 *except* in a file whose first line is load-bearing for a parser: YAML frontmatter
+must open the file. In `docs/projects/*.md` the frontmatter starts at line 1 and the
+marker follows it (`projects.index.test.ts` matches `^---` without the multiline flag, so
+a comment above it makes `status:` and `kind:` parse as null and four tests fail). The
+same rule already governs generated Claude Code skills — see
+[agents/claude-code/README.md](../agents/claude-code/README.md).
 **A failed validation routes back to the same step**; three failures on one step means
 re-read the template's rules, not lower the bar. Commit after each green step
 (`setup: <file>`), when git exists.
+
+**`npm test` is not green until step 8, by construction.** The suites arm as their
+subjects appear, and `agents.test.ts` arms at step 1 (the profile) while the adapters it
+checks are written at step 8. So from step 1 to step 7 the *whole* suite is red on purpose.
+Each step's "validate with `npm test`" means **the suites that step's file owns** — run
+them by name (`npx vitest run docs/topics.test.ts`) and read the rest as expected-red.
+Full green is step 8's gate and the smoke run's first line. A step-owned suite that fails
+is a real failure; an unrelated red is the scaffold still being built.
 
 1. **Profile** — `setup/templates/profile.template.md` → `docs/reference/profile.md`.
    Config keys from the interview; `template_version` copied from `VERSION`; omit
@@ -84,12 +105,19 @@ re-read the template's rules, not lower the bar. Commit after each green step
    - `topics.template.md` → `docs/reference/topics.md` — systems from the pack's
      inventory, T-NNNN ids from T-0001, unit joins consistent with the curriculum you
      are about to write (draft them together; topics binds in CI once the curriculum
-     exists).
-   *Validate*: **`npm test` after topics lands** — and again after step 6, when the
-   topics suite fully arms.
+     exists). **Aspect count follows the curriculum's detail, not the pack's inventory.**
+     The rolling wave leaves most units as one orientation line; an aspect bound to such a
+     unit is a guess CI then enforces. Detail the aspects for the units you actually
+     detail, and give each coarse unit its handful of headline aspects — the rest accrete
+     when that unit is written out (same wave discipline as the curriculum).
+   - `resources.template.md` → `docs/reference/resources.md` — the registry seeded from
+     the pack's resource notes, trimmed to what serves *this* goal and level. The
+     curriculum's Sources lines and the lesson playbook both read it, so it cannot wait.
+   *Validate*: `npx vitest run docs/topics.test.ts` (fully arms after step 6).
 6. **Curriculum** — `curriculum.template.md` → `docs/curriculum.md`. Rolling wave:
    first 3 units in full, the rest coarse; unit count equals the profile's `units:`;
-   every unit appears in topics.md. *Validate*: `npm test`.
+   every unit appears in topics.md.
+   *Validate*: `npx vitest run docs/curriculum.test.ts docs/topics.test.ts`.
 7. **Plan + concept + the seed project** —
    - `plan.template.md` → `docs/plan.md` — phases from goal + time budget; the seeded
      `[x]` generation milestone dated today; open milestones annotated on one line.
@@ -101,13 +129,14 @@ re-read the template's rules, not lower the bar. Commit after each green step
      `## Todo` (empty), `## Design` (the interview's load-bearing answers and every
      judgment call you made generating — the file a future "why is the workspace like
      this?" question greps).
-   *Validate*: `npm test` (annotations, projects index, consequential arithmetic all
-   arm here — a failed SRS-ceiling check means the goal's volume target and the plan's
-   pace disagree: fix the numbers, not the test).
+   *Validate*: `npx vitest run docs/plan.annotations.test.ts docs/projects.index.test.ts
+   docs/consequential.test.ts` (a failed SRS-ceiling check means the goal's volume target
+   and the plan's pace disagree: fix the numbers, not the test).
 8. **Agent adapters** — generate for the profile's `agent:` per
    `agents/<agent>/README.md` (adapter shims contain pointers to playbooks, never rule
-   text). *Validate*: the adapter files exist where that README says; `npm test`
-   (agents test).
+   text). No shim for `setup` or any `maintainer: true` verb.
+   *Validate*: the adapter files exist where that README says — **and now the whole
+   suite: `npm test` must be green.** This is the first point where it can be.
 9. **Visuals home + theme** — copy
    [setup/templates/visuals-readme.template.md](../setup/templates/visuals-readme.template.md)
    → `work/visuals/README.md` (it is already instance-marked; index empty). Then the
@@ -130,5 +159,17 @@ done until the smoke is clean.
 Tell the learner, plainly: the workspace is ready; **say "lesson" when you're ready to
 start — the first lesson is a placement**, a gentle probe of where you actually are, and
 everything after it is built on what it finds. One sentence on anything the environment
-can't do (no audio, no dictionary). Then stop — the first session belongs to the lesson
-verb, not to setup's momentum.
+can't do (no audio, no dictionary).
+
+**Then the short list of things only they can do.** Setup's promise is that the learner
+answers questions and nothing else — but some work is theirs by nature, and burying it in
+the plan means it never happens. Name each one in a sentence, with why it matters and by
+when: material a site will not serve to a script (buy it, download it in a browser),
+anything that costs money, anything requiring their identity (exam registration), and any
+keyboard or input setup the target language needs before the first written work — on a
+layout without the language's characters, look-alike codepoints enter the record and the
+workspace cannot tell them from real spelling. Each item is also a `🔧` milestone in
+`docs/plan.md`, but the plan is a file; this is the conversation. Keep it to what is
+genuinely blocked on them — a list of five is a handoff, a list of fifteen is homework.
+
+Then stop — the first session belongs to the lesson verb, not to setup's momentum.

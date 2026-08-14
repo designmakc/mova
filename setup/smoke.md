@@ -18,7 +18,13 @@ npm test
 ```
 
 **Must pass in full — the same tests the reference instance lives under, now armed by
-the instance's own files.** A fresh instance has no waiver; a red test is a
+the instance's own files.**
+
+> `vitest: command not found` is not a mis-generation — dependencies were never installed
+> (the zip-download path ships no `node_modules/`). Run `npm install`, then this step
+> again, and add it to the environment probe next time
+> ([setup/interview.md](interview.md) Topic 7). It is the one failure here that is yours,
+> not the generated files'. A fresh instance has no waiver; a red test is a
 mis-generated file, and the failing file names the step:
 
 | Failing suite | Redo step |

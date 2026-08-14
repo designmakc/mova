@@ -163,11 +163,24 @@ Run these checks yourself, silently, and only surface what needs a human decisio
 - **Toolchain**: `node --version`, `git --version`. Both present → `mode: enforced`;
   either missing → `mode: unenforced` — the workspace still works, CI-style checks
   degrade to your own discipline, and you tell the learner one plain sentence about it.
+- **Dependencies**: if `mode: enforced`, run `npm install` **now**, before any generation.
+  The contract tests are the generation-quality gate and they need `vitest` on disk; a
+  zip-download copy has no `node_modules/`, so the first `npm test` of the smoke run dies
+  with `vitest: command not found` — a message the learner cannot act on, arriving right
+  after you promised they were done. Verify with one `npx vitest run` on the bare template
+  (everything skips; that green is the proof the toolchain works). Install failure ⇒
+  `mode: unenforced`, and say so plainly.
+- **Repository**: if `git status` reports no commits yet (the zip path — "Use this
+  template" already gives you history), make ONE baseline commit of the untracked template
+  files before generating. `visuals.index.test.ts` reads `git ls-files`; without a
+  baseline, tracked-file checks pass vacuously and the learner's first pages go unindexed.
 - **Audio**: can this machine play sound from your session (`afplay`/`say` on macOS, or
   the platform equivalent)? → `audio:`. TTS: is `edge-tts` available or installable, else
   the OS voice, else none → `tts:` (`edge` | `say` | `none`).
 - **Dictionary**: does `packs/<code>/dictionary.mjs` exist for the chosen pack? Run one
-  real lookup on a known common word. Reachable → verification runs attested;
+  real lookup on a known common word: `node scripts/dictionary.mjs <word> --pack <code>`
+  (exit 0 and a JSON hit = reachable; exit 1 = absent or unreachable).
+  Reachable → verification runs attested;
   unreachable or absent → the null-adapter rules apply and the learner is told, once,
   what that means (facts get a visible "unverified" mark until a tutor or dictionary
   confirms them).

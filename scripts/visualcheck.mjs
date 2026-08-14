@@ -295,16 +295,30 @@ if (isMain) {
   const args = process.argv.slice(2);
   let files;
   if (args.includes("--all")) {
+    // Authored instance pages PLUS the engine's own reference pages — docs/visuals.content
+    // .test.ts checks those two, so a `--all` that skipped them made the CLI and the CI
+    // test disagree about what "everything" means, and reported a vacuous pass on a fresh
+    // instance (found by the first full setup proof run, 2026-08-14).
     const dir = join(root, "work/visuals");
-    files = existsSync(dir)
+    const authored = existsSync(dir)
       ? readdirSync(dir)
           .filter((f) => f.endsWith(".html") && !GENERATED.has(f))
           .sort()
           .map((f) => join(dir, f))
       : [];
+    const reference = ["docs/visual/starter.html", "docs/visual/gallery.html"]
+      .map((p) => join(root, p))
+      .filter((p) => existsSync(p));
+    files = [...authored, ...reference];
+    if (authored.length === 0) {
+      console.log(
+        `visualcheck: no authored pages in work/visuals/ yet — checking the ${reference.length} ` +
+          `reference page(s) only. (A workspace before its first lesson; not an error.)`,
+      );
+    }
     if (files.length === 0) {
-      console.log("visualcheck: no authored pages in work/visuals/ (template mode) — nothing to check.");
-      process.exit(0);
+      console.error("visualcheck: nothing to check — no authored and no reference pages found.");
+      process.exit(1);
     }
   } else {
     files = args.filter((a) => !a.startsWith("--"));

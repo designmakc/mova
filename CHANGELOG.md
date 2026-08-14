@@ -4,6 +4,35 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.2.1 — 2026-08-14
+
+Fixes from the first full setup proof run (a fictional English-native learner, Romanian
+exam scenario, generated from a bare template copy — 138 tests passed on the instance).
+
+- **Setup could not install its own dependencies.** No file ran `npm install`, so the
+  zip-download path met `vitest: command not found` at the first smoke step, right after
+  the interview promised the learner was done. The environment probe now installs and
+  verifies, and smoke names the failure as the agent's, not the generated files'.
+- **The `mova:instance` marker broke project-file frontmatter** — an HTML comment above
+  `---` makes `status:`/`kind:` parse as null and fails four tests. Marker placement now
+  has its stated exception.
+- **Focus-mode values disagreed** (`writing` in the profile, `write` in two playbooks), so
+  a writing-focus instance would have refused its two core verbs.
+- Per-step `npm test` validation was unsatisfiable at steps 5–7 (the adapters suite arms
+  at step 1); steps now validate the suites they own, with full green as step 8's gate.
+- `docs/reference/resources.md` had no generation step and would never have existed.
+- `scripts/dictionary.mjs` gained the reachability CLI the probe and smoke both call for
+  (a silent exit 0 read as a pass); `visualcheck --all` now covers the reference pages CI
+  checks and stops calling a generated instance "template mode"; `setup` no longer ships
+  an adapter for the one verb that refuses to run; deck's status line, and profile.mjs's
+  documented key list, both fixed.
+- Two pedagogy findings from the monolingual case, now in the templates: with one held
+  language the "never stack anchors" rule inverts into *never manufacture an anchor to
+  fill a silence*, and an error a language **failed to prevent** needs a different repair
+  than one it **caused**.
+- instance-impact: none (no instances exist yet); once they do, engine files auto-update
+  and the setup/ templates only affect future generations.
+
 ## 0.2.0 — 2026-08-13
 
 - Engine extracted from limba per `upstream/map.md`: mechanics docs (srs, session_format,

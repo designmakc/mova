@@ -4,7 +4,7 @@ verb: write
 summary: Writing practice in the goal contract's genres - prompt, coded correction, model answer, chunk harvest.
 triggers: write, writing practice, composition
 requires: node, dictionary, git
-scenarios: full write
+scenarios: full writing
 ---
 
 # write — composition practice in the goal's genres

@@ -582,8 +582,12 @@ ${initial()}
 writeFileSync(OUT, html);
 console.log(
   `deck.html — ${rows.length} rows (${vocab.length} vocab, ${grammar.length} grammar), ` +
-    `${filterLabel}; ` +
-    typesPresent.map((t) => `${count((r) => r.type === t.key)} ${t.label}`).join(", ") +
+    `${filterLabel}` +
+    // Empty on a fresh instance — an empty clause left "…every taught row; ; audio off"
+    // in the status line (found by the first full setup proof run, 2026-08-14).
+    (typesPresent.length
+      ? `; ${typesPresent.map((t) => `${count((r) => r.type === t.key)} ${t.label}`).join(", ")}`
+      : "") +
     (audioOn
       ? `; audio on ${clips} row${clips === 1 ? "" : "s"} (cache only, no network) → `
       : `; audio off (profile) → `) +
