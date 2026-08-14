@@ -17,6 +17,7 @@
 
 | Kind | Written by | When |
 | --- | --- | --- |
+| Intake | [../../playbooks/setup.md](../../playbooks/setup.md) — self-reported starting point, "Not exercised: everything" | once, at setup |
 | Placement | first lesson ([../../playbooks/lesson.md](../../playbooks/lesson.md), Phase 0) | once |
 | Level assessment | [../../playbooks/review.md](../../playbooks/review.md) | every ~4 weeks or phase boundary |
 | Mock result | [../../playbooks/mock.md](../../playbooks/mock.md) | per the goal contract's assessment program |

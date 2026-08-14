@@ -36,6 +36,7 @@ const EXTS = new Set([".md", ".mjs", ".ts", ".sh", ".css", ".html", ".json"]);
 
 /** Engine files that cannot carry a marker (JSON/YAML config) — maintained by hand. */
 const INCLUDE = [
+  "agents/claude-code/launch.json",
   "package.json",
   "tsconfig.json",
   ".github/workflows/ci.yml",

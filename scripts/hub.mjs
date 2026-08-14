@@ -36,6 +36,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
+import { canVerify } from "./dictionary.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel) => readFileSync(join(root, rel), "utf8");
@@ -321,6 +322,9 @@ function commands() {
   const verbs = existsSync(dir)
     ? readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => {
         const fm = readFileSync(join(dir, f), "utf8");
+        // Maintainer verbs (sync-upstream) run against the template repo, not an
+        // instance — a learner's hub listing one would invite running it there.
+        if (/^maintainer:\s*true$/m.test(fm)) return null;
         const verb = /^verb:\s*(.+)$/m.exec(fm);
         const summary = /^summary:\s*(.+)$/m.exec(fm);
         // The summary's first clause is the useful half; the rest is trigger phrasing.
@@ -424,6 +428,83 @@ const calibRows = calibration();
 const last = ses[0];
 
 const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+
+/* ----------------------------------------------------- the confidence panel
+ *
+ * Every line answers "how much should the learner trust this workspace" — and every line
+ * is either read from a real record or says plainly that no record exists. "Not yet
+ * measured" is a valid render; an invented number here would be the panel refuting itself.
+ */
+
+/** Contract-test standing. HONEST LIMITATION: vitest leaves no artifact this hub could
+ *  read for "last run + pass/fail" without either shelling out to a full test run at
+ *  every close-out (too slow for a dashboard regenerator) or inventing a status file no
+ *  tool maintains. So the panel renders what IS knowable — how many contract test files
+ *  the repo carries and whether enforcement mode is on — and tells the learner the
+ *  command that answers the rest. If a `.test-status.json` convention ever lands (written
+ *  by a test wrapper, not by hand), teach this function to read it. */
+function testFileCount() {
+  const SKIP = new Set(["node_modules", ".git", "materials", ".tts-cache", ".obsidian"]);
+  let n = 0;
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (e.isDirectory()) { if (!SKIP.has(e.name)) walk(join(dir, e.name)); }
+      else if (e.name.endsWith(".test.ts")) n++;
+    }
+  };
+  walk(root);
+  return n;
+}
+
+/** The last factcheck sweep, if one was recorded (scripts/factcheck.mjs --out). */
+function factcheck() {
+  const raw = readMaybe("work/.factcheck.json");
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
+/** Provenance-marker tally over docs/mechanics/*.md — a cheap grep, counted as markers,
+ *  never as "rules" (one rule can carry one marker; unmarked rules are assumed by the
+ *  README's own convention). README.md is excluded: it defines the markers and would
+ *  count its own legend. */
+function provenance() {
+  const text = readdirSync(join(root, "docs/mechanics"))
+    .filter((f) => f.endsWith(".md") && f !== "README.md")
+    .map((f) => read("docs/mechanics/" + f))
+    .join("\n");
+  const count = (re) => (text.match(re) || []).length;
+  return {
+    measured: count(/\(measured(?! on limba)/g),
+    derived: count(/derived from SES-/g),
+    defaults: count(/measured on limba['’]s learner/g),
+    assumed: count(/\(assumed/g),
+  };
+}
+
+const conf = {
+  tests: testFileCount(),
+  mode: profile.get("mode", "unenforced"),
+  fc: factcheck(),
+  prov: provenance(),
+  dict: canVerify(pack.dictionary) ? pack.dictionary.source : null,
+};
+
+/** The facts-verified cell — the three honest states, worst news first. */
+function factsCell() {
+  const { fc, dict } = conf;
+  if (!dict) {
+    return `<b>runs unattested</b> — the ${esc(pack.code)} pack declares no dictionary, so every
+      fact is tutor-confirmed or carries the <code>?</code> marker (verification.md)`;
+  }
+  if (!fc) {
+    return `not yet measured — run <code>node scripts/factcheck.mjs --out work/.factcheck.json</code>
+      and regenerate the hub`;
+  }
+  if (!fc.verifiable) return `cannot verify — ${esc(fc.reason)} (recorded ${esc(fc.generated || "?")})`;
+  return `${fc.verified} of ${fc.rows} ledger rows attested by ${esc(fc.source)} ·
+    ${fc.unverified} unverified${fc.contradicted ? ` · <b style="color:var(--bad)">${fc.contradicted} contradicted — fix before they are drilled</b>` : " · 0 contradicted"}
+    — swept ${esc(fc.generated || "date not recorded")}`;
+}
 
 /* ---------------------------------------------------------------- rendering */
 
@@ -1039,17 +1120,33 @@ const html = `<!doctype html>
   playbook grows it.</div></div>`}
 
   <h2>Confidence</h2>
+  ${conf.mode !== "enforced" ? `
+  <div class="next" style="border-left-color:var(--bad); margin:0 0 14px">
+    <strong>Unenforced mode.</strong> The contract tests are not running on this machine
+    (node/git missing at setup), so every convention on this page rests on the agent's
+    discipline alone — nothing below has been mechanically checked.
+  </div>` : ""}
   <div class="panel">
     <table class="k">
-      <tr><td>Contract tests (<code>npm test</code>) — last run</td><td>unknown</td></tr>
-      <tr><td>Language facts verified against a dictionary</td><td>n/a — factcheck ships in a later template phase</td></tr>
-      <tr><td>Enforcement</td><td>${esc(profile.get("mode", "unenforced"))}</td></tr>
+      <tr><td>Contract tests (<code>npm test</code>)</td>
+        <td>${conf.tests} test files · last run not recorded — run <code>npm test</code> for a verdict</td></tr>
+      <tr><td>Enforcement</td><td>${esc(conf.mode)}</td></tr>
+      <tr><td>Language facts</td><td>${factsCell()}</td></tr>
+      <tr><td>Rule provenance (<code>docs/mechanics/</code>)</td>
+        <td>${conf.prov.measured} measured · ${conf.prov.derived} derived ·
+            ${conf.prov.defaults} defaults from the reference learner (recalibrate) ·
+            ${conf.prov.assumed} marked assumed</td></tr>
+      <tr><td>Language pack</td>
+        <td>${esc(pack.code)} (${esc(pack.manifest.language || "?")}) · dictionary:
+            ${conf.dict ? esc(conf.dict) : "none"}</td></tr>
     </table>
-    <div class="note">How much to trust what this page claims. ${
-      profile.get("mode", "unenforced") === "enforced"
+    <div class="note">How much to trust what this page claims — every line above is read
+    from a record, or says plainly that none exists. ${
+      conf.mode === "enforced"
         ? "Conventions here are checked by CI, not by promises."
-        : "Unenforced mode: node/git checks are not running, so conventions rest on discipline alone."
-    } This panel grows when fact-checking lands.</div>
+        : "Unenforced mode: conventions rest on discipline alone."
+    } Provenance counts are marker occurrences, not rules — an unmarked rule counts as
+    assumed by <code>docs/mechanics/README.md</code>'s own convention.</div>
   </div>
 
   <details class="drawer">

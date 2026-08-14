@@ -2,8 +2,11 @@
 /**
  * Batch fact verification for the vocabulary ledger, via the pack's dictionary adapter.
  *
- *   node scripts/factcheck.mjs           human report
- *   node scripts/factcheck.mjs --json    machine output (the hub's confidence panel)
+ *   node scripts/factcheck.mjs                          human report
+ *   node scripts/factcheck.mjs --json                   machine output on stdout
+ *   node scripts/factcheck.mjs --out work/.factcheck.json   also write the machine output
+ *                                                       to a file — what the hub's
+ *                                                       confidence panel reads
  *
  * docs/mechanics/verification.md wants every taught fact dictionary-verified,
  * tutor-confirmed, or visibly marked unverified. Per-word checks happen at capture; this
@@ -24,7 +27,7 @@
  * Template mode (no profile) and packless-dictionary languages (null adapter) exit 0
  * with a clear "nothing to verify" — a missing dictionary is honest, never an error.
  */
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadPack } from "./pack.mjs";
@@ -34,12 +37,29 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DELAY_MS = 250;
 
 const json = process.argv.includes("--json");
+const outIdx = process.argv.indexOf("--out");
+const outPath = outIdx !== -1 ? process.argv[outIdx + 1] : null;
 const out = (msg) => console.log(msg);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+const todayISO = () => {
+  const n = new Date();
+  const p = (x) => String(x).padStart(2, "0");
+  return `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())}`;
+};
+
+/** With --out, the payload (plus its date) also lands in a file the hub reads. */
+function writeOut(payload) {
+  if (!outPath) return;
+  writeFileSync(outPath, JSON.stringify({ generated: todayISO(), ...payload }, null, 2) + "\n");
+  out(`sweep result → ${outPath}`);
+}
+
 function bail(reason) {
-  if (json) out(JSON.stringify({ verifiable: false, reason }));
+  const payload = { verifiable: false, reason };
+  if (json) out(JSON.stringify(payload));
   else out(`nothing to verify — ${reason}`);
+  writeOut(payload);
   process.exit(0);
 }
 
@@ -122,23 +142,18 @@ for (const row of rows) {
   await sleep(DELAY_MS);
 }
 
+const payload = {
+  verifiable: true,
+  pack: pack.code,
+  source: pack.dictionary.source,
+  rows: rows.length,
+  verified,
+  unverified,
+  contradicted,
+  findings: results.filter((r) => r.status !== "verified"),
+};
 if (json) {
-  out(
-    JSON.stringify(
-      {
-        verifiable: true,
-        pack: pack.code,
-        source: pack.dictionary.source,
-        rows: rows.length,
-        verified,
-        unverified,
-        contradicted,
-        findings: results.filter((r) => r.status !== "verified"),
-      },
-      null,
-      2,
-    ),
-  );
+  out(JSON.stringify(payload, null, 2));
 } else {
   out(
     `\n${rows.length} rows against ${pack.dictionary.source}: ${verified} verified, ` +
@@ -146,3 +161,4 @@ if (json) {
   );
   if (contradicted) out("fix contradicted rows before they are drilled — the ledger is what gets taught");
 }
+writeOut(payload);

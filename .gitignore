@@ -15,3 +15,6 @@ work/speaking/recordings/
 
 # TTS audio cache — regenerable, sha1-keyed
 .tts-cache/
+
+# factcheck sweep result — regenerable measurement the hub reads
+work/.factcheck.json
