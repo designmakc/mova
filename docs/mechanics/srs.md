@@ -12,6 +12,11 @@
 > sessions of this learner's own data exist. Romanian examples throughout are limba's, the
 > reference implementation.
 
+> **Rules live here; the story lives in [why/srs.md](why/srs.md).** This file is what a
+> session reads before it teaches. The incidents, audits and measurements that bought
+> each rule moved to `why/` — a retro reads both, a lesson reads only this one. New
+> provenance goes to `why/`, never back into this file.
+
 ## Ledgers
 
 Two markdown tables: [../../state/vocab.md](../../state/vocab.md) (`V-NNNN`) and
@@ -90,13 +95,6 @@ All five intervals: **default (measured on limba's learner — recalibrate).**
 
 ### Tier 0 — seeded, not yet taught (limba, 2026-08-07)
 
-limba's scaffold seeded 12 vocabulary and 3 grammar rows at tier 1 so the ledger wasn't
-empty. The queue duly reported them **due** — but *review* is the wrong verb for material
-never taught. SES-002 had to deliberately **not** mark them reviewed to avoid falsifying the
-ledger, and `G-0002` (the definite article, not taught until four units later) then surfaced
-as due in **six consecutive sessions**, each of which skipped it. A row that is due but
-unteachable is noise in the one signal part 1 produces.
-
 - **Tier 0 is never due.** `queue.mjs` skips any tier absent from its interval table, so this
   needs no scheduling code — but say it out loud rather than relying on the accident.
 - **Seed at tier 0**, not tier 1, whenever a row is entered ahead of the unit that teaches it.
@@ -108,32 +106,17 @@ unteachable is noise in the one signal part 1 produces.
 
 ### Review mode — why it is part of the schedule, not a style choice
 
-Added in limba, 2026-08-03 (SES-006), **rebuilt 2026-08-12** by its housekeeping pass. The
-original ladder asked tier 1 and 2 for **production, both directions** and swept tier 3+ for
-recognition — that is, it demanded the hardest question of the weakest items and the easiest
-of the strongest. The mode column above now runs the other way, one rung at a time.
-
-**What the measurement showed** (limba SES-014 — the split is a property of that learner;
-expect one like it, not this one). Eight leak-checked blocks in one session: recognition on
-tier-3 words scored **100%**; the form probe with the base form supplied scored **89%** on
-secure words and **75%** on ten words never met before; full-package production on **tier-1**
-words scored **17%**. That 17% is partly the instrument — a tier-1 word was being asked the
-tier-3 question — and a retrieval attempt that returns nothing teaches almost nothing. The
-learner's own reading, mid-session: *"I have a progression and training while not failing too
-much, e.g. faster pace, but more iterations."*
-
-**The argument that had to be answered, because it is the load-bearing one.** Direction
-transfer is asymmetric: practising production builds recognition as a by-product, while
-practising recognition builds mostly itself. Check this learner's goal contract — in limba's,
-two of the four exam sections are production. A recognition-first ladder feels better, moves
-faster, and could quietly stop building the half the goal grades. That is what the promotion
-gate below exists to prevent. This ladder **schedules** production; it does not reduce it.
-
 **The promotion gate — the part that makes this safe.**
 
 - **Two clean recognition passes promote a tier-1 item to tier 2**, and a session **may not
   hold an item at tier 1 on judgement**. Felt readiness is not a reason; the goal contract's
   clock is running, and a word cannot sit at tier 1 recognising itself indefinitely.
+  ⚠️ **Nothing computes this gate — no ledger column holds the count.** Any workspace
+  inheriting this ladder inherits the hole, so until something computes it: **a session that
+  runs a clean tier-1 recognition pass writes `clean recognition pass 1 of 2` into `notes`**,
+  in that exact wording, and a session that finds two markers **promotes without re-deriving
+  anything**. Without the convention every session reinvents the bookkeeping, and the tier
+  silts up — 41% of limba's ledger was sitting at tier 1 when this was written.
 - **Tier 3 is a gate, not a sweep.** The full goal-shaped question — the item with every fact
   its row carries — is asked at tier 3 and must be passed to reach tier 4. Nothing becomes
   "owned" without producing it whole at least once.
@@ -145,12 +128,6 @@ gate below exists to prevent. This ladder **schedules** production; it does not 
 word the learner cannot retrieve and a rule they cannot run have opposite repairs, and the
 combined question cannot tell them apart. Demote the ledger row only when **retrieval**
 failed; a form failure is an error-log finding about the rule, not evidence against the word.
-
-**Throughput moves in the right direction, which was not obvious.** Tier 1 dominates any
-session's queue because its interval is zero days, and in limba tier 1 went from ~20 s per
-item to ~3 s under this ladder. Tier 3 got more expensive, but it is a 7-day rung and carries
-far fewer items per session. The 55-row cap and the ~1,700-item ceiling in the tier-5 note
-both still hold.
 
 ### What a review block costs — the model the hub and the size rule read (limba, 2026-08-12)
 
@@ -164,27 +141,25 @@ full package ~20 s per item, plus ~6 minutes fixed per block. A lesson gives its
 find them — the arithmetic behind *"is today's queue still part of a lesson, or is it the whole
 session"* is stated once, here, and never re-declared in code.
 
-**Why there is a per-block term at all.** The old model was per-item only, and it
-under-predicted a real chat drill by roughly **5×**: limba SES-014's 73 due items predicted
-≈21 minutes and the session ran past two hours. The rates were not wrong about the learner;
-they were wrong about the medium. A block in this workspace costs, once per block and
-regardless of its item count: composing the set, running `leakcheck.mjs`, the learner reading
-and typing, marking every item, publishing the whole sheet, and the grouped diagnosis. A
-per-item rate cannot express any of that.
+**The 6 minutes has now been re-fitted once, and it held (limba, 2026-08-15).** Solving
+`T = a·blocks + 10 s·production + 3 s·recognition` against the three limba drills that carry a
+recorded duration gives `a` = **5.7′**, **5.5′** and **15.4′**. Two independent sessions land
+within 30 seconds of the assumed 6, so **the number does not move** — what changed is its
+provenance, from assumed to measured, and the outlier now has a named mechanism.
 
-**The 6 minutes is meant to be re-fitted — on this learner.** The close-out captures a
-wall-clock duration per session ([session_format.md](session_format.md) close-out step 4)
-precisely so the review playbook can re-fit these constants once several sessions carry a
-real one. Until then, treat any estimate the hub prints as an order of magnitude, not a
-promise.
+- **Estimate with `a` = 6 minutes for a routine block.**
+- **A session that expects to *discover* something should budget roughly triple.** The 15.4′
+  outlier spent its time outside the block loop entirely: it opened two taxonomy codes, ran a
+  mid-session dictionary check, and withdrew a broken item. That is diagnosis, which is the
+  point of such a session rather than an overrun.
+
+⚠️ **The fit rests on three points, all drills, all one learner.** No lesson has been fitted —
+a lesson's teaching time sits outside this model entirely. The close-out captures a wall-clock
+duration per session ([session_format.md](session_format.md)) precisely so the review playbook
+can re-fit these constants against **this** instance's own record. Until an instance has its
+own points, treat any estimate the hub prints as an order of magnitude, not a promise.
 
 ### "Due" when the row was already reviewed today (limba, 2026-08-12)
-
-Three limba sessions ran on 2026-08-12. By the third, **every row the queue reported due
-carried `last` = that day**. The count is not wrong — tier 1 has a zero-day interval, so
-those rows genuinely are due — but a second look hours after the first measures nothing, and
-`session_format.md`'s calibration table would read the low number as *retention has failed*
-and cut the day's new material. That reading would be exactly backwards.
 
 - **A row moves tier at most once per calendar day.** The first session of the day owns the
   measurement; later sessions cannot promote or demote what it already scored.
@@ -198,16 +173,7 @@ and cut the day's new material. That reading would be exactly backwards.
   and once more at its nominal interval would pollute exactly that dataset, so the log must
   say which look was a re-exposure.
 
-Three limba sessions invented this handling independently before it was written down (SES-015
-and SES-016 both improvised it, hours apart, and said so in their logs).
-
 ### Carrier words — testing a rule with vocabulary the learner does not have (limba, 2026-08-12)
-
-Used twice in limba before it had a name: to measure a rule when the entire ledger has just
-been exposed, a session asks it over **fresh words the learner has never met** — supplying
-the word class facts and the translation so that only the rule is scored. limba SES-015 ran
-ten (*balcon, sertar, picior, ziar, castron, obiect, palton, borcan, motor, dosar*) and got
-the only honest number available that session.
 
 - **A carrier word is declared a carrier** when the set is posed, and carries its translation
   like any first appearance.
@@ -239,15 +205,6 @@ noun plurals, and with a taught address chunk whose prepositions were three unit
 chunk is fair, the system is not.
 
 ### Why tier 5 exists (limba, 2026-08-03 recalibration)
-
-limba's original ladder topped out at 21 days. At its learner's 5 study blocks a week and a
-40-item cap that is **28.6 item-reviews/day**, which sustains a **ceiling of ~600 items even
-if every item were mature** — against that goal contract's stated target of 1,500–2,000. The
-ceiling was a property of the top interval, not of the learner's performance, so no amount of
-good recall could have fixed it. A 60-day tier 5 raises the same arithmetic to **~1,700**,
-and the cap at 55 raises it again. Re-run this arithmetic against **this** learner's goal
-contract and session rhythm — every input to it is a default, and the method survives any of
-them changing.
 
 ## Capture and dedupe
 

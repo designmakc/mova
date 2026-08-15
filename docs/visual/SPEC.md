@@ -171,8 +171,14 @@ Live examples with usage notes: [gallery.html](gallery.html). Summary:
 
 1. Check the index in `work/visuals/README.md` first — improve or supersede an existing
    page; don't fork near-duplicates (`docs/mechanics/media.md`).
-2. Copy `docs/visual/starter.html` → `work/visuals/YYYY-MM-DD_slug.html`. Change the
-   ownership marker to `<!-- mova:instance -->`, the hub href to `index.html`.
+2. **Run `node scripts/newvisual.mjs <slug> [--vocab]`.** It writes
+   `work/visuals/YYYY-MM-DD_slug.html` with the frame already correct — tokens, three
+   themes, ownership marker, hub href, reveal machinery, all eight beats scaffolded — and
+   the skeleton passes every `visualcheck` gate before you write a word. It refuses to
+   overwrite an existing page, because a page that exists is prepared material or a
+   sibling session's work in flight. Copying `starter.html` by hand still works and is
+   what the generator does for you; it is also how two limba pages ended up carrying the
+   audio player's CSS two and three times over.
 3. Fill **every one of the eight teaching beats** the starter scaffolds (§7). Replace
    `{{TARGET}}`/`{{META}}` placeholders; delete a beat only when it genuinely does not
    apply to this material.
@@ -198,13 +204,18 @@ Live examples with usage notes: [gallery.html](gallery.html). Summary:
    Delivering a visual, rule 3). Date the row only if you are handing the page over now;
    otherwise `—` plus `Built —` opening the Teaches cell.
 
-## 6. Start from starter.html
+## 6. Start from the generator, which starts from starter.html
 
-An agent building a visual **starts from [starter.html](starter.html) and figures out
+An agent building a visual **runs `node scripts/newvisual.mjs <slug>` and figures out
 nothing**: the token block, the three themes, the switcher, every component class, the
-reveal machinery, the audio placeholders and **all eight teaching beats** are already
-scaffolded there. Build by filling what the page needs and deleting only what it genuinely
+reveal machinery, the audio placeholders and **all eight teaching beats** arrive already
+scaffolded. Build by filling what the page needs and deleting only what it genuinely
 doesn't. A page written from scratch is a review burden and a drift risk — don't.
+
+[starter.html](starter.html) remains the single definition of that frame — the generator
+reads it rather than holding a second copy, so this file, the reference page and every
+generated page cannot disagree. Read the starter to understand a component; run the
+generator to begin a page.
 
 Because agents take the starter literally, **the starter is a rule surface, not a sample**.
 Its four exemplar sections used to scaffold four sections in the same circled-numeral

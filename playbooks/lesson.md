@@ -76,14 +76,18 @@ session. The flow below is what happens *between* them.
       [docs/mechanics/teaching.md](../docs/mechanics/teaching.md): placement, whole system,
       **the load**, delta, worked examples, first-contact-only, guided attempt, compressed
       rule. System before delta, never the reverse; every target-language string translated
-      into the meta-language on first appearance; full paradigms and the vocabulary list live
-      in the visual, chat carries the contrast, the trap and the interaction — **chat never
-      reproduces a paradigm table**. Generate fresh content; cite manuals, never reproduce
-      them.
+      into the meta-language on first appearance. **Each beat has ONE home** — teaching.md
+      § "Where each beat lives" is the table; before the page, chat carries exactly four
+      things (placement in a line or two, the load as a number, one trap, the link) and
+      nothing else, and after the page it is answer-only at any length. If a chat sentence
+      would survive deletion because the page already says it, delete it. Generate fresh
+      content; cite manuals, never reproduce them.
    4. **Earn beat ⑧ before you write it.** The compressed rule is the one line the learner
       keeps, and the page repeats it long after the chat dies — so it is the line most worth
-      breaking on purpose first. Run teaching.md § **"Absolutes have to be earned too"** as an
-      action, not as a reading: **name the class of words that breaks the rule you are about
+      breaking on purpose first. **Run it over the hardest row of its own table**: a line that
+      cannot reproduce that row is not a compression, it is a competing rule, and the learner
+      will run the short one from memory (teaching.md, beat ⑧). Then run teaching.md
+      § **"Absolutes have to be earned too"** as an action, not as a reading: **name the class of words that breaks the rule you are about
       to write, check that class through `scripts/dictionary.mjs`** (verification.md), **then
       scope the rule to what survives — or drop it.** Both first generated lesson pages
       shipped a wrong compressed rule and neither had done this, with an adapter available in

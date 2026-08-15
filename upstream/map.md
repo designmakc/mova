@@ -51,12 +51,13 @@
 | limba | mova | transform | notes |
 | --- | --- | --- | --- |
 | `docs/mechanics/README.md` | `docs/mechanics/README.md` | verbatim | Provenance markers, "skills are verbs, mechanics are nouns", "reality only". |
-| `docs/mechanics/session_format.md` | `docs/mechanics/session_format.md` | param | ~95% generic. RO examples kept but labelled as examples from the reference implementation. Diacritic normalization pointer → pack. Close-out step 11 (PORT entry) is limba-only — instances get the 12-step ritual without it. |
-| `docs/mechanics/srs.md` | `docs/mechanics/srs.md` | param | Ladder + cap + cost model marked `default (measured on learner #1 — recalibrate)`. POS tag table → pack. "Verbs carry their eu-form" → pack-declared required-fact rule. Review-mode-by-tier structure stays. |
-| `docs/mechanics/teaching.md` | `docs/mechanics/teaching.md` | param | 8 beats, chat/visual split, translation rules: generic. "Mark what changes" gated on pack `inflection:` flag. dex.mjs fact-check step → dictionary-adapter step per `verification.md`. |
-| `docs/mechanics/media.md` | `docs/mechanics/media.md` | param | Voice ladder → pack manifest + `MOVA_VOICE`. afplay/say/whisper → capability flags. Artifact publishing → `publishing:` capability branch (local files are the base case). |
+| `docs/mechanics/session_format.md` | `docs/mechanics/session_format.md` + `docs/mechanics/why/session_format.md` | split | ~95% generic. RO examples kept but labelled as examples from the reference implementation. Diacritic normalization pointer → pack. Close-out step 11 (PORT entry) is limba-only — instances get the 12-step ritual without it. **Rules stay; provenance moves to `why/`** (PORT-013) — mova's own provenance splits on mova's own text, not limba's. |
+| `docs/mechanics/srs.md` | `docs/mechanics/srs.md` + `docs/mechanics/why/srs.md` | split | Ladder + cap + cost model marked `default (measured on learner #1 — recalibrate)`. POS tag table → pack. "Verbs carry their eu-form" → pack-declared required-fact rule. Review-mode-by-tier structure stays. Rules/why split per PORT-014. |
+| `docs/mechanics/teaching.md` | `docs/mechanics/teaching.md` + `docs/mechanics/why/teaching.md` | split | 8 beats, chat/visual split, translation rules: generic. "Mark what changes" gated on pack `inflection:` flag. dex.mjs fact-check step → dictionary-adapter step per `verification.md`. Rules/why split per PORT-013. |
+| `docs/mechanics/media.md` | `docs/mechanics/media.md` + `docs/mechanics/why/media.md` | split | Voice ladder → pack manifest + `MOVA_VOICE`. afplay/say/whisper → capability flags. Artifact publishing → `publishing:` capability branch (local files are the base case). Rules/why split per PORT-014. |
 | `docs/mechanics/error_taxonomy.md` | `setup/templates/error_taxonomy.template.md` + `packs/ro/notes.md` | split | Code format, scope-section convention, tally tokens (generic skeleton) → template. The 24 RO codes → pack notes as reference material for pair-specific taxonomy generation. |
 | — | `docs/mechanics/verification.md` | new | Fact-verification policy (dictionary-verified / tutor-confirmed / unverified `?` marker). |
+| `docs/mechanics/why/*.md` | `docs/mechanics/why/*.md` | param | **The structure ports, the content does not.** A `why/<file>.md` holds the provenance of its own repo's rule file — limba's incidents are limba's. mova splits its own text the same way and keeps the same two contracts: the marker (*assumed* / *derived from* / *measured*) stays with the rule, and `why/` is uncapped. A `why/` file with no matching rule file is a CI failure, so provenance cannot outlive the rule it explains. |
 
 ## docs/reference + top-level docs → setup templates
 
@@ -89,6 +90,7 @@
 | `scripts/inline-md.test.ts` | `scripts/inline-md.test.ts` | verbatim | |
 | `work/feedback/insights.test.ts` | `work/feedback/insights.test.ts` | verbatim | |
 | — | `docs/goal.test.ts` | new | Goal-contract structure (spec sentence, assessment instrument, deadline-or-rule). |
+| `scripts/visual-shell.test.ts` | `scripts/visual-shell.test.ts` | param | Holds the two frame contracts: the shell defines every `CORE_TOKENS` name in all three theme blocks (derived from that array, so adding a gate token fails here until the frame defines it), and the shell ships no audio player. Scoped overrides and the shared focus ring are allowed — they need the player to exist, they do not define it. |
 | — | `docs/agents.test.ts` | new | Adapter presence for configured agent; no rule text in adapters. |
 
 ## Scripts
@@ -116,6 +118,9 @@
 | — | `scripts/packcheck.mjs` | new | Structural pack validator + golden fixtures runner. |
 | — | `scripts/visualcheck.mjs` | new | Consolidated visual validator (see tests above). |
 | — | `scripts/manifest.mjs` | new | Writes `upstream/manifest.json` (engine-file hashes for instance `/update`). |
+| `scripts/closeout.mjs` | `scripts/closeout.mjs` | param | The mechanical half of the close-out as three commands (`--start` at orient, `--brief`, `--finish`). Templates it prints come from the instance's own conventions; the porting-log template is limba-only and is dropped. **Two invariants survive the port intact:** it never commits (prints a path-named `git add`) and never writes a log (`log-append.mjs` owns IDs inside its lock). |
+| `scripts/visual-shell.mjs` | `scripts/visual-shell.mjs` | param | One definition of a teaching page's frame. In mova the token set is derived from `visualcheck.mjs`'s `CORE_TOKENS` and the theme is the pinned `docs/visual/tokens.css`; `--l1/--l2` labels come from the profile. Inlined at build time, never linked — a page must render offline forever. |
+| `scripts/newvisual.mjs` | `scripts/newvisual.mjs` | param | `node scripts/newvisual.mjs <slug> [--vocab]` writes a skeleton that passes every `visualcheck` gate before any content exists. Supersedes copy-from-`starter.html` as the way a page begins; `docs/visual/starter.html` stays as the readable reference the generator is checked against. |
 
 ## State, work, logs
 

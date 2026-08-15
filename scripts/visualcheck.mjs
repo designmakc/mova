@@ -132,6 +132,48 @@ export function checkPlayerCount(html) {
   if (hasButtons && players === 0) {
     offences.push("play buttons but no player block — every button is inert");
   }
+  offences.push(...checkPlayerStyle(html));
+  return offences;
+}
+
+/**
+ * The player's CSS has the same single owner as its script, and nothing was looking.
+ *
+ * This check catches what the one above cannot. tts-embed.mjs guards its own injection
+ * correctly, so a duplicated player comes from an agent copying a <style> block wholesale
+ * out of an older page — and a duplicated STYLE has no runtime symptom to notice. Measured
+ * in limba, 2026-08-15: two live pages carried the player's CSS two and three times over,
+ * one of them three copies, and both passed every gate. The script check had no opinion
+ * about style, so nothing saw it for weeks.
+ *
+ * The distinction that makes this safe: DEFINING the player is an offence, OVERRIDING it is
+ * not. `.vocab td.au .tts-row{display:block}` is a scoped override — it needs the player to
+ * exist, it does not create it. So this counts only unscoped definitions: a `.tts-row` rule
+ * that sets the grid, and any `.tts-play` rule that is not part of the shared focus ring.
+ */
+export function checkPlayerStyle(html) {
+  const offences = [];
+  const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((m) => m[1]).join("\n");
+  // A selector is a DEFINITION when .tts-row/.tts-play is the leftmost class in it.
+  const grids = [...css.matchAll(/(^|[\n},])\s*\.tts-row\b[^{]*\{([^}]*)\}/g)]
+    .filter((m) => /grid-template|display\s*:\s*grid/.test(m[2])).length;
+  // Count the BASE rule only. One player block legitimately carries `.tts-play{}`,
+  // `.tts-play:hover{}` and `.tts-play.on{}` — three rules, one definition. Counting rules
+  // instead of definitions flags every correct page, which is worse than not checking.
+  const plays = [...css.matchAll(/(^|[\n},])\s*\.tts-play\s*\{/g)].length;
+  if (grids > 1) {
+    offences.push(
+      `${grids} unscoped .tts-row grid definitions — the player's CSS is emitted by ` +
+        `tts-embed.mjs and has one owner. A second copy is a <style> block hand-copied ` +
+        `from another page; it has no runtime symptom, which is why it survives`,
+    );
+  }
+  if (plays > 1) {
+    offences.push(
+      `${plays} unscoped .tts-play definitions — same cause, same owner. Scoped overrides ` +
+        `like \`.vocab td.au .tts-row\` are fine: they need the player, they do not define it`,
+    );
+  }
   return offences;
 }
 

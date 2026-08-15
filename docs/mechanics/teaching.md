@@ -16,6 +16,11 @@
 > cost something to learn. Incidents and Romanian examples are limba's, the reference
 > implementation.
 
+> **Rules live here; the story lives in [why/teaching.md](why/teaching.md).** This file is what a
+> session reads before it teaches. The incidents, audits and measurements that bought
+> each rule moved to `why/` — a retro reads both, a lesson reads only this one. New
+> provenance goes to `why/`, never back into this file.
+
 ## The governing failure
 
 A teaching block that opens with "here's what's different from your first language" is
@@ -50,6 +55,22 @@ irreducible load as a number where you can, and name what derives from it.
 Beat ⑥ is not optional padding. It is what makes "complete" believable everywhere else: a
 learner who can see the named gaps can trust the unnamed absences.
 
+**Beat ⑧ may compress the rule, never contradict the table — derived from limba SES-019.** A
+carry-away line is the shortest thing on the page, so it is the thing the learner runs from
+memory, and it outranks the table it sits under whenever the two disagree. limba's article page
+tabled a three-case rule correctly and then compressed it to a single case. Run that line on the
+case it dropped and it yields a form that does not exist — which is exactly what the graded check
+returned, and then returned **again** on the retest, after the correct form had been published in
+the same session. Two sightings of one error, both traceable to the sentence written to prevent it.
+
+- **Before shipping ⑧, run it over the hardest row of its own table.** If the compressed line
+  does not reproduce that row, it is not a compression. It is a competing rule.
+- **A rule with branches compresses to the branches, not past them.** Naming the branch set in one
+  line stays true; naming one branch is shorter and is a different claim.
+- Same failure family as the `complete` and absolutes rules below — **short is invisible to its
+  author by construction** — and it has the same fix: pick the member of the set most likely to
+  break the line, and check.
+
 Beat ⑦ is the step whose absence made SES-003 read as reference material. Teaching is
 explain → demonstrate → *attempt with feedback* → independent use. Part 3 of the session is
 independent use; it is not the first attempt.
@@ -68,39 +89,41 @@ governs scored sets.
 Added in limba, 2026-07-31: SES-003 delivered every beat in **both** places, which is
 duplication, not redundancy. Two facts decide the split.
 
-**The transcript dies with the session.** The learner returns cold to a new chat, so nothing
-they may need to re-read can exist only in chat. That pushes the material into the visual.
+**So a beat has one home.** Chat prepares and responds; the visual holds the material. Revised in
+limba, 2026-08-15, at the learner's request: *material lives in the lesson page, and chat should
+only highlight concise key facts that prepare me for that lesson.* The 2026-07-31 version of this
+table licensed six of the eight beats in both places — three of them marked *"yes, in full"* — and
+the duplication it was written to stop simply moved out of tables and into prose, where it ran
+unnoticed for two weeks.
 
-**A webpage cannot be interrupted.** SES-003's two interruptions — *"I don't get 2b"* and
-*"you never establish what a fi is"* — both materially improved the material. That keeps
-explanation in chat.
+**Before the visual, chat carries four things in this order and nothing else:**
 
-So split by function, not by importance:
+1. **Placement, one or two lines** — which unit, what this closes, what is deferred and where.
+2. **The load as a number** — *"6 words, not 24 cells"*. The reassuring half; say it out loud.
+3. **One trap** — the single delta, false friend or collision most likely to break the learner.
+   One. The rest are on the page.
+4. **The link** — the repo path, page delivered per [media.md](media.md) → "Delivering a visual".
 
 | Beat | In chat | In the visual |
 | --- | --- | --- |
-| ① Placement | yes — the compact table | yes |
-| ② The whole system | **name it and link — do not reproduce it** | **canonical, complete** |
-| ③ The load | **yes, in full** — this is the reassuring half, say it out loud | yes, beside the table it shrinks |
-| ④ The delta | **yes, in full** — the part worth talking through | yes |
-| ⑤ Worked examples | 1–2 of them | all |
-| ⑥ First contact only | yes — a short list | yes |
+| ① Placement | one or two lines | the compact table |
+| ② The whole system | **name it and link — never reproduce it** | **canonical, complete** |
+| ③ The load | the number, one line | the full account |
+| ④ The delta | **one** of them, as the trap | all of them |
+| ⑤ Worked examples | none | all |
+| ⑥ First contact only | none | yes |
 | ⑦ Guided attempt | link only | **only here** — reveal buttons need real HTML |
-| ⑧ Compressed rule | yes | yes |
+| ⑧ Compressed rule | none — it is the page's carry-away line | yes |
+| Vocabulary (10–20 items) | none | the table, audio on every item (`data-tts`) |
 
-**The rule: chat never reproduces a full paradigm table.** Alphabets, conjugation tables,
-pronoun grids, ending charts, coverage maps — these live in the visual; chat names what they
-contain and links to it. Chat carries the contrast, the trap, and everything that responds to
-the learner.
-
-**Vocabulary follows the same split.** The 10–20 item table belongs in the visual, with audio
-on every item (`data-tts`) — a word list is exactly the thing worth hearing and re-opening.
-Chat surfaces only the items with a transfer story worth telling: the false friend, the
-cognate that pays, the one that breaks a pattern.
+**After the visual, chat is answer-only — and there it has no length limit.** Everything the
+learner interrupts with is chat's work, at whatever length the question takes. That is the half a
+webpage cannot do, and the reason a teaching block is not just a link. What chat may not do is
+**pre-empt** the page by saying the same thing first.
 
 **The test of a correct split:** someone who reads only the visual has the complete material;
-someone who reads only chat has the interesting half and a working link. Neither has to
-scroll a dead transcript.
+someone who reads only chat has **no** material — position, size, one warning, and a working link.
+**If a sentence in chat would survive deletion because the page already says it, delete it.**
 
 ## Mark what changes — beat ② is a pattern, not a list
 
@@ -108,10 +131,6 @@ scroll a dead transcript.
 (`packs/<code>/pack.md`). A pack that declares no inflection skips this machinery — there is
 no varying morpheme to mark, and forcing the treatment onto an isolating language would mark
 nothing or mark noise.
-
-Added in limba, 2026-08-07, at the learner's request, while working the plural endings: *"if
-the endings were highlighted to see what is changed — would help me to see and understand the
-pattern the most."*
 
 A paradigm printed as plain text makes the learner do morpheme-segmentation in their head
 before they can even see the rule. **The part that changes carries the lesson, so mark it.**
@@ -162,12 +181,6 @@ direction it runs**, and the two directions are not interchangeable.
 form with nothing else given.** A page built the first way can be completely correct, score
 well on recognition, and transfer nothing.
 
-The evidence is a matched pair over the same 14 nouns. limba's 2026-08-09 per-word sheet
-derived all 14 plurals correctly and SES-009 measured **5/5** on the nouns it covered.
-Production then failed on unrehearsed nouns for **three more sessions**, until SES-013 rebuilt
-the same material as a forward procedure. The two index rows state the difference plainly: the
-first *"reasons backwards from the answer"*, the second *"runs forwards from the singular."*
-
 - **Anything the learner must produce gets built forwards**: start from what they will actually
   have in hand, name each step in the order they must run it, and end at the form.
 - **Backwards material is for understanding *why*, and it is not a substitute.** It can follow a
@@ -176,10 +189,6 @@ first *"reasons backwards from the answer"*, the second *"runs forwards from the
   views of one ([../reference/profile.md](../reference/profile.md)).
 
 ### Restating shipped material the other way round is a cheap defect-finder
-
-limba's 2026-08-09 sheet's entire brief was to restate 14 words taught two days earlier. It
-hit a contradiction in the source material **inside the first three cards**, and that
-contradiction became the session's main output. Nobody was looking for it.
 
 The workspace already sweeps artifacts for claims the docs have **retracted**. It has nothing
 that re-reads live material for claims that were never coherent. A deliberate second pass over
@@ -203,12 +212,6 @@ Every teaching block opens with a table answering four questions, sourced from
 Coverage labels are exactly three: **complete** · **partial (N of M)** · **first contact**.
 
 ### `complete` has to be earned — derived from limba SES-005
-
-`complete` is the strongest claim this contract lets a session make, and beat ⑥ exists
-precisely so the learner *trusts* it: someone who can see the named gaps is entitled to trust
-the unnamed absences. Nothing checked it. A limba block claimed **"Numbers 0–100: complete —
-every number in that range is derivable after this page"** while omitting *douăsprezece*, the
-feminine twelve. The learner found it in minutes.
 
 Note the failure shape, because it is the reason a rule is needed at all: **the material was
 not wrong, it was short — and short is invisible to its author by construction.** You cannot
@@ -253,15 +256,6 @@ The **session** carries the same statement one level up: which unit of the curri
 it opens or closes, what the learner will and will not be able to do afterwards.
 
 ## A correction sweeps the artifacts — derived from limba's 2026-08-10 audit
-
-Reference docs get corrected; the visuals that teach the old claim do not correct
-themselves. limba's audit found four instances live in the hub at once: a transfer anchor
-fixed in transfer.md still absent from the sound pages a week later; a gender heuristic
-rewritten as ordered gates while the noun page kept teaching the retracted wording verbatim;
-a coverage count grown in topics.md while the pronoun page and this file's own example still
-said the old number; and a retired word with ~25 survivors in the visuals. A stale claim in a
-live visual costs more than no visual — the learner re-reads pages precisely because the
-transcript dies.
 
 **The rule: a session that corrects a claim, retires a wording, or supersedes a taught rule
 greps `work/visuals/` and the `state/` notes for the old claim in the same session**, and

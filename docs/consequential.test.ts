@@ -212,3 +212,84 @@ describe("retired tooling is gone from the files sessions obey", () => {
     });
   }
 });
+
+/* ------------------------------------------------ the mechanics read, per session */
+
+/**
+ * A rule file holds rules; `docs/mechanics/why/<file>.md` holds the story.
+ *
+ * WHY A BUDGET AND NOT A ONE-TIME SPLIT. The retro loop has no counter-pressure by
+ * construction: each retro adds a rule *and* the story justifying it, and nothing has ever
+ * removed either. Upstream, `session_format.md` grew 401 → 7,250 words in sixteen days
+ * (~+425/day, not flattening), 68% of it in paragraphs citing a date or a log ID. A split
+ * with no budget refills in about eleven days at that rate. So the budget is half the
+ * change, not a nicety attached to it.
+ *
+ * WHAT A FAILURE MEANS. Going over is not a style complaint. It means one of two things,
+ * and they have different fixes: provenance crept back into the rule file (**move it to
+ * `why/`**), or the file genuinely gained rules (**retire one, or split the topic**).
+ *
+ * `why/` IS DELIBERATELY UNCAPPED. It is the pressure valve. Capping it would push
+ * provenance back into the rule files or delete it, which are the two outcomes this whole
+ * arrangement exists to prevent.
+ *
+ * THE CEILINGS ARE TODAY'S WEIGHT, rounded up a little. That is deliberate too: the next
+ * real addition pays for a split rather than deferring it again.
+ */
+describe("docs/mechanics word budget", () => {
+  /** Ceilings in words. `null` = uncapped, and the reason is in the comment above. */
+  const BUDGET: Record<string, number> = {
+    "session_format.md": 7400,
+    "teaching.md": 3800,
+    "srs.md": 2700,
+    "media.md": 3100,
+    // 1,078 words and it reads whole in a sitting — budgeted at today's weight, no split.
+    "verification.md": 1300,
+  };
+
+  const words = (rel: string) => read(rel).split(/\s+/).filter(Boolean).length;
+
+  for (const [file, cap] of Object.entries(BUDGET)) {
+    const rel = `docs/mechanics/${file}`;
+    it.skipIf(!existsSync(join(root, rel)))(`${file} stays under ${cap} words`, () => {
+      const n = words(rel);
+      expect(
+        n,
+        `${rel} is ${n} words (budget ${cap}).\n` +
+          `      Every session reads this file before it teaches anything.\n` +
+          `      Two fixes, and which one applies depends on WHAT grew:\n` +
+          `        provenance crept back  → move those paragraphs to docs/mechanics/why/${file}\n` +
+          `        the file gained rules  → retire one, or split the topic into its own file`,
+      ).toBeLessThanOrEqual(cap);
+    });
+  }
+
+  /**
+   * Provenance must not outlive the rule it explains. A `why/` file with no matching rule
+   * file is orphaned: nothing points at it, no session reads it, and it silently rots into a
+   * record of rules that no longer exist.
+   */
+  it("every why/ file explains a rule file that exists", () => {
+    const whyDir = join(root, "docs/mechanics/why");
+    if (!existsSync(whyDir)) return;
+    const orphans = readdirSync(whyDir)
+      .filter((f) => f.endsWith(".md"))
+      .filter((f) => !existsSync(join(root, "docs/mechanics", f)));
+    expect(
+      orphans,
+      `orphaned provenance:\n  ${orphans.join("\n  ")}\n` +
+        `      A why/<file>.md explains docs/mechanics/<file>.md. If the rule file was renamed,\n` +
+        `      rename its why/ file with it; if the rules were retired, retire the story too.`,
+    ).toEqual([]);
+  });
+
+  /** The point of the whole arrangement, asserted as one number. */
+  it("reports the per-session mechanics read", () => {
+    const total = Object.keys(BUDGET)
+      .map((f) => `docs/mechanics/${f}`)
+      .filter((rel) => existsSync(join(root, rel)))
+      .reduce((n, rel) => n + words(rel), 0);
+    console.info(`  mechanics read per session: ${total} words (rule files only; why/ is uncapped)`);
+    expect(total).toBeGreaterThan(0);
+  });
+});

@@ -116,3 +116,113 @@ for (const log of CONTRACT.logs) {
     });
   });
 }
+
+/* ------------------------------------------------------- session entry word budget */
+
+/**
+ * A session-log entry POINTS at the record; it does not restate it.
+ *
+ * THE MEASUREMENT (limba, 2026-08-15). session_format.md asks a session entry for seven
+ * fields — type, covered, SRS counts, score, duration, next, open questions. Real entries
+ * ran 794–1,544 words. The difference is retelling: that log names 48 distinct `ERR-NNN`
+ * IDs, and every one already has its own entry in error_log.md averaging 262 words. The
+ * same goes for a curriculum decision that also lives in curriculum.md. The session entry
+ * is routinely the third copy of a story that is already greppable twice.
+ *
+ * That costs twice. It is written at close-out, which measured 31% of a session's agent
+ * time; and it is read forever after, because every session's orient reads the newest
+ * entry. At ~1,000 words a session a year of study reaches ~90,000 words. At ~300 it
+ * reaches ~40,000, with nothing lost — the removed sentences all exist in a file that
+ * owns them.
+ *
+ * WHY A TEST AND NOT ADVICE. This exact drift was advice for sixteen days upstream and grew
+ * the whole time. A budget forces the choice a target never does.
+ *
+ * THE ESCAPE HATCH IS THE POINT. A session that genuinely needs the words says so in the
+ * entry and keeps them. What the budget removes is drifting past it by default, not the
+ * option of a long entry. The failure message says *point, do not retell* rather than
+ * quoting the number, because pressure on a word count otherwise produces denser jargon
+ * instead of relocation.
+ *
+ * NOT RETROACTIVE. The logs are append-only and old entries are immutable — an entry cannot
+ * be edited to satisfy a rule written after it. So the budget starts on a date, the same
+ * shape scripts/visualcheck.mjs uses for its own late-arriving gates.
+ */
+const BUDGET = {
+  /** Entries dated on or after this are held to the budget. Before it, they are history. */
+  effectiveFrom: "2026-08-16",
+  /** Word counts of the entry body, heading excluded. */
+  warnAt: 350,
+  failAt: 450,
+  /**
+   * Types the budget applies to, read from the entry's opening `**Type.**` line.
+   * A review or a mock is a synthesis across many sessions and is meant to be long — those
+   * are the entries where the retelling is the product rather than a duplicate.
+   */
+  applies: /^(lesson|drill|write|vocab)/i,
+  /** An entry carrying this keeps its length, on purpose and on the record. */
+  override: /<!--\s*long-entry:\s*\S/,
+} as const;
+
+describe("session_log.md entry budget", () => {
+  const raw = readFileSync(join(docsDir, "logs/session_log.md"), "utf8").split("\n");
+
+  /** Split the file into entries: heading line, its date, and every line until the next. */
+  const parsed: { id: string; date: string; line: number; body: string[] }[] = [];
+  raw.forEach((line, i) => {
+    const m = line.match(/^## (\d{4}-\d{2}-\d{2}) — (SES-\d{3,})$/);
+    if (m) parsed.push({ id: m[2], date: m[1], line: i + 1, body: [] });
+    else if (parsed.length) parsed[parsed.length - 1].body.push(line);
+  });
+
+  const words = (lines: string[]) => lines.join(" ").split(/\s+/).filter(Boolean).length;
+  const typeOf = (body: string[]) =>
+    body.join("\n").match(/\*\*Type\.\*\*\s*([A-Za-z ]+)/)?.[1].trim() ?? "";
+
+  const governed = parsed.filter(
+    (e) =>
+      e.date >= BUDGET.effectiveFrom &&
+      BUDGET.applies.test(typeOf(e.body)) &&
+      !BUDGET.override.test(e.body.join("\n")),
+  );
+
+  /**
+   * A fresh instance has no sessions — that is legal here (unlike upstream, where the log
+   * is never empty), so this asserts the PARSER rather than the content: if there are
+   * headings, each one got a body. A silent zero from a broken regex would otherwise pass
+   * this file forever.
+   */
+  it("parses every entry it finds", () => {
+    expect(parsed.every((e) => e.body.length > 0)).toBe(true);
+    const headings = raw.filter((l) => /^## \d{4}-\d{2}-\d{2} — SES-\d{3,}$/.test(l)).length;
+    expect(parsed.length).toBe(headings);
+  });
+
+  it(`no lesson/drill/write/vocab entry exceeds ${BUDGET.failAt} words`, () => {
+    const over = governed
+      .map((e) => ({ ...e, n: words(e.body) }))
+      .filter((e) => e.n > BUDGET.failAt)
+      .map(
+        (e) =>
+          `session_log.md:${e.line} ${e.id} is ${e.n} words (budget ${BUDGET.failAt}).\n` +
+          `      Point, do not retell: name the ERR-NNN and stop. Each already has its own\n` +
+          `      entry, and the tally greps those, not this one.\n` +
+          `      If this entry genuinely needs the length, keep it and say why:\n` +
+          `      <!-- long-entry: the U04 ordering decision needs its full reasoning here -->`,
+      );
+    expect(over, `over budget:\n  ${over.join("\n  ")}`).toEqual([]);
+  });
+
+  it(`warns before it bites (soft target ${BUDGET.warnAt})`, () => {
+    const near = governed
+      .map((e) => ({ ...e, n: words(e.body) }))
+      .filter((e) => e.n > BUDGET.warnAt && e.n <= BUDGET.failAt);
+    for (const e of near) {
+      console.warn(
+        `  ⚠ ${e.id} is ${e.n} words — over the ${BUDGET.warnAt}-word target, ` +
+          `under the ${BUDGET.failAt} limit. Trim the retelling before it fails.`,
+      );
+    }
+    expect(true).toBe(true); // a warning, never a failure — that is what warnAt means
+  });
+});

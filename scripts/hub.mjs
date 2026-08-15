@@ -288,11 +288,27 @@ function errorTally() {
   };
 }
 
+/** The `(current)` marker on a plan.md phase heading. The old pattern was
+ *  `[^\n(]+?`, which stops at the FIRST `(` — so it matched a bare title and returned
+ *  null the moment a phase carried its own parenthetical, which is the normal shape
+ *  (`## Phase 1 — A1 foundations (U01–U10) (current)`). Null renders as an empty
+ *  string: the page still draws, it just silently stops saying which phase the learner
+ *  is in. That is exactly the failure `must()` exists to prevent, so this throws.
+ *
+ *  No plan.md at all is a different case and stays legal — that is maintainer mode, or
+ *  an instance before setup finishes. Absent means "nothing to say"; present-but-
+ *  unmarked means someone broke the contract. */
 function currentPhase() {
   const text = readMaybe("docs/plan.md");
   if (!text) return null;
-  const m = /^## (Phase \d+ — [^\n(]+?)\s*\(current\)/m.exec(text);
-  return m ? m[1].trim() : null;
+  const marked = [...text.matchAll(/^## (Phase \d+ — .+?)\s*\(current\)\s*$/gm)];
+  if (marked.length !== 1) {
+    throw new Error(
+      `hub: found ${marked.length} plan.md phase headings marked "(current)", expected exactly 1. ` +
+        `Mark the open phase in docs/plan.md rather than shipping a dashboard with no phase.`,
+    );
+  }
+  return marked[0][1].trim();
 }
 
 /* The learning design, read from the files that define it — the parts from
@@ -321,6 +337,68 @@ const pacing = () => {
   const text = readMaybe("docs/plan.md");
   return text ? rows(section(text, /^Pacing table/), 5) : [];
 };
+/* ------------------------------------------------- the weekly pace instruction
+ * The weekly load is NOT retyped here — it is read out of the current phase's own row
+ * in plan.md's pacing table, which is where the plan states it. Change the plan and
+ * this surface changes with it; that is the whole point.
+ *
+ * Ported from limba, 2026-08-15. Its weekly review found 11 sessions in 7 days — 3
+ * lessons and 8 drills against a planned 4 + 2 — and no unit closed for five days,
+ * because the second half of a unit is the half a drill displaces without anything
+ * looking skipped. Every one of those numbers was in the log the whole time and nothing
+ * added them up. A rule nobody can see the score against is a preference, not a rule. */
+function weeklyTarget(phaseName) {
+  const n = /Phase (\d+)/.exec(phaseName || "");
+  if (!n) return null;
+  const row = pacing().find((r) => r[0].trim() === n[1]);
+  if (!row) return null;
+  const load = row[4] || "";
+  const lessons = /(\d+)\s*lessons?/i.exec(load);
+  // A late phase may trade drills for writes, or have neither — read the label off the
+  // plan rather than assuming the pair. An unparseable cell degrades to "no target".
+  const second = /(\d+)\s*(drills?|writes?)/i.exec(load);
+  if (!lessons) return null;
+  return {
+    lessons: Number(lessons[1]),
+    capN: second ? Number(second[1]) : null,
+    capLabel: second ? second[2].replace(/s$/, "") : null,
+    load: load.trim(),
+  };
+}
+
+/** Sessions in the trailing 7 days, split by what they actually were. `sessions()`
+ *  already parses the Type line; this only classifies it. Anything that is neither a
+ *  lesson nor a drill (a review, a mock) is counted separately and held OUT of both
+ *  scores — a review is not a study block and must not flatter the lesson count. */
+function paceWeek(all) {
+  const since = 6; // today plus the six days before it
+  const recent = all.filter((x) => {
+    const age = daysBetween(x.date, today);
+    return age >= 0 && age <= since;
+  });
+  const is = (x, re) => re.test(x.type);
+  return {
+    days: since + 1,
+    lessons: recent.filter((x) => is(x, /^lesson/i)).length,
+    drills: recent.filter((x) => is(x, /^drill/i)).length,
+    other: recent.filter((x) => !is(x, /^lesson/i) && !is(x, /^drill/i)).length,
+    total: recent.length,
+  };
+}
+
+/** The next block, taken from the newest session entry's Next pointer — the same
+ *  sentence the orient ritual reads. Item (1) only: a pointer lists several things and
+ *  the dashboard's job is to name the one to do now, not to re-publish the list.
+ *  The pointer parse itself ended at a blank line only, so a long pointer running
+ *  straight into the next bold field swallowed it and printed it as part of the action. */
+function nextBlock(all) {
+  const raw = all[0] && all[0].next;
+  if (!raw) return null;
+  const one = /\(1\)\s*([\s\S]*?)(?=\*\*\(2\)|\(2\)|$)/.exec(raw);
+  const text = (one ? one[1] : raw).replace(/\*\*/g, "").trim().replace(/[\s,;]+$/, "");
+  return text ? text.slice(0, 260) : null;
+}
+
 const calibration = () =>
   must("difficulty calibration", rows(section(read("docs/mechanics/session_format.md"), /^Difficulty calibration/), 3));
 
@@ -432,6 +510,9 @@ const phase = currentPhase();
 const vis = visuals();
 const { verbs, shell } = commands();
 const pacingRows = pacing();
+const target = weeklyTarget(phase);
+const week = paceWeek(ses);
+const nextOne = nextBlock(ses);
 const partRows = lessonParts();
 const beatRows = teachingBeats();
 const calibRows = calibration();
@@ -891,6 +972,14 @@ ${FAVICON_LINK}
                color:var(--l2); font-weight:650; margin-bottom:6px; }
   .whatnow p { margin:0; font-size:14.5px; }
   .whatnow p + p { margin-top:9px; }
+  .whatnow-one { font-size:15px; margin:0 0 6px; }
+  .pace { display:flex; flex-wrap:wrap; gap:8px; margin:11px 0 2px; }
+  .pace-i { display:flex; align-items:baseline; gap:6px; font-size:13px; padding:5px 11px;
+            border:1px solid var(--line); border-radius:999px; background:var(--bg); }
+  .pace-i b { font-size:14.5px; font-variant-numeric:tabular-nums; }
+  .pace-i.over  { border-color:var(--bad); color:var(--bad); }
+  .pace-i.under { border-color:var(--hi); color:var(--hi); }
+  .pace-v { font-size:13.5px; margin-top:9px; }
   .whatnow-next { color:var(--muted); font-size:13.5px; }
   .ecode { display:block; font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
            color:var(--muted); letter-spacing:.02em; }
@@ -998,6 +1087,14 @@ ${FAVICON_LINK}
           ? `most recent was ${esc(last.date)}`
           : `most recent was ${esc(last.date)} · ${last7} in the last 7 days`
         : "")}
+    ${target ? tile(
+        `${week.lessons}/${target.lessons}`,
+        "lessons this week",
+        week.lessons >= target.lessons
+          ? `on the plan's pace — **${esc(target.load)}**`
+          : `**${target.lessons - week.lessons} short** of the plan's **${esc(target.load)}**`,
+        week.lessons >= target.lessons ? "clear" : "attention",
+      ) : ""}
   </div>
 
   <a class="deck" href="deck.html">
@@ -1029,6 +1126,26 @@ ${FAVICON_LINK}
     ${due.length ? `<p><strong>${due.length} items are due.</strong> A <code>drill</code> clears the
       queue in 10–15 minutes without teaching anything new; a <code>lesson</code> does the queue
       first and then moves on to ${nextUnit ? esc(nextUnit.id) : "the next unit"}.</p>` : ""}
+    ${nextOne ? `<p class="whatnow-one"><strong>Next block:</strong> ${md(nextOne)}</p>` : ""}
+    ${target ? `
+    <div class="pace">
+      <span class="pace-i ${week.lessons < target.lessons ? "under" : ""}">
+        <b>${week.lessons}/${target.lessons}</b> lessons this week</span>
+      ${target.capN !== null ? `<span class="pace-i ${week.drills > target.capN ? "over" : ""}">
+        <b>${week.drills}/${target.capN}</b> ${esc(target.capLabel)}s</span>` : ""}
+      ${week.other ? `<span class="pace-i"><b>${week.other}</b> other</span>` : ""}
+    </div>
+    <p class="pace-v">${
+      week.lessons < target.lessons && target.capN !== null && week.drills > target.capN
+        ? `<strong>Do a lesson, not a ${esc(target.capLabel)}.</strong> The last ${week.days} days ran
+           ${week.drills} ${esc(target.capLabel)}s against ${week.lessons} lessons. The short block is the
+           cheaper one to say yes to, and the half of a unit it displaces is always the second
+           half — which is why a unit can stay open for days while the week looks busy.`
+        : week.lessons < target.lessons
+          ? `<strong>${target.lessons - week.lessons} lesson${target.lessons - week.lessons > 1 ? "s" : ""} short this week.</strong>
+             New material only arrives in lessons, so this is also the intake rate.`
+          : `<strong>On the plan's pace.</strong> ${esc(target.load)}, and the last ${week.days} days met it.`
+    }</p>` : ""}
     ${last && last.next ? `<p class="whatnow-next"><strong>Last session left this pointer:</strong> ${md(last.next)}</p>` : ""}
   </div>` : ""}
 

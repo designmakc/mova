@@ -9,6 +9,22 @@
 - **Playbooks are verbs, mechanics are nouns.** `playbooks/` orchestrate; the shared rules
   they all obey (SRS scheduling, session shape, error codes, fact verification) live here
   exactly once, so two playbooks never carry drifting copies.
+- **A rule file holds rules; `why/` holds the story.** Ported from limba, 2026-08-15. Every
+  rule here was written with the incident that produced it attached, which is right — a rule
+  that has lost its reason is a rule nobody can argue with. But the reason is needed only when
+  *changing* the rule, while the rule is read by *every session*. Upstream, `session_format.md`
+  grew 401 → 7,250 words in sixteen days, 68% of it in paragraphs citing a date or a log ID,
+  and every session paid that read. So the story moved to `why/<file>.md`, paragraph for
+  paragraph, **verbatim** — nothing was deleted or summarised. Study sessions read the rule
+  file. `playbooks/retro.md` and the housekeeping pass read both, and **new provenance is
+  written to `why/`**, which is why that directory carries no word budget and the rule files do
+  (`docs/consequential.test.ts`).
+
+  **The marker stays with the rule; only the story moves.** A rule keeps its *assumed* /
+  *derived from SES-NNN* / *measured* / *default* tag where a session reads it — that tag is
+  what tells a session whether it may question the rule, and it is worth four words. What moves
+  to `why/` is the incident, the numbers and the retraction behind the tag.
+
 - **Update in the same session that changes the mechanic.** If a session changes how reviews
   are scheduled or adds an error code, the matching file here changes in that same session.
 - **Every rule states its provenance.** Added in limba, 2026-08-07. A rule that was *guessed
@@ -46,4 +62,5 @@
 | [teaching.md](teaching.md) | The eight beats, chat/visual split, marking, completeness and claim discipline |
 | [media.md](media.md) | When to play, draw, or link; TTS voices; visual delivery |
 | [verification.md](verification.md) | The fact-verification policy — dictionary-verified, tutor-confirmed, or visibly marked |
+| [why/](why/) | The provenance of the rules — incidents, measurements, retractions. **Not read at orient.** |
 | `error_taxonomy.md` | Error codes and log-entry format — generated at setup from `setup/templates/error_taxonomy.template.md` for this learner's language pair; instance-owned, engine-shaped |

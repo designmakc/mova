@@ -70,7 +70,7 @@ slippage, and get re-checked at every review.
 
 ---
 
-## Phase 0 — {{PHASE_0_TITLE}} ({{DATE_RANGE}})
+## Phase 0 — {{PHASE_0_TITLE}} ({{DATE_RANGE}}) (current)
 
 Goal: the workspace exists and is trusted; the first placement snapshot replaces the
 interview's guesses with data.
@@ -86,6 +86,23 @@ interview's guesses with data.
        the curriculum's starting point now rested on a guess.) -->
 - [ ] {{GOAL_LOGISTICS_MILESTONE — exam: TO-CONFIRM research + registration; level/functional: first descriptor sweep or scenario baseline; keep it one line}} — 🟠 Med · 🔧
 - [ ] {{MATERIALS_MILESTONE — acquire what the goal contract's assessment section names, into untracked materials/}} — 🟡 Low · 🔧
+
+### Pacing table
+
+<!-- Five columns, exactly these headings — scripts/hub.mjs parses this table and matches
+     a row to the current phase by its NUMBER. The Weekly load cell is read for a lesson
+     floor and a second figure whose label varies by phase ("2 drills" early, "2 writes"
+     later, or neither in an endgame phase); the hub scores the trailing 7 days against it
+     and says so on the page. Write the load as digits plus a noun — "~4 lessons + 2
+     drills" parses, "a few lessons" does not. Without a goal_date, Ends holds the volume
+     milestone instead of a date. -->
+
+| Phase | Units | Weeks | Ends | Weekly load |
+| --- | --- | --- | --- | --- |
+| 0 | setup | {{WEEKS}} | {{DATE_OR_MILESTONE}} | {{LOAD — e.g. ~2 lessons + 1 drill}} |
+| 1 | {{UNIT_RANGE}} | {{WEEKS}} | {{DATE_OR_MILESTONE}} | {{LOAD}} |
+
+<!-- …one row per phase, mirroring the phase headings below. -->
 
 ### Pacing
 

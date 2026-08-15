@@ -20,7 +20,9 @@ preference sat in the error tally as a language error for five days, shaping wha
 drilled.
 
 **Reads**: this session's own history first. Then, to place a finding:
-[docs/reference/profile.md](../docs/reference/profile.md), docs/mechanics/*,
+[docs/reference/profile.md](../docs/reference/profile.md), docs/mechanics/* **and
+docs/mechanics/why/*** — a retro is one of the two readers of `why/`, and the rule alone
+does not tell you whether a finding is new or a rule already bought and forgotten,
 docs/reference/transfer.md, docs/logs/, `git status`, `git diff` — the last two twice over,
 because they also tell you which sibling retros are mid-flight.
 
@@ -72,10 +74,22 @@ or commit it, and do not read a dirty tree as a broken workspace.
 | `work/feedback/insights.md` | two appends, one silently lost | only ever `scripts/feedback.sh` — it locks. Never Edit/Write the file. Never a `## FB-` heading in your body: the script owns the ID and rejects a body that writes one |
 | `docs/logs/error_log.md`, `session_log.md` | two entries take the same ID; CI enforces unique and strictly descending | re-read the file and derive the ID **in the same turn as the append** — use `scripts/log-append.mjs`. Never reuse a number you computed earlier in the retro. If a write is rejected as stale, re-read and re-number — never retry the same edit |
 | `state/` ledgers | same as the logs | append the note fresh, re-reading the row immediately before you write it |
-| Prose docs — `profile.md`, `transfer.md`, `docs/mechanics/*` | two retros reword the same paragraph | **grep the file for your fact first** — a sibling may have landed it two minutes ago. Add a bullet or a row; do not rewrite a paragraph. If the paragraph itself has to change and `git status` shows the file dirty with work that is not yours, file the finding to the intake instead of racing for it |
+| Prose docs — `profile.md`, `transfer.md`, `docs/mechanics/*`, `docs/mechanics/why/*` | two retros reword the same paragraph | **grep the file for your fact first** — a sibling may have landed it two minutes ago. Add a bullet or a row; do not rewrite a paragraph. If the paragraph itself has to change and `git status` shows the file dirty with work that is not yours, file the finding to the intake instead of racing for it |
 | Generated surfaces — `deck.html`, the hub, visuals | four retros regenerate and commit the same page | a retro does not regenerate them. That belongs to a study session's close-out |
 | `git` | one commit sweeps a sibling's half-finished edit | commit **named paths only**. Never `git add -A`, `git add .`, or `git commit -a`. Never `stash`, `reset`, `restore` or `checkout --` — they destroy uncommitted work whose value you cannot see |
 | `npm test` | red from a file a sibling is mid-edit | fix failures in **your** paths. A failure in a file you did not touch is a sibling mid-write: say so in the report, leave it alone |
+
+**Where a finding's WORDS go, once you know which rule it changes.** A retro is the one
+command that routinely adds both a rule and the story justifying it, and nothing has ever
+removed either — which is precisely how the mechanics files doubled upstream. So:
+
+- **The rule, and its marker, go in the rule file.** Keep it short enough to obey.
+- **The incident, the numbers, the retraction go in `docs/mechanics/why/<file>.md`** — which
+  carries no word budget, because it is the pressure valve. Capping it would push provenance
+  back into the rule files or delete it.
+- If `docs/consequential.test.ts` fails a rule file's budget, that is the signal to act, not a
+  style complaint. It means one of two things: provenance crept back in (move it to `why/`), or
+  the file genuinely gained rules (retire one, or split the topic).
 
 Two more, both about effort that buys nothing:
 

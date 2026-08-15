@@ -4,6 +4,109 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.6.0 — 2026-08-15
+
+The first real sync from limba, the reference implementation this engine was extracted
+from: `PORT-006` through `PORT-014`, nine entries. Three earlier entries were already fixed
+here during extraction and one is a back-port that originated in this repo, so none of those
+were re-applied.
+
+Two of the nine are defects that were shipping. The rest cut what every session has to read
+before it can teach, and automate the third of a session that was spent looking up formats.
+
+instance-impact: engine files auto-update, then **mark the open phase in `docs/plan.md`**.
+Add ` (current)` to the heading of the phase you are in — exactly one — and add a `Pacing
+table` section with the five columns `Phase | Units | Weeks | Ends | Weekly load`, writing
+the load as digits plus a noun (`~4 lessons + 2 drills`). The hub could never find the phase
+without the marker and said nothing about it; it now refuses to build instead. The pacing
+table is what the new weekly-pace score reads. Nothing else needs a regeneration step:
+`docs/mechanics/why/` arrives with the update, and the new scripts need no setup.
+
+- **The hub silently lost the current phase in every generated instance, and now fails
+  loudly.** `currentPhase()` matched `[^\n(]+?`, which stops at the first `(` — so a phase
+  title carrying its own parenthetical returned null. mova's own plan template never emitted
+  the `(current)` marker at all, so this fired for every instance, on every build: the "Right
+  now you are in Phase N" line vanished and no pacing row was highlighted, with no error.
+  It now collects every marked heading and throws unless there is exactly one, and the plan
+  template emits the marker and a pacing table.
+- **The hub scores the week against the plan's own weekly-load rule.** The target is read out
+  of the current phase's pacing row, never retyped in the script, so changing the plan changes
+  the score. Reviews and mocks are held out of both counts — a review is not a study block and
+  must not flatter the lesson count. Upstream, a weekly review found 11 sessions in 7 days,
+  3 lessons against 8 drills where 4 + 2 was planned, and no unit closed for five days. Every
+  one of those numbers was in the log the whole time and nothing added them up. The dashboard
+  also headlines the single next block instead of re-publishing the whole pointer.
+- **The close-out is three commands instead of ~25 lookups** — `node scripts/closeout.mjs
+  --start` at orient, `--brief` when close-out begins, `--finish` at the end. Measured
+  upstream across 31 transcripts: a lesson or drill runs ~42 minutes of agent-active time and
+  ~13 of those (31%) are the close-out — not the scripts, which take about a second, but ~60
+  serial tool calls, a third of them the agent re-reading a document to recall a *format*. So
+  the brief prints every template the ritual needs, the `work/` audit computed rather than
+  eyeballed, the queue, the live tally and the ledger rows touched. `--finish` regenerates,
+  gates the pages this session changed, runs the tests and prints a **path-named** `git add`.
+  **It never commits and never writes a log**: `log-append.mjs` owns log IDs inside its lock,
+  and a script that commits will eventually sweep a sibling session's unfinished work into a
+  session commit. `--start` exists because naming only this session's paths needs to know what
+  was already dirty *before* the session began, and orient is the only moment that is true.
+- **A teaching page has one frame, and a new page starts from it.** `node
+  scripts/newvisual.mjs <slug> [--vocab]` writes a skeleton whose tokens, themes, hub link and
+  reveal machinery are already correct and which **passes every `visualcheck` gate before a
+  word of content exists** — asserted end to end by running the real CLI in CI. In mova the
+  frame is read from the pinned `docs/visual/starter.html` rather than copied into the
+  generator, so the reference page stays the single definition.
+- **`visualcheck` now catches a duplicated audio-player STYLE, which had no runtime symptom.**
+  The existing check caught a duplicated player *script*; a hand-copied `<style>` block was
+  invisible to it, and upstream two live pages carried the player's CSS two and three times
+  over. Run against those pages, the new check reports exactly 2 and 3 and clears the other
+  seventeen. It counts *definitions*, not rules: `.vocab td.au .tts-row` is a scoped override
+  that needs the player to exist, and one correct player legitimately carries three
+  `.tts-play` rules.
+- **Each teaching beat now has one home.** The 2026-07-31 chat/visual table licensed six of
+  the eight beats in both places — three marked *"yes, in full"* — so the duplication it was
+  written to stop simply moved out of tables and into prose and ran for two weeks. Before the
+  page, chat carries four things and nothing else: placement in a line or two, the load as a
+  number, one trap, the link. After the page it is answer-only, at any length. The test: if a
+  chat sentence would survive deletion because the page already says it, delete it.
+- **A compressed rule may compress the rule, never contradict the table.** The carry-away line
+  is the shortest thing on a page, so it is what the learner runs from memory, and it outranks
+  the table whenever the two disagree. Upstream, a page tabled a three-case rule correctly,
+  compressed it to one case, and produced a form that does not exist — twice, the second time
+  on a retest *after* the correction had been published in the same session. Before shipping
+  the line, run it over the hardest row of its own table.
+- **A session-log entry points at the record; it does not restate it.** Lesson, drill, write
+  and vocab entries warn at 350 words and fail past 450; reviews and mocks are exempt, because
+  a synthesis across many sessions is meant to be long. Upstream entries ran 794–1,544 words,
+  and the difference was retelling: that log named 48 distinct `ERR-NNN` IDs, every one of
+  which already had its own entry averaging 262 words. Not retroactive — the budget starts
+  2026-08-16, since old entries are immutable — and `<!-- long-entry: <reason> -->` keeps the
+  length of an entry that earns it.
+- **A mechanics file holds rules; `docs/mechanics/why/<file>.md` holds the story.** Study
+  sessions read the rule file; `playbooks/retro.md` and the housekeeping pass read both, and
+  new provenance is written to `why/`. 2,890 words of incidents, audits and retractions moved
+  out of `session_format.md`, `srs.md`, `teaching.md` and `media.md` — **moved paragraph for
+  paragraph, verbatim, nothing summarised or deleted**, and verified by extracting every bold
+  claim from each pre-split file and checking it against the new pair. **The marker stays with
+  the rule**: a rule keeps its *assumed* / *derived from* / *measured* tag where a session
+  reads it, because that tag is what tells a session whether it may question the rule.
+- **The rule files are budgeted and `why/` is not, because the split alone would refill.** The
+  retro loop has no counter-pressure by construction — each retro adds a rule *and* the story
+  justifying it, and nothing has ever removed either. Upstream, `session_format.md` grew 401 →
+  7,250 words in sixteen days. `docs/consequential.test.ts` caps each rule file at today's
+  weight, leaves `why/` uncapped as the pressure valve, and refuses a `why/` file with no
+  matching rule file so provenance cannot outlive what it explains. Going over is not a style
+  failure: it means provenance crept back (move it) or the file gained rules (retire one).
+- **The SRS per-block cost is measured rather than assumed, and the tier-1 gate is documented
+  as uncomputed.** Three upstream drills with recorded durations fit `a` = 5.7′, 5.5′ and
+  15.4′; two land within 30 seconds of the assumed 6, so **the number does not move** — its
+  provenance does, and the outlier gains a mechanism (a session that *discovers* something
+  spends its time outside the block loop; budget roughly triple). Separately: nothing computes
+  the two-clean-passes promotion gate, and any workspace inheriting this ladder inherits the
+  hole, so the interim bookkeeping convention is now stated at the gate instead of being
+  reinvented per session.
+- **The porting contract is total again.** `upstream/map.md` gained rows for limba's four new
+  scripts and the `why/` tree, and the four mechanics rows became `split`. A limba file with no
+  row is a sync error by design, so the map is the thing that has to stay complete.
+
 ## 0.5.1 — 2026-08-15
 
 The Romanian pack's dictionary adapter — the one thing an instance cannot check by hand —

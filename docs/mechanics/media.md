@@ -13,6 +13,11 @@
 > the profile does not declare falls back to the registry's links; it is never silently
 > skipped without a fallback.
 
+> **Rules live here; the story lives in [why/media.md](why/media.md).** This file is what a
+> session reads before it teaches. The incidents, audits and measurements that bought
+> each rule moved to `why/` — a retro reads both, a lesson reads only this one. New
+> provenance goes to `why/`, never back into this file.
+
 ## The principle
 
 **Hear = play or link** (authenticity matters — a sound described is a sound not learned).
@@ -172,16 +177,6 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    transcript and died with it three times running. A page that sits in no index is invisible
    to every later session — the same failure as an unlogged one.
 
-   **It moved from close-out to build time (2026-08-15)** because close-out is the wrong
-   moment for both halves of the job. The index row is what stops a *concurrent* session
-   rebuilding the same page, and a session can run for an hour after the page exists — the
-   window where the page is real and unfindable is exactly the window that costs duplicated
-   work. And the hub is the learner's one bookmark: a page they were told about but cannot
-   open from it is, to them, not there yet. Regenerating twice costs one command; the hub is
-   generated from repo files and overwritten, never merged (rule 5), so an extra generation
-   can only make it fresher. Close-out then **re-runs it** over ledgers the session moved,
-   and confirms the row (session_format.md, close-out steps 7 and 9).
-
    **The row also records the date it reached the learner** (limba, 2026-08-12). A page built
    outside a numbered session leaves no other trace: limba SES-009 credited a recovery to an
    unlogged side session and had to dig through `git log` to find which artifact it meant. The
@@ -214,8 +209,8 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    [session_format.md](session_format.md) close-out step 9.
 6. **The design question is closed at setup — the theme is pinned.** Setup crafts the instance
    theme once into `docs/visual/tokens.css`; every page inherits it, plus the semantic tokens,
-   components and page-building rules in [../visual/SPEC.md](../visual/SPEC.md) (start from
-   `docs/visual/starter.html`, patterns in `docs/visual/gallery.html`). Tooling that offers a
+   components and page-building rules in [../visual/SPEC.md](../visual/SPEC.md) (begin a page with
+   `node scripts/newvisual.mjs <slug>`, patterns in `docs/visual/gallery.html`). Tooling that offers a
    general design pass first (palette, typography, "avoid templated designs") has nothing to
    add here; `scripts/visualcheck.mjs` checks the result. Repo visuals **inherit those
    conventions**; say that once and move on rather than re-deriving it per page.
@@ -240,11 +235,6 @@ a collision. `grep` the rows (`grep -n '| 20' work/visuals/README.md`) or read f
 `## Index` heading down.
 
 ## Audio inside visuals — the learner never needs a terminal
-
-Added in limba (SES-003 / 2026-07-30): a `speak.sh` command printed in chat is gone the
-moment the conversation scrolls, and a visual that tells the learner to open Terminal has
-outsourced its own job. **Visuals carry their audio** (when the profile has TTS at all — a
-`tts: none` instance leans on the registry's native links instead, and its pages say so).
 
 Author the visual with empty placeholders, then fill them:
 
