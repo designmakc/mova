@@ -54,6 +54,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
+import { FAVICON_LINK } from "./favicon.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -309,6 +310,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+${FAVICON_LINK}
 <title>${esc(T)} — deck · ${todayISO}</title>
 <style>
   :root {

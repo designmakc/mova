@@ -106,8 +106,20 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    self-contained page in `work/visuals/`, opened in the learner's browser from disk
    (`open work/visuals/<file>.html`); the hub is the one bookmark, and every page is one
    ordinary relative link from it, resolving the same for every session. Give the learner
-   the repo path, send the file inline in the response, index it, and commit it at close-out
-   — a page that was **sent, indexed and committed** is delivered. Indexed and committed but
+   a **link they can click** and the repo path, send the file inline in the response, index
+   it **as soon as it exists** (rule 3), and commit it at close-out — a page that was
+   **sent, indexed and committed** is delivered.
+
+   **A repo path is not a link** (found in the first real onboarding run, 2026-08-15).
+   Every response that builds or regenerates a page carries the page's **absolute `file://`
+   URL on its own line** — `file:///…/work/visuals/<file>.html` — which terminals and chat
+   clients turn into something the learner clicks. The repo path stays as well: it is the
+   record, and it is what a later session greps. But the path *alone* asks the learner to
+   open a file manager and go find the thing that was just made for them, and the first
+   principle of this workspace is that they are not an operator. The rule covers the hub at
+   every close-out and the deck when it is rebuilt, not only teach pages. When the profile
+   declares `publishing:`, the hosted URL leads and the `file://` one follows as the
+   offline copy. Indexed and committed but
    never sent is not: that is **built**, a real third state with its own row shape (rule 3)
    and its own exit ([session_format.md](session_format.md) → the materials-prepared exit).
    An attachment *alone* is still not delivery —
@@ -146,11 +158,29 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    player-block count inflated by a line that merely mentioned the class), each briefly
    convincing (2026-08-12). The page in a browser is the only witness that counts.
    `scripts/visualcheck.mjs` runs the static half of these checks pre-publish.
-3. **The index row goes in in the same session.** Added in limba (SES-006 / 2026-08-03) to
-   keep the delivery record, which until then lived only in a chat transcript and died with it
-   three times running. A page that reached the learner and sits in no index is invisible to
-   every later session — the same failure as an unlogged one. The row is the file link, what
-   it teaches, its units and its kind.
+3. **The index row and the hub go in the moment the page exists — not at close-out.** As soon
+   as `node scripts/visualcheck.mjs <file>` exits 0, write the row and run
+   `node scripts/hub.mjs`. Two commands, in that order, before the page is sent or taught:
+
+   ```
+   # row into work/visuals/README.md, then:
+   node scripts/hub.mjs
+   ```
+
+   The row is the file link, what it teaches, its units and its kind. Added in limba
+   (SES-006 / 2026-08-03) to keep the delivery record, which until then lived only in a chat
+   transcript and died with it three times running. A page that sits in no index is invisible
+   to every later session — the same failure as an unlogged one.
+
+   **It moved from close-out to build time (2026-08-15)** because close-out is the wrong
+   moment for both halves of the job. The index row is what stops a *concurrent* session
+   rebuilding the same page, and a session can run for an hour after the page exists — the
+   window where the page is real and unfindable is exactly the window that costs duplicated
+   work. And the hub is the learner's one bookmark: a page they were told about but cannot
+   open from it is, to them, not there yet. Regenerating twice costs one command; the hub is
+   generated from repo files and overwritten, never merged (rule 5), so an extra generation
+   can only make it fresher. Close-out then **re-runs it** over ledgers the session moved,
+   and confirms the row (session_format.md, close-out steps 7 and 9).
 
    **The row also records the date it reached the learner** (limba, 2026-08-12). A page built
    outside a numbered session leaves no other trace: limba SES-009 credited a recovery to an

@@ -225,6 +225,33 @@ describe("lintTaxonomyRows", () => {
     expect(msg).toMatch(/calls correct/);
   });
 
+  // The fourth rule: a false-friend row must correct into the target language, not into
+  // the held-language partner. Gated on the zone, so look-alike sides stay legal elsewhere.
+  const ffRow = (example: string) => `| LEX-FF | false friend | ${example} |`;
+
+  it("catches → pointing at the false friend instead of the repair", () => {
+    const [msg] = lintTaxonomyRows(ffRow("✗ *aktuell* (current) → actual (assumed)"));
+    expect(msg).toMatch(/look-alike pair this row is ABOUT/);
+    expect(msg).toMatch(/target-language form/);
+  });
+
+  it("passes a false-friend row that corrects into the target language", () => {
+    expect(lintTaxonomyRows(ffRow('✗ *aktuell* meant as "actual" → tatsächlich'))).toEqual([]);
+    expect(lintTaxonomyRows(ffRow('✗ *bekommen* meant as "become" → werden'))).toEqual([]);
+    expect(lintTaxonomyRows(ffRow('✗ *prost* meant as "simple"; also *a locui* / *a lucra*'))).toEqual([]);
+  });
+
+  it("leaves look-alike corrections alone outside a false-friend row", () => {
+    // The whole reason the rule is gated: repairing orthography SHOULD look near-identical.
+    expect(lintTaxonomyRows(row("✗ *fara* → fără"))).toEqual([]);
+    expect(lintTaxonomyRows(row("✗ *ingener* → inginer"))).toEqual([]);
+    expect(lintTaxonomyRows("| LEX-END | final vowel | ✗ *peret* → perete |")).toEqual([]);
+  });
+
+  it("does not fire on multi-word forms, which are not lexemes", () => {
+    expect(lintTaxonomyRows(ffRow("✗ *ich bin sensibel* → ich bin vernünftig"))).toEqual([]);
+  });
+
   it("reports the file and line so the fix is findable", () => {
     const text = `# notes\n\n| Code | Zone | Example |\n| --- | --- | --- |\n${row("✗ *x* → x")}\n`;
     expect(lintTaxonomyRows(text, "docs/mechanics/error_taxonomy.md")[0]).toMatch(

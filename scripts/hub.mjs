@@ -28,8 +28,12 @@
  *   playbooks/*.md               the command list, from each playbook's frontmatter
  *   AGENTS.md                    the shell command list
  *
- * Run at close-out (docs/mechanics/session_format.md). Read-only except for its one
- * output. Zero dependencies.
+ * Run TWICE per session that builds a page: once the moment the page passes visualcheck and
+ * gets its index row (docs/mechanics/media.md → Delivering a visual, rule 3), so the learner
+ * can open it from their one bookmark straight away, and again at close-out
+ * (docs/mechanics/session_format.md) over the ledgers the session moved. It is cheap,
+ * read-only except for its one output, and overwrites — so an extra run can only make the
+ * page fresher. Zero dependencies.
  */
 import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -37,6 +41,7 @@ import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
 import { canVerify } from "./dictionary.mjs";
+import { FAVICON_LINK } from "./favicon.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel) => readFileSync(join(root, rel), "utf8");
@@ -199,6 +204,11 @@ function visuals() {
       units: c[3].split(/\s+/).filter(Boolean),
       kind: c[4],
       superseded: /superseded/i.test(c[2]),
+      /** No delivery date = prepared, not taught yet. Pages are indexed the moment they
+       *  pass the gate (media.md → Delivering a visual, rule 3), so this is the state most
+       *  rows start in — the card has to say so, or the learner reads unfinished material
+       *  as this session's lesson. */
+      built: !/^\d{4}-\d{2}-\d{2}$/.test(c[0]),
     };
   });
 }
@@ -548,12 +558,13 @@ const card = (v) => `
             <h3><a class="card-link" href="${esc(v.file || "#")}">${esc(v.name)}</a></h3>
             <span class="pills">
               ${v.superseded ? `<span class="pill old" title="replaced by a later page — kept for the record">superseded</span>` : ""}
+              ${v.built && !v.superseded ? `<span class="pill built" title="ready to open — no session has taught it yet">not taught yet</span>` : ""}
               <span class="pill ${kindOf(v)}">${kindOf(v)}</span>
             </span>
           </div>
           <p class="teaches">${md(v.teaches)}</p>
           <div class="card-foot">
-            <time>${esc(v.date)}</time>
+            ${v.built ? `<span class="nodate">built, waiting for a session</span>` : `<time>${esc(v.date)}</time>`}
           </div>
         </article>`;
 
@@ -596,7 +607,9 @@ const board = un.map((u) => {
     seeded: items.filter((i) => i.tier === 0).length,
     pages: vis
       .filter((v) => v.units.includes(u.id))
-      .sort((a, b) => a.date.localeCompare(b.date)),
+      // Chronological, and an undated page sorts LAST: no delivery date means built and
+      // not yet taught, which makes it the newest thing in the unit, not the oldest.
+      .sort((a, b) => (a.built ? "9999" : a.date).localeCompare(b.built ? "9999" : b.date)),
   };
 });
 
@@ -694,6 +707,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+${FAVICON_LINK}
 <title>${esc(T)} — hub</title>
 <style>
   /* Tokens are the workspace's — the hub is part of the same set of pages, not a separate
@@ -846,6 +860,8 @@ const html = `<!doctype html>
   .pill { font-size:11px; color:var(--muted); border:1px solid var(--line);
           border-radius:99px; padding:2px 9px; white-space:nowrap; }
   .pill.old { color:var(--hi); border-color:var(--hi); background:var(--hiBg); }
+  .pill.built { border-style:dashed; }
+  .nodate { font-style:italic; }
   .teaches { font-size:13.5px; color:var(--muted); margin:9px 0 14px; flex:1; }
   .card-foot { display:flex; justify-content:space-between; align-items:center;
                font-size:12.5px; color:var(--muted); gap:10px; flex-wrap:wrap; }

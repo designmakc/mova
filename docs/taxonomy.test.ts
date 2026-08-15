@@ -6,10 +6,11 @@
  * generating agent's knowledge of the language pair. `scripts/packcheck.mjs` lints the PACK
  * side of that pipeline; this test lints the INSTANCE side, using the same exported linter,
  * because the pipeline is real and partly lossy: the first agent-generated pack shipped four
- * rows whose wrong form equalled its own correction (`✗ *Ich komme spät an* → Ich komme spät
- * an`), and two of them reached the generated instance unchanged while a third was silently
- * fixed on the way (2026-08-15). A row that shows no contrast teaches the learner nothing and
- * quietly asserts that correct German is an error.
+ * such rows (`✗ *Ich komme spät an* → Ich komme spät an`), and generation treated each one
+ * differently — one reached the instance unchanged, one was reworded into a different broken
+ * shape (`✗ *aktuell* (current) → actual`, corrected into English rather than German), one
+ * was silently repaired, one was dropped (2026-08-15). A row that shows no contrast teaches
+ * the learner nothing and quietly asserts that correct German is an error.
  *
  * Skips in template mode — the file is instance-owned and does not exist until setup runs.
  */

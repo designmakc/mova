@@ -33,6 +33,11 @@ drift out of sync with the playbook.
 
 `setup` runs once, before any of these exist.
 
+`update` also answers a lighter question. Ask **"anything new?"** and your agent checks the
+template, tells you what changed and asks whether you want it — touching nothing until you
+say yes. Your weekly `review` runs that same check for you, so you can also just wait for
+it to come up.
+
 ### Not every workspace answers to all of them
 
 The interview asks how wide you want this. The answer sets `focus`, and an inactive verb is
@@ -94,11 +99,12 @@ trap, and the interaction. See [../mechanics/teaching.md](../mechanics/teaching.
 
 - **The chat.** Teaching, questions, the full marked sheet after every scored set, and the
   plain-language close-out.
-- **The hub** — `work/visuals/index.html`, your one bookmark. Regenerated at every
-  close-out from the files that own each number, never hand-written: days to your goal,
-  units done, what you hold, what is due today, a board of every unit with **taught** and
-  **retained** drawn as two separate bars, a confidence panel, and every study page ever
-  built for you.
+- **The hub** — `work/visuals/index.html`, your one bookmark. Regenerated from the files
+  that own each number, never hand-written: days to your goal, units done, what you hold,
+  what is due today, a board of every unit with **taught** and **retained** drawn as two
+  separate bars, a confidence panel, and every study page ever built for you. A new page
+  lands on it **as soon as it is built**, marked *not taught yet* until a session teaches
+  it; the numbers are refreshed again at every close-out.
 - **The deck** — `work/visuals/deck.html`, the drillable view of your ledgers. Filter by
   unit, tier or part of speech, sort the same ways, hide either side, reveal a row at a
   time, play the audio.

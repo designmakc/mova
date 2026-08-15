@@ -4,22 +4,24 @@
  *
  * media.md's governing principle is that a resource shown but not recorded is the same
  * failure as an unlogged session — and the index is where visuals get recorded. The rule
- * ("every visual gets an index row in the same session that creates it") existed as prose
- * and was already skipped: in the reference instance (limba, 2026-08-07) a visual sat on
- * disk, in no index, invisible to every future session. An earlier instance of the same gap
- * ended with a draft visual being overwritten unread.
+ * ("every visual gets an index row, and a hub rebuild, the moment it passes the gate")
+ * existed as prose and was already skipped: in the reference instance (limba, 2026-08-07) a
+ * visual sat on disk, in no index, invisible to every future session. An earlier instance of
+ * the same gap ended with a draft visual being overwritten unread.
  *
  * What is enforced:
  *   - every **git-tracked** visual in work/visuals/ has a row in work/visuals/README.md;
  *   - every file the index links to actually exists;
  *   - no row claims a delivery it did not make (below).
  *
- * Why *tracked* and not *all* files: an untracked visual is, by definition, work in flight
- * — a session that has reached neither of its two exits. The close-out ritual indexes and
- * commits a page that was taught; the materials-prepared exit does the same for one that was
- * only built (session_format.md). Either way the invariant is "a committed visual is an
- * indexed visual", and this test is precisely that. A session that commits without indexing
- * gets a red CI; a session still working gets left alone.
+ * Why *tracked* and not *all* files: an untracked visual is a page whose session has not
+ * committed yet, and the index row now goes in earlier than the commit — at build time, so
+ * the page is reachable from the hub while the session runs on (media.md → Delivering a
+ * visual, rule 3). The invariant this test can still check is "a committed visual is an
+ * indexed visual". A session that commits without indexing gets a red CI; a session still
+ * working gets left alone. The *dangling* direction is checked over every row, tracked or
+ * not: indexing early means a page can be indexed and then deleted, and the row has to go
+ * with the file.
  *
  * THE DELIVERY DATE IS A CLAIM, so it is checked. The index's Date column records the day
  * the page reached the learner, and the ledgers and the pacing read it as evidence — which
@@ -124,8 +126,9 @@ describe.skipIf(!active)("work/visuals index", () => {
     expect(
       missing,
       `visuals committed with no row in ${CONTRACT.index}:\n  ${missing.join("\n  ")}\n` +
-        `Add a row in the session that created the file — an unindexed visual is invisible ` +
-        `to every future session (media.md → "Keeping: the preservation map").`,
+        `Add the row when the page passes visualcheck, and rebuild the hub — an unindexed ` +
+        `visual is invisible to every future session and unreachable from the learner's one ` +
+        `bookmark (media.md → "Keeping: the preservation map").`,
     ).toEqual([]);
   });
 
@@ -155,7 +158,9 @@ describe.skipIf(!active)("work/visuals index", () => {
     const dangling = linkedFiles().filter((f) => !existsSync(join(visualsDir, f)));
     expect(
       dangling,
-      `index rows linking to missing files:\n  ${dangling.join("\n  ")}`,
+      `index rows linking to missing files:\n  ${dangling.join("\n  ")}\n` +
+        `Rows go in at build time, so a page abandoned or renamed after that leaves its row ` +
+        `behind. Delete the row with the file (session_format.md → close-out step 7).`,
     ).toEqual([]);
   });
 });

@@ -72,7 +72,11 @@ this block, not by omitting it.**
    Teaches cell — is finished teaching material waiting for a session to teach it: open it,
    teach from it, date its delivery at close-out, and do **not** rebuild the unit it names.
    **Residue** — untracked and in no index — is what a session that reached neither exit left
-   behind. **Read any such file before writing near it** either way — in limba an unindexed
+   behind. **A row whose file is untracked is the third case**: pages are indexed and put on
+   the hub the moment they pass the gate (rule 3 in [media.md](media.md)), so the session
+   that built this one may still be running. Read it, reuse it, never overwrite it — and if
+   its unit is the one you are about to teach, say so to the learner before you build a
+   second page. **Read any such file before writing near it** either way — in limba an unindexed
    draft visual was overwritten unread (2026-08-03). Reading prepared material as residue
    costs the opposite mistake: the next session rebuilds a page that already exists (found in
    the first generated lesson pages, 2026-08-15).
@@ -622,12 +626,18 @@ gets written into the ledgers, the log and the learner profile as evidence.
    audit had to reconstruct past sets from agent transcript files, and **one session's
    transcript was already gone** — the one mechanism that can check a historical claim had
    silently lost a session.
-7. Index any visual created or updated in `work/visuals/README.md`
-   ([media.md](media.md) → Delivering a visual), **with the date it reached the learner.**
-   A page built outside a numbered session leaves no other trace: limba SES-009 credited a
-   recovery to an unlogged side session and had to dig through `git log` to find it. The
-   workspace decides what to build next from what it believes worked, so *when* a page arrived
-   is part of the record, not metadata.
+7. **Confirm the index rows and date the deliveries.** Every visual this session created or
+   updated was indexed and put on the hub **when it was built**, before it was taught
+   ([media.md](media.md) → Delivering a visual, rule 3) — so this step is the audit, not the
+   first write. Two things to do here: add any row that is missing, and **fill in the Date of
+   every page this session actually delivered** — a page taught today whose row still opens
+   `Built —` gets today's date and loses the marker. A page built and still not taught keeps
+   `—`. **A page you built and then deleted loses its row in the same breath**: the index test
+   fails on a row pointing at a file that is not there.
+   The date matters because a page built outside a numbered session leaves no other trace:
+   limba SES-009 credited a recovery to an unlogged side session and had to dig through
+   `git log` to find it. The workspace decides what to build next from what it believes
+   worked, so *when* a page arrived is part of the record, not metadata.
 8. **Account for every artifact this session created.** Run `git status --short work/`
    again: each file is either indexed and committed, or deleted. Nothing survives the
    session untracked — an untracked artifact is invisible to the next session, which is how
@@ -639,7 +649,8 @@ gets written into the ledgers, the log and the learner profile as evidence.
    [../../work/visuals/deck.html](../../work/visuals/deck.html) from the ledgers this
    session just updated — the drill surface is only honest if the session that moved a tier
    rebuilds it (limba, 2026-08-10; its frozen first-unit deck is why this is a step and not a
-   choice). Then `node scripts/hub.mjs`. It rebuilds
+   choice). Then `node scripts/hub.mjs` **again** — a page built this session already put
+   itself on the hub (step 7), but every *number* on it moved afterwards. It rebuilds
    [../../work/visuals/index.html](../../work/visuals/index.html) from the ledgers, the
    topic map, the curriculum, the logs and the visuals index, so the learner's one bookmark
    is current. **Commit both like any other page** — with local delivery there is nothing else
@@ -648,6 +659,10 @@ gets written into the ledgers, the log and the learner profile as evidence.
    **These two files are generated and cannot hold an edit** — every number in them comes from a
    repo file, and both carry a `GENERATED … do not edit` banner. So a conflict in either is
    never a merge: *regenerate and overwrite*, and the newer generation wins by construction.
+   **Then hand the hub over as a clickable `file://` link in the close-out message**
+   ([media.md](media.md) → Delivering a visual). A bookmark the learner has to assemble out
+   of a repo path is not a bookmark, and this is the one step of the ritual whose entire
+   product is a page they are meant to open.
 10. `npm test` if `docs/plan.md`, `docs/curriculum.md`, `docs/reference/topics.md`, or
     `docs/projects/` changed (the ledger and log tests run in the full suite anyway — run it
     when in doubt). **A failure in a file this session did not touch is probably another
@@ -677,13 +692,17 @@ lesson pages, 2026-08-15).
 Take it when the material is built and **nothing was taught or measured** — a request for a
 page rather than a session, the time gone, the learner never arrived. Four steps:
 
-1. **Index the page as built** — the row goes in with **no Date** (`—`) and `Built —`
-   opening its Teaches cell ([media.md](media.md) → Delivering a visual). That column means
-   the day the page reached the learner; the day it was built is already in the filename.
-2. **Commit the page and its row.** An untracked artifact is invisible to the next session,
-   and the index test is deliberately blind to it.
-3. **Regenerate the hub** — `node scripts/hub.mjs` — and commit it. An unlinked page is not
-   reachable, whatever else is true of it.
+1. **Check the row is there and says built** — **no Date** (`—`) and `Built —` opening its
+   Teaches cell ([media.md](media.md) → Delivering a visual). Building the page already wrote
+   this row (rule 3); write it here if something went wrong. That column means the day the
+   page reached the learner; the day it was built is already in the filename.
+2. **Commit the page, its row and the hub.** An untracked artifact is invisible to the next
+   session, and the index test is deliberately blind to it.
+3. **Regenerate the hub** — `node scripts/hub.mjs` — if anything changed since the page was
+   built. An unlinked page is not reachable, whatever else is true of it. Give the learner
+   the page's own clickable `file://` link in the response as well ([media.md](media.md) →
+   Delivering a visual): material prepared and not taught is exactly the case where the only
+   route to the page is the sentence you are writing now.
 4. **Say where you stopped**, in the index row and in the response: which unit the material is
    for, what is built, what is not. **That row is this exit's Next pointer** — the next session
    checks the index before generating (media.md's reuse rule), and it is the only line

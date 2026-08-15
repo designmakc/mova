@@ -159,6 +159,15 @@ verbatim into the generated instance — an error code whose worked example cont
 itself teaches the learner nothing and gives the tally a target it cannot name. (Found in
 the first agent-generated language pack, 2026-08-15.)
 
+**A false-friend row corrects into the target language, never into the held one.** `→` names
+the form the learner should have written. `✗ *aktuell* (current) → actual` shows a contrast
+and is still wrong: `actual` is the English partner of the false friend, so the row points at
+the confusion instead of the repair. Write the meaning in quotes on the ✗ side and put the
+target form after the arrow — `✗ *aktuell* meant as "actual" → tatsächlich`. packcheck fails
+a false-friend row whose two sides look alike, and ONLY a false-friend row: a diacritics row
+like `✗ *fara* → fără` is supposed to look near-identical. (Found in the generated German
+instance, 2026-08-15.)
+
 ## Pack authoring — safety rules
 
 A pack states language facts that will be TAUGHT. The bar is the same as

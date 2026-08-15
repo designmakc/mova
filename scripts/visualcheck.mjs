@@ -50,6 +50,11 @@
  *                        U+FFFD always fails.
  *  12. retired claims  — regex table read from work/visuals/README.md when present;
  *                        wordings the workspace has corrected must not survive in pages.
+ *  13. favicon         — the <link rel="icon"> every page carries, as an embedded data:
+ *                        URI (scripts/favicon.mjs). A page opened from the hub and left in
+ *                        a tab for weeks is found by its icon; a blank one is lost among
+ *                        thirty tabs. Engine pages must carry the canonical mark exactly;
+ *                        an instance that re-tints it only has to keep it embedded.
  *
  * Exit 1 on any violation. Zero runtime dependencies.
  */
@@ -58,6 +63,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join, basename, resolve, sep } from "node:path";
 import { canVerify } from "./dictionary.mjs";
+import { FAVICON_LINK } from "./favicon.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -600,6 +606,42 @@ export function checkRetiredClaims(html, rules) {
   return offences;
 }
 
+/* -------------------------------------------------------------------- 13. favicon */
+
+/**
+ * The hub is the learner's one bookmark and study pages live in tabs for months, so every
+ * page carries the mark (scripts/favicon.mjs). It must be EMBEDDED: a sibling icon file
+ * dies the moment the page is opened from somewhere else, and a hosted one breaks the
+ * offline rule that check 6 enforces — so the icon is a data: URI or it is nothing.
+ *
+ * Engine pages (docs/visual/) are held to the canonical string byte for byte: they are
+ * what every authored page is copied from, so a drifting mark there spreads. An instance
+ * page only has to carry an embedded icon — a re-themed workspace may re-tint its own.
+ */
+export function checkFavicon(html, { engineDir = false } = {}) {
+  const tag = html.match(/<link\b[^>]*\brel="[^"]*\bicon\b[^"]*"[^>]*>/i)?.[0];
+  if (!tag) {
+    return [
+      'no <link rel="icon"> — every page carries the mark, embedded. Paste the line ' +
+        "printed by: node scripts/favicon.mjs",
+    ];
+  }
+  const href = tag.match(/href="([^"]*)"/)?.[1] ?? "";
+  if (!href.startsWith("data:")) {
+    return [
+      `favicon href is not embedded (${href.slice(0, 60)}) — a page is self-contained, so ` +
+        "the icon travels inside it: node scripts/favicon.mjs",
+    ];
+  }
+  if (engineDir && tag !== FAVICON_LINK) {
+    return [
+      "favicon differs from the canonical mark in scripts/favicon.mjs — engine pages are " +
+        "what authored pages are copied from, so this one drifts into every page built next",
+    ];
+  }
+  return [];
+}
+
 /* ----------------------------------------------------------------------- one file */
 
 /**
@@ -624,6 +666,7 @@ export function checkFile(path, { pack = null, retired = [], languages = null } 
     ...checkVerification(html, pack),
     ...checkScriptRange(html, { languages, engineDir }),
     ...checkRetiredClaims(html, retired),
+    ...checkFavicon(html, { engineDir }),
   ];
 }
 

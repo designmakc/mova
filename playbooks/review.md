@@ -61,7 +61,18 @@ session. The flow below is what happens *between* them.
    parses the cost-model constants out of srs.md's own paragraph — edit them together, then
    `npm test`. Before the checkpoint has data, treat any pace arithmetic built on these
    numbers as order-of-magnitude only.
-6. `npm test` (plan.md changed — always), then the **close-out ritual**
+6. **Template check** — read-only, best-effort, one line. Run the **check-only** half of
+   [update.md](update.md): fetch the template's `VERSION` and compare it with the profile's
+   `template_version`. Same ⇒ say nothing at all. Newer ⇒ **one sentence on what is new and
+   one question — take it now, or not?** A "no" is recorded nowhere and comes back next
+   week, which is the whole reason this sits on a weekly cadence instead of in a
+   notification. **Skip it silently** on no network, no `template_source`, or any error:
+   this check never blocks a review and never hands the learner a plumbing problem. Never
+   run the full update from here — a yes routes to [update.md](update.md) step 6, and that
+   is a session of its own. (Added after the first real onboarding run, 2026-08-15: nothing
+   in the workspace ever looked upstream on its own, so an instance improved only when its
+   learner thought to ask.)
+7. `npm test` (plan.md changed — always), then the **close-out ritual**
    (session_format.md) — every step. The plain-language summary matters most here: a review
    produces pace arithmetic and tier decisions, and none of that is what the learner needs to
    hear. Say what changes about how they study, in words.

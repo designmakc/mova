@@ -6,19 +6,29 @@ dashboard current — all in plain files you own, on your machine.
 
 *mova* (мова) is Ukrainian for "language".
 
+![The hub: days to the exam, units done, topics taught, items due today, and what to do next](docs/assets/hub.png)
+
+<sub>Every screenshot here comes from one workspace — an English speaker learning Spanish,
+six weeks in, 63 days from a B1 exam. The pages are what the scripts in this repo actually
+produce; the learner is invented.</sub>
+
 ## First five minutes
 
 1. **Install an AI coding agent** — one of: [Claude Code](https://claude.com/claude-code),
    [opencode](https://opencode.ai), [Codex](https://openai.com/codex), or
    [Antigravity](https://antigravity.google). Never installed one, or would rather not pay
    for one? See [Starting from zero, without paying](docs/guide/free-setup.md).
-2. **Copy this repository** — the green **Use this template** button on GitHub, or download
-   the zip and unpack it anywhere.
-3. **Open the folder in your agent and say: "set up my workspace".**
+2. **Take a copy of this repository** — the green **Use this template** button on GitHub,
+   or download the zip and unpack it anywhere. Or simply give your agent the URL of this
+   repo and ask it to make you a copy.
+3. **Open that copy in your agent** — the folder you just unpacked or it just cloned — and
+   say: **"set up my workspace"**.
 
-The agent interviews you — your languages, your goal, your time — and builds everything:
-your profile, your curriculum, your study plan. Then show up and say the one word it hands
-you at the end.
+The agent interviews you — six short topics, numbered so you can see the end from the
+start: your languages, your goal, your time. Then it builds everything on its own: your
+profile, your curriculum, your study plan. Expect a few minutes of questions and 5–15
+minutes of building. It finishes with a short tour of what it made and how to use it, and
+one word to say when you're ready to begin.
 
 > **Requirements**: Node.js ≥ 20 and git. Your agent checks for both during setup and
 > installs what it can. They power the scheduling, the integrity checks, and the contract
@@ -52,6 +62,14 @@ drawn as two separate bars. **The deck** (`work/visuals/deck.html`), the drillab
 everything you know, filterable by unit, tier and part of speech. Study pages are
 self-contained HTML with the audio embedded — they work offline, forever.
 
+![The deck: every known word and pattern, filtered by unit, tier and part of speech, each row with audio](docs/assets/deck.png)
+
+![A study page: the whole system in one table with the changing endings marked, and the contrast with the language you already speak](docs/assets/study-page.png)
+
+<sub>A study page is built for one thing, then kept. The endings that change are marked so
+the pattern is visible without reading; the `?` is the verification marker — that form is
+the agent's word until a source or a tutor confirms it.</sub>
+
 → [How sessions run](docs/guide/how-sessions-run.md) — every verb, the focus modes, the
 five parts of a lesson, and where each file lands.
 
@@ -66,6 +84,8 @@ five parts of a lesson, and where each file lands.
   tier 3 is a gate: nothing counts as owned until you have produced it whole.
 - **Coverage and retention, never blended.** What has been taught and what you actually
   hold are separate numbers, because the gap between them is the finding.
+
+  ![One unit on the hub board: taught and retained as two separate bars, the pages that taught it, and the items still shaky](docs/assets/unit-board.png)
 - **Your mistakes, coded and counted.** A taxonomy generated for your language pair, an
   append-only error log, and a tally that follows causes rather than symptoms and drops
   zones you have since re-tested clean. That tally is what the next drill aims at.
@@ -85,7 +105,9 @@ Most changes are one sentence in chat: shorter today, too easy, explain that thr
 Spanish, stop drilling this. Standing changes — pace, focus, deadline, the goal itself —
 belong to the weekly `review`, which is also where the scheduler stops using its shipped
 defaults and re-fits itself to your own recorded data. `retro` turns friction with the
-workspace into a fix. `update` pulls template changes in as a conversation, never a merge.
+workspace into a fix. `update` pulls template changes in as a conversation, never a merge —
+ask **"anything new?"** for a read-only check that changes nothing, or let the weekly
+`review` raise it for you.
 
 Yours to steer directly: `materials/` for your own books and past papers, the link
 registry, the theme, and your language pack — including the table that says which
@@ -102,19 +124,7 @@ database, and nothing leaves your machine except dictionary lookups and text-to-
 the rules in force, each stating whether it is a guess, a response to something that
 happened, or a measurement; `playbooks/` holds one flow per verb. `npm test` is the
 contract suite, and it fails when the workspace's own records stop being trustworthy.
-
-## Status
-
-Working, and young. Everything above is built and covered by the test suite, and three
-workspaces have been generated from this template — an exam with a deadline, a level goal
-with a tutor, and a no-goal vocabulary run — each passing its own checks.
-
-What has not happened yet: nobody has completed a study session in a workspace built from
-this template. Romanian is the only language pack that ships; any other target makes your
-agent build one, which works but takes a while. Command shims are generated for Claude Code
-only — other agents route through `AGENTS.md`, which is the fallback by design.
-
-See [CHANGELOG.md](CHANGELOG.md) for what changed and when.
+[CHANGELOG.md](CHANGELOG.md) records what changed and when.
 
 ## For maintainers
 

@@ -40,7 +40,7 @@ An instance without a goal contract is mis-generated; stop and re-run that setup
 | "add this word" / "what does X mean" (and wants it kept) | [playbooks/vocab.md](playbooks/vocab.md) |
 | "retro" / "what did we learn" | [playbooks/retro.md](playbooks/retro.md) |
 | "prep my tutor session" | [playbooks/tutor-prep.md](playbooks/tutor-prep.md) |
-| "update the workspace" | [playbooks/update.md](playbooks/update.md) |
+| "update the workspace" / "anything new?" / "check for updates" | [playbooks/update.md](playbooks/update.md) |
 
 Per-agent command shims (e.g. `.claude/skills/`) are generated at setup and contain only
 pointers to these playbooks. This table is the fallback that makes any agent work without

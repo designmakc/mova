@@ -23,7 +23,8 @@
  *   tts: edge                  # edge | say | none
  *   publishing: none           # none | claude-artifacts
  *   template_version: 0.2.0
- *   template_source: <url>     # optional — where /update fetches from; accretes on first update
+ *   template_source: <url>     # where /update fetches from; resolved at setup (git remote),
+ *                              # omitted only when this copy has no discoverable origin
  *   ```
  *
  * The canonical key list lives in setup/templates/profile.template.md; this block is a

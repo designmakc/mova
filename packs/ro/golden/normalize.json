@@ -57,21 +57,21 @@
   {
     "input": "Ǎsta",
     "expected": "Ăsta",
-    "why": "uppercase caron A — sentence-initial, the common real case"
+    "note": "Ǎ U+01CD (A with caron) → Ă U+0102 — uppercase pair of the fǎrǎ row; sentence-initial is the common real case"
   },
   {
     "input": "Şcoala",
     "expected": "Școala",
-    "why": "uppercase Turkish cedilla S"
+    "note": "Ş U+015E (S with cedilla, Turkish) → Ș U+0218 — uppercase pair of the şcoală row"
   },
   {
     "input": "Śtiu",
     "expected": "Știu",
-    "why": "uppercase S with acute"
+    "note": "Ś U+015A (S with acute) → Ș U+0218 — uppercase pair of the śi row"
   },
   {
     "input": "Āsta",
     "expected": "Ăsta",
-    "why": "uppercase macron A"
+    "note": "Ā U+0100 (A with macron) → Ă U+0102 — uppercase pair of the fārā row"
   }
 ]

@@ -4,6 +4,85 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.5.0 — 2026-08-15
+
+Fixes from the first onboarding run driven by a real person rather than a test harness.
+Nothing here is a broken file; every item is the workspace failing to say what it was
+doing. Setup is the only part of this product a learner meets before they trust it, and it
+was running as a black box between two one-line messages.
+
+- **The interview gave no sense of size or progress.** The greeting promised "a few
+  questions" and then asked them one at a time with no count, so a learner could not tell a
+  two-minute interview from a twenty-minute one — and answered the first topic at the size
+  that belonged to the fourth. The greeting now previews the ground the questions cover in
+  six short phrases (areas, never the questions themselves — a preview that enumerates is
+  the questionnaire dump the interview forbids), and every asked topic opens with its
+  position, `1/6` through `6/6`. The denominator is fixed: Topic 7 is the silent
+  environment probe and is never counted, and follow-ups inside a topic do not advance it.
+- **Generation was an unannounced 5–15 minute silence.** After a turn-by-turn interview,
+  the longest pause in the product arrived with no warning, which reads as a crash rather
+  than as work. The interview's close now states the number before the build starts, says
+  the learner can walk away, and names the one branch that stretches it (a target language
+  with no pack). The generation act repeats the figure as it begins.
+- **Setup ended with a verb instead of an orientation.** The learner got "ready — say
+  lesson" for a workspace they had never seen, built while they were away: no idea which
+  verbs it answers to, that the hub and the deck exist, or what the plan it just wrote
+  actually says. The handoff is now a four-part tour — what you can say, where things live,
+  the plan you just built, and what only you can do — capped at about a screen, with the
+  guides carrying the depth.
+- **A generated page was handed over as a repo path.** Every page rule said "name it and
+  send it inline"; none said "give them something to click", so the learner ended up in a
+  file manager hunting for the thing that had just been made for them. Every response that
+  builds or regenerates a page now carries its absolute `file://` URL on its own line — the
+  hub at every close-out included. The repo path stays as the record.
+- **A page reached the hub only at close-out.** The index row and the hub rebuild were both
+  close-out steps, so a page could exist, render, and be taught from for an hour while the
+  learner's one bookmark did not know it existed — and a second session looking for prepared
+  material saw nothing and built it again. Both now happen the moment the page passes
+  `visualcheck`: write the row, run `node scripts/hub.mjs`, then teach. Close-out keeps the
+  second rebuild (the ledgers moved) and becomes the audit that fills in the delivery date.
+  Undated rows now render on the hub as **not taught yet** and sort last inside their unit,
+  so a page waiting for a session is not read as this morning's lesson.
+- **`/update` could be run but not asked.** The only way to find out whether the template
+  had moved was to start the verb that changes files. Update now has an explicit
+  **check-only** mode: resolve, fetch, compare, summarize, then stop and ask — nothing in
+  the instance touched, and "not now" a complete ending. The weekly `review` runs that
+  check on its own, best-effort and silent when there is nothing to say. And
+  `template_source` is now resolved at setup from the git remote instead of being demanded
+  from the learner at first update — a URL the setup agent had had in hand all along.
+- **The free path recommended a second engine as if it could carry the workspace.** A free
+  tier metered in requests does not survive an agent that spends dozens of them per
+  instruction; the allowance ran out mid-task in a real run. Gemini is now documented as
+  the engine you switch *to* for an explanation and away from for the work around it, setup
+  is explicitly to be run on the built-in engine, and the guide says plainly that switching
+  engines mid-task costs nothing because every file is already on disk.
+- **Every generated page had a blank tab icon.** The hub is meant to be the one bookmark and
+  study pages sit open in tabs for months, so the surface that identifies them was a generic
+  sheet of paper. Every page now carries the mark — a lowercase serif `m` on the theme's
+  accent, embedded as a `data:` URI so nothing is requested and a page opened from disk in
+  2030 still has it. One canonical string in `scripts/favicon.mjs`: the two generators import
+  it, the two `docs/visual/` pages carry it literally, and `visualcheck` fails a page without
+  one (holding the engine pages to the exact string, and letting an instance re-tint its own).
+  Safari ignores `data:` favicons and will keep showing its generic icon; the alternative was
+  a sibling file that dies the moment a page travels, so the tab stays plain there rather
+  than the page reaching out.
+- **The README described the product without showing it.** Four screenshots now carry the
+  three surfaces: the hub's dashboard, one unit card with *taught* and *retained* as two
+  separate bars, a study page, and the deck. They come from a synthetic workspace (an English
+  speaker, Spanish, 63 days to a B1 exam) run through the real generators, so no image can
+  show a layout the scripts do not produce — provenance and the remake recipe are in
+  `docs/assets/README.md`.
+- instance-impact: **engine files auto-update, plus one regeneration step.**
+  `playbooks/update.md`'s summary and triggers changed, and adapter shims carry both as
+  their routing data — **regenerate the adapters (setup step 8)** so "anything new?" routes.
+  Optional: add `template_source:` to your profile's config block (your agent can read it
+  off `git remote get-url origin`) so no future check has to ask for it. The setup and
+  interview changes affect newly generated workspaces only; setup does not run twice.
+  A page authored **before** this version carries no favicon and will now fail
+  `visualcheck`: add the line printed by `node scripts/favicon.mjs` to its `<head>`, or
+  rebuild the page. The hub and the deck fix themselves at the next regeneration, and
+  `docs/assets/` is README material an instance can delete without consequence.
+
 ## 0.4.0 — 2026-08-15
 
 Fixes from the first two lesson pages ever generated in real instances — a German page

@@ -12,6 +12,10 @@
   - OMIT the goal_date line entirely when the goal has no deadline. Do not write an
     empty value.
   - template_version is copied from the VERSION file at generation time.
+  - template_source is where /update fetches the template from. Resolve it at setup —
+    `git remote get-url origin`, else the URL this copy was fetched from — and OMIT the
+    line only when neither exists. Do not ask the learner for it; a URL they have to
+    produce is a question setup already had the answer to.
   - Write only what the interview established. Every claim about how this learner
     LEARNS is born `(assumed)` until measured — see the accretion section. Provenance
     markers per docs/mechanics/README.md.
@@ -45,6 +49,7 @@ tts: {{TTS}}                       # edge | say | none
 publishing: {{PUBLISHING}}         # none | claude-artifacts
 focus: {{FOCUS}}                   # full | drill | vocab | writing (extension key — see setup/scenarios/focus_modes.md)
 template_version: {{TEMPLATE_VERSION}}
+template_source: {{TEMPLATE_SOURCE}}   # OMIT THIS LINE when this copy has no discoverable origin
 ```
 
 ## Languages held

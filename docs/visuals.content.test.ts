@@ -24,7 +24,7 @@
  *     script-range check gives them the permissive default set for the same reason.
  */
 import { describe, it, expect } from "vitest";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import {
@@ -78,6 +78,29 @@ describe("authored visuals pass visualcheck", () => {
         offences,
         `${name} would reach the learner broken:\n  ${offences.join("\n  ")}`,
       ).toEqual([]);
+    });
+  }
+});
+
+/**
+ * The two generated pages (hub, deck) cannot be run in template mode — they need a
+ * profile — and visualcheck deliberately skips generated output, so the favicon on them is
+ * checked at its source: both generators must interpolate the one canonical link, never a
+ * second copy of the string.
+ */
+describe("generated pages carry the favicon", () => {
+  for (const gen of ["hub.mjs", "deck.mjs"]) {
+    it(`${gen}: emits FAVICON_LINK in its <head>`, () => {
+      const src = readFileSync(join(root, "scripts", gen), "utf8");
+      expect(src, `${gen} must import the mark from scripts/favicon.mjs`).toContain(
+        'from "./favicon.mjs"',
+      );
+      const head = src.slice(src.indexOf("<head>"), src.indexOf("</head>"));
+      expect(head, `${gen} builds a page the learner keeps in a tab — it needs the mark`)
+        .toContain("${FAVICON_LINK}");
+      expect(src, `${gen} must not hand-copy the icon — import it`).not.toContain(
+        'rel="icon"',
+      );
     });
   }
 });

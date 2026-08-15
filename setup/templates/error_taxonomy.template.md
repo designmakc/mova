@@ -67,6 +67,13 @@ row takes when it was ported without being understood. A code whose contrast you
 write is a code you do not yet own: leave it out and let the data earn it. (Found in the
 first agent-generated language pack, 2026-08-15.)
 
+**A false-friend row corrects into the target language.** `→` names the form the learner
+should have written, so a row that points it at the held-language partner corrects a word
+into a translation: `✗ *aktuell* (current) → actual` passes every rule above and still
+teaches nothing, because `actual` is the false friend, not the repair. The meaning goes in
+quotes on the ✗ side, the target form after the arrow — `✗ *aktuell* meant as "actual" →
+tatsächlich`. (Found in the generated German instance, 2026-08-15.)
+
 ## Scope rulings
 
 <!-- The convention that keeps codes sharp: each code's boundary against its neighbours,

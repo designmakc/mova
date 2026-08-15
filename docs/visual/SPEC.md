@@ -28,6 +28,17 @@ These are not style preferences; each one was paid for.
   terminal (limba, 2026-08-10). Deploying the folder whole made the sibling link correct
   from disk and from the site — never a hosted URL, never a runtime rewrite
   (limba, 2026-08-13).
+- **Every page carries the mark** — `<link rel="icon">` with the icon embedded as a
+  `data:` URI, from [scripts/favicon.mjs](../../scripts/favicon.mjs). The hub is the one
+  bookmark and study pages sit in tabs for months; a blank tab icon is how a workspace gets
+  lost among thirty others. It is **engine-fixed, not part of the pinned theme** — the icon
+  renders outside the page, where the token block does not reach, so its two colours are
+  literal sRGB (the shipped `--hi` and `--bg`). It arrives with the starter and needs no
+  authoring step; `visualcheck` fails a page without it, holds the two `docs/visual/` pages
+  to the canonical string byte for byte, and lets an instance re-tint its own copies as
+  long as they stay embedded. Safari ignores `data:` favicons and shows its generic icon —
+  the alternative was a sibling file that dies when a page travels, so the tab stays plain
+  there rather than the page reaching out.
 - **Audio lives in the row it voices — never in a parallel list** (limba, 2026-08-10:
   *"why is there a need to have two tables?"*). Author `<div class="tts" data-text="…"
   data-en="…"></div>` placeholders inside the cell they voice; `node scripts/tts-embed.mjs
@@ -85,9 +96,12 @@ These are not style preferences; each one was paid for.
   caveat: `docs/mechanics/teaching.md` → "Mark what changes".
 - **Chat teaches, the page keeps** — the chat/visual split per
   `docs/mechanics/teaching.md`. Concealed answers live on pages, not in chat (chat renders
-  `<details>` as raw tags). Every visual is surfaced inline *and* named by repo path in
-  the response that delivers it, and gets its index row in `work/visuals/README.md` in the
-  same session.
+  `<details>` as raw tags). Every visual is surfaced inline, handed over as a
+  **clickable `file://` link**, *and* named by repo path in the response that delivers it,
+  and gets its index row in `work/visuals/README.md` — plus a hub rebuild — as soon as it
+  passes the gate, so it is reachable from the one bookmark before it is taught. A path the
+  learner has to go find is not a delivery (`docs/mechanics/media.md` → Delivering a
+  visual).
 
 ## 2. The style layer: Hallmark, applied once at setup
 
@@ -168,9 +182,7 @@ Live examples with usage notes: [gallery.html](gallery.html). Summary:
    assert the clip↔row pairing in the generator — nothing at runtime notices drift
    (limba, 2026-08-10).
 6. Run `node scripts/tts-embed.mjs <file>` — and never touch the player it appends.
-7. Add the index row in `work/visuals/README.md` (same session — a visual the learner
-   cannot reopen does not exist).
-8. **`node scripts/visualcheck.mjs <file>`** — must pass before the page reaches the
+7. **`node scripts/visualcheck.mjs <file>`** — must pass before the page reaches the
    learner. `npm test` re-runs the same checks in CI.
    **This is the only gate, and it is the whole gate.** It runs the answer-leak check
    (`scripts/leakcheck.mjs`, visual mode) over the page itself and fails on HIGH; it fails
@@ -180,6 +192,11 @@ Live examples with usage notes: [gallery.html](gallery.html). Summary:
    one of those defects (found in the first generated lesson pages, 2026-08-15). If a check
    is wrong about your page, fix the check with the incident written down; do not route
    around it.
+8. **Add the index row in `work/visuals/README.md`, then run `node scripts/hub.mjs`** —
+   the moment the gate passes, not at close-out. A visual the learner cannot reopen does
+   not exist, and the hub is what they reopen it from (`docs/mechanics/media.md` →
+   Delivering a visual, rule 3). Date the row only if you are handing the page over now;
+   otherwise `—` plus `Built —` opening the Teaches cell.
 
 ## 6. Start from starter.html
 

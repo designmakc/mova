@@ -97,7 +97,12 @@ session. The flow below is what happens *between* them.
       docs/reference/resources.md for native confirmation), system topics get a generated or
       reused visual (`work/visuals/`, **index first** — a row opening `Built —` is material
       a previous session prepared and never taught) with **embedded playable audio**
-      (`node scripts/tts-embed.mjs`), sent inline and named by repo path. After teaching a new
+      (`node scripts/tts-embed.mjs`), sent inline and named by repo path. **The moment the
+      page passes `visualcheck`, index it and run `node scripts/hub.mjs`** — the row and the
+      hub belong to build time, not to close-out, so the learner can open the page from their
+      one bookmark while you are still teaching from it and no concurrent session builds it
+      twice ([docs/mechanics/media.md](../docs/mechanics/media.md) → Delivering a visual,
+      rule 3). After teaching a new
       sound, run 2–3 pronunciation round-trips (`scripts/pronounce.sh "<target>"`) — judge
       mismatches per media.md's honesty rules; repeat misses become pronunciation entries in
       the error log.
@@ -113,7 +118,8 @@ session. The flow below is what happens *between* them.
    items into use. Correct per policy, code errors. This is targeted repair, not generic use —
    that is what the order buys.
 5. **Close-out ritual (~5′)** (session_format.md) — every step: topics.md aspects flipped to
-   `covered`, every visual indexed **with the date it reached the learner**, `work/` accounted
+   `covered`, every visual's row confirmed and **dated with the day it reached the learner**
+   (the rows themselves went in at build time), `work/` accounted
    for, the deck and the hub regenerated (`node scripts/deck.mjs`, `node scripts/hub.mjs`),
    the commit, and the plain-language summary. If this was the unit's last session, flip its
    curriculum status and run `npm test`.
@@ -124,9 +130,10 @@ session. The flow below is what happens *between* them.
   tier, flip a `covered`, or write an `SES-NNN`.
 - **Built but not taught** — the session produced the material and **nothing reached the
   learner**: a request for a page rather than a session, the time gone, the learner never
-  arrived. Take the **materials-prepared exit** (session_format.md) instead: index the page
-  with **no Date** and `Built —` opening its Teaches cell, commit it, regenerate the hub so
-  the learner can open it, and say in that row which unit it is for and where you stopped. **No ledger rows, no tier moves, no `covered`
+  arrived. Take the **materials-prepared exit** (session_format.md) instead: the page's row
+  is already in with **no Date** and `Built —` opening its Teaches cell, and it is already on
+  the hub — leave the Date empty, commit page, row and hub, and say in that row which unit it
+  is for and where you stopped. **No ledger rows, no tier moves, no `covered`
   flips, no `SES-NNN`, no score** — nothing was taught and nothing was measured. Both first
   generated lesson pages ended exactly here and had no exit to take: the page stayed
   untracked and unreachable, and the unit stayed `pending` for the next session to build

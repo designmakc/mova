@@ -42,7 +42,10 @@
  *   - golden/normalize.json: normalize() matches exactly, AND the set proves folding —
  *     at least one `input !== expected` case and at least one NFD-input case;
  *   - notes.md exists, and its error-taxonomy example rows are self-consistent: the ✗ form
- *     must differ from the corrected form (exported as lintTaxonomyRows for reuse);
+ *     must differ from the corrected form, and a false-friend row must correct into the
+ *     target language rather than at the held-language look-alike (exported as
+ *     lintTaxonomyRows for reuse — an instance-side test holds the generated
+ *     docs/mechanics/error_taxonomy.md to the same rules);
  *   - `dictionary:` declared ⇒ dictionary.mjs exists and createAdapter() yields
  *     {source, lookup} — instantiated but NEVER called: packcheck stays off the network
  *     (factcheck.mjs is the tool that goes online).
@@ -105,6 +108,39 @@ function bareForm(s) {
     .trim();
 }
 
+/** Lowercase, diacritics folded — a shape to compare two forms by, not a normalizer. */
+const skeleton = (s) => s.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+
+/** Levenshtein distance, iterative two-row. Inputs here are single words. */
+function editDistance(a, b) {
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    for (let j = 1; j <= b.length; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    prev = cur;
+  }
+  return prev[b.length];
+}
+
+/**
+ * Do two single words look alike across languages — the relation a false friend IS?
+ *
+ * Threshold 0.5 sits in a measured gap, not a guessed one: the broken row scores
+ * aktuell/actual 0.57, while real false-friend REPAIRS score far lower (aktuell/tatsächlich
+ * 0.18, bekommen/werden 0.38). Multi-word forms are excluded — a false friend is a lexeme,
+ * and phrase pairs differing in one word score high for an innocent reason.
+ */
+const LOOK_ALIKE = 0.5;
+
+function looksAlike(a, b) {
+  if (/\s/.test(a) || /\s/.test(b)) return false;
+  const [x, y] = [skeleton(a), skeleton(b)];
+  const longest = Math.max(x.length, y.length);
+  return longest > 0 && 1 - editDistance(x, y) / longest >= LOOK_ALIKE;
+}
+
 /**
  * Error-taxonomy row lint — an example row must show a CONTRAST.
  *
@@ -116,8 +152,18 @@ function bareForm(s) {
  * and hands the tally a code with no worked example.
  * (found in the first agent-generated language pack, 2026-08-15)
  *
+ * A fourth rule covers false-friend rows only. `✗ *aktuell* (current) → actual` survived the
+ * first three — the two sides differ, so it reads as a contrast — but it points → at the
+ * held-language partner of the false friend instead of at the target form the learner should
+ * have written. It corrects a word into a translation. The row contradicts its own zone: if
+ * the wrong form and the "correction" look alike ACROSS languages, the row is not showing a
+ * repair, it is showing the confusion pair. The rule is gated to rows whose code or zone
+ * names a false friend, because look-alike sides are exactly right everywhere else — the ro
+ * pack's `✗ *fara* → fără` is a diacritics row and scores a perfect look-alike match.
+ * (found in the generated German instance, 2026-08-15)
+ *
  * Scans markdown table rows only. Exported so an instance-side test can hold the generated
- * docs/mechanics/error_taxonomy.md to the same rule with the same messages.
+ * docs/mechanics/error_taxonomy.md to the same rules with the same messages.
  *
  * @param {string} text  file contents
  * @param {string} label path shown in the message
@@ -130,6 +176,8 @@ export function lintTaxonomyRows(text, label = "notes.md") {
     const line = lines[i];
     if (!line.trimStart().startsWith("|") || !line.includes("✗")) continue;
     const where = `${label}:${i + 1}`;
+    // The gate for the look-alike rule below: the whole row, so the code/zone cells count.
+    const falseFriendRow = /false.?friend/i.test(line) || /\bLEX-FF\b/.test(line);
     for (const cell of line.split("|")) {
       if (!cell.includes("✗")) continue;
       // The ✗ must never sit on a form the row itself calls correct.
@@ -149,6 +197,13 @@ export function lintTaxonomyRows(text, label = "notes.md") {
             problems.push(
               `${where}: "✗ ${segment.trim()}" — the wrong form and the correction are the ` +
                 `same string. An example row must show a contrast.`,
+            );
+          } else if (falseFriendRow && wrong && right && looksAlike(wrong, right)) {
+            problems.push(
+              `${where}: "✗ ${segment.trim()}" — "${wrong}" and "${right}" are the look-alike ` +
+                `pair this row is ABOUT, so "${right}" is the false friend, not the repair. ` +
+                `→ must point at the target-language form the learner should have written; ` +
+                `put the held-language meaning in quotes on the ✗ side instead.`,
             );
           }
           continue;

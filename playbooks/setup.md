@@ -50,8 +50,28 @@ agents/<agent>/ adapter output, git commits per step (when `mode: enforced`).
 
 If `docs/reference/profile.md` exists, this is already an instance — stop and say so
 (the update verb handles change). Otherwise greet in one warm paragraph: what this is, that
-you'll ask questions for a few minutes and then build everything yourself, and that the
-first study session afterwards is a gentle placement, not a test.
+you'll ask questions and then build everything yourself, and that the first study session
+afterwards is a gentle placement, not a test.
+
+**The greeting also shows the shape of what is about to happen.** A learner who cannot see
+the shape cannot size their answers, and gives the first topic the answer that belonged to
+the fourth. Three things, briefly:
+
+- **The ground the questions cover — six short phrases, not six questions**: your
+  languages, what success would look like, where you're starting from, how much time you
+  have, how wide you want this, and whether you work with a tutor. Name the areas and stop
+  there. **No sub-questions, no options, no form** — a preview that enumerates *is* the
+  questionnaire dump the interview forbids
+  ([setup/interview.md](../setup/interview.md) § Conduct), and it also invites the learner
+  to answer all six at once, which destroys the reflect-back that catches wrong guesses.
+- **The two clocks**: a few minutes of questions — six numbered topics, so they can see the
+  end from the start — then **5–15 minutes while you build alone**. Say the second number
+  again at the close, when it actually starts (interview § Close).
+- **That everything after the questions is yours**: every command, every file, every check.
+
+(Found in the first real onboarding run, 2026-08-15: the greeting promised "a few
+questions" and gave the learner no way to judge the size or the length of what they had
+just agreed to.)
 
 ### 1 · Interview
 
@@ -60,6 +80,13 @@ time, environment probe run silently. Close with the read-back and get one confi
 Do not begin generation with an unconfirmed picture.
 
 ### 2 · Generation — in order, validated per step
+
+**Say the build has started, and repeat the 5–15 minute figure once**, before step 1.
+The interview was turn-by-turn; the generation is a long silence, and a silence that was
+not announced reads as a crash. From here to the handoff the learner has nothing to do —
+which is the promise above, and it only lands if they know how long nothing lasts. The one
+branch that breaks the estimate is step 4's pack build; that step warns again when it is
+taken.
 
 Each step: fill the template (drop its guidance comments, flip its marker to
 `mova:instance`, leave no `{{PLACEHOLDER}}` behind), then run that step's validation.
@@ -95,6 +122,14 @@ is a real failure; an unrelated red is the scaffold still being built.
 1. **Profile** — `setup/templates/profile.template.md` → `docs/reference/profile.md`.
    Config keys from the interview; `template_version` copied from `VERSION`; omit
    `goal_date` when there is no deadline.
+   **`template_source` is resolved here, never asked for later.** It is the URL this copy
+   came from, and it is the only thing `/update` needs to find the template again. Work it
+   out yourself, in order: `git remote get-url origin`; then the URL the human used to
+   fetch this copy, if this conversation has it. Omit the line only when neither exists (an
+   unpacked zip with no remote) — then `/update` asks once, and that is a question setup
+   could not answer rather than one it forgot to ask. (Found in the first real onboarding
+   run, 2026-08-15: the update path made the learner produce a URL the setup agent had had
+   in hand all along.)
    *Validate*: `node -e "import('./scripts/profile.mjs').then(m => { const p = m.loadProfile(); for (const k of ['pack','target_language','meta_language','native_languages','contrast_ranking','goal_kind','goal_label','sections','units','mode','agent','audio','tts','publishing','template_version']) p.require(k); console.log('profile ok'); })"`
 2. **Intake snapshot** — `docs/snapshots/<today>_intake.md`: the Topic 3 self-assessment
    verbatim, with `## Method` saying *self-report, nothing exercised* and
@@ -173,12 +208,45 @@ Run [setup/smoke.md](../setup/smoke.md) top to bottom. Every failure there names
 generation step to redo — go redo it and re-run the smoke from the top. Setup is not
 done until the smoke is clean.
 
-### 4 · Handoff
+### 4 · Handoff — the orientation
 
-Tell the learner, plainly: the workspace is ready; **say the starting verb when you're
-ready to begin — the first run of it is a placement**, a gentle probe of where you
-actually are, and everything after it is built on what it finds. One sentence on anything
-the environment can't do (no audio, no dictionary).
+**Setup's last act is a short tour, not a "you're all set."** What the learner has at this
+moment is a workspace they have never seen, built while they were away, in a shape nobody
+described to them: they know the questions they answered and nothing about what those
+answers produced. "Ready — say lesson" hands them a verb and leaves them to discover the
+rest by accident. Four parts, in this order, then stop. Keep the whole thing to about a
+screen: this is orientation, not documentation, and each part below has a guide page
+carrying the depth. (Found in the first real onboarding run, 2026-08-15.)
+
+**1 · What you can say.** The verbs *this* instance answers to — one plain line each, from
+the focus mode's live set
+([setup/scenarios/focus_modes.md](../setup/scenarios/focus_modes.md)), never the README's
+full table, which lists verbs a narrow instance refuses. Say that chat is the only
+interface: they say a verb, you run every script and every file behind it. Name
+[docs/guide/how-sessions-run.md](../docs/guide/how-sessions-run.md) as the long version.
+Mention that `update` also answers "anything new?" — a read-only check against the template
+that changes nothing ([update.md](update.md)) — because a workspace that improves is a fact
+about this product, and nothing else in the tour would ever tell them.
+
+**2 · Where things live.** The chat, plus two pages the smoke run has already built: **the
+hub** (`work/visuals/index.html`) — their one bookmark, days-to-goal and what they hold,
+regenerated at the end of every session — and **the deck** (`work/visuals/deck.html`), the
+drillable view of everything they know. **Give the hub as a link they can click**, not as a
+path to go find ([docs/mechanics/media.md](../docs/mechanics/media.md) → Delivering a
+visual). One sentence that these pages are theirs, offline, and permanent.
+
+**3 · The plan you just built.** What the goal contract counts as done, in the learner's own
+words where the interview gave them; how many units there are and what the first one is
+about; the pace those numbers assume; the deadline arithmetic, or the no-deadline rule when
+there is no date. This is the part they cannot reconstruct alone, and the part they will
+judge the whole build by — they have been answering questions for ten minutes with no idea
+what was being made of the answers. Name `docs/plan.md` and `docs/reference/goal.md` once
+as the files that hold it, and say plainly that all of it is theirs to change.
+
+**4 · What happens next, and what only they can do.** The workspace is ready; **say the
+starting verb when you're ready to begin — the first run of it is a placement**, a gentle
+probe of where you actually are, and everything after it is built on what it finds. One
+sentence on anything the environment can't do (no audio, no dictionary).
 
 **The starting verb is whichever one carries placement in this instance's focus mode, and
 you say the actual word** — `lesson` under `full`, `drill` under `drill` and `vocab`,
@@ -200,4 +268,8 @@ workspace cannot tell them from real spelling. Each item is also a `🔧` milest
 `docs/plan.md`, but the plan is a file; this is the conversation. Keep it to what is
 genuinely blocked on them — a list of five is a handoff, a list of fifteen is homework.
 
-Then stop — the first session belongs to the lesson verb, not to setup's momentum.
+Then stop — the first session belongs to the starting verb, not to setup's momentum. **The
+tour is the last thing setup says, so it does not compete with the placement**: four parts
+and the human-only list, not a walkthrough of the mechanics, the SRS tiers or the file
+layout. Everything left over is what the guides are for, and the learner will meet it when
+a session needs them to.

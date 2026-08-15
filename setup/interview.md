@@ -13,7 +13,17 @@
 
 ## Conduct
 
-- **One topic per exchange.** Never a numbered questionnaire dump.
+- **One topic per exchange.** Never a numbered questionnaire dump. Numbering the topics
+  (next bullet) is the opposite of dumping them: it says how far along they are, not what
+  is coming.
+- **Number every topic you ask — `1/6`, `2/6` … `6/6`** — and open the topic with it. Six
+  topics are asked; Topic 7 is run silently and never counted, so the denominator is fixed
+  at six in every interview and must not move. **Follow-ups inside a topic do not advance
+  the counter**: it counts ground covered, not messages sent, and a number that climbs with
+  every reply tells the learner the interview is growing. Without the counter the learner
+  cannot tell a two-minute interview from a twenty-minute one, and answers the first topic
+  at the size that belonged to the fourth. (Found in the first real onboarding run,
+  2026-08-15.)
 - **Reflect back before moving on** — one sentence of what you understood, so a wrong
   guess dies in the interview, not in the generated workspace.
 - **Record answers verbatim where they matter** (scenario lists, the goal in the
@@ -23,7 +33,7 @@
 
 ---
 
-## Topic 1 — Languages
+## Topic 1 — Languages · ask as `1/6`
 
 *Why: every explanation in this workspace is built on contrasts with languages the
 learner already holds; the ranking decides which language a contrast is drawn from.*
@@ -57,7 +67,7 @@ generating a German-native level goal with a tutor, 2026-08-15.)
 resolved in the pack-selection step, not asked). The ranking's *why* — one line per
 language — goes into the profile's languages section.
 
-## Topic 2 — The goal
+## Topic 2 — The goal · ask as `2/6`
 
 *Why: `docs/reference/goal.md` is the spec for every scope decision this workspace will
 ever make; a workspace without one is mis-generated. Refusing to proceed goalless is a
@@ -93,7 +103,7 @@ letters, e.g. `R W L S` — for non-exam goals, the letters you assign to the sk
 the goal exercises). The branch selects the goal template variant — see
 [scenarios/](scenarios/).
 
-## Topic 3 — Starting level
+## Topic 3 — Starting level · ask as `3/6`
 
 *Why: the first session is the real placement (a measured snapshot, limba's pattern);
 this self-assessment only seeds the curriculum's starting shape and gives the placement
@@ -116,7 +126,7 @@ should. (Found generating an Italian-native vocabulary-only instance, 2026-08-15
 verbatim; the curriculum step uses it to place the starting units; nothing else trusts
 it. It never sets a `covered` status — only measurement does that.
 
-## Topic 4 — Time budget
+## Topic 4 — Time budget · ask as `4/6`
 
 *Why: the pacing table, the SRS throughput ceiling, and every deadline projection derive
 from this number; an overstated budget generates a plan that fails by design.*
@@ -131,7 +141,7 @@ dates; the curriculum step owns the final number and the profile's `units:` must
 what the curriculum defines), and the SRS ceiling check that `npm test` enforces against
 any vocabulary target.
 
-## Topic 5 — Focus mode
+## Topic 5 — Focus mode · ask as `5/6`
 
 *Why: not every learner wants the full apparatus; the focus mode decides which verbs the
 workspace answers to.*
@@ -149,7 +159,7 @@ see profile template) and the active-verb table in
 [scenarios/focus_modes.md](scenarios/focus_modes.md). A non-full focus prunes the
 curriculum and plan accordingly.
 
-## Topic 6 — Tuition
+## Topic 6 — Tuition · ask as `6/6`
 
 *Why: a human tutor is the workspace's only source of confirmed language facts besides
 the dictionary; if one exists, the workspace routes its unverified-fact list through
@@ -167,7 +177,7 @@ clause states. The prep-pack and spot-check cadences belong to
 [playbooks/tutor-prep.md](../playbooks/tutor-prep.md) and are never re-stated here as a
 number. See [scenarios/tuition.md](scenarios/tuition.md).
 
-## Topic 7 — Environment probe (RUN, don't ask)
+## Topic 7 — Environment probe (RUN, don't ask) · not counted
 
 *Why: capability flags gate audio, verification, and enforcement; guessing them generates
 a workspace that lies about what it can do.*
@@ -215,5 +225,13 @@ capability report.
 ## Close
 
 Read back the whole picture in five sentences or fewer — target, goal, pace, focus, and
-anything the environment can't do. Get one confirmation. Then generation starts
-([playbooks/setup.md](../playbooks/setup.md) → Generation); the learner's part is done.
+anything the environment can't do. Get one confirmation.
+
+**Then say how long the build takes, before you start it.** Generation runs **5–15
+minutes** with the learner doing nothing, and nothing they have seen so far predicts that:
+the interview was conversational and turn-by-turn, so silence after the last answer reads
+as a hang rather than as work. Give the number, say they can walk away and come back, and
+name the one branch that stretches it — a target language with no pack under `packs/` adds
+a pack build on top, and setup step 4 says so again when it takes that branch. Then
+generation starts ([playbooks/setup.md](../playbooks/setup.md) → Generation); the learner's
+part is done. (Found in the first real onboarding run, 2026-08-15.)
