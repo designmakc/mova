@@ -4,6 +4,19 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.2.2 — 2026-08-15
+
+- **README gained a free-path onboarding section** for people who have never installed a
+  local AI tool. It names its audience, says plainly that the paid mainstream agents are
+  easier and steadier, then gives the free route: opencode Desktop with two free engines
+  connected at once — DeepSeek V4 Flash (Free), built into opencode, for driving the workspace's
+  scripts, and Gemini 3.7 Flash on a free Google AI Studio key for the teaching-heavy
+  sessions — so no single provider's promo ending can strand a learner mid-course. Carries
+  the two warnings that decide the choice: free tiers may train on the learner's profile,
+  error history and writing, and free tiers close without notice (four did between April
+  and June 2026).
+- instance-impact: none (README is template-facing; nothing in an instance changes).
+
 ## 0.2.1 — 2026-08-14
 
 Fixes from the first full setup proof run (a fictional English-native learner, Romanian

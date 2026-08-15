@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-14",
-  "template_version": "0.2.1",
+  "generated": "2026-08-15",
+  "template_version": "0.2.2",
   "files": {
     ".github/workflows/ci.yml": "c4c55c127452f2a6fa479f584e56619445af6d764cbe685d6c7aadd6937be35e",
     ".vscode/settings.json": "c4bc01bd0341a88c85a0082e913ba44a1a3655d4b4077fba26756f75a9974251",
