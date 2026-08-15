@@ -11,6 +11,12 @@
  * as a whole leaked. A prohibition that depends on the author noticing has now failed once,
  * so this is the mechanical version.
  *
+ * Two callers, one algorithm. A scored set is checked here by hand before it is posed;
+ * a teaching page is checked through scripts/visualcheck.mjs, which shells out to this
+ * script in visual mode and fails the page on any HIGH. Do not reimplement the fold-and-
+ * compare in either caller — a second copy drifts, and the two surfaces would then
+ * disagree about what a leak is.
+ *
  * Three leak shapes, all detected here:
  *
  *   MIRROR      item N's prompt is item M's answer — symmetric pairs are the usual

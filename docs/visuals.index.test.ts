@@ -11,13 +11,24 @@
  *
  * What is enforced:
  *   - every **git-tracked** visual in work/visuals/ has a row in work/visuals/README.md;
- *   - every file the index links to actually exists.
+ *   - every file the index links to actually exists;
+ *   - no row claims a delivery it did not make (below).
  *
  * Why *tracked* and not *all* files: an untracked visual is, by definition, work in flight
- * — a session that has not reached its close-out yet. The close-out ritual is what indexes
- * and commits it (session_format.md), so the invariant is "a committed visual is an
+ * — a session that has reached neither of its two exits. The close-out ritual indexes and
+ * commits a page that was taught; the materials-prepared exit does the same for one that was
+ * only built (session_format.md). Either way the invariant is "a committed visual is an
  * indexed visual", and this test is precisely that. A session that commits without indexing
  * gets a red CI; a session still working gets left alone.
+ *
+ * THE DELIVERY DATE IS A CLAIM, so it is checked. The index's Date column records the day
+ * the page reached the learner, and the ledgers and the pacing read it as evidence — which
+ * is why a page built but never taught leaves it empty and opens its Teaches cell with
+ * `Built —` instead of guessing a date. Both first generated lesson pages ended in exactly
+ * that state with no way to say so, and one of them wrote the build date into the delivered
+ * column (found in the first generated lesson pages, 2026-08-15). The check is deliberately narrow: it cannot know whether a page reached
+ * anyone, so it only refuses the two shapes that are self-contradictory — a `Built —` row
+ * carrying a date, and a row carrying neither a date nor the marker.
  *
  * The generated hub (work/visuals/index.html, from scripts/hub.mjs) is not a teaching
  * visual and is excluded — it renders the index rather than appearing in it.
@@ -67,6 +78,40 @@ function trackedVisuals(): string[] {
   }
 }
 
+/** Data rows of the index table, read positionally exactly as scripts/hub.mjs reads it:
+ *  five cells, `| Date | Page | Teaches | Units | Kind |`. The header is identified
+ *  structurally — it is the row a `|---|` separator follows — so renaming a column cannot
+ *  turn it into data. Tables of any other width (the retired-claims table) are skipped. */
+function indexRows(): { cells: string[]; lineNo: number }[] {
+  const out: { cells: string[]; lineNo: number }[] = [];
+  let pending: { cells: string[]; lineNo: number } | null = null;
+  const flush = () => {
+    if (pending) out.push(pending);
+    pending = null;
+  };
+  indexText.split("\n").forEach((line, i) => {
+    const t = line.trim();
+    if (!t.startsWith("|") || !t.endsWith("|")) return flush();
+    const cells = t.slice(1, -1).split("|").map((c) => c.trim());
+    if (cells.every((c) => /^:?-{2,}:?$/.test(c))) {
+      pending = null; // the row above was a header
+      return;
+    }
+    if (cells.length !== 5) return flush();
+    flush();
+    pending = { cells, lineNo: i + 1 };
+  });
+  flush();
+  return out;
+}
+
+/** `Built —` opens the Teaches cell of a page prepared but not taught. The dash is part of
+ *  the marker on purpose: a delivered page whose description merely starts with the word
+ *  "Built" must not be read as undelivered. */
+const BUILT_MARKER = /^built\s*[—–-]/i;
+const DELIVERED_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const NO_DATE = /^[—–-]?$/;
+
 /** Files the index links to, from `[name](file.html)` in any row. */
 function linkedFiles(): string[] {
   return [...indexText.matchAll(/\]\(([^)]+\.(?:html|svg))\)/g)].map((m) => m[1]);
@@ -81,6 +126,28 @@ describe.skipIf(!active)("work/visuals index", () => {
       `visuals committed with no row in ${CONTRACT.index}:\n  ${missing.join("\n  ")}\n` +
         `Add a row in the session that created the file — an unindexed visual is invisible ` +
         `to every future session (media.md → "Keeping: the preservation map").`,
+    ).toEqual([]);
+  });
+
+  it("no row claims a delivery it did not make", () => {
+    const dishonest = indexRows().flatMap(({ cells, lineNo }) => {
+      const [date, page, teaches] = cells;
+      const built = BUILT_MARKER.test(teaches);
+      const where = `${CONTRACT.index}:${lineNo} ${page}`;
+      if (built && !NO_DATE.test(date))
+        return [`${where} — marked "Built —" and still carries a Date ("${date}"): a page that was ` +
+          `only built has no delivery to date. Clear the cell, or drop the marker if it was taught.`];
+      if (!built && !DELIVERED_DATE.test(date))
+        return [`${where} — Date is "${date}", which is neither YYYY-MM-DD nor empty. A page ` +
+          `already taught is dated; one only built opens its Teaches cell with "Built —".`];
+      return [];
+    });
+    expect(
+      dishonest,
+      `index rows whose Date and status contradict each other:\n  ${dishonest.join("\n  ")}\n` +
+        `The Date column means the day the page reached the learner — the ledgers and the ` +
+        `pacing read it as evidence (media.md → "Delivering a visual"; session_format.md → ` +
+        `the materials-prepared exit).`,
     ).toEqual([]);
   });
 

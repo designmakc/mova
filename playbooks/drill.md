@@ -101,15 +101,17 @@ pointer. Never teach *and score* a pending system here.
 
 **First run special case — placement, when this verb is the one that carries it.** In
 `focus: drill` and `focus: vocab` there is no lesson verb, so drill is the carrier for both
-rituals that survive every focus mode (`setup/scenarios/focus_modes.md`). If **no snapshot
-exists in docs/snapshots/** beyond the intake one, this session is the **placement
-calibration**: probe across the curriculum's early units instead of drilling a queue that
-has nothing in it yet, write `docs/snapshots/YYYY-MM-DD_placement.md` (Method + "Not
-exercised:" per the snapshots README), and update plan.md's placement milestone and pacing
-at close-out. The same holds for the goal's assessment instrument — a scenario run, a
-descriptor sweep, a ledger audit — when the plan says one is due and no mock verb exists to
-run it. Probing is not teaching: the no-new-material rule stands unchanged, and a probe
-that starts teaching has become a lesson this instance does not offer.
+rituals that survive every focus mode (`setup/scenarios/focus_modes.md`). **The condition,
+the offer, the decline and the snapshot are session_format.md's** — § The placement
+calibration — and one command decides it: `ls docs/snapshots/*_placement.md`, nothing listed
+means the placement is still owed. Do not re-derive it here; the wording it replaces ("no
+snapshot exists in docs/snapshots/") could never fire, because setup always writes the
+intake one (found in the first generated lesson pages, 2026-08-15). What is drill-specific:
+**probe across the curriculum's early units instead of drilling a queue that has nothing in
+it yet.** The same holds for the goal's assessment instrument — a scenario run, a descriptor
+sweep, a ledger audit — when the plan says one is due and no mock verb exists to run it.
+Probing is not teaching: the no-new-material rule stands unchanged, and a probe that starts
+teaching has become a lesson this instance does not offer.
 
 This is also the **only** waiver of "the line you may not cross" above, and it is narrow: a
 placement or an assessment instrument may **score** `pending` systems, because measuring

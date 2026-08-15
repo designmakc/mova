@@ -11,16 +11,24 @@
   placeholders are already correct. Rules: docs/visual/SPEC.md. Component usage notes:
   docs/visual/gallery.html.
 
+  The numbered sections below are the EIGHT TEACHING BEATS of docs/mechanics/teaching.md,
+  in their required order. They are the page's structure, not a menu — see the block
+  comment above section ① before you delete any of them.
+
   When you copy this into work/visuals/YYYY-MM-DD_slug.html:
     1. Change the first line to the instance marker: <!- - mova:instance - ->
     2. Change the hub link href to "index.html" (the sibling hub — visualcheck enforces).
     3. Replace every {{TARGET}} (target-language string) and {{META}} (support/meta-language
-       string) placeholder; delete the exemplar sections you do not need.
-    4. Token VALUES come from the pinned docs/visual/tokens.css of this workspace — if
+       string) placeholder. Fill every beat; delete one only when it genuinely does not
+       apply to this material, and keep the numbering of the ones you keep.
+    4. Verify every fact per docs/mechanics/verification.md, and keep the verification note
+       at the foot of the page — the one that matches this pack's dictionary situation.
+    5. Token VALUES come from the pinned docs/visual/tokens.css of this workspace — if
        setup has re-crafted the theme, copy the pinned block over the one below.
-    5. Author audio as <div class="tts"> placeholders, then run
+    6. Author audio as <div class="tts"> placeholders, then run
        node scripts/tts-embed.mjs <file>. NEVER author the player script.
-    6. Finish with: node scripts/visualcheck.mjs <file>
+    7. Finish with: node scripts/visualcheck.mjs <file> — one gate, and it runs the
+       answer-leak check (scripts/leakcheck.mjs) over the page itself.
 -->
 <style>
   /* ============ TOKEN BLOCK — keys are the contract, values are the pinned theme ==== */
@@ -153,6 +161,14 @@
   .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
     color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
     border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  /* Verification (docs/mechanics/verification.md). .unv is the "?" marker sitting on the
+     form it doubts; .src is the page's source note. A page that asserts language facts
+     carries one or both — visualcheck fails it otherwise. */
+  .unv{color:var(--bad);font-weight:800;font-size:.9em;vertical-align:super;
+    line-height:1;cursor:help}
+  .src{font-size:.84rem;color:var(--muted);background:var(--card);
+    border-left:3px solid var(--muted);border-radius:0 8px 8px 0;
+    padding:.55rem .85rem;margin:1.6rem 0 .4rem}
   .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
     border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
   .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
@@ -208,13 +224,60 @@
   <span><span class="tag g-m">m</span> <span class="tag g-f">f</span> <span class="tag g-n">n</span> gender</span>
 </div>
 
-<h2><span class="n">①</span> {{META — section title}}</h2>
+<!-- ================================================================================
+     THE EIGHT BEATS — docs/mechanics/teaching.md, in order, every time. The numerals in
+     the headings below ARE those beats: ⑥ is beat ⑥, not "the sixth section I felt like
+     writing". Fill each one; delete a beat only when it is genuinely not applicable to
+     THIS material, and know which one you dropped.
+
+     Two first-ever generated lesson pages scaffolded four sections in exactly this
+     typography and shipped with beats ③ and ⑥ missing (German) and ④ and ⑥ missing
+     (Romanian) — the scaffold, not the rules, decided what got taught (found in the first
+     generated lesson pages, 2026-08-15).
+
+     No beat is chat-only, so every one has a slot here. Per teaching.md's split table
+     chat carries ①③④⑥⑧ in full and 1–2 of ⑤; the page carries all eight, canonically.
+     Two asymmetries to keep: beat ② is the page's alone to REPRODUCE — chat names the
+     table and links to it, never re-prints it — and beat ⑦ exists only here, because
+     reveal buttons need real HTML and chat renders <details> as raw tags.
+     ================================================================================ -->
+
+<!-- ① PLACEMENT — where this sits in its topic, what it exhausts, what is deferred and to
+     which unit. Sourced from docs/reference/topics.md, never improvised. Coverage labels
+     are exactly three: complete · partial (N of M) · first contact — and `complete` may be
+     claimed only for an inventory this page enumerates and counts, checked against the
+     pack's dictionary adapter first. Keep this beat: "is this topic finished?" is a
+     question the learner cannot answer for themselves, and it is why the beat exists. -->
+<h2><span class="n">①</span> Placement</h2>
+<div class="card scroll">
+<table>
+  <tr><th>Topic</th><td>{{META — the topic, and how many sub-systems it has}}</td></tr>
+  <tr><th>This section</th><td>{{META — what this page covers, stated as an inventory}}</td></tr>
+  <tr><th>Coverage</th><td>{{META — complete · partial (N of M) · first contact}}</td></tr>
+  <tr><th>Deferred</th><td>{{META — what is not here, each with the unit it returns in}}</td></tr>
+  <tr><th>Serves</th><td>{{META — the goal contract's section letters}}</td></tr>
+</table>
+</div>
+
+<!-- .lede — the point. One per page, at most two. The four callout voices are fixed:
+     .lede (the point) · .rule (the carry-away, beat ⑧) · .warn (the trap) · .anchor (the
+     support-language parallel). Never repurpose one for emphasis. -->
+<div class="lede"><b>{{META — the one insight this page exists for.}}</b></div>
+
+<!-- ② THE WHOLE SYSTEM — the complete inventory, table or paradigm or rule set, BEFORE any
+     contrast. Systems before deltas, always: a block that opens with "here is what differs
+     from your first language" is useless to someone who does not yet have the map. This is
+     the canonical copy of the table; chat may not reproduce it. Do not delete. -->
+<h2><span class="n">②</span> The whole system</h2>
 <p>{{META — teaching prose. Target-language words inline look like}}
   <span class="l2">{{TARGET}}</span>{{META — and support-language contrasts like}}
   <i class="l1">{{META}}</i>.</p>
 
 <!-- Inflection table: EVERY inflection table marks the changing morpheme (b.mk), and stem
-     changes (b.st), with marked segments lining up down the column. -->
+     changes (b.st), with marked segments lining up down the column — group rows by ending,
+     not alphabetically. A paradigm table like this one is reference material and stays
+     OPEN; a word list is not (see the drill surface below). Pack-gated: a pack declaring
+     inflection: false carries no morpheme marks at all. -->
 <div class="card scroll">
 <table>
   <tr><th>{{META}}</th><th>{{META singular}}</th><th>{{META plural}}</th></tr>
@@ -235,35 +298,101 @@
   <div class="tts" data-text="{{TARGET sentence to voice}}" data-en="{{META gloss}}"></div>
 </div>
 
-<!-- Callouts: .lede (the point), .rule (carry-away rule), .warn (trap), .anchor
-     (support-language contrast). -->
-<div class="lede"><b>{{META — the one insight this page exists for.}}</b></div>
-<div class="rule">{{META — the rule to carry away, stated in one sentence.}}</div>
-<div class="warn"><b>{{META — the trap.}}</b> {{META — why it will catch the learner.}}</div>
-<div class="anchor"><b>{{META — the concept maps directly.}}</b> {{META — support-language parallel.}}</div>
-
-<h2><span class="n">②</span> Worked example</h2>
+<!-- ③ THE LOAD — what must actually be memorised, and what follows automatically from it.
+     This is NOT beat ⑧ in miniature: ⑧ compresses the RULE, ③ compresses the WORK. A
+     six-verb paradigm table looks like thirty-six facts and is really six, and for an
+     adult on a deadline "one fact per verb, not six" is the motivationally decisive
+     information. State the irreducible load as a number where you can. Added because a
+     learner asked the question this beat pre-empts (limba SES-007). -->
+<h2><span class="n">③</span> The load</h2>
 <div class="card">
-  <div class="big"><span class="l2">{{TARGET}} → {{TARGET stem}}<b class="mk">{{ending}}</b></span></div>
-  <p class="muted">{{META — why: name the operations that ran, in order.}}</p>
+  <p>{{META — what to store: }}<span class="cnt">{{N}}</span> {{META — facts, each named.}}</p>
+  <p class="muted">{{META — and what derives from them by rule, so it need not be stored.}}</p>
 </div>
 
-<h2><span class="n">③</span> Try it</h2>
-<p class="muted">{{META — items whose answers appear nowhere else on the page.}}</p>
+<!-- ④ THE DELTA — what differs from the languages this learner already holds, ranked per
+     the profile's contrast_ranking and grounded in docs/reference/transfer.md. It comes
+     after ②, by rule. Delete only if the learner holds no language this material touches
+     — which for a transfer-rich profile is close to never. -->
+<h2><span class="n">④</span> The delta</h2>
+<div class="anchor"><b>{{META — the concept maps directly.}}</b> {{META — support-language parallel.}}</div>
+<div class="warn"><b>{{META — the trap.}}</b> {{META — why it will catch this learner, from their languages.}}</div>
+
+<!-- ⑤ WORKED EXAMPLES — 2–3, fully translated, each with a one-line "what happened".
+     Run them FORWARDS: start from what the learner will actually have in hand, name each
+     step in the order they must run it, end at the form. Backwards material — start from
+     the finished form and justify it — explains why and does not transfer: limba measured
+     5/5 recognition on backwards material that failed production for three more sessions
+     (2026-08-12). -->
+<h2><span class="n">⑤</span> Worked examples</h2>
+<div class="card">
+  <div class="big"><span class="l2">{{TARGET}} → {{TARGET stem}}<b class="mk">{{ending}}</b></span></div>
+  <p class="muted">{{META — the translation, then the operations that ran, in order.}}</p>
+</div>
+
+<!-- ⑥ FIRST CONTACT ONLY — what this page NAMED but did not teach, each with the unit it
+     returns in. Not optional padding: it is what makes "complete" believable everywhere
+     else, because a learner who can see the named gaps can trust the unnamed absences.
+     BOTH first generated pages dropped this beat (2026-08-15). Delete it only when the
+     page named nothing it did not teach — and then say that in one line, rather than
+     leaving the reader to infer it. Keep it a plain list: a table of target words with
+     their translations is a word list, and word lists go in the drill surface below. -->
+<h2><span class="n">⑥</span> First contact only</h2>
+<ul>
+  <li><span class="l2">{{TARGET}}</span> — {{META — named here, taught in U{{NN}}.}}</li>
+</ul>
+
+<!-- ⑦ GUIDED ATTEMPT — 2–3 low-stakes items with concealed answers, before anything graded.
+     Teaching is explain → demonstrate → attempt with feedback → independent use; part 3 of
+     the session is independent use, not the first attempt. This beat lives ONLY on the
+     page.
+
+     THE DULAP RULE (teaching.md): an item measures something only when its answer is
+     printed nowhere else on this page — a novel word pushed through the taught procedure.
+     An item whose answer sits in the table above is a worked example wearing an attempt's
+     clothes. Both kinds are legitimate; only the novel kind may ever be scored, and the
+     page should say which each one is.
+
+     Do not print a promise to the learner that the answers appear nowhere else. One
+     generated page printed exactly that sentence over three items that leaked 3 of 3
+     (2026-08-15). The property is now checked instead: visualcheck runs
+     scripts/leakcheck.mjs over the page and fails on any HIGH finding. -->
+<h2><span class="n">⑦</span> Guided attempt</h2>
+<p class="muted">{{META — work each one out before you reveal it.}}</p>
 <div class="card">
   <div class="q">1. <span class="l2">{{TARGET prompt}}</span> — {{META instruction}}</div>
   <button class="rev">Show</button>
   <div class="ans"><span class="l2">{{TARGET answer}}</span> — {{META — why, in one line.}}</div>
 </div>
 
+<!-- ⑧ THE COMPRESSED RULE — one line to carry away. The rule, not the workload; ③ already
+     did the workload. Do not delete: it is the line the learner repeats to themselves. -->
+<h2><span class="n">⑧</span> The compressed rule</h2>
+<div class="rule">{{META — the rule to carry away, stated in one sentence.}}</div>
+
 <div class="stripe"></div>
 
-<h2><span class="n">④</span> The new words</h2>
+<!-- THE WORD LIST — not a beat, and not optional either: teaching.md puts the 10–20
+     vocabulary items in the visual, with audio on every one. It is a DRILL SURFACE, so it
+     takes the two-layer reveal below. A teach-page table that can only be read is a table
+     the learner re-drills somewhere else — and on the first generated German page the open
+     ten-row copy of this list is what handed away every guided-attempt answer above
+     (2026-08-15). One list per page, concealed, here. -->
+<h2>The new words</h2>
 <p class="muted">{{META — n words. Switch mode to hide one side, then click a row to reveal it.}}</p>
 
 <!-- Two-layer drill surface: page-wide mode filter + per-row reveal. Everything that
-     names the answer conceals with it. Two clips per row: au-sg = the prompt alone,
-     au-pair = the full pair (the answer in either direction). -->
+     names the answer conceals with it. Two clips per row, BOTH SPOKEN IN THE TARGET
+     LANGUAGE ONLY: au-sg = the citation form alone; au-pair = the target-language forms
+     the row teaches together (singular then plural, infinitive then finite — whatever
+     "the full package" means for this pack). "Pair" means two TARGET forms. It never
+     means target + translation: a clip that speaks the translation hands the learner the
+     answer through the one channel concealment cannot cover, and browse mode plays
+     au-pair by default, so the contaminated clip is the one they hear first. The
+     translation lives in data-en, which is printed and never voiced. tts-embed.mjs
+     refuses a data-text that contains its own data-en. (An agent read the earlier
+     wording as "either direction" and voiced "Guten Morgen. Good morning." on ten of
+     twenty rows, 2026-08-15.) -->
 <div class="vocab m-browse" id="vocab">
 <div class="modes">
   <button data-m="m-browse" class="on">browse</button>
@@ -280,12 +409,34 @@
   </td>
   <td class="l2-side"><span class="val"><span class="l2">{{TARGET}}</span></span><span class="cover">···</span></td>
   <td class="l1-side"><span class="val">{{META translation}}</span><span class="cover">···</span></td>
-  <td class="ans-side"><span class="val"><span class="tag g-f">f</span> <span class="l2">{{stem}}<b class="mk">{{ending}}</b></span></span><span class="cover">···</span></td>
+  <td class="ans-side"><span class="val"><span class="tag g-f">f</span> <span class="l2">{{stem}}<b class="mk">{{ending}}</b></span><span class="unv" title="unverified">?</span></span><span class="cover">···</span></td>
   <td class="ans-side"><span class="val">{{META — anchor or note; it conceals with the answer.}}</span><span class="cover">···</span></td>
 </tr>
 </table>
 </div>
 </div>
+
+<!-- VERIFICATION TRAIL — docs/mechanics/verification.md. Every language fact on this page
+     is dictionary-verified, tutor-confirmed, or visibly marked unverified with the
+     <span class="unv">?</span> that sits on the form itself. There is no fourth state, and
+     "the agent is sure" is state 3.
+
+     KEEP ONE of the two notes below and delete the other:
+       - the first when the pack ships a dictionary adapter — name the source and the date,
+         exactly as a ledger trail does, and mark the facts the lookup did not confirm;
+       - the second when it does not. A null-adapter pack cannot reach state 1 at all, so
+         the page says so out loud. Dropping the markers because nothing checks them is the
+         one move a null-adapter instance may never make.
+     visualcheck fails a fact-carrying page that keeps neither. The Romanian page asserted
+     ~60 facts and the German page ten phrases under a pack with no dictionary at all, both
+     with zero markers and no source trail (found in the first generated lesson pages,
+     2026-08-15). -->
+<p class="src"><b>Sources.</b> {{META — what attested the facts on this page: the pack's
+  dictionary adapter, named, plus the date. Forms carrying}} <span class="unv">?</span>
+  {{META — are unverified — the agent's word, not a source's.}}</p>
+<p class="src"><b>Unverified.</b> {{META — this pack ships no dictionary adapter, so no fact
+  on this page is source-attested: every form is the agent's word until a tutor confirms
+  it. The}} <span class="unv">?</span> {{META — marks are the list to hand the tutor.}}</p>
 
 <p class="muted" style="margin-top:2.2rem;font-size:.85rem">
   Generated {{DATE}} · {{UNITS}} · <code>work/visuals/{{FILE}}.html</code>

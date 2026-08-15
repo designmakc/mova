@@ -36,13 +36,24 @@ Prose first (what the pack is, where its facts come from), then exactly one fenc
 | `language` | string | Human name, e.g. `Romanian`. | no |
 | `code` | string | Pack id; MUST equal the directory name. The profile's `pack:` points at it. | no |
 | `genders` | list | Gender labels, e.g. `m f n`. Drives the `--g-*` visual tokens and the ledger's noun tags. MUST equal `TABLES.genders`. | yes — empty means no grammatical gender |
-| `inflection` | `true`/`false` | `false` switches off morpheme-marking machinery everywhere (deck, teaching's "mark what changes", pairs goldens). | no |
+| `inflection` | `true`/`false` | `false` switches off morpheme-marking machinery everywhere (deck, teaching's "mark what changes", pairs goldens). **The one flag that DELETES a required fixture** — so packcheck cross-examines it against the pack's own data: with `false`, `TABLES.endings` must be empty and no golden row may carry a second form differing from its headword. | no |
 | `level_scale` | list | Proficiency rungs, e.g. `A1 A2 B1 B2 C1 C2`. Curriculum headings and snapshots use it. | yes — defaults to CEFR |
 | `tts_edge` | string | edge-tts neural voice id (e.g. `ro-RO-EmilNeural`). | yes — no edge voice |
 | `tts_say` | string | macOS `say` voice name — the offline fallback. | yes — no say voice |
 | `stt_lang` | string | whisper.cpp language flag for the pronunciation round-trip. | yes — no STT |
 | `required_fact` | string | The one unpredictable fact a ledger row of the flagged class must carry (ro: `eu-form` on verbs), enforced by `state/ledgers.test.ts`. | yes — no such fact |
 | `dictionary` | string | Adapter source name (ro: `dexonline`). Non-empty ⇒ `dictionary.mjs` must exist. **Empty ⇒ the pack has no dictionary and must SAY so** — facts then need tutor confirmation or the unverified marker per `docs/mechanics/verification.md`. | yes — but honesty required |
+
+### An empty key is a decision, and a decision is stated
+
+"May be empty" never means "may be left blank in silence". **Every key left empty must be
+named in the pack's prose header** (or in a `#` comment on its own line), together with
+what the pack loses by it — packcheck fails the pack otherwise. An empty key switches a
+guard off, and a guard that switches off without a sentence is a guard nobody knows is
+gone: the first agent-generated pack left `required_fact:` blank on a language whose noun
+plurals are the definition of an unpredictable per-lexeme fact, said nothing, and
+`state/ledgers.test.ts` quietly stopped checking anything. (Found in the first
+agent-generated language pack, 2026-08-15.)
 
 ## `pos-tables.mjs` — the TABLES shape
 
@@ -72,6 +83,19 @@ principle: **input method is never a language error** — fold it silently; a ge
 missing diacritic is a language error and must pass through untouched. Idempotent. The
 look-alike list is open; extend it (with a golden fixture) the session a new one appears.
 
+`export const LOOKALIKES` is the map, and packcheck reads it directly:
+
+- **A key never equals its value.** An entry maps a look-alike CODEPOINT from another
+  alphabet (`ǎ` U+01CE) or a keyboard digraph (`ae`) to the target letter. `"ä": "ä"`
+  folds nothing; a map of nothing but such entries is a normalizer that is the identity
+  function while the pack advertises folding. That is what shipped. (Found in the first
+  agent-generated language pack, 2026-08-15.)
+- **A key is written NFC.** `normalize()` composes to NFC before folding, so an NFD key
+  can never match — it is dead on arrival and looks alive.
+- **A fold the prose claims is a fold packcheck runs.** Every `x → y` in a pack.md line
+  that talks about folding is executed through `normalize()`; the claim fails if the
+  function does not perform it. Advertise nothing you have not implemented.
+
 ## `dictionary.mjs`
 
 Optional. `export function createAdapter()` returning the contract defined in
@@ -96,8 +120,10 @@ after the split; for a new pack they encode facts the author verified (see GENER
 
 - `words.json` — `[{ target, id, expected }]`, ~30 real words spanning every facet, plus
   at least one untagged bare word with `expected: null` (the CI-failure case). packcheck
-  asserts `classify(target, id) === expected` for each, and that nulls + `TABLES.other`
-  results stay under 20% of the set.
+  asserts `classify(target, id) === expected` for each, that **every facet in `types` is
+  exercised at least once** (a facet the deck shows and no fixture reaches is untested),
+  that ids and targets are unique, and that nulls + `TABLES.other` results stay under 20%
+  of the set.
 - `pairs.json` — `[{ sg, pl, expected: { sg, pl } }]`, ~15 real form pairs; `expected` is
   `markPair`'s marked HTML. Required when `inflection: true`; must include an
   identical-forms pair (marked nowhere) and a stem-change pair (two colours).
@@ -105,8 +131,33 @@ after the split; for a new pack they encode facts the author verified (see GENER
   NFD-composition case, an already-canonical identity case, and a missing-diacritic case
   proving normalize does NOT repair language errors.
 
+**A fixture set that would pass against `s => s` proves nothing.** packcheck therefore
+requires, in `normalize.json`: at least one fixture where `input !== expected` whenever the
+pack folds or claims to fold, and at least one NFD input. Coverage of every look-alike in
+the map is reported when it is short. Six identity fixtures, all four kinds collapsed into
+one, is the shape a hollow pack takes — it passed the old check. (Found in the first
+agent-generated language pack, 2026-08-15.)
+
 `node scripts/packcheck.mjs <code>` runs structure checks plus every fixture, offline,
-exit 1 on any failure. CI runs it for all packs via `scripts/packcheck.test.ts`.
+exit 1 on any failure. CI runs it for all packs via `scripts/packcheck.test.ts`, which
+also keeps negative tests: each hollow-pack check is proven to fire against a deliberately
+broken copy of `packs/ro`.
+
+## `notes.md` — the prose setup mines
+
+Required. Error-taxonomy reference, resource registry, materials sources, grammar system
+inventory — the raw material `setup/templates/` turns into an instance's
+`docs/mechanics/error_taxonomy.md` and `docs/reference/transfer.md`. Model it on
+[ro/notes.md](ro/notes.md), and re-rank the interference notes for the actual language
+pair; a code that the learner's held languages make irrelevant is not ported.
+
+**Every error-taxonomy example row must show a contrast.** The ✗ marks the wrong form; the
+correction follows `→`. packcheck lints the table and fails a row where the wrong form
+equals the correction, where the same form appears on both sides, or where the ✗ sits on a
+form the row itself calls correct. Four such rows shipped, and two of them propagated
+verbatim into the generated instance — an error code whose worked example contradicts
+itself teaches the learner nothing and gives the tally a target it cannot name. (Found in
+the first agent-generated language pack, 2026-08-15.)
 
 ## Pack authoring — safety rules
 
@@ -115,7 +166,12 @@ A pack states language facts that will be TAUGHT. The bar is the same as
 
 1. **Facts from stated sources only.** Every endings row, tag, article and voice name is
    either cited (source named in a comment or the pack prose) or explicitly marked
-   `unverified` — never silently guessed from the model's memory.
+   `unverified` — never silently guessed from the model's memory. **A citation covers the
+   rows it was checked against, not the block it sits above.** The German pack put
+   `Source: … (Duden)` over an endings list containing `-el` and `-le`, which are not
+   German plural endings at all — the citation was decoration on a guess, and decoration
+   is worse than an `// unverified` comment because it stops the next reader looking.
+   (Found in the first agent-generated language pack, 2026-08-15.)
 2. **No dictionary ⇒ say so in the manifest** (empty `dictionary:` key and a prose line).
    The instance's verification policy tightens accordingly; a missing dictionary is
    honest, never silent.
@@ -126,3 +182,16 @@ A pack states language facts that will be TAUGHT. The bar is the same as
 4. **The residue stays small.** If more than a fifth of representative words land in the
    `other` facet or classify to null, the tag grammar is too sparse to teach with — grow
    the tables, don't relax the check.
+5. **A claim in prose is a claim under test.** Anything the pack says about itself — what
+   it folds, what it marks, what its docblocks explain — is checkable and gets checked.
+   Prose that describes the reference language instead of this one is the same failure in
+   a friendlier costume: the German pack wrote "no article-based case marking like
+   Romanian", which is backwards on both languages, and explained a `verbHeadword: null`
+   with "German infinitives are typically cited with `zu`", which is false. Setup mines
+   these files; a wrong reason survives longer than a wrong value, because the value gets
+   run and the reason does not.
+6. **Copy the reference pack's SHAPE, never its content.** `packs/ro/` is the worked
+   example, and the fastest way to a hollow pack is to copy it and translate the parts you
+   notice. Two German paradigm rows shipped the Romanian label `prezent`; packcheck warns
+   when a pack's goldens share vocabulary with `packs/ro/golden/`, but the warning catches
+   only what is spelled the same. Re-derive every row from a German source.

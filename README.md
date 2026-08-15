@@ -1,110 +1,123 @@
 # mova
 
-**A language-learning workspace run by your AI coding agent.** You pick the language and the
-goal; the agent teaches, drills, tracks every word and error, and builds you a personal
-dashboard — all in plain files you own, on your machine.
+**A language-learning workspace run by your AI coding agent.** You pick the language and
+the goal; the agent teaches, drills, tracks every word and every error, and keeps a
+dashboard current — all in plain files you own, on your machine.
 
-*mova* (мова) is Ukrainian for "language". This template is the generalized descendant of
-**limba**, a Romanian exam workspace that grew these mechanics
-over months of real daily use: a spaced-repetition system with nothing to drift, teaching
-rules calibrated by measured recall, answer-leak detection, and a test suite that fails when
-the workspace's own records stop being trustworthy.
+*mova* (мова) is Ukrainian for "language".
 
 ## First five minutes
 
 1. **Install an AI coding agent** — one of: [Claude Code](https://claude.com/claude-code),
    [opencode](https://opencode.ai), [Codex](https://openai.com/codex), or
-   [Antigravity](https://antigravity.google). Never installed one, or don't want to pay for
-   one? See [Starting from zero, without paying](#starting-from-zero-without-paying).
-2. **Copy this repository** — the green **Use this template** button on GitHub (or download
-   the zip and unpack it anywhere).
+   [Antigravity](https://antigravity.google). Never installed one, or would rather not pay
+   for one? See [Starting from zero, without paying](docs/guide/free-setup.md).
+2. **Copy this repository** — the green **Use this template** button on GitHub, or download
+   the zip and unpack it anywhere.
 3. **Open the folder in your agent and say: "set up my workspace".**
 
 The agent interviews you — your languages, your goal, your time — and builds everything:
-your profile, your curriculum, your study plan. You never run a command yourself; the agent
-operates all tooling. Then just show up and say the one word it hands you at the end —
-**"lesson"** for a full program, **"drill"** or **"write"** when you asked for a narrower
-one.
+your profile, your curriculum, your study plan. Then show up and say the one word it hands
+you at the end.
 
-> **Requirements**: Node.js ≥ 20 and git. Your agent will check for both during setup and
-> install what it can. They power the workspace's quality machinery — scheduling, integrity
-> checks, the contract tests that keep your records honest.
+> **Requirements**: Node.js ≥ 20 and git. Your agent checks for both during setup and
+> installs what it can. They power the scheduling, the integrity checks, and the contract
+> tests that keep your records honest.
 
-## Starting from zero, without paying
+## How you use it
 
-**This section is for you if** you have never installed a local AI tool, you know AI as
-ChatGPT or Gemini in a browser tab, and you'd rather not pay a subscription to find out
-whether this workspace suits you.
+**Chat is the only interface.** You say a verb; your agent runs the playbook behind it and
+operates everything else — every script, every file, every check. Your job is to answer
+questions and study.
 
-**Read this part first.** The mainstream paid tools — [Claude Code](https://claude.com/claude-code)
-on Claude Pro, [Codex](https://openai.com/codex) on ChatGPT Plus, or
-[Antigravity](https://antigravity.google) on a Google AI plan — are easier to install, steadier
-in the middle of a lesson, and better teachers. Around $20 a month, all of them. If the money
-isn't the obstacle, take one of those and skip the rest of this section. The free path below
-genuinely works, but you keep it running yourself.
+| Say… | You get |
+| --- | --- |
+| **lesson** | The full session: review, new material, a graded check, then practice aimed at what the check missed, and close-out |
+| **drill** | Short practice — the due queue plus your top error patterns. Never new material |
+| **write** | A composition in your goal's genre, corrected code by code, with a model answer |
+| **mock** | One section of your goal's assessment, timed and frozen as a snapshot |
+| **review** | The weekly replan: pace, drill targets, plan updates, schedule recalibration |
+| **vocab** | A word captured into the ledger, deduped and enriched, in under a minute |
+| **retro** | The workspace improved from what a session just learned about it |
+| **update** | Template improvements pulled in, decided change by change |
 
-### One app, two free engines
+Setup asks how wide you want this. A narrow workspace — drills only, vocabulary only,
+writing only — answers to fewer verbs and refuses the rest politely. Working with a tutor
+adds **tutor-prep**: a pack to bring them, and a pass that ingests their corrections.
 
-1. **Install [opencode Desktop](https://opencode.ai/download)** — free, open source, runs on
-   macOS, Windows and Linux, and reads mova's instructions without any configuration.
-2. **Pick your engines — one is already there.** Switching between them is one click in the
-   model picker, and that is the whole point: when one is slow or its free window closes, you
-   keep working.
-   - **DeepSeek V4 Flash (Free)** is in the picker the moment you install. No account, no key,
-     no card — it is built in. This is the best free model there is at running the workspace's
-     scripts and recovering from its own mistakes.
-   - **Gemini 3.7 Flash** is the one worth adding. Get a free key at
-     [Google AI Studio](https://aistudio.google.com) — no credit card, roughly 1,500 requests
-     a day — and paste it into opencode's settings. Stronger at explaining language, so prefer
-     it for lessons.
-3. **Go back to [First five minutes](#first-five-minutes).** When the setup interview asks
-   which agent is running, answer `opencode`.
+**Three surfaces.** The chat itself. **The hub** (`work/visuals/index.html`), your one
+bookmark — regenerated at the end of every session from the files that own each number:
+days to your goal, what you hold, what is due, and every unit with *taught* and *retained*
+drawn as two separate bars. **The deck** (`work/visuals/deck.html`), the drillable view of
+everything you know, filterable by unit, tier and part of speech. Study pages are
+self-contained HTML with the audio embedded — they work offline, forever.
 
-Already comfortable in VS Code? [Cline](https://cline.bot) or [Kilo Code](https://kilo.ai) take
-the same free Gemini key — answer `other` at the interview.
+→ [How sessions run](docs/guide/how-sessions-run.md) — every verb, the focus modes, the
+five parts of a lesson, and where each file lands.
 
-### Two things to know before you start
+## What it tracks
 
-- **Free means your content trains their models.** Google's free API tier and every free
-  opencode Zen model may use what you send to improve the model; the paid tiers of both do not.
-  This workspace holds a profile about you, your error history and your own writing. If that
-  bothers you, it is a better reason to pay than any feature is.
-- **Free tiers vanish without notice.** Four of them closed between April and June 2026 alone.
-  Keep both engines connected so a lesson never stops because one provider changed its mind.
+- **A profile of you** — your languages ranked into a contrast ladder that decides which
+  language an explanation is drawn from, your real time budget, your keyboard. It keeps
+  what was *assumed* apart from what was *measured*.
+- **Two ledgers** holding every word and grammar pattern, on a tier ladder that runs from
+  same-day review out to 60 days. Due-ness is computed from the last date, never stored, so
+  there is no schedule to corrupt. Each tier asks a harder question than the one below, and
+  tier 3 is a gate: nothing counts as owned until you have produced it whole.
+- **Coverage and retention, never blended.** What has been taught and what you actually
+  hold are separate numbers, because the gap between them is the finding.
+- **Your mistakes, coded and counted.** A taxonomy generated for your language pair, an
+  append-only error log, and a tally that follows causes rather than symptoms and drops
+  zones you have since re-tested clean. That tally is what the next drill aims at.
+- **Honest measurement.** Every scored set is machine-checked for answers hidden in its own
+  prompts; every set comes back as a full marked sheet; a repeat look at the same material
+  the same day is labelled re-exposure and scores nothing; every language fact is verified,
+  tutor-confirmed, or visibly marked unverified.
+- **A goal contract** — an exam, a level, a list of scenarios in your own words, or a word
+  count — whose spec sentence is the tie-breaker for every scope question.
 
-*Checked August 2026. If a link or an allowance has moved by the time you read this, the shape
-of the advice still holds: one agent app, two free engines, switch when one runs dry.*
+→ [What it tracks](docs/guide/what-it-tracks.md) — the tier table, the tally semantics, the
+measurement guards, and the four goal shapes.
 
-## What you get
+## Adjusting it as you go
 
-- **Lessons that remember.** Every word and grammar pattern goes into a ledger; a
-  spaced-repetition queue decides what to review, derived fresh every day — no stored
-  schedule to corrupt.
-- **Honest measurement.** Answer-leak detection, re-exposure labelling, and append-only
-  logs — the workspace guards against the ways a score can lie.
-- **A visual per lesson.** Self-contained HTML pages (audio embedded, works offline forever)
-  in a consistent design system — plus a dashboard showing taught vs. retained, never blended.
-- **Your scenario, not ours.** Exam with a date, a target level, or just "I want to talk to
-  my in-laws" — the interview builds a goal contract that keeps every session on-scope.
-  Working with a tutor? The workspace preps your tutor sessions and ingests their corrections.
-- **Any agent.** The whole workspace is markdown + zero-dependency scripts. Instructions live
-  in `AGENTS.md`; per-agent command shims are generated at setup.
+Most changes are one sentence in chat: shorter today, too easy, explain that through
+Spanish, stop drilling this. Standing changes — pace, focus, deadline, the goal itself —
+belong to the weekly `review`, which is also where the scheduler stops using its shipped
+defaults and re-fits itself to your own recorded data. `retro` turns friction with the
+workspace into a fix. `update` pulls template changes in as a conversation, never a merge.
+
+Yours to steer directly: `materials/` for your own books and past papers, the link
+registry, the theme, and your language pack — including the table that says which
+characters your keyboard mangles, so they never count as mistakes.
+
+→ [Adjusting it](docs/guide/adjusting-it.md) — every lever, plus the scripts the agent runs
+on your behalf.
+
+## Under the hood
+
+Markdown and zero-dependency Node scripts in your own git repository. Nothing is in a
+database, and nothing leaves your machine except dictionary lookups and text-to-speech.
+[AGENTS.md](AGENTS.md) is the operational guide every agent reads; `docs/mechanics/` holds
+the rules in force, each stating whether it is a guess, a response to something that
+happened, or a measurement; `playbooks/` holds one flow per verb. `npm test` is the
+contract suite, and it fails when the workspace's own records stop being trustworthy.
 
 ## Status
 
-Working, and young. Everything described above is built and covered by the test suite, and
-three workspaces have been generated from this template — an exam with a deadline, a
-level goal with a tutor, and a no-goal vocabulary run — each passing its own checks.
+Working, and young. Everything above is built and covered by the test suite, and three
+workspaces have been generated from this template — an exam with a deadline, a level goal
+with a tutor, and a no-goal vocabulary run — each passing its own checks.
 
 What has not happened yet: nobody has completed a study session in a workspace built from
-this template. Romanian is the only language pack that ships (any other target makes your
-agent build one, which works but takes a while). Command shims are only generated for
-Claude Code so far; other agents run from `AGENTS.md`, which is the fallback by design.
+this template. Romanian is the only language pack that ships; any other target makes your
+agent build one, which works but takes a while. Command shims are generated for Claude Code
+only — other agents route through `AGENTS.md`, which is the fallback by design.
 
 See [CHANGELOG.md](CHANGELOG.md) for what changed and when.
 
 ## For maintainers
 
-`upstream/map.md` maps every limba file to its mova destination; `playbooks/sync-upstream.md`
-ports limba's ongoing changes via its porting log. See [AGENTS.md](AGENTS.md) for the
-operational guide.
+`upstream/map.md` is the porting contract from the workspace this engine was extracted
+from, and `playbooks/sync-upstream.md` pulls its ongoing changes. See
+[AGENTS.md](AGENTS.md) for the operational guide.

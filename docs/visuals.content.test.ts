@@ -8,20 +8,33 @@
  * row visuals.content.test.ts). See that file for what is checked and the incidents that
  * priced each check.
  *
+ * That single implementation now also carries the answer-leak gate: checkFile shells out to
+ * scripts/leakcheck.mjs in visual mode and fails on HIGH, so CI and the pre-publish command
+ * cannot disagree about whether a page gives its own answers away — which is exactly how
+ * two first-ever generated lesson pages shipped at 3 of 3 and 5 of 5 leaked (found in the
+ * first generated lesson pages, 2026-08-15). Nothing to add here; do not re-implement it.
+ *
  * Scope:
  *   - work/visuals/*.html, minus generated files (index.html, deck.html — rebuilt by
  *     scripts, checked at their source). Skips cleanly in template mode (none authored).
  *   - docs/visual/starter.html and gallery.html — the engine's own pages are held to the
  *     same bar, in every mode. Their hub link is relative-any (they live outside the
  *     deployed folder); pack and retired-claims checks don't apply to them — they carry
- *     labeled reference-pack (ro) examples, not claims taught to this learner.
+ *     labeled reference-pack (ro) examples, not claims taught to this learner, and the
+ *     script-range check gives them the permissive default set for the same reason.
  */
 import { describe, it, expect } from "vitest";
 import { existsSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { checkFile, GENERATED, readRetiredClaims } from "../scripts/visualcheck.mjs";
+import {
+  checkFile,
+  GENERATED,
+  instanceLanguages,
+  readRetiredClaims,
+} from "../scripts/visualcheck.mjs";
 import { loadPack } from "../scripts/pack.mjs";
+import { loadProfile } from "../scripts/profile.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const visualsDir = join(root, "work/visuals");
@@ -37,6 +50,17 @@ try {
 
 const retired = readRetiredClaims(join(visualsDir, "README.md"));
 
+/** Languages this instance may print, for the script-range check — null in template mode.
+ *  A profile too broken to parse must not take the whole file down with it: the pack load
+ *  above already degrades to null on the same failure, and this check then falls back to
+ *  its permissive default set. */
+let languages: string[] | null = null;
+try {
+  languages = instanceLanguages(loadProfile(), pack);
+} catch {
+  languages = null;
+}
+
 const instancePages = existsSync(visualsDir)
   ? readdirSync(visualsDir)
       .filter((f) => f.endsWith(".html") && !GENERATED.has(f))
@@ -49,7 +73,7 @@ describe("authored visuals pass visualcheck", () => {
   }
   for (const name of instancePages) {
     it(`${name}: clean`, () => {
-      const offences = checkFile(join(visualsDir, name), { pack, retired });
+      const offences = checkFile(join(visualsDir, name), { pack, retired, languages });
       expect(
         offences,
         `${name} would reach the learner broken:\n  ${offences.join("\n  ")}`,

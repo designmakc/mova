@@ -107,7 +107,10 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    (`open work/visuals/<file>.html`); the hub is the one bookmark, and every page is one
    ordinary relative link from it, resolving the same for every session. Give the learner
    the repo path, send the file inline in the response, index it, and commit it at close-out
-   — a committed, indexed page is delivered. An attachment *alone* is still not delivery —
+   — a page that was **sent, indexed and committed** is delivered. Indexed and committed but
+   never sent is not: that is **built**, a real third state with its own row shape (rule 3)
+   and its own exit ([session_format.md](session_format.md) → the materials-prepared exit).
+   An attachment *alone* is still not delivery —
    it arrives as a *download* showing HTML source instead of a page, which is why this rule
    started (limba SES-004 / 2026-07-31).
 
@@ -156,6 +159,18 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    reading a jump in the ledger has to be able to tell retention from a fresh page arriving.
    Anything that changes what the learner has in hand is an **event**, whether or not it took
    an `SES-NNN`.
+
+   **A page built but not taught gets its row too — with the Date column left `—` and
+   `Built —` opening its Teaches cell** (2026-08-15). The row records the unit the material
+   is for and where the session stopped; the session that later *teaches* the page fills the
+   Date in at its close-out. Until then the schema has no honest date to offer, and both
+   first generated lesson pages paid for the gap: one wrote the build date into a column
+   that means *delivered*, the other left the page out of the index entirely — and out of
+   the hub, so the learner could not open it at all (found in the first generated lesson
+   pages, 2026-08-15). **Never date a delivery that has not happened**: the ledgers
+   and the pacing arithmetic read this column as evidence about what the learner has seen.
+   The rest of that state — commit, hub, where you stopped — is
+   [session_format.md](session_format.md) → the materials-prepared exit.
 4. **Never describe a page you have not read** (limba, 2026-08-12). A session told the learner
    the hub *"still shows 9 visuals"*; it showed **8** and a stamp five days old, and the
    session had no basis for the claim at all — the learner's screenshot is what settled it.
@@ -179,8 +194,11 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
 
 Before generating, check the `work/visuals/` index. If a visual for that zone exists,
 **improve it in place** (same filename) or supersede it with a new dated file and mark the
-old row "superseded" — don't fork near-duplicates. Visuals are self-contained (inline
-CSS/JS, no CDN, no external fonts) so they render offline years from now.
+old row "superseded" — don't fork near-duplicates. **A row opening `Built —` is material a
+previous session prepared and never taught**: open it and teach from it, and do not build a
+second page for that unit (found in the first generated lesson pages, 2026-08-15). Visuals
+are self-contained (inline CSS/JS, no CDN, no external fonts) so they render offline years
+from now.
 
 **Read the index table in full — never a truncated head of the file** (limba, 2026-08-09).
 The README's prose header runs long before the table starts, so a "read the first N

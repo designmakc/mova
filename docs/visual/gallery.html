@@ -134,6 +134,11 @@
   .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
     color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
     border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  .unv{color:var(--bad);font-weight:800;font-size:.9em;vertical-align:super;
+    line-height:1;cursor:help}
+  .src{font-size:.84rem;color:var(--muted);background:var(--card);
+    border-left:3px solid var(--muted);border-radius:0 8px 8px 0;
+    padding:.55rem .85rem;margin:1.6rem 0 .4rem}
   .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
     border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
   .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
@@ -182,7 +187,11 @@
 <p class="sub">Every approved component, live, with when-to-use notes. Copy
   <code>docs/visual/starter.html</code> to build a page; rules in <code>docs/visual/SPEC.md</code>.
   Language samples here are <b>reference-pack (ro) examples</b> — an instance renders its own
-  pack's labels and its own pinned theme values.</p>
+  pack's labels and its own pinned theme values.<br>
+  <b>The ①–⑩ below number components, not teaching beats.</b> A page's numbered sections are
+  the eight beats of <code>docs/mechanics/teaching.md</code>, scaffolded in
+  <code>starter.html</code>; this page is a parts catalogue and has no beat structure of its
+  own.</p>
 
 <h2><span class="n">①</span> Frame: hub link, title, key legend</h2>
 <div class="spec">
@@ -298,7 +307,12 @@
     answers live on pages, not in chat — chat renders <code>&lt;details&gt;</code> as raw tags
     (limba convention). <span class="yes">Use</span> for beat-⑦ guided attempts whose answers
     appear nowhere else on the page. <span class="no">Not</span> for word lists — those get the
-    two-layer surface below.</div>
+    two-layer surface below.<br><br>
+    "Nowhere else" is <b>checked, not promised</b>: <code>visualcheck</code> runs
+    <code>scripts/leakcheck.mjs</code> over the page and fails on any HIGH finding. Don't print
+    the promise to the learner — one generated page printed it above three items that leaked
+    3 of 3 (2026-08-15). An item whose answer sits in a table above is a worked example
+    wearing an attempt's clothes; ask it over a <b>novel</b> word instead.</div>
 </div>
 
 <h2><span class="n">⑦</span> Audio: authored placeholder → embedded row</h2>
@@ -362,7 +376,13 @@
     only be read is a table the learner re-drills somewhere else. On real pages each row also
     carries <b>two clips</b> (prompt alone / full pair) swapped by state, so audio never
     out-speaks the concealment; playback stops on every state change. Scope to a wrapper,
-    never <code>&lt;body&gt;</code>.</div>
+    never <code>&lt;body&gt;</code>.<br><br>
+    <b>Word list or paradigm?</b> <code>visualcheck</code> now fails an open table whose rows
+    pair <b>one</b> target form with its translation — that is a word list, and it belongs
+    here. The paradigm table in ② is the other thing and stays open: its rows carry the
+    <b>same word in several forms</b>, so the row teaches a pattern rather than testing a
+    meaning. The German page opened with a ten-row open copy of its own drill list, which is
+    what handed away every guided-attempt answer above it (2026-08-15).</div>
 </div>
 
 <h2><span class="n">⑨</span> Section divider</h2>
@@ -371,6 +391,34 @@
   <div class="note"><b>.stripe</b> — the one divider, between the teach half and the drill half
     of a page. <span class="no">Don't</span> multiply dividers; numbered <code>h2</code>
     sections already pace the page.</div>
+</div>
+
+<h2><span class="n">⑩</span> Verification: the marker and the source note</h2>
+<div class="spec">
+  <div>
+    <div class="card">
+      <p style="margin:.2rem 0"><span class="tag g-m">m</span>
+        <span class="l2">perete</span> · pl. <span class="l2">pereț<b class="mk">i</b></span><span class="unv" title="unverified">?</span>
+        <span class="muted">— wall</span></p>
+    </div>
+    <p class="src"><b>Sources.</b> Genders and plurals verified via the pack's dictionary
+      adapter (<code>dexonline</code>), 2026-08-15. Forms carrying <span class="unv">?</span>
+      are unverified — the agent's word, not a source's.</p>
+    <p class="src"><b>Unverified.</b> This pack ships no dictionary adapter, so no fact on
+      this page is source-attested: every form is the agent's word until a tutor confirms
+      it. The <span class="unv">?</span> marks are the list to hand the tutor.</p>
+  </div>
+  <div class="note"><b>.unv</b> — the <code>?</code> of
+    <code>docs/mechanics/verification.md</code>, sitting on the form it doubts, inside the
+    cell that carries it. Same marker as the ledger's, so one convention covers both.
+    <span class="yes">Use</span> on any form a source has not attested.<br><br>
+    <b>.src</b> — the page's verification trail, at the foot: what attested these facts and
+    when, exactly as a ledger trail reads. A page asserting language facts carries a marker
+    or a note; <code>visualcheck</code> fails one carrying neither. Keep <b>one</b> of the
+    two notes shown — the second is the null-adapter banner, and a pack with no dictionary
+    <span class="no">must</span> carry it, because state 1 is unreachable there and the
+    marker is the only safety left. Two first generated pages asserted ~60 and ten facts
+    with neither (2026-08-15).</div>
 </div>
 
 <p class="muted" style="margin-top:2.2rem;font-size:.85rem">

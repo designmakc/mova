@@ -77,6 +77,13 @@ interview's guesses with data.
 
 - [x] Workspace generated and smoke-tested — {{DATE}}.
 - [ ] **Placement calibration session.** The first {{PLACEMENT_VERB — the focus mode's carrier verb}} probes instead of working through material: establish the real starting level against the intake snapshot, write `docs/snapshots/` placement with Method + "Not exercised:", update this file's pacing — 🟢 Med · {{GLYPH — 🧠 for a lesson, ⚙️ for a drill or write}}
+  <!-- This box stays OPEN when the learner declines the probe. A decline is legitimate and
+       the session records the level as GUESSED in the placement snapshot's Method
+       (docs/mechanics/session_format.md § The placement calibration) — but a guessed level
+       is a debt, not a measurement, and the first real measurement is what closes this box.
+       Do not tick it because a session happened. (Found 2026-08-15: a learner skipped the
+       probe to get material quickly, which the agent handled well; nothing recorded that
+       the curriculum's starting point now rested on a guess.) -->
 - [ ] {{GOAL_LOGISTICS_MILESTONE — exam: TO-CONFIRM research + registration; level/functional: first descriptor sweep or scenario baseline; keep it one line}} — 🟠 Med · 🔧
 - [ ] {{MATERIALS_MILESTONE — acquire what the goal contract's assessment section names, into untracked materials/}} — 🟡 Low · 🔧
 

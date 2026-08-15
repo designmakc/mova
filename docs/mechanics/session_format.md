@@ -66,9 +66,16 @@ this block, not by omitting it.**
 2. **Run `date`.** Never take today's date from context — it may be stale, and every date
    here is load-bearing (SRS due-ness, pacing, snapshot order). One wrong date propagated
    across five files (limba, 2026-07-31).
-3. **Run `git status --short work/`.** Untracked or modified artifacts are the residue of a
-   session that never closed out. **Read any such file before writing near it** — in limba an
-   unindexed draft visual was overwritten unread (2026-08-03).
+3. **Run `git status --short work/`, then read the index in `work/visuals/README.md`.** An
+   artifact you did not create is one of **two** things, and they need opposite responses.
+   **Prepared material** — a page with an index row, no Date and `Built —` opening its
+   Teaches cell — is finished teaching material waiting for a session to teach it: open it,
+   teach from it, date its delivery at close-out, and do **not** rebuild the unit it names.
+   **Residue** — untracked and in no index — is what a session that reached neither exit left
+   behind. **Read any such file before writing near it** either way — in limba an unindexed
+   draft visual was overwritten unread (2026-08-03). Reading prepared material as residue
+   costs the opposite mistake: the next session rebuilds a page that already exists (found in
+   the first generated lesson pages, 2026-08-15).
 4. **Run `node scripts/queue.mjs --counts`** and read the last `SES-NNN` entry's **Next**
    pointer in [../logs/session_log.md](../logs/session_log.md). **Identify "last" by heading,
    and cross-check it against git** — entries run 70+ lines, so a `head -n` of the file can
@@ -101,6 +108,52 @@ The learner runs many sessions and returns cold. **State position before content
   and what the learner will and will not be able to do afterwards.
 - **Every teaching section** — the Placement beat from [teaching.md](teaching.md) ①,
   derived from [../reference/topics.md](../reference/topics.md), never improvised.
+
+## The placement calibration — the first session probes instead of teaching
+
+Not the placement *announcement* above. This is the one-time probe that replaces the
+interview's guesses with measured data, and it rides **whichever verb carries placement in
+this instance's focus mode** — lesson under `full`, drill under `drill`/`vocab`, write under
+`writing` (`setup/scenarios/focus_modes.md` § Placement and assessment run in every mode).
+The carrier verb runs it under its own rules: a drill carrying a placement still teaches
+nothing.
+
+**The condition is one command, and it names the snapshot the placement itself produces:**
+
+```
+ls docs/snapshots/*_placement.md    # nothing listed ⇒ the placement is still owed
+```
+
+**Gate on the placement snapshot, never on "no snapshot exists."** Setup always writes
+`docs/snapshots/<date>_intake.md` — kind **Intake**, a different row of the kind table in
+[../snapshots/README.md](../snapshots/README.md) — so a guard worded that way is false at the
+exact moment it has to be true and can never fire (found in the first generated lesson pages,
+2026-08-15). `docs/plan.md`'s Phase 0 placement milestone is the **cross-check, not the
+gate**: the snapshot is evidence, the checkbox is a claim. When they disagree, say so and
+believe the file.
+
+**Offer it, price it in one sentence, and take the answer.** The learner may decline — wanting
+a page today rather than a probe is a real choice, and one generated instance handled this
+well before any rule existed (found in the first generated lesson pages, 2026-08-15). Say the
+cost plainly first — *without a measured starting level I pick the unit by guess, and we may
+have to move you later* — then:
+
+- **Probed** — probe across the curriculum's early units instead of working through material
+  (limba's placement probed the first half), write `docs/snapshots/YYYY-MM-DD_placement.md`
+  with `## Method` and its "Not exercised:" list, then tick the plan's placement milestone and
+  update its pacing at close-out.
+- **Declined** — write the same snapshot anyway, and make the guess legible in it:
+  `Level: GUESSED — the learner declined the probe` in `## Method`, with
+  `Not exercised: everything`. **Leave the plan's placement milestone open** — its routing
+  annotation stays, and its line says the starting point is guessed and the first real
+  measurement corrects it. A guessed starting level is honest and workable; an *unrecorded*
+  one lets every later session read a guess as data. Do not amend the intake snapshot to carry
+  this: snapshots are frozen once written (snapshots README), and the placement snapshot is
+  the file this gate reads anyway.
+
+The decision is recorded either way, so the next session does not re-open it. **The debt lives
+in the milestone**, and the first genuine measurement — the goal's assessment instrument, or a
+placement offered again — is what closes it.
 
 ## Media moves (in parts 2–3)
 
@@ -609,6 +662,38 @@ gets written into the ledgers, the log and the learner profile as evidence.
     summary quoted "0.71× headroom" and the learner had to ask twice for plain language
     (2026-08-03). This step is the one the learner actually reads; the log entry is not a
     substitute for it, and neither is a rewording of it.
+
+### The materials-prepared exit — built, not taught (2026-08-15)
+
+**A session that produced teaching material and taught none of it takes this exit, not the
+close-out.** The workspace modelled two states — *in flight* and *closed out* — and this is a
+legitimate third. Both first generated lesson pages ended in it and had nowhere to land: the
+page stayed untracked, so `docs/visuals.index.test.ts` read it as work in flight and ignored
+it by design; the hub was never rebuilt, so the learner's one bookmark could not reach the
+page; the unit stayed `pending`, so the next session would build it again; and the index row
+could only be written by dating a delivery that never happened (found in the first generated
+lesson pages, 2026-08-15).
+
+Take it when the material is built and **nothing was taught or measured** — a request for a
+page rather than a session, the time gone, the learner never arrived. Four steps:
+
+1. **Index the page as built** — the row goes in with **no Date** (`—`) and `Built —`
+   opening its Teaches cell ([media.md](media.md) → Delivering a visual). That column means
+   the day the page reached the learner; the day it was built is already in the filename.
+2. **Commit the page and its row.** An untracked artifact is invisible to the next session,
+   and the index test is deliberately blind to it.
+3. **Regenerate the hub** — `node scripts/hub.mjs` — and commit it. An unlinked page is not
+   reachable, whatever else is true of it.
+4. **Say where you stopped**, in the index row and in the response: which unit the material is
+   for, what is built, what is not. **That row is this exit's Next pointer** — the next session
+   checks the index before generating (media.md's reuse rule), and it is the only line
+   guaranteed to be read.
+
+**And nothing else. No ledger rows, no tier moves, no `covered` flip in topics.md or the
+curriculum, no `SES-NNN` entry, no score, no deck rebuild.** Nothing was taught and nothing was
+measured, so every one of those would be a claim about a session that did not happen — the
+same lie as the delivery date. The session that later teaches the page runs the full close-out
+and dates the delivery there.
 
 ### A session that continues after its own close-out opens a new `SES-NNN` (limba, 2026-08-09)
 

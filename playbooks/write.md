@@ -27,6 +27,18 @@ chunks), SES + ERR log entries, commit.
 [docs/mechanics/session_format.md](../docs/mechanics/session_format.md) belong to every
 session. The flow below is what happens *between* them.
 
+## Before the first one — the placement may be owed
+
+Under `focus: writing` this verb is the placement carrier
+([setup/scenarios/focus_modes.md](../setup/scenarios/focus_modes.md) § Placement and
+assessment run in every mode). Run the gate in
+[docs/mechanics/session_format.md](../docs/mechanics/session_format.md) § The placement
+calibration before teaching anything: nothing listed by `ls docs/snapshots/*_placement.md`
+means this session probes instead of practising, and the mechanic owns what that looks
+like and what a decline records. (Added 2026-08-15: the carrier rule named this verb and
+nothing here told it so — under a writing focus the first session had no way to know it
+owed a placement.)
+
 ## Flow
 
 0. **Orient ritual** (session_format.md) — every step. The topics.md check bounds the

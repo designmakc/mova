@@ -4,6 +4,63 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.4.0 — 2026-08-15
+
+Fixes from the first two lesson pages ever generated in real instances — a German page
+(opencode/MiMo) and a Romanian page (Antigravity/Gemini Flash 3.7). Both passed every gate
+the workspace had. Both were broken in the same places, which makes them template defects,
+not model defects.
+
+- **Every guided attempt on both pages printed its own answer** — "3 of 3 items give their
+  answer away" and "5 of 5". The detector that catches this shipped in the repo, had a mode
+  built for exactly this page kind, and was named in none of the four documents an agent
+  reads while building a page. `visualcheck` is now the single publish gate for a page and
+  runs the leak check itself, failing on HIGH. The starter no longer prints the unverified
+  promise "the answer appears nowhere else on this page" to the learner.
+- **The starter scaffolded four sections; teaching requires eight beats** — in the same
+  numbered typography, while the spec says to start from the starter and figure out nothing.
+  Both pages were missing exactly the beats the scaffold had no slot for, and beat ⑥ (naming
+  what was used but not taught) was missing from both. The starter now scaffolds all eight,
+  each saying why it exists and when deleting it is legitimate.
+- **A teach-page word list printed open is a drill surface** — the German page's ten-row
+  open table was the direct cause of its leak. Now checked, with paradigm tables (the same
+  word in several target forms) explicitly exempt as reference material.
+- **~70 asserted language facts across the two pages carried no verification trail.** Pages
+  now need visible `?` markers or a source note; a pack with no dictionary must say so on
+  the page.
+- **`formal场合` and a mojibake glyph reached learner-facing files** through every gate.
+  Pages are now script-range checked against the instance's own languages.
+- **The lesson playbook contradicted the mechanic it tells you not to re-derive**, running
+  applied practice before the graded check — the pre-swap order, reversed in the mechanic
+  with a warning that scores are not comparable across the change.
+- **The placement gate could never fire**: it tested for any snapshot, and setup always
+  writes one. It now tests for a *placement* snapshot. Declining the probe is a supported
+  choice that records the level as `GUESSED` and leaves the plan milestone open — a guessed
+  level is a debt, not a measurement.
+- **"Built, not taught" is now a state.** Material prepared without a session gets an index
+  row with no delivery date and a hub regeneration so the learner can open it — and writes
+  no ledger rows, no scores, no session entry.
+- **The visuals index header never matched the code reading it.** `hub.mjs` reads those
+  cells positionally; the template declared a different order, so every instance dashboard
+  has been rendering scrambled visual cards. Header fixed and the readers documented as
+  positional.
+- **The pack validator passed a hollow pack.** The first agent-generated pack (German) had
+  a normaliser mapping every character to itself, six test fixtures that all pass against a
+  function that does nothing, `inflection: false` on a language whose own word list is full
+  of Buch/Bücher, a fabricated Duden citation over two endings that are not plural endings,
+  and four taxonomy rows whose "wrong" form equalled its own correction — two of which
+  reached the generated instance. That pack now fails with 13 named errors. Empty manifest
+  keys must be justified in prose; fold claims are executed, not read; fixtures must
+  exercise behaviour. `GENERATE.md` now ends each step in output the agent must show.
+- Also: the reference Romanian pack gained the four uppercase normalisation fixtures its
+  own spec asked for, and the taxonomy linter now runs against the generated instance file
+  as well as the pack notes.
+- instance-impact: **engine files auto-update, and one manual step.** Any instance created
+  before today has the old column order in `work/visuals/README.md` — rewrite that header to
+  `Date | Page | Teaches | Units | Kind` when updating, or the dashboard stays scrambled.
+  Existing pages will now fail `visualcheck`; that is the point, and fixing them is the
+  learner's call, not the updater's.
+
 ## 0.3.0 — 2026-08-15
 
 Fixes from two generated instances: an Italian-native learner with no formal goal and a

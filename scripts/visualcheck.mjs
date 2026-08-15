@@ -18,24 +18,46 @@
  *   1. audio wiring    — tts ids unique; every data-a target resolves.
  *   2. one player      — at most one player script; pages with buttons have exactly one.
  *   3. reveal pairing  — .rev buttons and .ans blocks are 1:1.
- *   4. hub link        — <a class="tohub">, relative href; inside work/visuals/ it must
+ *   4. answer leak     — scripts/leakcheck.mjs in visual mode, run as a child process and
+ *                        FAILED ON HIGH. This gate is not optional and not a second
+ *                        command: two first-ever generated lesson pages printed 3 of 3 and
+ *                        5 of 5 guided-attempt answers in the open, and both were shipped
+ *                        because visualcheck said ✓ and no authoring document named
+ *                        leakcheck (found in the first generated lesson pages, 2026-08-15).
+ *                        One page, one gate.
+ *   5. hub link        — <a class="tohub">, relative href; inside work/visuals/ it must
  *                        be exactly index.html; docs/visual/ pages may point anywhere
  *                        relative (they live outside the deployed folder).
- *   5. self-contained  — no external URL in any src/href, no protocol-sniffing rewrite.
+ *   6. self-contained  — no external URL in any src/href, no protocol-sniffing rewrite.
  *                        Subsumes limba's "no hosted copy" check: the only allowed refs
  *                        are same-repo relative paths and data: URIs.
- *   6. token block     — all CORE token keys defined; all three themes present.
- *   7. pack tokens     — gender tokens ⊆ the active pack's declared labels; morpheme
+ *   7. token block     — all CORE token keys defined; all three themes present.
+ *   8. pack tokens     — gender tokens ⊆ the active pack's declared labels; morpheme
  *                        tokens only when the pack declares inflection. Skipped
  *                        gracefully in template mode (no profile ⇒ no active pack).
- *   8. retired claims  — regex table read from work/visuals/README.md when present;
+ *   9. open word list  — a table outside a .vocab surface that pairs target-language forms
+ *                        with their translations and carries no reveal machinery. A
+ *                        paradigm table stays open; a word list is a drill surface
+ *                        (SPEC §1). The open list is also what feeds check 4: the German
+ *                        page's ten-row open table WAS the leak (2026-08-15).
+ *  10. verification    — a page that asserts language facts carries the trail
+ *                        docs/mechanics/verification.md requires: `?` markers (span.unv),
+ *                        or a page-level .src note. On a pack with no dictionary adapter
+ *                        state 1 is unreachable, so the note must say so.
+ *  11. script range    — characters outside the scripts this instance uses. Two pages
+ *                        shipped `formal场合` to a German learner and a mojibake `?uer`
+ *                        into a generated taxonomy, through every gate (2026-08-15).
+ *                        U+FFFD always fails.
+ *  12. retired claims  — regex table read from work/visuals/README.md when present;
  *                        wordings the workspace has corrected must not survive in pages.
  *
- * Exit 1 on any violation. Zero dependencies.
+ * Exit 1 on any violation. Zero runtime dependencies.
  */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join, basename, resolve, sep } from "node:path";
+import { canVerify } from "./dictionary.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -119,7 +141,69 @@ export function checkRevealPairing(html) {
   return [];
 }
 
-/* --------------------------------------------------------------------- 4. hub link */
+/* ------------------------------------------------------------------- 4. answer leak */
+
+const LEAKCHECK = join(root, "scripts/leakcheck.mjs");
+
+/**
+ * The reveal-pairing check above counts buttons. It cannot see whether the answer behind
+ * the button is already printed on the page — and that is the failure that shipped.
+ *
+ * scripts/leakcheck.mjs has had an HTML mode since limba 2026-08-10, and on 2026-08-15 the
+ * first two generated lesson pages scored `3 of 3` and `5 of 5 items give their answer
+ * away` under it while visualcheck printed ✓ and exited 0. Neither page's author ran it:
+ * leakcheck was named in session_format.md, srs.md and playbooks/drill.md, and in none of
+ * SPEC.md, starter.html, teaching.md or playbooks/lesson.md — the four documents an agent
+ * building a page actually reads. A gate nobody is told to run is not a gate.
+ *
+ * So visualcheck runs it. leakcheck is a CLI with no exported functions and top-level
+ * `process.exit`, so this shells out rather than re-implementing the fold-and-compare — a
+ * second copy of the leak algorithm would drift from the one the scored sets use, which is
+ * the whole defect one level up. HIGH fails the page; MED stays advisory (a teaching page
+ * teaches the words its drill uses, and MED on a teach page is expected noise).
+ */
+export function checkAnswerLeak(path, html) {
+  if (!/class="ans"/.test(html)) return [];
+  if (!existsSync(LEAKCHECK)) {
+    return [
+      "scripts/leakcheck.mjs is missing — the answer-leak gate cannot run, and a page with " +
+        "reveals has not been checked. Restore it from the template before publishing.",
+    ];
+  }
+  const run = spawnSync(process.execPath, [LEAKCHECK, path], { encoding: "utf8" });
+  if (run.error) {
+    return [`answer-leak gate could not run scripts/leakcheck.mjs: ${run.error.message}`];
+  }
+  if (run.status === 0) return [];
+  const out = run.stdout ?? "";
+  if (run.status !== 1 || !out.includes("LEAK CHECK")) {
+    return [
+      `scripts/leakcheck.mjs exited ${run.status} without checking this page — the ` +
+        `answer-leak gate did not run: ${(run.stderr || out).trim().slice(0, 200)}`,
+    ];
+  }
+  const hits = [];
+  let inHigh = false;
+  for (const line of out.split("\n")) {
+    if (/^\s*HIGH —/.test(line)) {
+      inHigh = true;
+      continue;
+    }
+    if (!inHigh) continue;
+    if (!line.trim()) break;
+    hits.push(line.trim());
+  }
+  const tally = /(\d+ of \d+ items give their answer away)/.exec(out)?.[1] ?? "answers leak";
+  return [
+    `answer leak — ${tally}. A reveal whose answer is already printed on the page is a ` +
+      `worked example wearing an attempt's clothes (teaching.md → the dulap pattern). ` +
+      `Rewrite the item over a novel word, or conceal what prints it. ` +
+      `Detail: node scripts/leakcheck.mjs ${basename(path)}` +
+      (hits.length ? `\n      ${hits.join("\n      ")}` : ""),
+  ];
+}
+
+/* --------------------------------------------------------------------- 5. hub link */
 
 /**
  * Every page carries the way back (limba learner request, 2026-08-10 — a visual reached
@@ -147,7 +231,7 @@ export function checkHubLink(html, { engineDir = false } = {}) {
   return offences;
 }
 
-/* --------------------------------------------------------------- 5. self-contained */
+/* --------------------------------------------------------------- 6. self-contained */
 
 /**
  * A page must render offline forever: no CDN, no external font, no hosted copy of
@@ -169,7 +253,7 @@ export function checkSelfContained(html) {
   return offences;
 }
 
-/* ------------------------------------------------------------------ 6. token block */
+/* ------------------------------------------------------------------ 7. token block */
 
 /**
  * The token keys are the contract (docs/visual/tokens.css); every page inlines the block.
@@ -189,7 +273,7 @@ export function checkTokenBlock(html) {
   return offences;
 }
 
-/* ------------------------------------------------------------------ 7. pack tokens */
+/* ------------------------------------------------------------------ 8. pack tokens */
 
 /**
  * Gender and morpheme tokens are pack-scoped. A page colouring a gender the pack does not
@@ -219,7 +303,258 @@ export function checkPackTokens(html, pack) {
   return offences;
 }
 
-/* --------------------------------------------------------------- 8. retired claims */
+/* ---------------------------------------------------------------- 9. open word list */
+
+/** The `<table>…</table>` blocks of a page, with the line each one starts on. */
+function tables(html) {
+  const found = [];
+  for (const m of html.matchAll(/<table[\s\S]*?<\/table>/gi)) {
+    found.push({ html: m[0], line: html.slice(0, m.index).split("\n").length });
+  }
+  return found;
+}
+
+/** The `<td>`/`<th>` cells of one row, as raw markup. */
+function cells(row) {
+  return [...row.matchAll(/<(td|th)\b[\s\S]*?<\/\1>/gi)].map((m) => m[0]);
+}
+
+const cellText = (cell) => cell.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/gi, " ").trim();
+
+/** A cell that prints a target-language form: the SPEC's `.l2`, or a lang-tagged span. */
+const isTargetCell = (cell) => /class="[^"]*\bl2\b[^"]*"/.test(cell) || /\blang="/.test(cell);
+
+/** A cell of meta-language prose — the translation, the "when to use it", the note. */
+const isProseCell = (cell) => !isTargetCell(cell) && /[\p{L}]{3,}/u.test(cellText(cell));
+
+/**
+ * SPEC §1: the two-layer reveal covers every drill surface AND every teach-page word list —
+ * "a table that can only be read is a table the learner re-drills somewhere else".
+ *
+ * The German page opened with a ten-row table of phrase · translation · when-to-use, fully
+ * printed, and then drilled those same ten rows in its `.vocab` surface below. That open
+ * table is also what made its three guided attempts score 3 of 3 leaked: the answers were
+ * sitting in section 1 (found in the first generated lesson pages, 2026-08-15).
+ *
+ * The distinction this check has to hold, and states in its message: a **paradigm table** is
+ * reference material and SHOULD stay open — it prints the same lexeme in several forms
+ * across the row (`prieten` → `prieten`+`i`), so the row teaches a pattern, and
+ * teaching.md's "mark what changes" exists to make that pattern visible at a glance. A
+ * **word list** pairs ONE target form with its meaning, which is exactly the self-test the
+ * learner needs to do with one side hidden. So: one target-language cell plus prose in the
+ * row ⇒ word-list row; two or more target cells ⇒ paradigm row, left alone.
+ */
+export function checkOpenWordList(html) {
+  const offences = [];
+  for (const t of tables(html)) {
+    // Reveal machinery lives inside the table on a drill surface: `.cover`/`.val` per cell,
+    // `tr.row` per row (the .vocab surface of starter.html), or an inline `.rev` button.
+    const hasReveal = /class="[^"]*\b(cover|val|l2-side|l1-side|ans-side|rev)\b/.test(t.html);
+    if (hasReveal) continue;
+    // `</tr>` is optional in HTML and some generators omit it — falling back to a split on
+    // `<tr` keeps an unclosed table from reading as one giant row and passing silently.
+    const rows =
+      t.html.match(/<tr[\s\S]*?<\/tr>/gi) ??
+      t.html.split(/<tr\b/i).slice(1).map((r) => `<tr${r}`);
+    let paired = 0;
+    for (const row of rows) {
+      const cs = cells(row);
+      const targets = cs.filter(isTargetCell).length;
+      const prose = cs.filter(isProseCell).length;
+      if (targets === 1 && prose >= 1) paired += 1;
+    }
+    // Three rows, not one: a worked example or a single illustrative pair inside an
+    // otherwise structural table is not a word list, and failing those would push agents
+    // to hide reference material. Ten rows was the shipped defect.
+    if (paired >= 3) {
+      offences.push(
+        `line ${t.line}: open word list — ${paired} rows pair one target-language form with ` +
+          `its translation and the table carries no reveal machinery. A word list IS a drill ` +
+          `surface (SPEC §1): wrap it in .vocab with the mode filter and per-row reveal, or ` +
+          `delete it if the page already drills these words below. A PARADIGM table is the ` +
+          `other thing and stays open: its rows show the same word in two or more ` +
+          `target-language forms, which is reference the learner reads, not a self-test.`,
+      );
+    }
+  }
+  return offences;
+}
+
+/* -------------------------------------------------------------- 10. verification */
+
+/**
+ * docs/mechanics/verification.md: every asserted language fact is dictionary-verified,
+ * tutor-confirmed, or **visibly marked unverified** — "there is no fourth state", and the
+ * policy names visuals explicitly ("an unverified fact the learner cannot see is state-3 in
+ * the ledger and state-4 in reality").
+ *
+ * Both first-generated pages asserted in bulk with nothing: the Romanian page ~60 facts (15
+ * genders, 15 plurals, 30 definite forms), the German page ten phrases under a pack that
+ * ships no dictionary at all, so every one of its facts was state 3 by construction. Zero
+ * markers, no source trail, both green (found in the first generated lesson pages,
+ * 2026-08-15).
+ *
+ * "Asserted fact" cannot be detected exactly. The proxy is the surface that carries facts in
+ * bulk: a `.vocab` drill surface, or any table printing target-language forms. What the page
+ * must then carry is one of:
+ *   - `span.unv` — the `?` marker of verification.md, on the forms that are not attested;
+ *   - `.src`     — the page-level source note: what attested these facts, and when.
+ * A pack with NO dictionary adapter makes state 1 unreachable, so the note must SAY the
+ * page runs unattested — verification.md's "honest, never silent".
+ */
+export function checkVerification(html, pack) {
+  const asserts =
+    /class="vocab\b/.test(html) ||
+    tables(html).some((t) => /class="[^"]*\bl2\b/.test(t.html));
+  if (!asserts) return [];
+  const hasMarker = /class="[^"]*\bunv\b/.test(html);
+  const notes = [...html.matchAll(/<(\w+)[^>]*class="[^"]*\bsrc\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/g)]
+    .map((m) => cellText(m[2]));
+  const unattested = pack ? !canVerify(pack.dictionary) : false;
+
+  if (unattested) {
+    const banner = notes.some((n) => /unverified|unattested|not verified/i.test(n));
+    if (!banner) {
+      return [
+        `pack "${pack.code}" ships no dictionary adapter, so no fact on this page can reach ` +
+          `verification state 1 (docs/mechanics/verification.md → "the null adapter — ` +
+          `honest, never silent"). The page must carry the unverified banner: a .src note ` +
+          `saying the facts are the agent's word until a tutor confirms them, plus span.unv ` +
+          `"?" markers on the forms. Dropping the markers because nothing checks them is the ` +
+          `one thing a null-adapter instance may never do.`,
+      ];
+    }
+    return [];
+  }
+  if (!hasMarker && notes.length === 0) {
+    return [
+      `this page asserts language facts (a vocabulary or paradigm table) and carries no ` +
+        `verification trail — no span.unv "?" marker and no .src source note. ` +
+        `docs/mechanics/verification.md allows three states and no fourth: attested via the ` +
+        `pack's dictionary adapter (name the source and date in a .src note), ` +
+        `tutor-confirmed (same), or marked "?" so the learner can see it is a claim.`,
+    ];
+  }
+  return [];
+}
+
+/* -------------------------------------------------------------- 11. script range */
+
+/** Scripts a script-range violation is reported as. Latin/Common/Inherited are the base. */
+const SCRIPT_TESTS = [
+  ["Cyrillic", /\p{Script=Cyrillic}/u],
+  ["Greek", /\p{Script=Greek}/u],
+  ["Han", /\p{Script=Han}/u],
+  ["Hiragana", /\p{Script=Hiragana}/u],
+  ["Katakana", /\p{Script=Katakana}/u],
+  ["Hangul", /\p{Script=Hangul}/u],
+  ["Arabic", /\p{Script=Arabic}/u],
+  ["Hebrew", /\p{Script=Hebrew}/u],
+  ["Devanagari", /\p{Script=Devanagari}/u],
+  ["Thai", /\p{Script=Thai}/u],
+  ["Armenian", /\p{Script=Armenian}/u],
+  ["Georgian", /\p{Script=Georgian}/u],
+];
+
+/**
+ * Language ⇒ non-Latin script, by ISO code and by English name (the two forms the profile
+ * uses: `pack: uk`, `target_language: Ukrainian`). Anything absent is treated as Latin,
+ * which is always allowed — the list only has to grow when a script is wrongly flagged.
+ */
+export const SCRIPT_BY_LANGUAGE = {
+  ru: "Cyrillic", russian: "Cyrillic", uk: "Cyrillic", ukrainian: "Cyrillic",
+  be: "Cyrillic", belarusian: "Cyrillic", bg: "Cyrillic", bulgarian: "Cyrillic",
+  sr: "Cyrillic", serbian: "Cyrillic", mk: "Cyrillic", macedonian: "Cyrillic",
+  kk: "Cyrillic", kazakh: "Cyrillic", ky: "Cyrillic", kyrgyz: "Cyrillic",
+  mn: "Cyrillic", mongolian: "Cyrillic",
+  el: "Greek", greek: "Greek",
+  zh: "Han", chinese: "Han", mandarin: "Han", cantonese: "Han",
+  ja: "Han Hiragana Katakana", japanese: "Han Hiragana Katakana",
+  ko: "Hangul", korean: "Hangul",
+  ar: "Arabic", arabic: "Arabic", fa: "Arabic", persian: "Arabic", farsi: "Arabic",
+  ur: "Arabic", urdu: "Arabic",
+  he: "Hebrew", hebrew: "Hebrew", yi: "Hebrew", yiddish: "Hebrew",
+  hi: "Devanagari", hindi: "Devanagari", mr: "Devanagari", marathi: "Devanagari",
+  ne: "Devanagari", nepali: "Devanagari", sa: "Devanagari", sanskrit: "Devanagari",
+  th: "Thai", thai: "Thai",
+  hy: "Armenian", armenian: "Armenian",
+  ka: "Georgian", georgian: "Georgian",
+};
+
+/**
+ * Without a profile there is nothing to derive from, so the default is permissive — Latin
+ * plus the two scripts the engine's own reference pages print (the gallery's Ukrainian
+ * anchor `мама`, and Greek for the same reason a linguistics example would use it). It is
+ * permissive, not silent: it still catches CJK, Arabic, Hebrew, Devanagari and mojibake.
+ */
+export const DEFAULT_SCRIPTS = ["Latin", "Cyrillic", "Greek"];
+
+/** The scripts an instance may legitimately print, from its profile languages + pack code. */
+export function allowedScripts(languages) {
+  const allowed = new Set(["Latin"]);
+  if (!languages || languages.length === 0) {
+    for (const s of DEFAULT_SCRIPTS) allowed.add(s);
+    return allowed;
+  }
+  for (const lang of languages) {
+    const scripts = SCRIPT_BY_LANGUAGE[String(lang).trim().toLowerCase()];
+    if (scripts) for (const s of scripts.split(" ")) allowed.add(s);
+  }
+  return allowed;
+}
+
+/**
+ * A character from a script this instance does not use is not a language fact — it is a
+ * generation artifact, and it reaches the learner as noise in the middle of a word they are
+ * trying to learn. The German page printed `formal场合` in a learner-facing table cell,
+ * twice, and the same run wrote a mojibake `?uer` into the instance's error taxonomy; both
+ * passed every gate (found in the first generated lesson pages, 2026-08-15).
+ *
+ * Deliberately permissive: `\p{Script=Common}` and `\p{Script=Inherited}` — punctuation,
+ * digits, arrows, the circled numerals, the play glyph — are always fine, and an undeclared
+ * language falls back to Latin rather than to a failure. U+FFFD is the one absolute: a
+ * replacement character means bytes were already lost.
+ *
+ * `engineDir` pages (docs/visual/) carry labelled reference-pack specimens, so they get the
+ * permissive default set in every instance — the gallery's Ukrainian anchor must not fail
+ * inside a workspace learning Spanish.
+ */
+export function checkScriptRange(html, { languages = null, engineDir = false } = {}) {
+  const allowed = allowedScripts(engineDir ? null : languages);
+  const derived = Boolean(languages?.length) && !engineDir;
+  const offences = [];
+  const seen = new Set();
+  const lines = visibleText(html);
+  lines.forEach((line, i) => {
+    for (const m of line.matchAll(/[^\x00-\x7F]/gu)) {
+      const ch = m[0];
+      if (seen.has(ch)) continue;
+      if (ch === "�") {
+        seen.add(ch);
+        offences.push(
+          `line ${i + 1}: U+FFFD replacement character in learner-facing text — the bytes ` +
+            `behind it are already lost. Re-generate the string; never hand-patch around it.`,
+        );
+        continue;
+      }
+      if (/[\p{Script=Common}\p{Script=Inherited}]/u.test(ch)) continue;
+      const script = SCRIPT_TESTS.find(([, re]) => re.test(ch))?.[0]
+        ?? (/\p{Script=Latin}/u.test(ch) ? "Latin" : "unidentified script");
+      if (allowed.has(script)) continue;
+      seen.add(ch);
+      const code = `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")}`;
+      offences.push(
+        `line ${i + 1}: "${ch}" (${code}, ${script}) is outside the scripts this instance ` +
+          `uses {${[...allowed].join(" ")}}${derived ? "" : " (permissive default — no profile to derive from)"} ` +
+          `— in learner-facing text that is a generation artifact, not language: ` +
+          `"${line.trim().slice(0, 60)}"`,
+      );
+    }
+  });
+  return offences;
+}
+
+/* -------------------------------------------------------------- 12. retired claims */
 
 /**
  * When a claim is corrected, the correction-sweep updates the pages that taught it — and
@@ -269,21 +604,45 @@ export function checkRetiredClaims(html, rules) {
 
 /**
  * All checks over one file. `pack` may be null (template mode). `retired` is the parsed
- * rule table (readRetiredClaims). Returns offence strings, empty when the page is clean.
+ * rule table (readRetiredClaims). `languages` is the instance's language list, for the
+ * script-range check — profile languages plus the pack code, or null to take the permissive
+ * default. Returns offence strings, empty when the page is clean.
  */
-export function checkFile(path, { pack = null, retired = [] } = {}) {
+export function checkFile(path, { pack = null, retired = [], languages = null } = {}) {
   const html = readFileSync(path, "utf8");
   const engineDir = resolve(path).split(sep).join("/").includes("docs/visual/");
   return [
     ...checkAudioWiring(html),
     ...checkPlayerCount(html),
     ...checkRevealPairing(html),
+    ...checkAnswerLeak(path, html),
     ...checkHubLink(html, { engineDir }),
     ...checkSelfContained(html),
     ...checkTokenBlock(html),
     ...checkPackTokens(html, pack),
+    ...checkOpenWordList(html),
+    ...checkVerification(html, pack),
+    ...checkScriptRange(html, { languages, engineDir }),
     ...checkRetiredClaims(html, retired),
   ];
+}
+
+/**
+ * The languages an instance legitimately prints: everything the profile names, plus the
+ * pack code. Codes and English names both work (SCRIPT_BY_LANGUAGE keys both). Returns null
+ * in template mode, which selects the permissive default set.
+ */
+export function instanceLanguages(profile, pack) {
+  if (!profile) return null;
+  const langs = [
+    profile.get("target_language"),
+    profile.get("meta_language"),
+    ...profile.list("native_languages"),
+    ...profile.list("contrast_ranking").filter((t) => t !== ">"),
+    pack?.code,
+    profile.get("pack"),
+  ].filter(Boolean);
+  return langs.length ? langs : null;
 }
 
 /* ----------------------------------------------------------------------------- CLI */
@@ -335,11 +694,19 @@ if (isMain) {
   } catch {
     console.log("visualcheck: no active pack (template mode) — pack-token checks skipped.");
   }
+  let profile = null;
+  try {
+    const { loadProfile } = await import("./profile.mjs");
+    profile = loadProfile();
+  } catch {
+    profile = null;
+  }
+  const languages = instanceLanguages(profile, pack);
   const retired = readRetiredClaims(join(root, "work/visuals/README.md"));
 
   let bad = 0;
   for (const file of files) {
-    const offences = checkFile(file, { pack, retired });
+    const offences = checkFile(file, { pack, retired, languages });
     if (offences.length) {
       bad += 1;
       console.error(`\n✗ ${basename(file)}`);

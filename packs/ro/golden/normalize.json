@@ -53,5 +53,25 @@
     "input": "adresa",
     "expected": "adresa",
     "note": "a MISSING diacritic (adresa for adresă) is a language error (ORTH-DIA), never folded — normalize only repairs the input method"
+  },
+  {
+    "input": "Ǎsta",
+    "expected": "Ăsta",
+    "why": "uppercase caron A — sentence-initial, the common real case"
+  },
+  {
+    "input": "Şcoala",
+    "expected": "Școala",
+    "why": "uppercase Turkish cedilla S"
+  },
+  {
+    "input": "Śtiu",
+    "expected": "Știu",
+    "why": "uppercase S with acute"
+  },
+  {
+    "input": "Āsta",
+    "expected": "Ăsta",
+    "why": "uppercase macron A"
   }
 ]

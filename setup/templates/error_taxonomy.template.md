@@ -47,11 +47,25 @@
 
 <!-- Seed rows per the selection rule above (6–10 typical, more when the pair earns it).
      Zone = plain-language area; Example = a plausible error for THIS pair, marked ✗,
-     with the correction — generate real examples, not schemas. -->
+     with the correction — generate real examples, not schemas.
+     THE CONTRAST RULE BELOW IS NOT ADVICE. Check each row you write against it before
+     moving on, and check every row you carried over from the pack's notes.md — the pack
+     is where these came from and the pack is where they were broken. Four rows in the
+     first agent-generated pack failed it and two reached the generated instance
+     unchanged. `node scripts/packcheck.mjs <code>` lints the pack side; this file is
+     generated after that check runs, so the last reader is you. -->
 
 | Code | Zone | Example error |
 | --- | --- | --- |
 | {{CODE}} | {{ZONE}} | ✗ {{EXAMPLE}} → {{CORRECTION}} (assumed) |
+
+**Every example row shows a contrast.** The ✗ marks the wrong form, the correction follows
+`→`, and the two are different strings. A row where they are identical, where the same form
+sits on both sides, or where the ✗ marks a form the row itself calls correct teaches the
+learner nothing and gives the tally a code with no worked example — and it is the shape a
+row takes when it was ported without being understood. A code whose contrast you cannot
+write is a code you do not yet own: leave it out and let the data earn it. (Found in the
+first agent-generated language pack, 2026-08-15.)
 
 ## Scope rulings
 

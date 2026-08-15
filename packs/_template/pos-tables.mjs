@@ -6,6 +6,14 @@
  *
  * Every ROW of `endings` carries a citation or an `// unverified` comment — the list
  * decides where markPair cuts a form, so a wrong ending mis-marks every word it touches.
+ * A citation covers the rows it was checked against, not the block it sits above: the
+ * first agent-generated pack put "Source: … (Duden)" over a German list containing `-el`,
+ * which is a SINGULAR ending (Mantel, Löffel). Name two real words each ending cuts
+ * correctly, or drop it. (Found in the first agent-generated language pack, 2026-08-15.)
+ *
+ * Docblock REASONS are checked too, not just values. That same pack explained its correct
+ * `verbHeadword: null` with "German infinitives are typically cited with `zu`" — false, and
+ * setup mines this file. A wrong reason outlives a wrong value: the value gets run.
  */
 
 export const TABLES = {
@@ -38,8 +46,9 @@ export const TABLES = {
    *  Must match the manifest's `genders:` line — packcheck compares them. */
   genders: [],
 
-  /** Taught inflection endings, LONGEST FIRST. [] when the manifest says inflection: false.
-   *  Source-or-unverified per row — see GENERATE.md step 2. */
+  /** Taught inflection endings, LONGEST FIRST. MUST be [] when the manifest says
+   *  inflection: false — packcheck rejects a list under that flag, because nothing runs it
+   *  and so nothing can catch a wrong row. Source-or-unverified per row — GENERATE.md step 2. */
   endings: [],
 
   /** Count-article pair per gender, spoken by speech(). {} when articles don't exist. */
@@ -55,7 +64,11 @@ export const TABLES = {
 
   /** OPTIONAL — the manifest's `required_fact:` made checkable by state/ledgers.test.ts:
    *  rows whose target matches rowPattern must carry factPattern in notes. Omit when the
-   *  manifest declares no required fact. (ro: verbs must carry their eu-form.) */
+   *  manifest declares no required fact. (ro: verbs must carry their eu-form.)
+   *  The pair moves together: this entry without the manifest key is dead code (loadPack
+   *  gates the check on the manifest); the manifest key without this entry is an
+   *  unenforceable rule. Ask what the learner must memorise PER LEXEME because no rule
+   *  derives it — a German noun's plural, a Mandarin tone — before leaving both empty. */
   // requiredFact: { rowPattern: /.../, factPattern: /.../, hint: "..." },
 
   /** OPTIONAL — function words leakcheck.mjs won't report as leaks on their own

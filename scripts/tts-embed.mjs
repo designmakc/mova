@@ -93,6 +93,28 @@ html = html.replace(/<div class="tts"([^>]*)><\/div>/g, (_m, attrs) => {
   const text = attr(attrs, "data-text");
   if (!text) throw new Error("a .tts placeholder has no data-text");
   const en = attr(attrs, "data-en") || "";
+  // data-text is spoken; data-en is printed. A data-text carrying its own translation
+  // makes the voice read the answer aloud — through the one channel a reveal cannot
+  // conceal — and browse mode plays exactly that clip by default. Found on ten of twenty
+  // rows of a generated German page, voicing "Guten Morgen. Good morning." (2026-08-15).
+  // Compared on words, so an incidental shared token (a name, a loanword, a number)
+  // does not trip it; three consecutive gloss words inside the spoken text does.
+  if (en) {
+    const words = (s) => s.toLowerCase().match(/\p{L}+/gu) ?? [];
+    const spoken = words(text).join(" ");
+    const gloss = words(en);
+    for (let i = 0; i + 2 < gloss.length; i++) {
+      const run = gloss.slice(i, i + 3).join(" ");
+      if (spoken.includes(run)) {
+        throw new Error(
+          `a .tts placeholder speaks its own translation:\n` +
+            `  data-text="${text}"\n  data-en="${en}"\n` +
+            `data-text is the TARGET LANGUAGE ONLY — the gloss belongs in data-en, which ` +
+            `is printed and never voiced (docs/visual/SPEC.md).`,
+        );
+      }
+    }
+  }
   const slow = /\bdata-slow\b/.test(attrs);
   const id = `tts${n++}`;
   return `<div class="tts-row">

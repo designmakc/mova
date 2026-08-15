@@ -266,7 +266,11 @@ transcript dies.
 **The rule: a session that corrects a claim, retires a wording, or supersedes a taught rule
 greps `work/visuals/` and the `state/` notes for the old claim in the same session**, and
 updates in place or marks the page superseded. The close-out is not done until the sweep
-is. `scripts/visualcheck.mjs` backstops the retired wordings it can pattern-match; the
+is. `scripts/visualcheck.mjs` is now the publish gate for a page and runs the answer-leak
+check itself, so "the answer appears nowhere else" is a machine-checked property rather
+than an authoring intention — two first-ever generated pages shipped with every guided
+attempt printing its own answer (2026-08-15). It also backstops the retired wordings it
+can pattern-match; the
 sweep covers everything it cannot.
 
 ## Hard rules
