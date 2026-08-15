@@ -151,11 +151,25 @@ If a machine-queryable dictionary exists for the language, implement `dictionary
 against the adapter contract in `scripts/dictionary.mjs` (network only inside `lookup()`,
 honest User-Agent, timeout, `found:false` ≠ unreachable). **If none exists, do not fake
 one**: leave the manifest's `dictionary:` empty and state in the pack prose that facts need
-tutor confirmation or the unverified marker. packcheck deliberately never touches the
-network, so it can neither confirm nor refute your adapter — test it by hand.
+tutor confirmation or the unverified marker.
 
-**SHOW:** the `node -e` lookup of two known words with their real output, or the prose
-sentence declaring the pack has no dictionary.
+**Read `packs/SPEC.md` → "What a dictionary adapter gets wrong" before you write a line.**
+The reference pack's first adapter got four things wrong and was measured at 14 wrong
+verdicts on a real 79-row ledger. Every one came from treating a dictionary aggregator as
+if it returned one clean answer per word. It returns dozens of entries, in no useful order,
+from different source dictionaries, some about other words entirely, with the plural slot
+sometimes holding a hyphenation. Assume yours does too until you have looked.
+
+**Then record `golden/dictionary.json`** — real responses for a handful of words, replayed
+by packcheck through `options.fetch` so the parser is tested with no network. Cover:
+a plain word; a word whose entry list is long enough that the useful entry is NOT near the
+top; a homograph if the language has one; and **a word the source does not have**. Without
+this file packcheck can only check that your adapter is a function with a name, which is
+what let the reference pack ship broken. An instance's operator is learning the language —
+they cannot catch a wrong gender, so this fixture is the only thing that can.
+
+**SHOW:** the `node scripts/packcheck.mjs <code>` line proving the fixture passes, or the
+prose sentence declaring the pack has no dictionary.
 
 ## 6. Write notes.md — re-derived, not translated
 

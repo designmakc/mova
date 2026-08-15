@@ -18,9 +18,10 @@ packs/<code>/
   dictionary.mjs   export createAdapter() — fact verification           (optional)
   notes.md         prose language facts for setup generation            (required)
   golden/
-    words.json     classification fixtures                              (required)
-    pairs.json     markPair fixtures                                    (required if inflection)
-    normalize.json normalization fixtures                               (required)
+    words.json      classification fixtures                             (required)
+    pairs.json      markPair fixtures                                   (required if inflection)
+    normalize.json  normalization fixtures                              (required)
+    dictionary.json recorded lookups, replayed offline                  (expected if dictionary.mjs)
 ```
 
 Ownership markers: first line `<!-- mova:pack -->` in `.md`, `// mova:pack` in `.mjs`.
@@ -98,19 +99,47 @@ look-alike list is open; extend it (with a golden fixture) the session a new one
 
 ## `dictionary.mjs`
 
-Optional. `export function createAdapter()` returning the contract defined in
+Optional. `export function createAdapter(options?)` returning the contract defined in
 `scripts/dictionary.mjs` (the canonical docblock):
 
 ```
-{ source: string, async lookup(word) → { found, source, gender, forms, url } }
+{ source: string, async lookup(word) → { found, source, genders: string[], forms: string[], url } }
 ```
 
 Rules: network traffic only inside `lookup()` (import and `createAdapter()` are
-side-effect free — packcheck instantiates the adapter but never calls `lookup`); honest
-User-Agent, sane timeout, no retries; `found: false` for a missing entry, **throw** when
-the source is unreachable — "offline" and "not in the dictionary" must never be confused.
-A pack without a dictionary omits the file and leaves the manifest key empty —
-`loadPack()` then supplies the null adapter.
+side-effect free); honest User-Agent, sane timeout, no retries; `found: false` for a
+missing entry, **throw** when the source is unreachable — "offline" and "not in the
+dictionary" must never be confused. When `options.fetch` is passed, use it instead of the
+global `fetch`; that is what makes `golden/dictionary.json` possible. A pack without a
+dictionary omits the file and leaves the manifest key empty — `loadPack()` then supplies
+the null adapter.
+
+**`genders` is a list because a headword has senses.** Romanian `calculator` is neuter as
+*computer* and masculine as *person who calculates*; `ochi` is a noun and a verb. Report
+everything the source states for the headword and let `factcheck.mjs` apply the rule that
+one attesting sense is attestation.
+
+### What a dictionary adapter gets wrong — read this before writing one
+
+Every one of these was live in the reference pack and was measured, not imagined: over a
+real 79-row ledger the first ro adapter returned **14 wrong verdicts**, 12 of them
+contradictions against correct rows (2026-08-15). A verification tool that cries wolf on
+18% of a clean ledger is worse than none, because the learner stops reading it.
+
+1. **Do not read a window of the results.** The adapter read the first 6 of up to 184
+   entries; `obraz` has 42 and every parseable one is past index 6, so a dictionary word
+   came back NOT FOUND. Read all of them.
+2. **Match the headword.** Aggregators return entries that merely *mention* the query —
+   asking for `carte` returns `scorpion`, whose definition contains it. An entry that is
+   not ABOUT the word contributes nothing, and this is also what keeps a mis-parsed entry
+   from asserting facts.
+3. **Normalize the inflected form.** The slot that usually holds a plural also holds
+   syllabification (`(pri-e-)`), variant endings (`prieteni, -e` = the plural plus the
+   feminine counterpart's ending), and homograph markers (`vârstă^1`). Reduce it to one
+   word, or to nothing.
+4. **`found` means "the source has an entry for this word"** — not "the request
+   succeeded". Answering `found: true` on a word with no entry is how the workspace
+   fabricates a fact.
 
 ## `golden/` — fixtures, and how packcheck runs them
 
@@ -118,6 +147,15 @@ The goldens are the pack's behavior proof. For the reference pack they were gene
 running limba's original classifier, so engine and pack are provably behavior-identical
 after the split; for a new pack they encode facts the author verified (see GENERATE.md).
 
+- `dictionary.json` — `{ source, recorded, cases: [{ word, why, expect, response }] }`.
+  Each `response` is a real recorded reply from the source (trim the bodies — keep whatever
+  the parser reads); packcheck replays it through `options.fetch` and asserts
+  `lookup(word)` returns `expect` (`found`, `genders`, `forms`, order-insensitive). **At
+  least one case must expect `found: false`** — the not-in-the-dictionary branch is exactly
+  where a parser invents facts. `why` names the failure the case pins, so an author
+  changing an expectation has to say what changed. Missing the file is a warning, not an
+  error: it is possible to ship without it, and the reference pack did, and that is how
+  four defects reached a template whose users cannot check its Romanian.
 - `words.json` — `[{ target, id, expected }]`, ~30 real words spanning every facet, plus
   at least one untagged bare word with `expected: null` (the CI-failure case). packcheck
   asserts `classify(target, id) === expected` for each, that **every facet in `types` is

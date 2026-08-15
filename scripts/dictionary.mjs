@@ -2,16 +2,37 @@
 /**
  * The dictionary adapter interface — how the workspace verifies language facts.
  *
- * A pack MAY ship `packs/<code>/dictionary.mjs` exporting `createAdapter()`. The adapter
- * contract is one async method:
+ * A pack MAY ship `packs/<code>/dictionary.mjs` exporting `createAdapter(options?)`. The
+ * adapter contract is one async method:
  *
  *   lookup(word) → {
- *     found:  boolean,
- *     source: string,          // e.g. "dexonline" — named in every verification trail
- *     gender: string | null,   // one of the pack's declared gender labels, if applicable
- *     forms:  string[],        // inflected forms the source attests (plural, key conjugations)
- *     url:    string | null,   // human-checkable reference for the entry
+ *     found:   boolean,
+ *     source:  string,          // e.g. "dexonline" — named in every verification trail
+ *     genders: string[],        // EVERY gender label the source states for this headword
+ *     forms:   string[],        // inflected forms the source attests (plural, key conjugations)
+ *     url:     string | null,   // human-checkable reference for the entry
  *   }
+ *
+ * `options.fetch` — when passed, the adapter MUST use it instead of the global `fetch`.
+ * This is what lets `golden/dictionary.json` replay recorded responses so packcheck can
+ * test the parser with no network (see `packs/SPEC.md`). Adapters that ignore it still
+ * work; they just cannot be tested offline, which the pack then has to live with.
+ *
+ * WHY `genders` IS A LIST. A headword legitimately carries more than one gender, because
+ * it carries more than one sense: Romanian `calculator` is neuter as *computer* and
+ * masculine as *person who calculates*, and `ochi` is a masculine noun and also a verb.
+ * The first version of this contract returned ONE gender and one flat `forms` list, and
+ * the ro adapter filled them from whichever sense the source happened to print first.
+ * Measured against a real 79-row ledger it produced 14 wrong verdicts — 12 of them
+ * contradictions reported against correct rows, two of which are words the pack's own
+ * golden fixtures list as correct examples (2026-08-15). A verification tool that cries
+ * wolf on 18% of a clean ledger is worse than no tool: the learner learns to ignore it.
+ *
+ * So: report everything the source states, and let the consumer apply the rule that
+ * **one attesting sense is attestation** (`scripts/factcheck.mjs`). The known cost is
+ * accepted deliberately — a row pairing sense A's gender with sense B's plural passes,
+ * because gender and forms are checked independently. That is a false NEGATIVE, and in a
+ * tool whose whole value is being believed, silence is cheaper than a false alarm.
  *
  * WHY. limba's rule was "verify gender/plural/conjugation BEFORE teaching it" with
  * scripts/dex.mjs (dexonline) as the only implementation — Romanian-only. The rule is
@@ -31,7 +52,7 @@ export function nullAdapter() {
   return {
     source: "none",
     async lookup() {
-      return { found: false, source: "none", gender: null, forms: [], url: null };
+      return { found: false, source: "none", genders: [], forms: [], url: null };
     },
   };
 }

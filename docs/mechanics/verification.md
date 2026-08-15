@@ -46,14 +46,14 @@ template for years; a ninth column would strand every deployed ledger at the fir
 The marker therefore lives *inside* cells the schema already has, and every ledger reader
 either ignores it or (like `factcheck.mjs`) looks for it deliberately. The same marker works
 in a visual: the `?` sits on the printed form, and the page's conventions
-([../visual/SPEC.md](../visual/SPEC.md)) style it visibly — an unverified fact the learner
+([../visual/SPEC.md](../visual/SPEC.md)) style it visibly — **an unverified fact the learner
+cannot see is state 3 in the ledger and state 4 in reality.**
 
 On a page the markup is named: `span.unv` carries the `?` on the form, and a `.src` note
 carries the page's source trail (attested via the pack's adapter, tutor-confirmed, or the
 banner saying this pack has no dictionary and every fact is a claim). `scripts/visualcheck.mjs`
 fails a page that asserts language facts and carries neither. (Two first-ever generated
 lesson pages asserted ~60 and ~10 facts with no trail at all, 2026-08-15.)
-cannot see is state-3 in the ledger and state-4 in reality.
 
 **Promotion is explicit.** Unverified → verified means: remove the `?`, and append the trail
 to `notes` — source + date (`pl. verified dexonline 2026-08-13`, or

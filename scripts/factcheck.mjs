@@ -14,10 +14,10 @@
  * rows the source cannot find (unverified) and rows where the source's gender or forms
  * CONTRADICT what the ledger claims (the dangerous case: a wrong fact being drilled).
  *
- * A contradiction only exists where both sides state a value: the ledger's parenthetical
- * gender vs the adapter's, the ledger's recorded forms vs the adapter's attested ones
- * (compared only when the adapter returned any). Multi-segment rows (`… · …`) are checked
- * on their first segment. Exit 0 on a completed run — this is a report, not a gate; the
+ * A contradiction only exists where both sides state a value AND nothing the source states
+ * matches: the adapter reports every gender and every form the source attests across the
+ * headword's senses, and one attesting sense is attestation. Multi-segment rows (`… · …`)
+ * are checked on their first segment. Exit 0 on a completed run — this is a report, not a gate; the
  * numbers land on the hub. Exit 1 only when the source becomes unreachable mid-run.
  *
  * NETWORK-TOUCHING — one dictionary request per row, sequentially, with a polite delay.
@@ -97,6 +97,22 @@ function firstSegment(target) {
 
 const genders = new Set(pack.genders);
 const tags = pack.tables.tags ?? {};
+
+/**
+ * Compare the way the source aggregates: a headword carries several senses, and
+ * **one attesting sense is attestation**. `calculator` is neuter with plural
+ * `calculatoare` as a computer and masculine with `calculatori` as a person, and the
+ * adapter reports both — so a ledger row naming either is right, and a contradiction only
+ * exists when the source states this kind of fact and NONE of what it states is what the
+ * ledger says. The earlier `!==` and `Array.includes` comparison reported 12
+ * contradictions against a clean 79-row ledger (2026-08-15); this rule reports none.
+ *
+ * Folding matters for the same reason it matters in the ledger tests: the source may print
+ * an older orthography (`vîrste` beside `vârste`), and a spelling difference the language
+ * treats as the same word is not a contradiction.
+ */
+const fold = (s) => String(s).normalize("NFC").toLowerCase().replace(/î/g, "â").trim();
+const attests = (stated, claim) => stated.some((v) => fold(v) === fold(claim));
 const results = [];
 let verified = 0, unverified = 0, contradicted = 0, ran = 0;
 
@@ -121,10 +137,12 @@ for (const row of rows) {
     unverified++;
     problems.push(`no ${r.source} entry for "${word}" — check the headword or mark the row unverified`);
   } else {
-    if (declaredGender && r.gender && declaredGender !== r.gender) {
-      problems.push(`gender: ledger says "${declaredGender}", ${r.source} says "${r.gender}"`);
+    if (declaredGender && r.genders.length && !attests(r.genders, declaredGender)) {
+      problems.push(
+        `gender: ledger says "${declaredGender}", ${r.source} states only ${r.genders.map((g) => `"${g}"`).join(", ")}`,
+      );
     }
-    if (declaredForms.length && r.forms.length && !declaredForms.some((f) => r.forms.includes(f))) {
+    if (declaredForms.length && r.forms.length && !declaredForms.some((f) => attests(r.forms, f))) {
       problems.push(
         `forms: ledger says ${declaredForms.map((f) => `"${f}"`).join(", ")}, ${r.source} attests ${r.forms.map((f) => `"${f}"`).join(", ")}`,
       );

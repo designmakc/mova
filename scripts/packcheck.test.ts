@@ -83,6 +83,62 @@ describe("packcheck catches a hollow pack", () => {
     expect(matched(errors, /ALL 2 entries are identity/)).toHaveLength(1);
   });
 
+  /**
+   * The dictionary adapter is the one fact-source an instance CANNOT check by hand: its
+   * operator is still learning the language. Until 2026-08-15 packcheck instantiated the
+   * adapter, confirmed `lookup` was a function, and stopped — nothing in the repo ever
+   * called it, and the ro adapter was consequently wrong on 14 of 79 real ledger rows.
+   * These four tests are the four defects, each reintroduced into a copy of packs/ro.
+   */
+  it("rejects an adapter that reads only the first slice of a source's entries", async () => {
+    const repo = brokenPack((dir) =>
+      rewrite(join(dir, "dictionary.mjs"), (s) =>
+        s.replace("for (const d of definitions ?? []) {", "for (const d of (definitions ?? []).slice(0, 6)) {"),
+      ),
+    );
+    const { ok, errors } = await check("ro", repo);
+    expect(ok).toBe(false);
+    // `obraz` has 42 definitions and every parseable one sits past index 6.
+    expect(matched(errors, /lookup\("obraz"\).*"found":false/)).toHaveLength(1);
+  });
+
+  it("rejects an adapter that takes facts from entries about other words", async () => {
+    const repo = brokenPack((dir) =>
+      rewrite(join(dir, "dictionary.mjs"), (s) =>
+        s.replace("if (!head || fold(head) !== want) continue;", "if (!head) continue;"),
+      ),
+    );
+    const { ok, errors } = await check("ro", repo);
+    expect(ok).toBe(false);
+    // `carte` picks up `scorpion`; `România` has no entry and starts asserting one.
+    expect(matched(errors, /lookup\("carte"\)/)).toHaveLength(1);
+    expect(matched(errors, /lookup\("Rom[^"]*"\).*"found":true/)).toHaveLength(1);
+  });
+
+  it("rejects an adapter that stores the inflected slot raw", async () => {
+    const repo = brokenPack((dir) =>
+      rewrite(join(dir, "dictionary.mjs"), (s) =>
+        s.replace('const infl = inflOf(m[2] ?? "", rawHead);', 'const infl = (m[2] ?? "").trim();'),
+      ),
+    );
+    const { ok, errors } = await check("ro", repo);
+    expect(ok).toBe(false);
+    // dexonline prints `prieteni, -e` — the plural plus the feminine's ending.
+    expect(matched(errors, /lookup\("prieten"\)/)).toHaveLength(1);
+  });
+
+  it("rejects a dictionary fixture with no not-found case", async () => {
+    const repo = brokenPack((dir) => {
+      const path = join(dir, "golden", "dictionary.json");
+      const fixture = JSON.parse(readFileSync(path, "utf8"));
+      fixture.cases = fixture.cases.filter((c: { expect: { found: boolean } }) => c.expect.found);
+      writeFileSync(path, JSON.stringify(fixture));
+    });
+    const { ok, errors } = await check("ro", repo);
+    expect(ok).toBe(false);
+    expect(matched(errors, /no case expects found:false/)).toHaveLength(1);
+  });
+
   it("rejects a fold the prose advertises and normalize() does not perform", async () => {
     const repo = brokenPack((dir) =>
       rewrite(join(dir, "pack.md"), (s) =>

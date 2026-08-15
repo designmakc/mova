@@ -47,7 +47,8 @@
  *     lintTaxonomyRows for reuse — an instance-side test holds the generated
  *     docs/mechanics/error_taxonomy.md to the same rules);
  *   - `dictionary:` declared ⇒ dictionary.mjs exists and createAdapter() yields
- *     {source, lookup} — instantiated but NEVER called: packcheck stays off the network
+ *     {source, lookup}, and — when golden/dictionary.json exists — its parser replayed
+ *     against recorded responses through options.fetch. Still no network.
  *     (factcheck.mjs is the tool that goes online).
  *
  * packcheck imports `normalize.mjs` directly (as it already does `dictionary.mjs`) to read
@@ -593,7 +594,78 @@ export async function check(code, repoRoot = root) {
       if (typeof adapter?.lookup !== "function") {
         errors.push("dictionary.mjs: adapter.lookup must be a function");
       }
-      // Never call lookup() here — packcheck stays off the network.
+
+      // ── golden/dictionary.json — the parser, replayed offline ───────────────
+      //
+      // Until 2026-08-15 this block stopped at the two type checks above, and nothing in
+      // the repo ever called lookup(). The ro adapter was consequently wrong on 14 of 79
+      // real ledger rows — reading only the first 6 of up to 184 definitions, taking facts
+      // from entries about OTHER words, storing `prieteni, -e` where a plural belongs, and
+      // answering found:true with markup for a word that has no entry. A verification
+      // source is the one thing an instance cannot check by hand, since its operator is by
+      // definition still learning the language. It is the thing that most needs a test.
+      //
+      // The fixture records real responses and replays them through `options.fetch`, so
+      // this stays offline and deterministic. The recorded expectations are a REGRESSION
+      // guard, not a proof of correctness — each case's `why` says which failure it pins,
+      // and a pack author changing one has to say why in that field.
+      const fixturePath = join(dir, "golden", "dictionary.json");
+      if (!existsSync(fixturePath)) {
+        warnings.push(
+          "golden/dictionary.json missing — the adapter's parser has no offline proof. " +
+            "Record a few real responses (including one word with NO entry) and pin what " +
+            "lookup() returns; see packs/SPEC.md.",
+        );
+      } else {
+        const fixture = readJson(fixturePath, errors);
+        const cases = Array.isArray(fixture?.cases) ? fixture.cases : null;
+        if (!cases) {
+          errors.push("golden/dictionary.json: expected { cases: [ { word, expect, response } ] }");
+        } else if (!cases.length) {
+          errors.push("golden/dictionary.json: no cases");
+        } else if (!cases.some((c) => c?.expect?.found === false)) {
+          errors.push(
+            "golden/dictionary.json: no case expects found:false — the not-in-the-dictionary " +
+              "branch is exactly where a parser invents facts, so pin at least one word the " +
+              "source does not have",
+          );
+        } else {
+          for (const c of cases) {
+            if (!c?.word || !c?.expect || !c?.response) {
+              errors.push(`golden/dictionary.json: a case is missing word/expect/response`);
+              continue;
+            }
+            const stub = async () => ({
+              status: c.response.status ?? 200,
+              ok: (c.response.status ?? 200) === 200,
+              json: async () => c.response,
+            });
+            let got;
+            try {
+              got = await mod.createAdapter({ fetch: stub }).lookup(c.word);
+            } catch (e) {
+              errors.push(`golden/dictionary.json: lookup(${JSON.stringify(c.word)}) threw: ${e.message}`);
+              continue;
+            }
+            if (got?.fetchedLive) {
+              errors.push(
+                `dictionary.mjs ignored options.fetch on ${JSON.stringify(c.word)} — the adapter ` +
+                  `must use the injected fetch, or it cannot be tested offline`,
+              );
+            }
+            const sorted = (v) => [...(v ?? [])].slice().sort();
+            const actual = { found: got?.found, genders: sorted(got?.genders), forms: sorted(got?.forms) };
+            const want = { found: c.expect.found, genders: sorted(c.expect.genders), forms: sorted(c.expect.forms) };
+            if (JSON.stringify(actual) !== JSON.stringify(want)) {
+              errors.push(
+                `golden/dictionary.json: lookup(${JSON.stringify(c.word)}) → ` +
+                  `${JSON.stringify(actual)}, expected ${JSON.stringify(want)}` +
+                  (c.why ? `\n      this case pins: ${c.why}` : ""),
+              );
+            }
+          }
+        }
+      }
     } catch (e) {
       errors.push(`dictionary.mjs: createAdapter() failed: ${e.message}`);
     }

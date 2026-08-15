@@ -4,6 +4,52 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.5.1 — 2026-08-15
+
+The Romanian pack's dictionary adapter — the one thing an instance cannot check by hand —
+was wrong about 18% of the time, and nothing in the repo ever called it.
+
+instance-impact: engine files auto-update. An instance on the `ro` pack should re-run
+`node scripts/factcheck.mjs --out work/.factcheck.json` and regenerate the hub: every
+verdict the old adapter recorded was drawn from a parser with four defects, so a clean
+sweep and a scary sweep are equally untrustworthy until it is re-run.
+
+- **The adapter reported a wrong verdict on 14 of 79 real ledger rows.** Measured against
+  the reference instance's actual vocabulary ledger: 12 contradictions raised against
+  correct rows, and 2 dictionary words reported as absent. Two of the false positives are
+  words this pack's own `golden/words.json` lists as correct examples. `verification.md`
+  exists because a mova learner cannot check the agent's claims about the target language;
+  the adapter is the mechanism that check runs on, and a verification tool that cries wolf
+  on 18% of a clean ledger is worse than none, because the learner stops reading it. Four
+  causes, all now fixed and all pinned by fixtures:
+  - It read `definitions.slice(0, 6)`. dexonline returns up to 184 entries in no useful
+    order; `obraz` has 42 and every parseable one sits past index 6, so a plain dictionary
+    word came back NOT FOUND.
+  - It captured the headword and discarded it, so any entry that merely *mentioned* the
+    query contributed facts. `ochi` (eye) came back carrying the conjugation of the
+    unrelated verb *a ochi*, "to aim"; `carte` could pick up `scorpion`.
+  - It stored the inflected slot raw. For a masculine/feminine pair dexonline prints
+    `prieteni, -e` — the plural, then the feminine counterpart's *ending* — so a correct
+    row never matched its own plural. The slot also holds syllabification (`(pri-e-)`).
+  - It answered `found: true` for words with no entry at all: `România` came back with
+    `forms: ["#sf#"]`, markup from another slot asserted as an attested form.
+- **`lookup()` now reports every sense, because a headword has several.** The contract's
+  `gender: string | null` becomes `genders: string[]`: Romanian `calculator` is neuter as
+  *computer* and masculine as *person who calculates*, and `ochi` is a noun and a verb.
+  `factcheck.mjs` applies the rule that **one attesting sense is attestation** — a
+  contradiction now means the source states this kind of fact and none of what it states is
+  what the ledger says. It also folds `î`/`â` before comparing, so an older orthography in
+  the source is not a contradiction. On the same 79 rows: 0 contradictions.
+- **`golden/dictionary.json` tests the parser offline.** `createAdapter(options)` now
+  honors `options.fetch`, so packcheck replays recorded real responses — eight words
+  covering each defect, including one the source does not have — and asserts what
+  `lookup()` returns. Before this, packcheck instantiated the adapter, checked that
+  `lookup` was a function, and stopped; nothing in the repo called it. Reintroducing any of
+  the first three defects now fails `packcheck ro` with the case's own explanation of what
+  it pins. The fixture is a warning rather than an error when absent, and `packs/SPEC.md`
+  gains "What a dictionary adapter gets wrong" so the next pack author reads the four
+  failures before writing one.
+
 ## 0.5.0 — 2026-08-15
 
 Fixes from the first onboarding run driven by a real person rather than a test harness.

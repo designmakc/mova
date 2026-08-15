@@ -1,0 +1,1975 @@
+{
+ "source": "dexonline",
+ "recorded": "2026-08-15",
+ "cases": [
+  {
+   "word": "prieten",
+   "why": "The inflected slot holds `prieteni, -e` — the plural, then the FEMININE counterpart's ending. Storing it raw made every masculine/feminine pair row contradict its own correct plural.",
+   "expect": {
+    "found": true,
+    "genders": [
+     "m"
+    ],
+    "forms": [
+     "prieteni"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@PRI&#039;ETEN, -Ă,@ $prieteni, -e,$ #s. m.# și #f.# Persoană de care cineva este legat printr-o afecțiune deosebită, ba"
+     },
+     {
+      "internalRep": "@$pri&#039;eten, ~ă$@\n[#At:# PSALT, 181 / #P:# $pri-e~$ / #V:# (#înv#) @$pre&#039;at-, prei&#039;atin, ~i&#039;at~, ~i"
+     },
+     {
+      "internalRep": "@PRIET&#039;EN, -Ă,@ $prieteni, -e,$ #s. m.# și #f.# @1.@ Persoană de care cineva este strîns legat printr-o afecțiune d"
+     },
+     {
+      "internalRep": "@PRI&#039;ETEN ~ă (~i, ~e)@ $m. și f.$ ($folosit și ca termen de adresare$) Fiecare dintre persoanele (sau colectivități"
+     },
+     {
+      "internalRep": "@prieten@ m. amic. [Vechiu-rom.: @priiaten@ = slav. PRIĬATELĬ]."
+     },
+     {
+      "internalRep": "@priéten@ (vest) și @-in@ (est), @-ă@ s. (vsl. $priĭatelĭ,$ amic, și $priĭatĭnŭ,$ plăcut, d. $priĭati,$ a prii; bg. $pri"
+     },
+     {
+      "internalRep": "@PRI&#039;ETIN, -Ă@ #s. m.# și #f.# #v.# @prieten.@"
+     },
+     {
+      "internalRep": "$@pre&#039;aten, ~ă@$ $#smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "@$prei&#039;atin, ~ă$@ $#smf#$ #vz# $@prieten@$"
+     },
+     {
+      "internalRep": "$@pr&#039;eten, ~ă@$ $#smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@preti&#039;en, ~ă@$ $#smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@pr&#039;etin, ~ă@ #smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@pri&#039;aten, ~ă@$ $#smf#$, $#a#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@pri&#039;atin, ~ă@$ $#smf#$, $#a#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "@$pri&#039;etin, ~ă$@ $#smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@prii&#039;atel@$ $#sm#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@prii&#039;aten, ~ă@$ $#smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "$@prii&#039;atin, ~ă@$ $#smf#$ #vz# @$prieten$@"
+     },
+     {
+      "internalRep": "@AMICUS PLATO, SED MAGIS AMICA VERITAS@ (#lat.#) = Mi-e drag Platon, dar mai drag îmi este adevărul. Nu este de ajuns ca"
+     },
+     {
+      "internalRep": "@DUȘM&#039;AN@ I. $#sm.#$. @DUȘM&#039;ANĂ@ ($#pl.#$-ne), #‼# @DUȘM&#039;ANCĂ@ ($#pl.#$ -ce) $#sf.#$ 1 Acela, aceea care "
+     },
+     {
+      "internalRep": "@PRET&#039;IN, -Ă@ #s. m.# și #f.# #v.# @prieten.@"
+     },
+     {
+      "internalRep": "@préten,@ V. @prieten.@"
+     },
+     {
+      "internalRep": "@prétin,@ V. @prieten.@"
+     },
+     {
+      "internalRep": "@priátin,@ V. @prieten.@"
+     },
+     {
+      "internalRep": "@!pri&#039;eten@ (#desp.# $pri-e-$) #s.# #m.#, #voc.# $pri&#039;etene$; #pl.# $pri&#039;eteni$"
+     },
+     {
+      "internalRep": "@pri&#039;eten@ $(pri-e-)$ #s. m.#, #pl.# $pri&#039;eteni$"
+     },
+     {
+      "internalRep": "@pri&#039;eten@ s. m. (sil. $pri-e-$), pl. $pri&#039;eteni$"
+     },
+     {
+      "internalRep": "@prieten@ ($i-e$)"
+     },
+     {
+      "internalRep": "@prieten@."
+     },
+     {
+      "internalRep": "@pri&#039;eten (pri&#039;eteni),@ #s. m.# - Amic. - #Var.# #înv.# $priiaten,$ #Mold.# $prietin,$ #Trans.# $pretin,$ #Olt"
+     },
+     {
+      "internalRep": "@AMICUS CERTUS IN RE INCERTA CERNITUR@ (#lat.#) $prietenul sigur se cunoaște într-o împrejurare nesigură$ - Cicero, "
+     },
+     {
+      "internalRep": "@AMICUS PLATO, SED MAGIS AMICA VERITAS@ (#lat.#) $prieten mi-e Platon, dar mai prieten adevărul$ - Filozoful alexandrin "
+     },
+     {
+      "internalRep": "@DONEC ERIS FELIX, MULTOS NUMERABIS AMICOS@ (#lat.#) $cât timp vei fi fericit, vei avea mulți prieteni$ - Ovidiu, &quot;"
+     },
+     {
+      "internalRep": "@OLEUM ET OPERAM PERDIDISTI, AMICE!@ (#lat.#) $ți-ai cheltuit zadarnic uleiul (din lampă) și osteneala, prietene!$ - Dic"
+     },
+     {
+      "internalRep": "@prieten,@ $prieteni #s. m.# (#iron.#)$ rus; sovietic."
+     },
+     {
+      "internalRep": "@a fi prieten la cataramă / la toartă@ $(cu cineva) #expr.#$ a fi prieten foarte bun ($cu cineva$)."
+     },
+     {
+      "internalRep": "@preten,@ $preteni #s. m.# (#adol.#)$ prieten, amic."
+     },
+     {
+      "internalRep": "@pretin,@ $pretini #s. m.# (#glum.#)$ prieten."
+     },
+     {
+      "internalRep": "@prieteni la cataramă / la toartă@ $#expr.#$ prieteni foarte buni, prieteni nedespărțiți."
+     },
+     {
+      "internalRep": "@PRI&#039;ETEN@ s. v. $asociat, părtaș, tovarăș.$"
+     },
+     {
+      "internalRep": "@PRI&#039;ETEN@ s. @1.@ amic, (pop.) fârtat, (reg.) ortac, (înv.) libovnic, prietnic, soț, soție. $(S-a întâlnit cu \\~ii"
+     },
+     {
+      "internalRep": "@PRI&#039;ETEN@ #s.# @1.@ amic, (#pop.#) fîrt&#039;at, (#reg.#) ort&#039;ac, (#înv.#) lib&#039;ovnic, pri&#039;etnic, so"
+     },
+     {
+      "internalRep": "@pri&#039;eten@ #s.# #v.# ASOCIAT.PĂRTAȘ, TOVARĂȘ."
+     },
+     {
+      "internalRep": "@Prieten@ ≠ adversar, dușman, inamic, potrivnic, vrăjmaș, neprieten"
+     },
+     {
+      "internalRep": "@A quoi bon tant d\\&#039;amis? Un seul suffit quand il nous aime.@ (fr. &quot;La ce bun atîția prieteni? Unul singur e d"
+     },
+     {
+      "internalRep": "@Amicus humani generis@ - (lat. &quot;Amicul speței umane&quot; sau, mai potrivit, &quot;Prietenul neamului omenesc"
+     },
+     {
+      "internalRep": "@Amicus Plato sed magis amica veritas@ (lat. &quot;Mi-e prieten Platon, dar mai prieten mi-e adevărul&quot;). Cuvintele "
+     },
+     {
+      "internalRep": "@Donec eris felix, multos numerabis amicos@ (lat. &quot;Atîta vreme cît vei fi fericit, vei număra mulți amici&quot;) - "
+     },
+     {
+      "internalRep": "@Grau, treuer Freund, ist alle Theorie@ (germ. &quot;Cenușie e, prietene scump, orice teorie&quot;) - E un vers (2038) d"
+     },
+     {
+      "internalRep": "@Il vaut mieux perdre un bon mot qu\\&#039;un ami@ (fr. &quot;Mai bine să pierzi o vorbă de spirit decît un prieten&quot;"
+     },
+     {
+      "internalRep": "@Les bons comptes font les bons amis@ (fr. &quot;Socotelile bune fac prieteni buni&quot;, sau mai limpede: &quot;Socotea"
+     },
+     {
+      "internalRep": "@Potius amicum, quam dictum perdendi@ (lat. &quot;Mai bine să pierzi un prieten decît un cuvînt de spirit&quot;) - Vezi:"
+     },
+     {
+      "internalRep": "@PRIETEN@ #s.# #m.# (#Ban.#) Rudă de sînge. $Consaguineus. Pretien. Attyafi.$ #LEX. MARS.#, 196.\nEtimologie: #bg.# @prij"
+     }
+    ]
+   }
+  },
+  {
+   "word": "ochi",
+   "why": "184 definitions. The noun `ochi` (eye, pl. ochi) and the verb `a ochi` (to aim, eu ochesc) share a headword, so both forms are legitimately attested and the consumer picks.",
+   "expect": {
+    "found": true,
+    "genders": [
+     "m"
+    ],
+    "forms": [
+     "ochesc",
+     "ochi"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@OCHI^1,@ (@I, II 4, 7, 11, 12, III@) $ochi,$ #s. m.#, (@II 1, 2, 3, 4, 5, 6, 8, 9, 10, 13@) $ochiuri,$ #s. n.# @I.@ #S."
+     },
+     {
+      "internalRep": "@OCH&#039;I^2,@ $ochesc,$ #vb.# IV. @1.@ #Intranz.# A potrivi o armă la ochi pentru ca proiectilul să nimerească ținta; "
+     },
+     {
+      "internalRep": "@$och&#039;i^2$@\n[#At:# ANON. CAR. / #V:# (#îrg#) @$oche&#039;a$@ / #Pzi:# $och&#039;esc$ / #E:# $ochi^1$]\n@1@ $#vt#$ A "
+     },
+     {
+      "internalRep": "@$ochi^1$@\n[#At:# PSALT. HUR. 54^{r}/6 / #Pl#: (@1-91, 124-165)@ $~,$ (@92-123@) $~uri$ / #E:# #ml# @$oc(u)lus$@]\n@1@ $#"
+     },
+     {
+      "internalRep": "@OCH&#039;I@ ($ochesc$). #‼#@OCHI&#039;A@ ($ochiez$) $#vb.# #tr.#$ și $#intr.#$ A ținti, a lua la %ochi%, la cătare (cu "
+     },
+     {
+      "internalRep": "@&#039;OCHI^1,@ (@I, II 4, 7, 11, 12, III@) $ochi,$ #s. m.#, (@II 1, 2, 3, 4, 5, 6, 8, 9, 10, 13@) $ochiuri,$ #s. n.# @I"
+     },
+     {
+      "internalRep": "@OCHI^1,@ (@I, II 4, 7, 12@) $ochi,$ #s. m.#, (@II 1, 2, 3, 4, 5, 8, 9, 10, 11@) $ochiuri,$ #s. n.# @I. 1.@ Fiecare dint"
+     },
+     {
+      "internalRep": "@OCH&#039;I^2,@ $ochesc,$ #vb.# IV. @1.@ %#Intranz.#% A potrivi o armă la ochi pentru ca proiectilul să nimerească ținta"
+     },
+     {
+      "internalRep": "@&#039;ochi@ #s.# #m.# în #sint.# #s.# $(cooperativa/întreprinderea) ochiul și timpanul$ (#fam.#, #pop.#) Securitatea (î"
+     },
+     {
+      "internalRep": "@OCHI^2 &#039;ochiuri@ $n.$ 1) Placă de sticlă fixată în fiecare cadru al unei ferestre. 2) Deschizătură de dimensiuni r"
+     },
+     {
+      "internalRep": "@A OCH&#039;I och&#039;esc 1.@ $intranz.$ A potrivi din ochi ținta pentru a putea nimeri; a ținti. 2. $tranz.$ 1) A lua "
+     },
+     {
+      "internalRep": "@A SE OCH&#039;I@ $pers.3$ @se och&#039;ește@ $intranz.$ ($despre suprafețe de teren înzăpezite)$ A se acoperi cu ochiur"
+     },
+     {
+      "internalRep": "@OCHI^1 ~@ $m.$ @I.@ 1) $(la om și la animale)$ Organ-pereche al văzului, situat (simetric) pe partea din față a capului"
+     },
+     {
+      "internalRep": "@ochì@ v. @1.@ a pune ochii pe cineva: $se vede că el o ochise$ ISP.; @2.@ a lua la ochiu, a ținti."
+     },
+     {
+      "internalRep": "@ochĭ@ m., pl. tot așa (lat. $óculus$ și $óclus,$ dim. d. $*ocus,$ vgr. $ophthalmós,$ [răd. $op,$ de unde vine $optic$];"
+     },
+     {
+      "internalRep": "@$oche&#039;a$@ $#v#$ #vz# $@ochi^2@$"
+     },
+     {
+      "internalRep": "@B&#039;OU@ $#sm.#$ 1 #🐒# Animal domestic din familia rumegătoarelor, cu trupul mare și robust, cu coarnele lungi și gă"
+     },
+     {
+      "internalRep": "@#*# CIOCLEJ&#039;EL@ $#sm.# #Bucov.#$ #🐦# @&#039;OCHIUL@-@B&#039;OULUI@ [%cioclej%; #comp.# $gătejel$, un alt nume dat"
+     },
+     {
+      "internalRep": "@EN TÊTE-À-TÊTE@ (#fr.#) = Între patru ochi."
+     },
+     {
+      "internalRep": "@FERESTRELE AU OCHI, IAR PEREȚII URECHI@ = Taina greu se păstrează."
+     },
+     {
+      "internalRep": "@GR&#039;ÎU@ I. ($#pl.#$ grîe) $#sn.#$ #🌿# 1 Plantă graminee din grupul cerealelor, din al cărei spic măcinat și transf"
+     },
+     {
+      "internalRep": "@NU DORM TOȚI CÎȚI AU OCHII ÎNCHIȘI@ = Aparența înșală."
+     },
+     {
+      "internalRep": "@N&#039;U-MĂ-UIT&#039;A@ $#sf.#$ #🌿# 1 Plantă ce crește în pădurile de la munte, cu flori mici albastre sau roșietice; "
+     },
+     {
+      "internalRep": "@&#039;OCHIU@ 1. $#sm.#$ 1 #🫀# Organul vederii (#🖼# 3396): $~ drept, stîng$; $ochi negri, albaștri, verzi, căprii, ca "
+     },
+     {
+      "internalRep": "@PRINDE ORBUL, SCOATE-I OCHII@ (Pr.) = A umbla după ceva nerealizabil."
+     },
+     {
+      "internalRep": "@UR&#039;ECHE@ $#sf.#$ #🫀# 1 Organul auzului (#🖼# 5178, 5179): $rost au și nu grăesc, ochi au și nu văd, urechi au și "
+     },
+     {
+      "internalRep": "@băi&#039;at cu ochi alb&#039;aștri / cenușii@ #s.# #m.# Securist * $&quot;Acest om, care a crescut 7 copii, deși timp d"
+     },
+     {
+      "internalRep": "@ochiu@ m. (pl. @ochi@) @1.@ organ al vederii; @2.@ vedere, privire: $a-și arunca ochii asupra cuiva;$ @a mânca (sorbi) "
+     },
+     {
+      "internalRep": "@ochésc@ v. tr. (d. $ochĭ$). Ĭaŭ la ochĭ, îndrept pușca (tunu) spre o țintă, țintesc: $a ochi un lup. Fig.$ Îmĭ aleg, ca"
+     },
+     {
+      "internalRep": "@ochi^{2}@ (de apă; de fereastră; la o împletitură; la plită; mâncare) #s.# #n.#, #pl.# $&#039;ochiuri$"
+     },
+     {
+      "internalRep": "@och&#039;i^{1} (a ~)@ #vb.#, #ind.# #prez.# 1 #sg.# și 3 #pl.# $och&#039;esc$, 3 #sg.# $och&#039;ește$, #imperf.# 1 $oc"
+     },
+     {
+      "internalRep": "@ochi^{4}@ (organul vederii; mugur; privire) #s.# #m.#, #pl.# $ochi$, #art.# $&#039;ochii$"
+     },
+     {
+      "internalRep": "@+ochi^{3}@ (#fam.#) #adv.# ($plin ~$)"
+     },
+     {
+      "internalRep": "@ochi^2@ (de fereastră, de pădure, la o împletitură, la plită, mâncare) #s. n.#, #pl.# $&#039;ochiuri$"
+     },
+     {
+      "internalRep": "@och&#039;i^3@ @(a ~)@ #vb.#, #ind.# #prez.# 1 #sg.# și 3 #pl.# $och&#039;esc,$ #imperf.# 3 #sg.# $oche&#039;a;$ #conj.#"
+     },
+     {
+      "internalRep": "@ochi^1@ (organul vederii, mugur) #s. m.#, #pl.# $ochi,$ #art.# $&#039;ochii$"
+     },
+     {
+      "internalRep": "@ochi@ (de fereastră, de pădure, la o împletitură, la plită, mâncare) s. n., pl. $&#039;ochiuri$"
+     },
+     {
+      "internalRep": "@och&#039;i@ vb., ind. prez. 1 sg. și 3 pl. $och&#039;esc,$ imperf. 3 sg. $oche&#039;a;$ conj. prez. 3 sg. și pl. $oche"
+     },
+     {
+      "internalRep": "@ochi@ (organul vederii, mugur) s. m., pl. $ochi$"
+     },
+     {
+      "internalRep": "@och&#039;i@ (#conj.# $ochească$)"
+     },
+     {
+      "internalRep": "@&#039;ochi@ (#subst.# #sg.# și #pl.#)"
+     },
+     {
+      "internalRep": "@+de ochi@ #prep.# + #s.# #m.# #pl.# ($boală ~$)"
+     },
+     {
+      "internalRep": "@+ochi de pis&#039;ică@ (ochii pisicii) #s.# #m.# + #prep.# + #s.# #f.#"
+     },
+     {
+      "internalRep": "@ochi-de-pis&#039;ică@ (disc reflectorizant) #s.# #m.#, #pl.# $ochi-de-pis&#039;ică$"
+     },
+     {
+      "internalRep": "@ochii-păsăr&#039;uicii@ (plantă) #s.# #m.# #art.#"
+     },
+     {
+      "internalRep": "@ochiul-b&#039;oului@ (plantă) #s.# #m.# #art.#"
+     },
+     {
+      "internalRep": "@ochiul-pă&#039;unului@ (fluture) #s.# #m.# #art.#"
+     },
+     {
+      "internalRep": "@!Ochiul-T&#039;aurului@ (stea) (#desp.# $-Ta-u-$) #s.# propriu #m.# #art.#"
+     },
+     {
+      "internalRep": "@!ochi-de-pis&#039;ică@ #s. m.#, (discuri reflectorizante) #pl.# $ochi-de-pis&#039;ică$"
+     },
+     {
+      "internalRep": "@!&#039;ochii-păsăr&#039;uicii@ (plantă) #s. m.# #art.#{{#s. m.# #pl.# #art.#/37916}}"
+     },
+     {
+      "internalRep": "@!&#039;ochiul-b&#039;oului@ (plantă) #s. m.# #art.#"
+     },
+     {
+      "internalRep": "@!&#039;ochiul-pă&#039;unului@ (fluture) #s. m.# #art.#"
+     },
+     {
+      "internalRep": "@&#039;Ochiul-T&#039;aurului@ (stea) $(-Ta-u-)$ #s.# propriu #m.#"
+     },
+     {
+      "internalRep": "@&#039;ochiul-pă&#039;unului@ (#zool.#) #s.# #m.#"
+     },
+     {
+      "internalRep": "@&#039;ochi-de-pis&#039;ică@ (tehn., mineral.) s. m."
+     },
+     {
+      "internalRep": "@&#039;ochii-păsăr&#039;uicii@ (bot.) s. m."
+     },
+     {
+      "internalRep": "@&#039;ochiul-b&#039;oului@ (bot.) s. m."
+     },
+     {
+      "internalRep": "@&#039;ochiul-pă&#039;unului@ (zool.) s. m."
+     },
+     {
+      "internalRep": "@&#039;Ochiul-T&#039;aurului@ (astron.) s. pr. m."
+     },
+     {
+      "internalRep": "@ochiul-boului@"
+     },
+     {
+      "internalRep": "@ochesc@, -chiască 3 $#conj.#$, -chiam 1 $#imp.#$"
+     },
+     {
+      "internalRep": "@ochiu@, ochi ($organul vederii$) $și$ ochiuri ($de poiană$, $de fereastră; la o împletitură; mâncare de ouă$)."
+     },
+     {
+      "internalRep": "@ochiul-boului@."
+     },
+     {
+      "internalRep": "@&#039;ochi (och&#039;i),@ #s. m.# - @1.@ Organ al văzului. - @2.@ Vedere. - @3.@ Butonieră, cheutoare. - @4.@ Adîncitur"
+     },
+     {
+      "internalRep": "@OCHI@ s.n. În gastronomie, preparat culinar dintr-un ou întreg, desfăcut din coajă, prăjit în tigaie sau la capac, fără"
+     },
+     {
+      "internalRep": "@ochi de pasăre@ (sedim.), (engl.= $@bird\\&#039;s eye@$) structură internă a lutitelor argiloase sau calcaroase determin"
+     },
+     {
+      "internalRep": "@OCHI@ subst. @1.@ - (Sd XVI; C Ștef). @2.@ $Ochi-albi$ t. @2.@ $Ochi-roșii$ Gh. (Meșt Cr 125). $Oĭchi,$ b., munt. (RI X"
+     },
+     {
+      "internalRep": "@OCHIUL DULĂULUI,@ numele popular al stelei $Sirius$ din constelația Câinele Mare."
+     },
+     {
+      "internalRep": "@OCULOS HABENT ET NON VIDENT@ (#lat.#) $au ochi și nu văd$ - &quot;$Oculos habent et non videbunt. Quid habet aures audi"
+     },
+     {
+      "internalRep": "@CALLISTEPHUS@ Ness, $OCHIUL BOULUI, CALISTEFUS,$ fam. $Compositae.$ Gen cu o singură specie originară din China și Japo"
+     },
+     {
+      "internalRep": "@SAXIFRAGA@ L., $SAXIFRAGA, OCHII ȘORICELULUI,$ fam. $Saxifragaceae.$ Gen originar din China și Japonia, peste 200 speci"
+     },
+     {
+      "internalRep": "@OCHI@ alunecări, aruncători, binoclu, faruri, felinare, lanterne, lămpi, lentile, obloane, ocheane, oglinzi, semafoare."
+     },
+     {
+      "internalRep": "@ochi@ $#s. m.# #invar.# (#adol.#, #glum.#)$ sân de femeie."
+     },
+     {
+      "internalRep": "@a@ ($nu$) @fi văzut cu ochi buni de către cineva@ $#expr.#$ a ($nu$) avea parte de încrederea sau bunăvoința cuiva."
+     },
+     {
+      "internalRep": "@a arunca praf în ochi@ $#expr.#$ a amăgi, a înșela"
+     },
+     {
+      "internalRep": "@a arunca șperlă-n ochi@ $#expr.# (#intl.#)$ a amăgi, a înșela."
+     },
+     {
+      "internalRep": "@a avea perdea la ochi@ $#expr.#$ a nu pricepe un lucru"
+     },
+     {
+      "internalRep": "@a bate la ochi@ $#expr.#$ a fi suspect / dubios; a atrage atenția."
+     },
+     {
+      "internalRep": "@a beli ochii cât cepele@ $#expr.# (#vulg.#)$ a face ochii mari de mirare."
+     },
+     {
+      "internalRep": "@a da ochii în gene@ $#expr.#$ a ațipi, a adormi."
+     },
+     {
+      "internalRep": "@a face@ ($cuiva$) @ochi dulci@ $#expr.#$ a încerca să cucerească ($pe cineva$)."
+     },
+     {
+      "internalRep": "@a face ochi@ $#expr.#$ a se trezi, a se trezi din somn."
+     },
+     {
+      "internalRep": "@a fi mai flămând cu ochii decât cu burta@ $#expr.#$ a fi dornic de cunoaștere / de învățătură."
+     },
+     {
+      "internalRep": "@a fi numai ochi și urechi@ $#expr.#$ a fi foarte atent la ceea ce se întâmplă în jur."
+     },
+     {
+      "internalRep": "@a i se face negru înaintea ochilor@ $#expr.#$ a se enerva, a se înfuria."
+     },
+     {
+      "internalRep": "@a i se lua un văl de pe ochi@ $#expr.#$ a începe să vadă / să judece limpede."
+     },
+     {
+      "internalRep": "@a i se pune un văl pe ochi@ $#expr.#$ a înceta să vadă / să judece limpede."
+     },
+     {
+      "internalRep": "@a i se scurge ochii după cineva@ $#expr.#$ a-i face plăcere să vadă pe cineva; a simți o atracție puternică pentru cine"
+     },
+     {
+      "internalRep": "@a închide ochii@ $(într-o chestiune) #expr.#$ a mușamaliza, a trece sub tăcere ($o chestiune$)."
+     },
+     {
+      "internalRep": "@a lăsa@ ($pe cineva$) @cu ochii-n soare@ $#expr.#$ @1.@ a face ($pe cineva$) să aștepte mult și fără rost. @2.@ a retra"
+     },
+     {
+      "internalRep": "@a lua la ochi@ $#expr.#$ @1.@ a remarca. @2.@ a urmări insistent cu privirea. @3.@ a ține sub observație comportamentul"
+     },
+     {
+      "internalRep": "@a nu pierde din ochi pe cineva@ $#expr.#$ a îndrăgi foarte tare pe cineva."
+     },
+     {
+      "internalRep": "@a o lua la ochi@ $#expr.#$ @1.@ a primi o bătaie zdravănă. @2.@ a suferi un afront."
+     },
+     {
+      "internalRep": "@a păzi@ $(ceva)$ @ca pe butelie / ochii din cap@ $#expr.#$ a păzi $(ceva)$ cu multă grijă"
+     },
+     {
+      "internalRep": "@a pișa ochii@ $#expr.# (#vulg.#)$ a plânge."
+     },
+     {
+      "internalRep": "@a privi cu ochi buni@ ($pe cineva$) $#expr.#$ a avea o părere bună ($despre cineva$)."
+     },
+     {
+      "internalRep": "@a pune ochii@ ($pe cineva$) $#expr.#$ @1.@ a dori să stabilească o relație cu cineva ($erotică, profesională, de priete"
+     },
+     {
+      "internalRep": "@a remaia ochiul@ $#expr.# (#er.# #glum.#)$ a avea contact sexual."
+     },
+     {
+      "internalRep": "@a sări în ochi@ $#expr.#$ @1.@ a fi evident. @2.@ a fi strident, a ieși în evidență în mod exagerat."
+     },
+     {
+      "internalRep": "@a scoate@ ($cuiva$) @ochii@ ($cu ceva$) $#expr.#$ a-i face ($cuiva$) reproșuri ($în legătură cu ceva$)."
+     },
+     {
+      "internalRep": "@a se avea ca sarea-n ochi@ $#expr.#$ a se antipatiza"
+     },
+     {
+      "internalRep": "@a se înțelege din ochi@ $(cu cineva) #expr.#$ a schimba ($cu cineva$) priviri încărcate de o semnificație ascunsă."
+     },
+     {
+      "internalRep": "@a se uita cu un ochi la făină și cu unul la slănină@ $#expr.# (#pop.#)$ a fi sașiu, a suferi de strabism."
+     },
+     {
+      "internalRep": "@a se zgâria pe ochi@ $#expr.#$ a se necăji, a se supăra; a-i părea rău ($de cineva / de ceva$)."
+     },
+     {
+      "internalRep": "@a sorbi@ ($pe cineva$) @din ochi@ $#expr.#$ a privi ($pe cineva$) cu mare dragoste."
+     },
+     {
+      "internalRep": "@a sta ca un spin în coasta / în inima / în ochii cuiva@ $#expr.#$ a nu fi pe placul cuiva, a constitui o prezență neplă"
+     },
+     {
+      "internalRep": "@a trage cu ochiul@ $#expr.#$ a privi pe furiș."
+     },
+     {
+      "internalRep": "@a vedea moartea cu ochii@ $#expr.#$ a fi la un pas de moarte, a trece pe lângă moarte, a scăpa de moarte ($dintr-un acc"
+     },
+     {
+      "internalRep": "@a vedea paiul din ochiul altuia și a nu vedea bârna din ochiul tău@ $#expr.#$ a manifesta o exigență / o severitate exa"
+     },
+     {
+      "internalRep": "@a vedea roșu înaintea ochilor@ $#expr.#$ @1.@ a se înfuria, a se enerva foarte tare. @2.@ ($la fotbal$) a primi cartona"
+     },
+     {
+      "internalRep": "@a zvârli praf / șperlă în ochii cuiva@ $#expr.#$ a induce pe cineva în eroare, a încerca să înșele pe cineva."
+     },
+     {
+      "internalRep": "@a-i cădea ochii în gură@ $#expr.#$ @1.@ a fi foarte obosit; a-i fi foarte somn. @2.@ a fi surprins / uluit."
+     },
+     {
+      "internalRep": "@a-i ieși ochii din cap@ $#expr.#$ @1.@ a se holba ($de uimire, de groază etc.$). @2.@ a se speti / istovi muncind."
+     },
+     {
+      "internalRep": "@a-i lua cuiva perdeaua de pe ochi@ $#expr.#$ a face pe cineva să înțeleagă / să vadă clar."
+     },
+     {
+      "internalRep": "@a-i pune@ (cuiva) @perdea / perdele la ochi@ $#expr.#$ a împiedica ($pe cineva$) să vadă lucrurile așa cum sunt."
+     },
+     {
+      "internalRep": "@a-i sări@ ($cuiva$) @ochii din cap@ $#expr.#$ a suferi îngrozitor."
+     },
+     {
+      "internalRep": "@a-i sta ca un ghimpe în ochi@ ($cuiva$) $#expr.#$ a stingheri ($pe cineva$); a constitui o permanentă amenințare ($pent"
+     },
+     {
+      "internalRep": "@a-și clăti ochii@ $#expr.#$ a privi / a se uita la ceva plăcut."
+     },
+     {
+      "internalRep": "@a-și scoate ochii unul altuia@ $#expr.#$ @1.@ a se certa, a se bate. @2.@ a-și imputa, a-și reproșa."
+     },
+     {
+      "internalRep": "@a-și vedea visul cu ochii@ $#expr.#$ a i se împlini ($cuiva$) o mare dorință."
+     },
+     {
+      "internalRep": "@aragaz cu patru ochi@ $#expr.# (#adol.#, #glum.#)$ ochelarist, persoană care poartă ochelari de vedere"
+     },
+     {
+      "internalRep": "@băiat cu ochi albaștri@ $#expr.# (#iron.#)$ @1.@ lucrător al Securității din anii dictaturii ceaușiste. @2.@ lucrător S"
+     },
+     {
+      "internalRep": "@Cooperativa Ochiul și Timpanul@ $#expr.# (#iron.#)$ Securitatea, poliția politică a regimului comunist."
+     },
+     {
+      "internalRep": "@cu coada ochiului@ $#expr.#$ pe furiș, discret."
+     },
+     {
+      "internalRep": "@cu ochii în patru / în țaglă@ $#expr.#$ atent, vigilent."
+     },
+     {
+      "internalRep": "@cu un ochi la slănină și cu altul la făină@ $#expr.#$ sașiu; ciacâr."
+     },
+     {
+      "internalRep": "@de ochii lumii / soacrei@ $#expr.#$ @1.@ pentru a salva aparențele, pentru a lăsa lumii o impresie bună. @2.@ superfici"
+     },
+     {
+      "internalRep": "@doi ochi albaștri@ $#expr.#$ țuică de prune."
+     },
+     {
+      "internalRep": "@drag ca sarea-n ochi@ $#expr.#$ nesuferit."
+     },
+     {
+      "internalRep": "@după ochiometru / ochioscop@ $#expr.# (#glum.#)$ aproximativ."
+     },
+     {
+      "internalRep": "@la ochi@ @I@ $#adv.#$ deloc, ioc. @II@ $#pron.# #neg.#$ nimic ($în propoziții afirmative$)."
+     },
+     {
+      "internalRep": "@mânca-ți-aș ochii!@ $#expr.# redundantă, intercalată în discurs pentru a sublinia entuziasmul vorbitorului.$"
+     },
+     {
+      "internalRep": "@numai ochi și urechi@ $#expr.#$ foarte atent."
+     },
+     {
+      "internalRep": "@ochi de vultur@ $#expr.#$ acuitate vizuală deosebită."
+     },
+     {
+      "internalRep": "@ochi maro@ $#expr.#$ anus."
+     },
+     {
+      "internalRep": "@ochi perforat@ $#expr.# (#înv.#)$ trișare la jocul de tos."
+     },
+     {
+      "internalRep": "@ochi sticloși@ $#expr.# (#tox.#)$ intoxicație voluntară sau involuntară cu cocaină, care duce la excitarea puternică a "
+     },
+     {
+      "internalRep": "@ochii lui Dobrin@ țuică de Pitești; țuică de prune."
+     },
+     {
+      "internalRep": "@ochiul și timpanul@ $#expr.# (#glum.#)$ SRI, Serviciul Român de Informații."
+     },
+     {
+      "internalRep": "@rahat cu ochi@ $#expr.# (#vulg.#, #peior.#)$ persoană insignifiantă."
+     },
+     {
+      "internalRep": "@șapte ochi@ $#expr.#$ șeptar, carte de joc marcată cu numărul șapte."
+     },
+     {
+      "internalRep": "@trei ochi@ $#expr.# (#cart.#)$ trei."
+     },
+     {
+      "internalRep": "@OCHI@ s. @1.@ v. $vedere.$ @2.@ v. $privire.$ @3.@ (la pl.) v. $față.$ @4.@ $(BOT.) ochii-păsăruicii (Myosotis palustri"
+     },
+     {
+      "internalRep": "@OCHI@ s. v. $luminiș, poiană.$"
+     },
+     {
+      "internalRep": "@OCH&#039;I@ vb. @1.@ v. $ținti.$ @2.@ v. $îndrepta.$ @3.@ v. $lovi.$"
+     },
+     {
+      "internalRep": "@OCH&#039;I@ vb. v. $ațipi, dormita, moțăi, picoti, piroti.$"
+     },
+     {
+      "internalRep": "@&#039;OCHI@ #s.# @1.@ văz, vedere, (#înv.# și #reg.#) văz&#039;ut, (#înv.#) v&#039;ază, vede&#039;ală, ved&#039;enie. $"
+     },
+     {
+      "internalRep": "@OCH&#039;I@ #vb.# @1.@ a ținti, a viza, (rar) a aținti, (#pop.#) a chiti, (#reg.#) a țeli, a țelui, (#înv.#) a chiorî, "
+     },
+     {
+      "internalRep": "@och&#039;i@ #vb.# #v.# AȚIPI. DORMITA. MOȚĂI. PICOTI. PIROTI."
+     },
+     {
+      "internalRep": "@ALBUL &#039;OCHIULUI@ s. v. $sclerotică.$"
+     },
+     {
+      "internalRep": "@ARCUL &#039;OCHIULUI@ s. v. $iris.$"
+     },
+     {
+      "internalRep": "@LUMEA &#039;OCHILOR@ s. v. $pupilă.$"
+     },
+     {
+      "internalRep": "@LUMINA &#039;OCHIULUI@ s. v. $pupilă.$"
+     },
+     {
+      "internalRep": "@OCHI-M&#039;ORT@ s. v. $tâmplă.$"
+     },
+     {
+      "internalRep": "@OCHI-&#039;ORB@ s. v. $tâmplă.$"
+     },
+     {
+      "internalRep": "@OCHII-PĂSĂR&#039;UICII@ s. v. $miozotis, nu-mă-uita.$"
+     },
+     {
+      "internalRep": "@OCHIUL P&#039;ODULUI@ s. v. $campadură.$"
+     },
+     {
+      "internalRep": "@OCHIUL-B&#039;OULUI@ s. v. $bumbișor, cinci-degete, codobatură, granat, lăptucul-oii, margaretă, piciorul-cocoșului, pi"
+     },
+     {
+      "internalRep": "@OCHIUL-BOULUI-A-F&#039;ERIGEI@ s. v. $năprasnică.$"
+     },
+     {
+      "internalRep": "@OCHIUL-BRO&#039;AȘTEI@ s. v. $piciorul-cocoșului.$"
+     },
+     {
+      "internalRep": "@OCHIUL-DULĂULUI@ s. v. $luceafărul de ziuă, luceafărul din zori, sirius.$"
+     },
+     {
+      "internalRep": "@OCHIUL-Ș&#039;ARPELUI@ s. v. $miozotis, nu-mă-uita, ochii-păsăruicii.$"
+     },
+     {
+      "internalRep": "@OCHIUL-T&#039;AURULUI@ s. v. $aldebaran.$"
+     },
+     {
+      "internalRep": "@albul &#039;ochiului@ #s.# #v.# SCLEROTICĂ."
+     },
+     {
+      "internalRep": "@arcul &#039;ochiului@ #s.# #v.# IRIS."
+     },
+     {
+      "internalRep": "@lumea &#039;ochilor@ #s.# #v.# PUPILĂ."
+     },
+     {
+      "internalRep": "@lumina &#039;ochiului@ #s.# #v.# PUPILĂ."
+     },
+     {
+      "internalRep": "@ochi-m&#039;ort@ #s.# #v.# TÎMPLĂ."
+     },
+     {
+      "internalRep": "@ochi-&#039;orb@ #s.# #v.# TÎMPLĂ."
+     },
+     {
+      "internalRep": "@ochii-păsăr&#039;uicii@ #s.# #v.# MIOZOTIS. NU-MĂ-UITA."
+     },
+     {
+      "internalRep": "@ochiul p&#039;odului@ #s.# #v.# CAMPADURĂ."
+     },
+     {
+      "internalRep": "@ochiul-b&#039;oului@ #s.# #v.# BUMBIȘOR. CINCI-DEGETE. CODOBATURĂ. GRANAT. LĂPTUCUL-OII. MARGARETĂ. PICIORUL-COCOȘULUI."
+     },
+     {
+      "internalRep": "@ochiul-boului-a-fer&#039;igei@ #s.# #v.# NĂPRASNICĂ."
+     },
+     {
+      "internalRep": "@ochiul-bro&#039;aștei@ #s.# #v.# PICIORUL-COCOȘULUI."
+     },
+     {
+      "internalRep": "@ochiul-dul&#039;ăului@ #s.# #v.# LUCEAFĂRUL DE. ZIUĂ. LUCEAFĂRUL DIN ZORI. SIRIUS."
+     },
+     {
+      "internalRep": "@ochiul-m&#039;îței@ #s.# #v.# IARBA-ȘARPELUI."
+     },
+     {
+      "internalRep": "@ochiul-ș&#039;arpelui@ #s.# #v.# MIOZOTIS. NU-MĂ-UITA. OCHII-PĂSĂRUICII."
+     },
+     {
+      "internalRep": "@ochiul-t&#039;aurului@ #s.# #v.# ALDEBARAN."
+     },
+     {
+      "internalRep": "@Cornix cornici nunquam oculos effodit@ (lat. &quot;Corb la corb nu scoate ochii&quot;) - Tradus din latină, citatul ace"
+     },
+     {
+      "internalRep": "@Ochi au, dar nu vor să vadă; urechi au, dar nu vor să audă@. Psalmul 115 (versetele 5 și 6), unde se spune de fapt: "
+     },
+     {
+      "internalRep": "@Ochi de Argus@ - Expresia vine de la personajul mitologic Argus, poreclit și $Panoptes$ (care vede tot) și despre care "
+     },
+     {
+      "internalRep": "@Ochi pentru ochi@ - străveche pedeapsă din legislația mozaică, înscrisă în cartea $Exodul$ (cap. XXI, v. 24): Viață pen"
+     },
+     {
+      "internalRep": "@Urechea te minte și ochiul te-nșală@ - Eminescu, $Mortua est!$ Versul a devenit o expresie la adresa celor ce nu știu s"
+     },
+     {
+      "internalRep": "@OCH&#039;I^2@ #vb.# IV. @I.@ (Acțiunea este săvîrșită de om) @1.@$ $%#tranz.#%$ $A distinge pe cineva sau ceva cu privi"
+     }
+    ]
+   }
+  },
+  {
+   "word": "obraz",
+   "why": "42 definitions; the three that carry the plural all sit past index 6. The old adapter read `definitions.slice(0, 6)` and reported a dictionary word as NOT FOUND.",
+   "expect": {
+    "found": true,
+    "genders": [
+     "m"
+    ],
+    "forms": [
+     "obraji"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@OBR&#039;AZ,@ (@1@) $obraji,$ #s. m.#, (@2, 3, 4@) $obraze,$ #s. n.# @1.@ #S. m.# Fiecare dintre cele două părți latera"
+     },
+     {
+      "internalRep": "@$obr&#039;az$@\n[#At:# CORESI, EV. 412 / #Pl#: (@49-58@) $~&#039;aji,$ (@1-28, 49-59@) $~e, ~uri$ / #E:# #vsl# @$образъ$"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ@ ($#pl.#$ -$aji$) I. $#sm.#$ 1 #🫀# Partea anterioară a capului omului, unde se află fruntea, ochii, nasul,"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ,@ (@1@) $obraji,$ #s. m.#, (@2, 3, 4@) $obraze,$ #s. n.# @1.@ #S. m.# Fiecare dintre cele două părți latera"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ,@ (@1@) $obraji,$ #s. m.#, (@2,3,4@) $obraze$ și $obrazuri,$ #s. n.# @1.@ Fiecare dintre cele două părți la"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ^1 ~ji@ $m.$ Fiecare dintre cele două părți laterale care formează fața. * @A avea ~ subțire@ a fi fin, sens"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ^2 ~e@ $n.$ 1) Partea de dinainte a capului la om; față. * @A(-și) scoate ~ul în lume@ a ieși în public. 2) "
+     },
+     {
+      "internalRep": "@obraz@ m. (pl. @obraji@) @1.@ față omenească: $cu ce obraz te vei arăta?$ @a face cuiva pe obraz,@ a-l trata cum merită"
+     },
+     {
+      "internalRep": "@obráz@ m., pl. $jĭ$ (vsl. $obrazŭ,$ formă, figură, asemănare, față, persoană, $obražati, obraziti,$ a forma; bg. sîrb. "
+     },
+     {
+      "internalRep": "@OBR&#039;AJI@ #👉# @OBR&#039;AZ@."
+     },
+     {
+      "internalRep": "@OBRĂJ&#039;EL@ $#sm.#$_{ }#🫀# $#dim.#$ @OBR&#039;AZ@: $mînca-ți-aș obrăjeii cei rumeni$ {~#(GN.)#~}; $nu cumva să stră"
+     },
+     {
+      "internalRep": "@OBRĂJ&#039;OR@ $#sm.#$ #🫀# $#dim.#$ @OBR&#039;AZ@: $toată lumea se mira de ~ii lui cei frumoși$ {~#(RET.)#~}."
+     },
+     {
+      "internalRep": "@&#039;UMĂR@ ($#pl.#$ -$meri$) $#sm.#$, #‡#$#Mold.#$ $#Trans.#$ ($#pl.#$ -$mere$) $#sn.#$ 1 #🫀# Partea corpului care se"
+     },
+     {
+      "internalRep": "@obr&#039;az^{2}@ (parte a feței) (#desp.# $o-braz$) #s.# #m.#, #pl.# $obr&#039;aji$"
+     },
+     {
+      "internalRep": "@obr&#039;az^{1}@ (față, persoană, rang) (#înv.#) (#desp.# $o-braz$) #s.# #n.#, #pl.# $obr&#039;aze$"
+     },
+     {
+      "internalRep": "@obr&#039;az^1@ (parte a feței) $(o-braz)$ #s. m.#, #pl.# $obr&#039;aji$"
+     },
+     {
+      "internalRep": "@obr&#039;az^2@ (#înv.#) (față, persoană, rang) $(o-braz)$ #s. n.#, #pl.# $obr&#039;aze$"
+     },
+     {
+      "internalRep": "@obr&#039;az@ (față, persoană, rang) s. n. (sil. $-braz),$ pl. $obr&#039;aze$"
+     },
+     {
+      "internalRep": "@obr&#039;az@ (parte a feței) s. m. (sil. $-braz),$ pl. $obr&#039;aji$"
+     },
+     {
+      "internalRep": "@obraz@, #pl.# obraji"
+     },
+     {
+      "internalRep": "@obraz@, -ji."
+     },
+     {
+      "internalRep": "@obr&#039;az (obr&#039;aji),@ #s. m.# - @1.@ Individ, persoană. - @2.@ Față, figură. - @3.@ Fiecare dintre cele două păr"
+     },
+     {
+      "internalRep": "@OBRAZ@ subit. @1.@ - Gh., neg., 1424 (Ț- Rom 134);- Andronic (Sur IV); - N. (Î Div). @2.@ $Obrazlat,$ Stanciu (16 B I 1"
+     },
+     {
+      "internalRep": "@OBRAZ@ cherestea, pingea, șorici."
+     },
+     {
+      "internalRep": "@a avea obrazul / șoriciul / tovalul / gros@ $#expr.#$ a fi nerușinat / impertinent"
+     },
+     {
+      "internalRep": "@a minți@ ($pe cineva$) @de la obraz@ $#expr.#$ a minți ($pe cineva$) cu nerușinare, fără a încerca să pară măcar convin"
+     },
+     {
+      "internalRep": "@a-i plesni@ ($cuiva$) @obrazul de rușine@ $#expr.#$ a-i fi ($cuiva$) foarte rușine."
+     },
+     {
+      "internalRep": "@a-i râde@ ($cuiva$) @în față / în nas / în obraz@ $#expr.#$ a-și bate joc ($în mod$) fățiș ($de cineva$); a sfida ($pe "
+     },
+     {
+      "internalRep": "@a-și îngropa obrazul@ $#expr.#$ a avea tupeu."
+     },
+     {
+      "internalRep": "@a-și spăla obrazul@ $#expr.#$ a se reabilita."
+     },
+     {
+      "internalRep": "@OBR&#039;AZ@ s. v. $chip, condiție, față, figură, individ, ins, om, persoană, personaj, portret, poziție, situație, sta"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ@ s. @1.@ față. $(S-a înroșit la ~.)$ @2.@ v. $față.$ @3.@ față, ochi (pl.). $(Se spală pe ~.)$ @4.@ v. $fiz"
+     },
+     {
+      "internalRep": "@obr&#039;az@ #s.# #v.# CHIP. CONDIȚIE. FAȚĂ. FIGURĂ. INDIVID. INS. OM. PERSOANĂ. PERSONAJ. PORTRET. POZIȚIE. SITUAȚIE. "
+     },
+     {
+      "internalRep": "@OBR&#039;AZ@ #s.# @1.@ față. $(S-a înroșit la ~.)$ @2.@ față, figură, fizionomie, oval, profil. $(Un ~ cunoscut.)$ @3.@"
+     },
+     {
+      "internalRep": "@MOALELE-OBR&#039;AZULUI@ s. v. $tâmplă.$"
+     },
+     {
+      "internalRep": "@PUMNII OBR&#039;AJILOR@ s. pl. v. $pomeți, umerii obrajilor.$"
+     },
+     {
+      "internalRep": "@UMERII OBR&#039;AJILOR@ s. pl. v. $pomeți.$"
+     },
+     {
+      "internalRep": "@mo&#039;ale@ #adj.#, #s.n.# \n@A@ #adj.# \n@I 1@ ($în #opoz.# cu &quot;tare&quot;, &quot;dur&quot;; despre materii, mater"
+     },
+     {
+      "internalRep": "@moalele-obr&#039;azului@ #s.# #v.# TÎMPLĂ."
+     },
+     {
+      "internalRep": "@pumnii obr&#039;ajilor@ #s.# #pl.# #v.# POMEȚI. UMERII OBRAJILOR."
+     },
+     {
+      "internalRep": "@UMERII OBR&#039;AJILOR@ #s.# #pl.# $(#ANAT.#)$ pomeți (#pl.#), (rar) umerii feței (#pl.#), (#reg.#) pumnii obr&#039;aji"
+     },
+     {
+      "internalRep": "@OBR&#039;AZ@ #s. m.# și #n.# @1.@ #s. n.# Partea anterioară a capului omenesc (rar a capului animalelor); față, figură,"
+     }
+    ]
+   }
+  },
+  {
+   "word": "România",
+   "why": "No dexonline entry. The old adapter still answered found:true with forms `[\"#sf#\"]` — markup from another slot asserted as an attested form. A headword carrying slot markup states nothing.",
+   "expect": {
+    "found": false,
+    "genders": [],
+    "forms": []
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@România@ f. numele comun (dela 1859) al Principatelor Unite: Muntenia și Moldova, contopite dela 24 Ian. 1862 într\\"
+     },
+     {
+      "internalRep": "@ROMÂN&#039;IE@ #s. f.# @1.@ (#Înv.#) Limba română. * #Expr.# $Pe românie$ = în românește, în limba română. @2.@ (În for"
+     },
+     {
+      "internalRep": "@RUMÂN&#039;IE@ #s. f.# #v.# @românie.@"
+     },
+     {
+      "internalRep": "@$român&#039;ie$@ $#sf#$ [#At:# (#a.# 1632) #ap.# PANAITESCU, O. Ț, 266 / #V:# @$rum~$@ / #Pl:# ? / #E:# @$român$@ + $-i"
+     },
+     {
+      "internalRep": "@$rumân&#039;ie$@ $#sf#$ #vz# @$românie$@"
+     },
+     {
+      "internalRep": "@ROMÂN&#039;IE@ #s. f.# @1.@ (#Înv.#) Limba română. * #Expr.# $Pe românie$ = în românește, în limba română. @2.@ (În for"
+     },
+     {
+      "internalRep": "@ROMÎN&#039;IE@ #s. f.# (Învechit) Limba romînă. $Tălmăcirile uricilor slobozite o dată cu acturile oficiale slavone sîn"
+     },
+     {
+      "internalRep": "@RUMÎN&#039;IE^2@ #s. f.# (În orînduirea feudală a Țării Romînești) Starea de șerbie a țăranului; iobăgie, vecinătate. $"
+     },
+     {
+      "internalRep": "@RUMÎN&#039;IE^1@ #s. f.# #v.# @romînie.@"
+     },
+     {
+      "internalRep": "@Muntenia@ f. @1.@ sau @România-Mare@ (numită în vechime @Țara-Românească,@ de străini @Valahia@ și de Românii ardeleni "
+     },
+     {
+      "internalRep": "@Oltenia@ f. partea României de-a dreapta Oltului, între Dunăre și Carpați, numită și @România Mică:@ ea coprinde azi ci"
+     },
+     {
+      "internalRep": "@România Mare@ f. alt nume dat Munteniei și în special părții sale din dreapta Oltului (numire modernă și necunoscută do"
+     },
+     {
+      "internalRep": "@România Mare@ f. nume recent dat (după răsboiul cel mare de liberare) Statului român, care a întrunit ramurile împrăști"
+     },
+     {
+      "internalRep": "@România Mică@ f. alt nume dat Olteniei (numire ce datează dela ocuparea ei de către Austriaci)."
+     },
+     {
+      "internalRep": "@rumânie@ f. șerbia țăranului român instituită în sec. XVI și consacrată prin $Legătura$ lui Mihaiu-Viteazul din 1596: r"
+     },
+     {
+      "internalRep": "@româníe@ și @rumâníe@ f. (d. $Român$). Șerbia țăranilor în Țara Românească (instituită în seculu XVI, întărită de $legă"
+     },
+     {
+      "internalRep": "@+Român&#039;ia@ #s.# propriu #f.# #art.#, #neart.# $Român&#039;ie$ ($iubită ~$), #g.-d.# #art.# $Român&#039;iei$; #simb"
+     },
+     {
+      "internalRep": "@român&#039;ie@ (limba română) (#înv.#) #s.# #f.#, #art.# $român&#039;ia$, #g.-d.# $român&#039;ii$, #art.# $român&#039;i"
+     },
+     {
+      "internalRep": "@rumân&#039;ie@ (iobăgie) #s.# #f.#, #art.# $rumân&#039;ia$, #g.-d.# $rumân&#039;ii$, #art.# $rumân&#039;iei$"
+     },
+     {
+      "internalRep": "@român&#039;ie@ (limba română, #înv.#) #s. f.#, #art.# $român&#039;ia,$ #g.-d.# $român&#039;ii,$ #art.# $român&#039;iei$"
+     },
+     {
+      "internalRep": "@rumân&#039;ie@ (iobăgie) #s. f.#, #art.# $rumân&#039;ia,$ #g.-d.# $rumân&#039;ii,$ #art.# $rumân&#039;iei$"
+     },
+     {
+      "internalRep": "@român&#039;ie@ (limba română) s. f., art. $român&#039;ia,$ g.-d. $român&#039;ii,$ art. $român&#039;iei$"
+     },
+     {
+      "internalRep": "@rumân&#039;ie@ (iobăgie) s. f., art. $rumân&#039;ia,$ g.-d. $rumân&#039;ii,$ art. $rumân&#039;iei$"
+     },
+     {
+      "internalRep": "@Romînia Liberă@"
+     },
+     {
+      "internalRep": "@ROMÂNIA,@ stat situat în partea de SE a Europei Centrale, la N de #Pen.# Balcanică, în bazinul inferior al Dunării, cu "
+     },
+     {
+      "internalRep": "@ROMÂNIA,@ primul cotidian românesc. A apărut la București între 20 dec. 1837 și 31 dec. 1838. Redactori: Florian Aaron "
+     },
+     {
+      "internalRep": "@ADUNAREA ELECTIVĂ A ROMÂNIEI,@ organ al puterii legislative, constituit la 24 ian. 1862, prin contopirea Adunării Elect"
+     },
+     {
+      "internalRep": "@AGENȚIA HAVAS A ROMÂNIEI,@ sucursala din București a agenției franceze de presă Havas. Prima agenției de presă care a f"
+     },
+     {
+      "internalRep": "@ARHIVA ISTORICĂ A ROMÂNIEI,@ publicație periodică de documente privind istoria României. Editată la București în 1864-1"
+     },
+     {
+      "internalRep": "@ASOCIAȚIA GENERALĂ A LUCRĂTORILOR DIN ROMÂNIA,@ organizație muncitorească profesională de ajutor reciproc. A activat în"
+     },
+     {
+      "internalRep": "@ASOCIAȚIA OAMENILOR DE ȘTIINȚĂ DIN ROMÂNIA@ ($A.O.S.$), organizație constituită în 1956, la București. Sprijină coordon"
+     },
+     {
+      "internalRep": "@ASOCIAȚIA PENTRU NAȚIUNILE UNITE DIN ROMÂNIA,@ asociație creată în 1955, cu sediul la București, avînd ca scop populari"
+     },
+     {
+      "internalRep": "@CÎNTAREA ROMÂNIEI,@ formație corală bucureșteană, fundată în 1919. A activat în perioada dintre cele două războaie mond"
+     },
+     {
+      "internalRep": "@COMISIUNEA ISTORICĂ A ROMÂNIEI,@ comisie științifică înființată în 1910 de către Spiru Haret, cu scopul de a publica iz"
+     },
+     {
+      "internalRep": "@PARTIDUL ROMÂNIA MARE (P.R.M.),@ partid de centru-stânga, creat la 20 iun. 1991, din inițiativa unui grup de redactori "
+     },
+     {
+      "internalRep": "@PARTIDUL SOCIAL-DEMOCRAT AL MUNCITORILOR DIN ROMÂNIA (P.S.D.M.R.),@ primul partid al muncitorilor din România, Creat la"
+     },
+     {
+      "internalRep": "@PARTIDUL SOCIAL-DEMOCRAT DIN ROMÂNIA (P.S.D.R),@ partid creat (7-9 mai 1927) pe baza Federației Partidelor Socialiste d"
+     },
+     {
+      "internalRep": "@ROMÂNIA JUNĂ,@ societate academică studențească social-literară creată la Viena la 25 mart. 1871 prin fuziunea a două o"
+     },
+     {
+      "internalRep": "@ROMÂNIA LIBERĂ@ @1.@ Ziar editat la București (1877-1889). A militat pentru desăvârșirea unității politice a poporului "
+     },
+     {
+      "internalRep": "@ROMÂNIA LITERARĂ@ @1.@ Publicație științifică, istorică și literară, apărută săptămânal la Iași (1 ian.-3 dec. 1855), s"
+     },
+     {
+      "internalRep": "@ROMÂNIA MARE,@ denumire folosită pentru statul român între 1918 și 1940."
+     },
+     {
+      "internalRep": "@ROMÂNIA MUNCITOARE.@ Gazetă socialistă, apărută la București în două serii (1/14 ian.-10/23 iun. 1902, 5/18 mart. 1905-"
+     },
+     {
+      "internalRep": "@ROMÂNIA VIITOARE,@ revistă editată de către revoluționarii români pașoptiști aflați în exil (##N.## Bălcescu, Șt. Goles"
+     },
+     {
+      "internalRep": "@RUMÂNÍE@ (&lt; $rumân$) #s. f.# (În #Ev. med.#, în Țara Românească) Condiție a țăranilor dependenți de stăpânul feudal "
+     },
+     {
+      "internalRep": "@SOCIETATEA DE CRUCE ROȘIE DIN ROMÂNIA,@ organizație națională, cu caracter umanitar. Înființată în 1876, în scopul de a"
+     },
+     {
+      "internalRep": "@ROMÂN&#039;IE@ s. v. $română.$"
+     },
+     {
+      "internalRep": "@RUMÂN&#039;IE@ s. $(IST.)$ iobăgie, șerbie, vecinătate, vecinie, (livr.) servitute, (rar) servaj. $(Starea de dependenț"
+     },
+     {
+      "internalRep": "@român&#039;ie@ #s.# #v.# ROMANĂ."
+     },
+     {
+      "internalRep": "@RUMÂN&#039;IE@ #s.# $(#IST.#)$ iobăgie, șerbie, vecinătate, vecinie, (#livr.#) servit&#039;ute, (rar) serv&#039;aj. $(S"
+     }
+    ]
+   }
+  },
+  {
+   "word": "calculator",
+   "why": "Two senses, two genders, two plurals: neuter `calculatoare` (the machine) and masculine `calculatori` (the person). This is why `genders` is a list and why one attesting sense is attestation.",
+   "expect": {
+    "found": true,
+    "genders": [
+     "n",
+     "m"
+    ],
+    "forms": [
+     "calculatori",
+     "calculatoare"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@CALCULAT&#039;OR, -O&#039;ARE,@ $calculatori, -oare,$ #s. n.#, #s. m.# și #f.# @1.@ #S. n.# Tabel care cuprinde rezulta"
+     },
+     {
+      "internalRep": "@$calculat&#039;or, ~o&#039;are$@ [#At:# LTR / #Pl:# $~i, õare$ / #E:# #fr# @$calculateur,$@ #lat# @$calculator$@] @1-2@"
+     },
+     {
+      "internalRep": "@*CALCULAT&#039;OR@, -@TO&#039;ARE@ $#adj.#$ și $#sm. f.#$ 1 #➕# Care se ocupă cu calculul, cu socoteli #¶# 2 $#Fig.#$ C"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR, -O&#039;ARE,@ $calculatori, -oare,$ #subst.# @1.@ #S. n.# Tabel care cuprinde rezultatele unor calcul"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR, -O&#039;ARE,@ $calculatori, -oare,$ #s. m.# și #f.# Persoană specializată în calculul prețului produs"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR^1,@ $calculatoare,$ #s. n.# @1.@ Broșură care cuprinde anumite tabele de calcule. @2.@ Mașină cu ajuto"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR^2, -O&#039;ARE,@ $calculatori, -oare,$ #s. m.# și #f.# Persoană specializată în calculul prețurilor pr"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR@ $#s.n.#$ @1.@ Broșură care cuprinde anumite tabele de calcul. @2.@ Mașină de calculat. * $Calculator "
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR, -O&#039;ARE@ $#s.m.# și #f.#$ Specialist în calcule. [#Cf.# #fr.# $calculateur$]."
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR@ I. $#s. n.#$ 1. tabel care cuprinde rezultatele unor calcule; carte, broșură cuprinzând asemenea tabe"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR^1 ~&#039;oare (~&#039;ori, ~&#039;oare)@ $m.$ și f. Persoană specializată în calcule (mai ales economi"
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR^2 ~o&#039;are@ $n.$ 1) Mașină sau instalație cu care se efectuează automat operații matematice și logi"
+     },
+     {
+      "internalRep": "@calculator@ m. @1.@ cel ce se ocupă cu calcule; @2.@ abil a combina măsurile și proiectele sale."
+     },
+     {
+      "internalRep": "@*calculatór, -oáre@ s. Care calculează."
+     },
+     {
+      "internalRep": "@calculat&#039;or-ce&#039;as@ #s.# #n.# * $&quot;Minicalculator. În Franța a fost deja anunțată apariția unui @calculato"
+     },
+     {
+      "internalRep": "@calculat&#039;or^{1}@ (bărbat) #s.# #m.#, #pl.# $calculat&#039;ori$"
+     },
+     {
+      "internalRep": "@calculat&#039;or^{2}@ (tabel; aparat) #s.# #n.#, #pl.# $calculato&#039;are$"
+     },
+     {
+      "internalRep": "@calculat&#039;or^1@ (bărbat) #s. m.#, #pl.# $calculat&#039;ori$"
+     },
+     {
+      "internalRep": "@calculat&#039;or^2@ (tabel, aparat) #s. n.#, #pl.# $calculato&#039;are$"
+     },
+     {
+      "internalRep": "@calculat&#039;or@ (tabel, aparat) s. n., pl. $calculato&#039;are$"
+     },
+     {
+      "internalRep": "@calculat&#039;or@ (persoană) s. m., pl. $calculat&#039;ori$"
+     },
+     {
+      "internalRep": "@CALCULATORUL VITEZEI VERTICALE INSTANTANEE@ dispozitiv computerizat pentru controlul traiectoriei longitudinale în vede"
+     },
+     {
+      "internalRep": "@CALCULATOR@ (&lt; #fr.#, #lat.#) #subst.# @1.@ #S. n.# Tabel care cuprinde rezultatele unor calcule, folosit pentru sim"
+     },
+     {
+      "internalRep": "@calculator,@ $calculatoare #s. n.# (#glum.#)$ căpățână de porc ($vândută în măcelării$)."
+     },
+     {
+      "internalRep": "@CALCULAT&#039;OR@ s. $(TEHN.)$ @1.@ mașină de calcul. @2.@ $calculator electronic$ v. $computer.$"
+     },
+     {
+      "internalRep": "@Il fallait un calculateur; ce fut un danseur qui l\\&#039;obtint@ (fr. &quot;Trebuia un calculator și postul l-a obținut"
+     }
+    ]
+   }
+  },
+  {
+   "word": "carte",
+   "why": "108 definitions, and dexonline returns entries that merely MENTION the word (`scorpion`, whose definition contains it). Only definitions whose headword IS `carte` may contribute facts.",
+   "expect": {
+    "found": true,
+    "genders": [
+     "f"
+    ],
+    "forms": [
+     "cărți"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@C&#039;ARTE,@ $cărți,$ #s. f.# @I. 1.@ Scriere cu un anumit subiect, tipărită și legată sau broșată în volum. * $Carte "
+     },
+     {
+      "internalRep": "@$c&#039;arte$@ $#sf#$\n[#At:# COD. VOR. 38/5 / #V:# (#înv#) @$~tă$@ / #Pl:# $cărți$ / #E:# #lat# @$charta$@, #cf# #fr# $"
+     },
+     {
+      "internalRep": "@C&#039;ARTE@ ($#pl.#$ cărți) $#sf.#$ 1 Reuniune de foi scrise sau tipărite, cusute sau legate laolaltă, alcătuind un vo"
+     },
+     {
+      "internalRep": "@C&#039;ARTE,@ $cărți,$ #s. f.# @I. 1.@ Scriere cu un anumit subiect, tipărită și legată sau broșată în volum. * $Carte "
+     },
+     {
+      "internalRep": "@C&#039;ARTE,@ $cărți,$ #s. f.# @I. 1.@ Scriere (literară, științifică, didactică etc.) tipărită (sau destinată tiparulu"
+     },
+     {
+      "internalRep": "@C&#039;ARTE,@ $cărți,$ #s. f.# @I. 1.@ Scriere tipărită și legată sau broșată în volum. * $Carte albastră$ (sau $albă, "
+     },
+     {
+      "internalRep": "@C&#039;ARTE cărți@ $f.$ 1) Scriere tipărită, legată sau broșată în volum. * @~ de căpătâi@ lucrare preferată de cineva,"
+     },
+     {
+      "internalRep": "@carte@ f. @1.@ reunire de foi, tipărite sau scrise, cusute laolaltă și formând un volum: $carte de citire;$ @2.@ divizi"
+     },
+     {
+      "internalRep": "@cárte@ f., pl. $cărțĭ$ (lat. $charta,$ it. pv. sp. pg. $carta,$ fr. $charte.$ V. @cartă@). Volum compus din foĭ tipărit"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ,@ $carte,$ #s. f.# @1.@ (În Evul Mediu) Act destinat a consemna unele privilegii și libertăți fundamentale "
+     },
+     {
+      "internalRep": "@SCORPI&#039;ON,@ $scorpioni,$ #s. m.# @1.@ Nume dat mai multor specii de arahnide având la extremitatea posterioară gla"
+     },
+     {
+      "internalRep": "@$c&#039;artă^{1}$@ $#sf#$\n[#At:# CULIANU, C. 109 / #V:# @$cha~$@ / #Pl:# $cărți$ / #E:# #fr# @$carte,$@ #lat# @$charta$"
+     },
+     {
+      "internalRep": "@$c&#039;artă^{2}$@ $#sf#$\n[#At:# DEX^{2} / #Pl:# $~te$/ #E:# #fr# @$charte,$@ #lat# @$charta$@]\n@1@ (În Evul Mediu) Act"
+     },
+     {
+      "internalRep": "@$c&#039;artă^{3}$@ $#sf#$ #vz# @$carte$@"
+     },
+     {
+      "internalRep": "@$c&#039;ârță@ #sf#$ [#At:# PAȘCA GL. / #Pl:# $~țe$ / #E:# #nct#]\n(#Reg#) Fetiță mică, sugară."
+     },
+     {
+      "internalRep": "@$scorpi&#039;on$@ $#sm#$\n[#At:# EPISCUPESCU, PRACTICA 26/28 / #P:# $~pi-##on##$ / #V:# (#reg#) @$șc~$@ / #Pl#: $~i$ / #"
+     },
+     {
+      "internalRep": "@$ș&#039;artă$@ $#sf#$ #vz# @$cartă$@"
+     },
+     {
+      "internalRep": "@*C&#039;ARTĂ@ ($#pl.#$ cărți) $#sf.#$ 1 Bucată dreptunghiulară de carton subțire pe care e scris sau tipărit numele cui"
+     },
+     {
+      "internalRep": "@CARTEA BUNĂ ÎNLOCUEȘTE O PRIETENIE; O PRIETENIE NU POATE ÎNLOCUI O CARTE BUNĂ@ (#v.# Conta)."
+     },
+     {
+      "internalRep": "@CĂRTICE&#039;A@ ($#pl.#$ -icele) $#sf.# #dim.#$ @C&#039;ARTE@: $Și să scriu o ~, S\\&#039;o trimit la maică-mea$ {~IK.-B"
+     },
+     {
+      "internalRep": "@CĂRTIC&#039;ICĂ@ ($#pl.#$ -cele) $#sf.#$ 1 $#dim.#$ @C&#039;ARTE@ #¶# 2 Făscioară de foițe de țigară: $dar tutun și ~ ț"
+     },
+     {
+      "internalRep": "@#❍# C&#039;ÎRȚĂ@ ($#pl.#$ -țe) $#sf.# #Bucov.# #Trans.#$ Petec, cîrpă #(RV.-CRG.)# #(VIC.)#."
+     },
+     {
+      "internalRep": "@EX LIBRIS MEIS@ (#lat.#) = Din cărțile mele. Gravurile lipite pe cărți ca să arate proprietatea se zic $Ex libris.$"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ,@ $carte,$ #s. f.# @1.@ Nume dat (în evul mediu) actelor destinate a consemna unele privilegii și libertăți"
+     },
+     {
+      "internalRep": "@SCORPI&#039;ON,@ $scorpioni,$ #s. m.# @1.@ Nume dat mai multor specii de arahnide având la extremitatea posterioară gla"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ,@ $carte,$ #s. f.# @1.@ Nume dat (mai ales în evul mediu) unui act sau document destinat a consemna unele d"
+     },
+     {
+      "internalRep": "@CH&#039;ARTĂ@ #s. f.# #v.# @cartă.@"
+     },
+     {
+      "internalRep": "@SCORPI&#039;ON,@ $scorpioni,$ #s. m.# @1.@ Animal din clasa arahnidelor, care trăiește în țările calde și a cărui înțep"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ,@ $carte,$ #s. f.# @1.@ Nume dat (în evul mediu) actelor destinate a consemna unele drepturi sau libertăți "
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ^1@ $#s.f.#$ @1.@ ($În evul mediu$) Act care emană de la un suveran și este destinat a consemna unele dreptu"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ^2@ $#s.f.#$ Carton subțire de formă dreptunghiulară, pe care este scris numele cuiva, care stabilește calit"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ@ $#s. f.#$ 1. (în evul mediu) act care emană de la un suveran, destinat a consemna unele drepturi sau liber"
+     },
+     {
+      "internalRep": "@c&#039;arte de cr&#039;edit@ #s.# #f.# Cartelă magnetică, cu ajutorul căreia se pot face plăți electronice * &quot;Serv"
+     },
+     {
+      "internalRep": "@c&#039;arte-docum&#039;ent@ #s.# #f.# Carte cu valoare documentară * $&quot;O @carte-document@ despre Eminescu.&quot;$ "
+     },
+     {
+      "internalRep": "@c&#039;arte-evenim&#039;ent@ #s.# #f.# Carte a cărei apariție constituie un eveniment * $&quot;O @carte-eveniment:@ Oct"
+     },
+     {
+      "internalRep": "@c&#039;arte-f&#039;ilm@ #s.# #f.# * $&quot;În Franța a început o nouă industrie: de la «film» la «carte», în sensul edi"
+     },
+     {
+      "internalRep": "@C&#039;ARTĂ ~e@ $f. livr.$ 1) $(în evul mediu)$ Act emis de un suveran în care erau consemnate anumite drepturi și libe"
+     },
+     {
+      "internalRep": "@cartă@ f. @1.@ mic carton pe care se scrie numele: $cartă de vizită;$ @2.@ hârtie ce face cunoscută calitatea unei pers"
+     },
+     {
+      "internalRep": "@*cártă@ f., pl. $cărțĭ$ și $carte$ (fr. $carte,$ lat. $charta,$ d. vgr. $hártes,$ hîrtie. V. @carte, carton, hartă, hîr"
+     },
+     {
+      "internalRep": "@c&#039;arte@ (volum; cartonaș; carnet; text scris) #s.# #f.#, #g.-d.# #art.# $c&#039;ărții$; #pl.# $cărți$"
+     },
+     {
+      "internalRep": "@c&#039;arte@ (volum, cartonaș, text scris) #s. f.#, #g.-d.# #art.# $c&#039;ărții;$ #pl.# $cărți$"
+     },
+     {
+      "internalRep": "@c&#039;arte@ (volum, cartonaș, text scris) s. f., g.-d. art. $cărții;$ pl. $cărți$"
+     },
+     {
+      "internalRep": "@carte@ (de citit, poștală, de vizită), #pl.# cărți"
+     },
+     {
+      "internalRep": "@carte@, cărți."
+     },
+     {
+      "internalRep": "@c&#039;artă@ (manifest; act fundamental) #s.# #f.#, #g.-d.# #art.# $c&#039;artei$; #pl.# $c&#039;arte$"
+     },
+     {
+      "internalRep": "@scorpionul-de-c&#039;ărți@ (arahnidă) (#desp.# $-pi-o-$) #s.# #m.# #art.#, #pl.# #art.# $scorpionii-de-c&#039;ărți$"
+     },
+     {
+      "internalRep": "@c&#039;artă@ (manifest, act fundamental) #s. f.#, #g.-d.# #art.# $c&#039;artei;$ #pl.# $c&#039;arte$"
+     },
+     {
+      "internalRep": "@c&#039;arte de m&#039;embru@ #s. f.# + #prep.# + #s. m.#"
+     },
+     {
+      "internalRep": "@c&#039;arte de m&#039;uncă@ #s. f.# + #prep.# + #s. f.#"
+     },
+     {
+      "internalRep": "@c&#039;arte poșt&#039;ală@ #s. f.# + #adj.#"
+     },
+     {
+      "internalRep": "@!scorpi&#039;onul-de-c&#039;ărți@ (animal) $(-pi-o-)$ #s. m.# #art.#; #pl.# $scorpi&#039;onii-de-c&#039;ărți$"
+     },
+     {
+      "internalRep": "@c&#039;artă@ (manifest, act fundamental) s. f., g.-d. art. $c&#039;artei;$ pl. $c&#039;arte$"
+     },
+     {
+      "internalRep": "@c&#039;arte de m&#039;embru@ s. f. + prep. + s. m."
+     },
+     {
+      "internalRep": "@c&#039;arte de m&#039;uncă@ s. f. + prep. + s. f., g.-d. art. $cărții de m&#039;uncă;$ pl. $cărți de m&#039;uncă$"
+     },
+     {
+      "internalRep": "@c&#039;arte poșt&#039;ală@ s. f. + adj., g.-d. art. $cărții poșt&#039;ale;$ pl. $cărți poșt&#039;ale$"
+     },
+     {
+      "internalRep": "@scorpi&#039;onul de cărți@ s. m. + prep. + s. f. (sil. -$pi-o$-)"
+     },
+     {
+      "internalRep": "@cartă@ (nu: chartă), #pl.# carte"
+     },
+     {
+      "internalRep": "@cartă@ ($de vizită$), -ți."
+     },
+     {
+      "internalRep": "@c&#039;arte (c&#039;ărți),@ #s. f.# - @1.@ Scrisoare. - @2.@ Document, act scris. - @3.@ Scriere tipărită și legată, vo"
+     },
+     {
+      "internalRep": "@c&#039;arte,@ $cărți$ #s. f.# Scriere cu un anumit subiect, tipărită și legată sau broșată în volum. ** $Cum scrie la c"
+     },
+     {
+      "internalRep": "@AD APERTURAM LIBRI@ (#lat.#) $acolo unde se deschide cartea$ - A citi și a comenta un text $ad aperturam libri,$ pe loc"
+     },
+     {
+      "internalRep": "@APERTO LIBRO@ #v.# @AD APERTURAM LIBRI.@"
+     },
+     {
+      "internalRep": "@CARTĂ@ (&lt; #fr.#, #lat.#) #s. f.# @1.@ Act prin care se recunoșteau, în #ev. med.#, anumite privilegii și libertăți u"
+     },
+     {
+      "internalRep": "@CARTE ROMÂNEASCĂ DE ÎNVĂȚĂTURĂ@ #V.# @Pravila lui Vasile Lupu.@"
+     },
+     {
+      "internalRep": "@CAZANIA LUI VARLAAM (CARTE ROMÂNEASCĂ DE ÎNVĂȚĂTURĂ),@ carte de cult, cuprinzând evangheliile, cîteva legende hagiograf"
+     },
+     {
+      "internalRep": "@DOCTUS CUM LIBRO@ (#lat.#) $savant cu cartea (în mână)$ - Expresie ironică vizând cărturarii incapabili de o gândire or"
+     },
+     {
+      "internalRep": "@FACEREA@ (@CARTEA FACERII@ sau @GENEZA@), prima carte a &quot;Vechiului Testament&quot; și prima dintre cele cinci cărț"
+     },
+     {
+      "internalRep": "@HABENT SUA FATA LIBELLI@ (#lat.#) $cărțile își au soarta lor$ - Terentianus Maurus, &quot;De littersi, syllabis, pedibu"
+     },
+     {
+      "internalRep": "@TIMEO HOMINEM UNIUS LIBRI@ (#lat.#) $mă tem de omul unei singure cărți$ - Cugetare a lui Toma d\\&#039;Aquino, având ini"
+     },
+     {
+      "internalRep": "@carte,@ $cărți #s. f.# (#tox.#)$ cantitate de rășină de canabis care, de regulă, are forma unei plăci sau a unei cărți."
+     },
+     {
+      "internalRep": "@a da cărțile pe față@ $#expr.#$ @1.@ a dezvălui adevărul. @2.@ a discuta deschis."
+     },
+     {
+      "internalRep": "@a face cărțile@ $#expr.# (#glum.#)$ a turna băuturile în pahare."
+     },
+     {
+      "internalRep": "@a fi tobă de carte@ $#expr.#$ a fi foarte învățat / instruit."
+     },
+     {
+      "internalRep": "@a juca cartea cea mare@ $#expr.#$ a profita de o șansă care poate modifica radical viața cuiva."
+     },
+     {
+      "internalRep": "@a juca cu cărțile pe față@ $#expr.#$ a acționa cinstit, a fi corect în relațiile cu alții."
+     },
+     {
+      "internalRep": "@a se pune cu burta pe carte@ $#expr.#$ a se apuca de învățat."
+     },
+     {
+      "internalRep": "@a ști carte@ $#expr.#$ @1.@ a ști să citească. @2.@ a fi instruit."
+     },
+     {
+      "internalRep": "@burduf de carte@ $#expr.#$ foarte instruit, foarte erudit.{{Nu este argou, este o expresie binecunoscută (vezi DEX)./47"
+     },
+     {
+      "internalRep": "@carte albastră / neagră@ $#expr.#$ hotârâre / sentință judecătorească."
+     },
+     {
+      "internalRep": "@șterge-mă din cartea de imobil@ $#expr.# (#înv.#, #glum.#)$ băutură alcoolică ieftină, de proveniență incertă."
+     },
+     {
+      "internalRep": "@tobă de carte / de învățătură@ $#expr.#$ foarte învățat, foarte instruit."
+     },
+     {
+      "internalRep": "@C&#039;ARTE@ s. @1.@ lucrare, operă, scriere, tipăritură, tom, volum, (livr.) op. $(O ~ groasă.)$ @2.@ $(CONT.) cartea "
+     },
+     {
+      "internalRep": "@C&#039;ARTE@ s. v. $act, catastif, condică, dispoziție, document, dovadă, epistolă, epistolie, hârtie, hotărâre, izvor,"
+     },
+     {
+      "internalRep": "@C&#039;ARTE@ #s.# @1.@ lucrare, operă, scriere, tipăritură, tom, volum, (#livr.#) op. $(O$ ~ $groasă.)$ @2.@ $(#CONT.#)"
+     },
+     {
+      "internalRep": "@c&#039;arte@ #s.# #v.# ACT. CATASTIF. CONDICĂ. DISPOZIȚIE. DOCUMENT. DOVADĂ. EPISTOLĂ. EPISTOLIE. HÎRTIE. HOTĂRÎRE. IZV"
+     },
+     {
+      "internalRep": "@CARTE.\n$Subst.$@ Carte, cărticea (dim.), cărticică, cărțulie, cărțișoară (rar), cărțoi (augm., rar), volum, volumaș (di"
+     },
+     {
+      "internalRep": "@CARTE CU ÎNVĂȚĂT&#039;URĂ@ s. v. $cazanie, cuvânt, omilie, predică.$"
+     },
+     {
+      "internalRep": "@CARTE DE Z&#039;ODII@ s. v. $rojdanic, zodiac, zodiar.$"
+     },
+     {
+      "internalRep": "@CARTE DOMNE&#039;ASCĂ@ s. v. $hrisov.$"
+     },
+     {
+      "internalRep": "@CÂRȚĂ@ s. v. $buleandră, cârpă, fleandură, otreapă, petică, zdreanță.$"
+     },
+     {
+      "internalRep": "@SCORPIA CĂRȚILOR@ s. v. $scorpionul de cărți.$"
+     },
+     {
+      "internalRep": "@carte cu învățăt&#039;ură@ #s.# #v.# CAZANIE. CUVÎNT. OMILIE. PREDICĂ."
+     },
+     {
+      "internalRep": "@carte de z&#039;odii@ #s.# #v.# ROJDANIC. ZODIAC. ZODIAR."
+     },
+     {
+      "internalRep": "@carte domne&#039;ască@ #s.# #v.# HRISOV."
+     },
+     {
+      "internalRep": "@c&#039;îrță@ #s.# #v.# BULEANDRĂ. CÎRPĂ. FLEANDURĂ. OTREAPĂ. PETICĂ. ZDREANȚĂ."
+     },
+     {
+      "internalRep": "@scorpia c&#039;ărților@ #s.# #v.# SCORPIONUL DE CĂRȚI."
+     },
+     {
+      "internalRep": "@Ad aperturam libri@ sau @Aperto libro@ (lat. &quot;La deschiderea cărții&quot;) - În vechime, cărțile, fiind transcrise"
+     },
+     {
+      "internalRep": "@Carte cu șapte peceți@ - Expresia vine din Biblie, și anume din Apocalips, unde, în viziunea lui, loan teologul pomeneș"
+     },
+     {
+      "internalRep": "@Cărțile albastre@ - În Anglia s-a încetățenit procedeul ca rapoartele parlamentare și documentele oficiale să fie tipăr"
+     },
+     {
+      "internalRep": "@Doctus cum libro@ (lat. &quot;Savant, cu cartea-n mînă&quot;) - expresie prin care sînt ironizați cei ce nu exprimă ide"
+     },
+     {
+      "internalRep": "@Ex libris...@ (lat. &quot;din cărțile lui…&quot;)."
+     },
+     {
+      "internalRep": "@Habent sua fata libelli@ (lat. &quot;Cărțile își au destinul lor&quot;) - versul 258 din cartea de prozodie $De litteri"
+     },
+     {
+      "internalRep": "@Timeo hominem unius libri@ sau @Timeo virum unius libri@ (lat. &quot;Mă tem de omul unei singure cărți&quot;) - Vorbe a"
+     },
+     {
+      "internalRep": "@c&#039;arte@, $cărți$, s.f. 1. (înv.) Scrisoare, bilet, misivă: &quot;Până scriu o $cărtice$ / S-o trimit la mama mea"
+     },
+     {
+      "internalRep": "@c&#039;arte,@ $cărți,$ s.f. - 1. Tom, volum. 2. (înv.; pop.) Scrisoare, bilet, misivă: &quot;Până scriu o $cărtice$ / S"
+     },
+     {
+      "internalRep": "@c&#039;arte,@ $cărți,$ s.f. - @1.@ Scrisoare, bilet, misivă: &quot;Până scriu o cărtice / S-o trimit la mama mea&quot; "
+     },
+     {
+      "internalRep": "@c&#039;artă,@ $c&#039;arte,$ s.n. (înv.) hartă."
+     },
+     {
+      "internalRep": "@cârță@, $cârțe$, s.f. (reg.) Fetiță mică, sugară: &quot;Că mă duc la cununie, / Că să-nsoară Păducel, / După fata lui C"
+     }
+    ]
+   }
+  },
+  {
+   "word": "vârstă",
+   "why": "dexonline numbers homographs (`vârstă^1`), and for this word the numbered forms are the only ones — leaving the marker on made a common word read as unattested. `vîrste` is the older orthography of the same plural.",
+   "expect": {
+    "found": true,
+    "genders": [
+     "f"
+    ],
+    "forms": [
+     "vârste",
+     "vîrste"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@V&#039;ÂRSTĂ^1,@ $vârste,$ #s. f.# @1.@ Timpul scurs de la nașterea unei ființe până la un anumit moment din viața ei; "
+     },
+     {
+      "internalRep": "@V&#039;ÂRSTĂ^2,@ $vârste,$ #s. f.# (#Reg.#) @1.@ Dungă sau bandă de altă culoare (într-o țesătură, în penajul unei păsă"
+     },
+     {
+      "internalRep": "@$v&#039;ârstă^{1}$@ $#sf#$ \n[#At:# CORESI, EV. 35 / #V:# (#pop#) @$vr&#039;âs~$@, (#reg#) @$~te$, $v&#039;âstră$, $vr"
+     },
+     {
+      "internalRep": "@$v&#039;ârstă^{2}$@ $#sf#$ \n[#At:# (#a.# 1770) ARHIVA, R. I. 344/13 / #V:# (#pop#) @$vr&#039;âs~$@ (#Pl# și: $vr&#039;â"
+     },
+     {
+      "internalRep": "@V&#039;ÂRSTĂ^1,@ $v&#039;ârste,$ #s. f.# @1.@ Timpul scurs de la nașterea unei ființe până la un anumit moment din viaț"
+     },
+     {
+      "internalRep": "@V&#039;ÂRSTĂ^2,@ $vârste,$ #s. f.# (#Reg.#) @1.@ Dungă sau bandă de altă culoare (într-o țesătură, în penajul unei păsă"
+     },
+     {
+      "internalRep": "@VÂRSTĂ^1 ~e@ $f.$ 1) Durată de timp socotită de la nașterea unei ființe până la un anumit moment din viața ei; etate. *"
+     },
+     {
+      "internalRep": "@VÂRSTĂ^2 ~e@ $f. reg.$ Fâșie îngustă de altă culoare (decât fondul); vârcă; dungă. /&lt; sb. $vrsta$"
+     },
+     {
+      "internalRep": "@vârstă@ f. @1.@ durată obișnuită a vieții: ($un nume$) $să treacă peste vârste și peste ani să sboare$ GR. AL.; @2.@ ti"
+     },
+     {
+      "internalRep": "@ÎNVÂRST&#039;A,@ $învârstez,$ #vb.# I. #Tranz.# (#Pop.#) A face dungi de culori diferite pe o țesătură sau cusătură; $#"
+     },
+     {
+      "internalRep": "@ÎNVRÂST&#039;A@ #vb.# I #v.# @învârsta.@"
+     },
+     {
+      "internalRep": "@VR&#039;ÂSTĂ^1@ #s. f.# #v.# @vârstă^1.@"
+     },
+     {
+      "internalRep": "@VR&#039;ÂSTĂ^2@ #s. f.# #v.# @vârstă^2.@"
+     },
+     {
+      "internalRep": "@$învârst&#039;a$@ $#v#$ #vz# @$învrâsta$@"
+     },
+     {
+      "internalRep": "@$învrâst&#039;a@ #vt#$ \n[#At:# M. COSTIN, #ap.# LET. I, 265/4 / #V:# @$~vârs~$@ / #Pzi:# $~t&#039;ez, învr&#039;âst$ / "
+     },
+     {
+      "internalRep": "@$vârst&#039;a$@ \n[#At:# PO 312/26 / #V:# (#pop#) @$vrâs~$@ / #Pzi:# (#pop#) $~t&#039;ez$, (#reg#) $vârst$ / #E:# #srb# "
+     },
+     {
+      "internalRep": "@$v&#039;ârste$@ $#sf#$ #vz# @$vârstă^{1}$@"
+     },
+     {
+      "internalRep": "@$v&#039;ârstră$@ $#sf#$ #vz# @$vârstă^{2}$@"
+     },
+     {
+      "internalRep": "@$v&#039;âstră^{1}$@ $#sf#$ #vz# @$vârstă^{1}$@"
+     },
+     {
+      "internalRep": "@$v&#039;âstră^{2}$@ $#sf#$ #vz# @$vârstă^{2}$@"
+     },
+     {
+      "internalRep": "@$vrâst&#039;a$@ $#v#$ #vz# @$vârsta$@"
+     },
+     {
+      "internalRep": "@$vr&#039;âstă^{1}$@ $#sf#$ #vz# @$vârstă^{1}$@"
+     },
+     {
+      "internalRep": "@$vr&#039;âstă^{2}$@ $#sf#$ #vz# @$vârstă^{2}$@"
+     },
+     {
+      "internalRep": "@$vr&#039;âste$@ $#sf#$ #vz# @$vârstă^{1}$@"
+     },
+     {
+      "internalRep": "@$vr&#039;âstră^{1}$@ $#sf#$ #vz# @$vârstă^{1}$@"
+     },
+     {
+      "internalRep": "@$vr&#039;âstră^{2}$@ $#sf#$ #vz# @$vârstă^{2}$@"
+     },
+     {
+      "internalRep": "@vîrst&#039;a@ $vb. IV. tr.$ @1@ $(pop.)$ A face să fie străbătut de dîre, de fîșii de altă culoare decît cea a fondului"
+     },
+     {
+      "internalRep": "@v&#039;îrstă^{2}@ $s.f. (reg.)$ @1@ Dungă, bandă de altă culoare (într-o țesătură, în penajul unei păsări etc.); orname"
+     },
+     {
+      "internalRep": "@v&#039;îrstă^{1}@ $#s.f.#$ 1 Timpul scurs de la nașterea unei ființe pînă la un anumit moment din viața ei; numărul de "
+     },
+     {
+      "internalRep": "@vrîst&#039;a@ $vb. I.$ v. vîrsta."
+     },
+     {
+      "internalRep": "@vr&#039;îstă^{1}@ $s.f.$ v. vîrstă^{1}."
+     },
+     {
+      "internalRep": "@vrîstă^{2}@ $s.f.$ v. vîrstă^{2}."
+     },
+     {
+      "internalRep": "@ÎNVÎRST&#039;A@ (-$stez$) $#vb.# #tr.#$ și $#refl.#$ A (se) %vîrsta,% a (se) împestrița cu mai multe colori: $undele ve"
+     },
+     {
+      "internalRep": "@ÎNVÎRST&#039;AT@ $#adj.# #p.#$ @ÎNVÎRST&#039;A@: $maramele învîrstate de borangic$ #(VLAH.)#."
+     },
+     {
+      "internalRep": "@ÎNVRÎST&#039;A@ ... = @ÎNVÎRST&#039;A@ ..."
+     },
+     {
+      "internalRep": "@ÎNVÂRST&#039;A,@ $învârstez,$ #vb.# I. #Tranz.# A face dungi de culori diferite pe o țesătură sau cusătură; $#p. ext.#$"
+     },
+     {
+      "internalRep": "@ÎNVÎRST&#039;A,@ $învîrstez,$ #vb.# I. %#Tranz.#% A vărga o țesătură sau o cusătură cu dungi de altă culoare; %#p. ext."
+     },
+     {
+      "internalRep": "@ÎNVRÎST&#039;A@ #vb.# I #v.# @învîrsta.@"
+     },
+     {
+      "internalRep": "@VÎRST&#039;A@ #vb.# I #v.# @învîrsta.@"
+     },
+     {
+      "internalRep": "@V&#039;ÎRSTĂ^1,@ $vîrste,$ #s. f.# @1.@ Timpul scurs de la nașterea unei ființe pînă la un anumit moment din viața ei; "
+     },
+     {
+      "internalRep": "@V&#039;ÎRSTĂ^2,@ $vîrste,$ #s. f.# (Regional; și în forma $vrîstă)$ Dungă sau bandă de altă culoare (într-o țesătură, î"
+     },
+     {
+      "internalRep": "@V&#039;ÎRSTRĂ@ #s. f.# #v.# @vîrstă^{2}.@"
+     },
+     {
+      "internalRep": "@VRÎST&#039;A@ #vb.# I #v.# @învîrsta.@"
+     },
+     {
+      "internalRep": "@VR&#039;ÎSTĂ^1@ #s. f.# #v.# @vîrstă^{1}.@"
+     },
+     {
+      "internalRep": "@VR&#039;ÎSTĂ^2@ #s. f.# #v.# @vîrstă^{2}.@"
+     },
+     {
+      "internalRep": "@vârsta a d&#039;oua@ #sint.# #s.# (ironic) Vârsta adultă * $&quot;Chiar la intrarea în discotecă un tip, la @vârsta a d"
+     },
+     {
+      "internalRep": "@vârsta a tr&#039;eia@ #sint.# #s.# (eufemism) Perioada de după pensionare, bătrânețe * $&quot;A treia vârstă. Într-un b"
+     },
+     {
+      "internalRep": "@A ÎNVÂRST&#039;A ~&#039;ez@ $tranz.$ A ornamenta cu dungi; a dunga; a vărga. /$în + vârstă$"
+     },
+     {
+      "internalRep": "@A VÂRST&#039;A vârst&#039;ez@ $tranz. reg.$ A face să fie străbătut de vârste. /Din $vârstă$"
+     },
+     {
+      "internalRep": "@învârstà@ v. @1.@ a înflora și vărga: $a învârsta marame;$ @2.@ a lega în mănunchi: $și flori culegea, cunune învârsta$"
+     },
+     {
+      "internalRep": "@vrâstă@ f. Mold. @1.@ vârstă; @2.@ dungă, fășie: $o vrâstă de nori.$ [V. $vârstă$]."
+     },
+     {
+      "internalRep": "@învîrstéz,@ V. @vîrstez.@"
+     },
+     {
+      "internalRep": "@v&#039;îrstă@ (vest) și @vr&#039;îstă@ (est) f., pl. $e$ (vsl. $vrŭsta, vrŭstŭ,$ sîrb. $vrsta,$ etate; rus. $verstá,$ v"
+     },
+     {
+      "internalRep": "@vîrstéz@ v. tr. (d. $vîrstă,$ dungă, ca sîrb. $vrstati,$ a alinia). Însemn pin dungĭ. - Și @înv-.@ - În est @vrîstez:@ "
+     },
+     {
+      "internalRep": "@v&#039;îstră,@ V. @vîrstă.@"
+     },
+     {
+      "internalRep": "@+v&#039;ârstă (f&#039;ără/în ~)@ #loc.# #adj.#"
+     },
+     {
+      "internalRep": "@v&#039;ârstă@ (etate; dungă; buchet) #s.# #f.#, #g.-d.# #art.# $v&#039;ârstei$; #pl.# $v&#039;ârste$"
+     },
+     {
+      "internalRep": "@v&#039;ârstă^1@ (etate) #s. f.#, #g.-d.# #art.# $v&#039;ârstei;$ #pl.# $v&#039;ârste$"
+     },
+     {
+      "internalRep": "@v&#039;ârstă^2 / vr&#039;âstă@ (dungă, buchet) (#reg.#) #s. f.#, #g.-d.# #art.# $v&#039;ârstei / vr&#039;âstei;$ #pl.# "
+     },
+     {
+      "internalRep": "@vârstă@ (timp) s. f., g.-d. art. $vârstei;$ pl. $vârste$"
+     },
+     {
+      "internalRep": "@vârstă@ (dungă, buchet) s. f., g.-d. art. $vârstei;$ pl. $vârste$"
+     },
+     {
+      "internalRep": "@vârstă@, -te."
+     },
+     {
+      "internalRep": "@învârst&#039;a (a ~)@ (#pop.#) #vb.#, #ind.# #prez.# 1 #sg.# $învârst&#039;ez$, 3 $învârste&#039;ază$; #conj.# #prez.# "
+     },
+     {
+      "internalRep": "@învârst&#039;a@ @(a ~)@ (#pop.#) #vb.#, #ind.# #prez.# 3 $învârste&#039;ază$"
+     },
+     {
+      "internalRep": "@vr&#039;âstă@ #v.# @v&#039;ârstă^2@"
+     },
+     {
+      "internalRep": "@învârst&#039;a@ vb., ind. prez. 1 sg. $învârst&#039;ez,$ 3 sg. și pl. $învârste&#039;ază$"
+     },
+     {
+      "internalRep": "@vârst&#039;a@ vb., ind. prez. 1 sg. $vârst&#039;ez,$ 3 sg. și pl. $vârste&#039;ază$"
+     },
+     {
+      "internalRep": "@vîrstă@"
+     },
+     {
+      "internalRep": "@învârstez@."
+     },
+     {
+      "internalRep": "@vîrstă (-te),@ #s. f.# - @1.@ Etate. - @2.@ Dungă, fîșie. - @3.@ Smoc, cosiță. - @4.@ (#Trans.#) Buchet. - #Var.# $vrîs"
+     },
+     {
+      "internalRep": "@vârstă@ (strat.), ($engl.= @age@$) unitate geocronologică al cărei echivalent cronostratigrafic este → $etajul. (V.M.)$"
+     },
+     {
+      "internalRep": "@ANNO... AETATIS SUAE@ (#lat.#) $în anul... vârstei mele$ - Formulă utilizată în inscripții funerare, pe tablouri etc."
+     },
+     {
+      "internalRep": "@SENSUS, NON AETAS, INVENIT SAPIENTIAM@ (#lat.#) $observația, nu vârsta, va aduce înțelepciunea$ - Publilius Syrus, "
+     },
+     {
+      "internalRep": "@VÂRSTĂ@ s. @1.@ etate, (înv. și reg.) timp, (înv.) crescut. $(Ce ~ ai?)$ @2.@ (pop.) seamă. $(Copii de ~ lui.)$"
+     },
+     {
+      "internalRep": "@VÂRSTĂ@ s. v. $brâu, buchet, dungă, linie, mănunchi, șuviță, vargă, vechime.$"
+     },
+     {
+      "internalRep": "@ÎNVÂRST&#039;A@ vb. v. $dunga, tărca, vărga.$"
+     },
+     {
+      "internalRep": "@VÂRST&#039;A@ vb. v. $dunga, tărca, vărga.$"
+     },
+     {
+      "internalRep": "@VÂRSTA DE M&#039;IJLOC@ s. v. $evul mediu.$"
+     },
+     {
+      "internalRep": "@învîrst&#039;a@ #vb.# #v.# DUNGA. TĂRCA. VĂRGA."
+     },
+     {
+      "internalRep": "@vîrst&#039;a@ #vb.# #v.# DUNGA. TĂRCA. VĂRGA."
+     },
+     {
+      "internalRep": "@vîrsta de m&#039;ijloc@ #s.# #v.# EVUL MEDIU."
+     },
+     {
+      "internalRep": "@V&#039;ÎRSTĂ@ #s.# @1.@ etate, (#înv.# și #reg.#) timp, (#înv.#) cresc&#039;ut. $(Ce ~ ai?)$ @2.@ (#pop.#) se&#039;amă."
+     },
+     {
+      "internalRep": "@v&#039;îrstă@ #s.# #v.# BRÎU. BUCHET. DUNGĂ. LINIE. MĂNUNCHI. ȘUVIȚĂ. VARGĂ. VECHIME."
+     },
+     {
+      "internalRep": "@L\\’âge d\\&#039;or était l\\&#039;âge où l\\’or ne régnait pas@ (fr. &quot;Vîrsta de aur era vîrsta cînd nu domnea aurul"
+     },
+     {
+      "internalRep": "@Vîrsta de aur@ - expresie echivalentă cu &quot;Epoca de aur&quot; (vezi).\n&quot;Cehov... și-a construit toată opera pe "
+     },
+     {
+      "internalRep": "@vấrstă@, $vârste$, (vrâstă), s.f. (reg.) Dungă, linie, vargă. ■ În trecut, cergile de lână erau țesute &quot;în vârste"
+     },
+     {
+      "internalRep": "@vârstă,@ $vârste,$ (vrâstă), s.f. - (reg.) Dungă, linie, vargă. În trecut, cergile de lână erau țesute &quot;în vârste"
+     },
+     {
+      "internalRep": "@vârstă,@ -e, (vrâstă), s.f. - Dungă, linie, vargă. În trecut, cergile de lână erau țesute &quot;în vârste&quot;, adică "
+     },
+     {
+      "internalRep": "@vîrsta@ #vb.# (Mold., #Ban.#) A face dungi; a (se) diferenția. @A:@ (#Fig.#) $Nestătătoare și niceodată încredințate lu"
+     },
+     {
+      "internalRep": "@VÎRSTĂ@ #s.# #f.# #v.# @verstă.@"
+     },
+     {
+      "internalRep": "@VRÎSTA@ #vb.# #v.# @vârsta.@"
+     },
+     {
+      "internalRep": "@învârst&#039;a,@ $învârst&#039;ez,$ vb. I (pop.) @1.@ a vărga, a înflora. @2.@ a lega în mănunchi."
+     },
+     {
+      "internalRep": "@învrâst&#039;a,@ $învrâșt&#039;ez,$ vb. I (pop.) @1.@ a face vrâste (dungi, fâșii, vergi) pe un obiect, a face cu vrâst"
+     },
+     {
+      "internalRep": "@învârstá@, (învârsti, învârșta, învărsta), v.t. (reg.) 1. A împodobi. 2. A face dungi, a pune vârste; a învărga cu mai "
+     },
+     {
+      "internalRep": "@vârstá@, $vârstez$, v.t. (reg.) A țese cu dungi. – Din srb. $vrstati$ (MDA)."
+     },
+     {
+      "internalRep": "@învârst&#039;a,@ (învârsti, învârșta, învărsta), vb. tranz. - (reg.) 1. A împodobi. 2. A face dungi, a pune vârste, a î"
+     },
+     {
+      "internalRep": "@vârst&#039;a,@ $vârstez,$ vb. tranz. - (reg.) A țese cu dungi. - Din srb. $vrstati$ (MDA)."
+     },
+     {
+      "internalRep": "@vrâstă,@ s.f. - v. vârstă (&quot;dungă&quot;)."
+     },
+     {
+      "internalRep": "@învârst&#039;a,@ (învârsti, învârșta, învărsta), vb. tranz. - @1.@ A împodobi. @2.@ A face dungi, a pune vârste, a învă"
+     },
+     {
+      "internalRep": "@vrâstă,@ s.f. - v. vârstă."
+     }
+    ]
+   }
+  },
+  {
+   "word": "vorbi",
+   "why": "A verb: no gender, and the inflected slot holds the eu-form. Verbs are indexed bare, so `a vorbi` must be asked as `vorbi`.",
+   "expect": {
+    "found": true,
+    "genders": [],
+    "forms": [
+     "vorbesc"
+    ]
+   },
+   "response": {
+    "status": 200,
+    "definitions": [
+     {
+      "internalRep": "@VORB&#039;I,@ $vorbesc,$ #vb.# IV. @1.@ #Intranz.# A avea facultatea de a articula cuvinte; a exprima prin cuvinte gând"
+     },
+     {
+      "internalRep": "@$vorb&#039;i$@ \n[#At:# DOSOFTEI, V. S. ianuarie 36^{v}/16 / #V:# (#reg#) $@vorv&#039;i$@ / #Pzi:# $~b&#039;esc$ / #E:# "
+     },
+     {
+      "internalRep": "@vorb&#039;i@ $#vb.# IV. (despre oameni)$ @1@ $#intr.#$ A avea facultatea, capacitatea de a utiliza limbajul articulat. "
+     },
+     {
+      "internalRep": "@VORB&#039;I,@ $vorbesc,$ #vb.# IV. @1.@ #Intranz.# A avea facultatea de a articula cuvinte; a exprima prin cuvinte gând"
+     },
+     {
+      "internalRep": "@VORB&#039;I,@ $vorbesc,$ #vb.# IV. @1.@ %#Intranz.#% A avea facultatea de a articula cuvinte, a folosi graiul articulat"
+     },
+     {
+      "internalRep": "@vorb&#039;i@ #vb.# IV (#fam.#, #pop.#) A fi în vorbă cu X * $&quot;Mariana @vorbește@ cu Ion.&quot;$ (din $vorbă$)"
+     },
+     {
+      "internalRep": "@A VORB&#039;I ~&#039;esc 1.@ $tranz. (gânduri, sentimente)$ A exprima prin viu grai; a spune; a zice; a grăi. @~ frumos"
+     },
+     {
+      "internalRep": "@A SE VORB&#039;I mă ~&#039;esc@ $intranz.$ A cădea la învoială; a se înțelege. @S-au întâlnit și s-au vorbit.@ /Din $vo"
+     },
+     {
+      "internalRep": "@vorbì@ v. @1.@ a articula vorbe: $copilașul începe a vorbi;$ @2.@ se zice de păsările cari imitează limba omului: $papa"
+     },
+     {
+      "internalRep": "@$vorv&#039;i$@ $#v#$ #vz# @$vorbi$@"
+     },
+     {
+      "internalRep": "@AB HOC ET AB HAC@ (#lat.#) = A vorbi $vrurte și nevrute.$"
+     },
+     {
+      "internalRep": "@DE OMNI RE SCIBILI, ET QUIBUSDAM ALIIS@ (#lat.#) = Despre toate ce se poate vorbi și altele pe deasupra. Se spune cînd "
+     },
+     {
+      "internalRep": "@#❍# HORB&#039;I@ - @VORB&#039;I@."
+     },
+     {
+      "internalRep": "@vorbésc@ v. intr. (d. $vorbă$). Articulez vorbe exprimînd o cugetare, cuvîntez, grăĭesc: $copilu începe a vorbi.$ Artic"
+     },
+     {
+      "internalRep": "@vorb&#039;i (a ~)@ #vb.#, #ind.# #prez.# 1 #sg.# și 3 #pl.# $vorb&#039;esc$, 3 #sg.# $vorb&#039;ește$, #imperf.# 1 $vor"
+     },
+     {
+      "internalRep": "@vorb&#039;i@ @(a ~)@ #vb.#, #ind.# #prez.# 1 #sg.# și 3 #pl.# $vorb&#039;esc,$ #imperf.# 3 #sg.# $vorbe&#039;a;$ #conj."
+     },
+     {
+      "internalRep": "@vorb&#039;i@ vb., ind. prez. 1 sg. și 3 pl. $vorb&#039;esc,$ imperf. 3 sg. $vorbe&#039;a;$ conj. prez. 3 sg. și pl. $vo"
+     },
+     {
+      "internalRep": "@vorbesc@, -beam 1 $#imp.#$"
+     },
+     {
+      "internalRep": "@RES IPSA LOQUITUR@ (#lat.#) $lucrul vorbește de la sine$ - E limpede, e de la sine înțeles."
+     },
+     {
+      "internalRep": "@VIEN DIETRO A ME, E LASCIA DIR LE GENTI@ (#lat.#) $vino după mine și lasă lumea să vorbească$ - Dante, &quot;Purgatoriu"
+     },
+     {
+      "internalRep": "@a vorbi@ ($cuiva sau cu cineva$) @de sus@ $#expr.#$ a vorbi ($cuiva sau cu cineva$) arogant."
+     },
+     {
+      "internalRep": "@a vorbi aiurea-n tramvai / ca să nu adoarmă@ $#expr.#$ a spune lucruri fără sens; a face afirmații nefondate."
+     },
+     {
+      "internalRep": "@a vorbi ca din butoi@ $#expr.#$ a vorbi cu glas gros / răgușit / dogit."
+     },
+     {
+      "internalRep": "@a vorbi ca o moară hodorogită / ca o moară stricată@ $#expr.#$ a pălăvrăgi, a turui, a trăncăni întruna, agasându-i pe "
+     },
+     {
+      "internalRep": "@a vorbi ca o morișcă / ca o meliță@ $#expr.#$ v. @a vorbi ca o moară hodorogită / stricată.@"
+     },
+     {
+      "internalRep": "@a vorbi citeț / cu litere de tipar@ $#expr.#$ a vorbi clar / inteligibil."
+     },
+     {
+      "internalRep": "@a vorbi cu gura altuia / cu jumătate de gură@ $#expr.#$ a vorbi fără convingere / șovăielnic."
+     },
+     {
+      "internalRep": "@a vorbi fără șir@ $#expr.#$ a vorbi incoerent / neclar / confuz."
+     },
+     {
+      "internalRep": "@a vorbi în barbă@ $#expr.#$ a vorbi încet, a mormăi numai pentru sine."
+     },
+     {
+      "internalRep": "@a vorbi în deșert / la pereți / surzilor@ $#expr.#$ a vorbi fără a reuși să-și impună punctul de vedere, să se facă înț"
+     },
+     {
+      "internalRep": "@a vorbi în dodii@ $#expr.#$ @1.@ a face afirmații nefondate. @2.@ a vorbi incoerent / neclar."
+     },
+     {
+      "internalRep": "@a vorbi în doi peri@ $#expr.#$ a vorbi intenționat confuz."
+     },
+     {
+      "internalRep": "@a vorbi în pungă@ $#expr.# (#adol.#)$ a vorbi de unul singur; a vorbi fără a fi ascultat de cei din jur."
+     },
+     {
+      "internalRep": "@a vorbi la asuceală / la caterincă / la ciorănie / la derută / la mișto / la șme / la șmecherie / la ușcheală@ $#expr.#"
+     },
+     {
+      "internalRep": "@a vorbi pe față / pe șleau@ $#expr.#$ a vorbi sincer, a spune adevărul fără menajamente."
+     },
+     {
+      "internalRep": "@a vorbi pe invers@ $#expr.#$ a face afirmații supărătoare, care au darul de a deranja un interlocutor."
+     },
+     {
+      "internalRep": "@a vorbi pe la spate@ ($pe cineva$) $#expr.#$ a bârfi; a calomnia."
+     },
+     {
+      "internalRep": "@a vorbi pe unde scurte@ $#expr.# (#intl.#)$ a vorbi argotic."
+     },
+     {
+      "internalRep": "@a vorbi prăpăstii@ $#expr.#$ a spune prostii."
+     },
+     {
+      "internalRep": "@a vorbi verde-n față@ $#expr.#$ a spune adevărul."
+     },
+     {
+      "internalRep": "@a vorbi verzi și uscate / vrute și nevrute@ $#expr.#$ a flecări."
+     },
+     {
+      "internalRep": "@vorbim împreună și ne înțelegem separat@ $#prov.# (#adol.#) folosit pentru a sublinia incompatibilitatea punctelor de v"
+     },
+     {
+      "internalRep": "@VORB&#039;I@ vb. @1.@ a articula, a grăi, a pronunța, a rosti, a scoate, a spune, a zice, (prin Mold.) a blești. $(N-a "
+     },
+     {
+      "internalRep": "@VORB&#039;I@ #vb.# @1.@ a articula, a grăi, a pronunța, a rosti, a scoate, a spune, a zice, (prin #Mold.#) a blești. $("
+     },
+     {
+      "internalRep": "@A vorbi@ ≠ a tăcea"
+     },
+     {
+      "internalRep": "@Il est bon de parler et meilleur de se taire@ (fr. &quot;E bine să vorbești, dar mai bine-i să taci&quot;) - vers de La"
+     },
+     {
+      "internalRep": "@Parler comme l\\’Apocalypse@ (fr. &quot;A vorbit ca în Apocalips&quot;) - Una dintre cărțile &quot;Noului testament"
+     }
+    ]
+   }
+  }
+ ]
+}
