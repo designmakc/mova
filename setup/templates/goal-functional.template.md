@@ -12,6 +12,13 @@
   - The scenarios are the interview's elicited list, 5–10 of them, in the learner's OWN
     WORDS — do not paraphrase them into curriculum-speak. Every scenario carries a
     measurable probe; a scenario without one is a mood, not a spec.
+  - THE TARGET VOLUME LINE IS NOT OPTIONAL. docs/consequential.test.ts arms on
+    `**Target volume**: ~L–H` plus the plan's `~N study blocks` — it is the workspace's
+    only numbers-versus-numbers check, and without the line it skips forever. A goal with
+    no date has nothing else keeping its arithmetic honest, which is exactly why this kind
+    needs it. Run the ceiling arithmetic (queue cap × blocks/week ÷ 7 × top interval)
+    BEFORE committing to the number. (Found generating an Italian-native vocabulary-only
+    instance, 2026-08-15: the check had never once armed on this goal kind.)
 -->
 # Goal contract
 
@@ -35,13 +42,17 @@ Every session activity must serve at least one scenario; work that serves none i
 creep, however enriching. An eleventh scenario is the **next** goal contract — renew via
 the review verb, don't accrete.
 
+**Target volume**: ~{{LOW}}–{{HIGH}} ledger items to carry these {{COUNT}} scenarios
+`(assumed at setup — recalibrate at review)`. Derive it from the scenarios themselves —
+the domains they span, and what each needs to run unassisted — never from a syllabus.
+
 ## Deadline
 
 **This goal has no deadline, and that is a feature, not a gap.** The review verb
-therefore measures **volume and streak — scenarios passed against the list, sessions
-held against the {{BLOCKS}}-blocks/week budget, ledger growth — never pace-vs-date.** No
-session may invent a date to motivate with; urgency theater against a fictional deadline
-is how no-deadline instances rot.
+therefore measures **volume and streak — scenarios passed against the list, sessions held
+against the {{BLOCKS}}-blocks/week budget, ledger growth against the target volume above —
+never pace-vs-date.** No session may invent a date to motivate with; urgency theater
+against a fictional deadline is how no-deadline instances rot.
 
 <!-- If the interview DID surface a soft date ("before the in-laws visit in May"), use
 the soft-date block from goal-level.template.md instead of the paragraph above, and set
@@ -54,6 +65,12 @@ unrehearsed — the agent plays the counterpart (waiter, landlord, the message t
 scored **pass / assisted / fail** per the scenario's probe, frozen as a snapshot with its
 "Not exercised:" list. A scenario counts **owned** after two cold passes on separate
 days. Runs happen at phase gates and whenever the learner asks to "test me".
+
+**The verb that runs it:** {{ASSESSMENT_VERB — `mock` where the focus mode keeps mock
+active; otherwise the carrier verb from
+[setup/scenarios/focus_modes.md](../../setup/scenarios/focus_modes.md), which is `drill`
+under `drill` and `vocab`. Write the actual verb name here — this file is what a session
+reads}}. The instrument never changes with the verb; only who carries it does.
 
 ## Non-goals
 

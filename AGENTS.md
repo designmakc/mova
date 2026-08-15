@@ -92,7 +92,12 @@ any session sharing the tree. Never discard uncommitted work you did not create.
 
 ## Status
 
-Template under construction (see CHANGELOG.md). The engine is extracted: mechanics,
-scripts, contract tests, the visual system, and the Romanian reference pack are in place
-and CI-green. Playbooks and the setup system land next — until they do, the verb table
-names the target state; a file it names that doesn't exist yet is unbuilt, not missing.
+Everything the verb table names exists and is CI-green: the engine (mechanics, scripts,
+contract tests, the visual system), the Romanian reference pack, all eleven playbooks,
+and the setup system. Three instances have been generated from this template and each
+passed its own contract suite.
+
+**Not yet exercised:** an actual study session — no lesson, drill, review or tutor pack
+has ever run to completion. Adapters have only been generated for Claude Code. Romanian
+is the only language pack. The update and sync paths are written but unrun. Treat those
+as untested, not as broken; report what you find (see CHANGELOG.md).

@@ -6,18 +6,31 @@
   here).
   RULES FOR THE GENERATING AGENT:
   - Change the marker above to `mova:instance`; delete guidance comments; fill every
-    {{PLACEHOLDER}}.
-  - SEED 6–10 STARTER CODES, all marked (assumed): take the pack's notes.md taxonomy
-    reference (earned codes for this target) and re-rank for THIS learner's held
-    languages — the zones their languages cannot see come first. Do not port a
-    reference code the pair makes irrelevant, and do not invent codes ahead of data:
-    codes accrete in the session that first needs them.
+    {{PLACEHOLDER}} IN PROSE. The fenced log-entry-format block below is the standing
+    exception: its {{WRONG}} / {{RIGHT}} / {{CODE}} tokens are the format being
+    demonstrated, not slots to fill, and they ship verbatim — see playbooks/setup.md § 2
+    Generation, "The placeholder rule stops at a fenced block".
+  - SEED THE ZONES THIS LEARNER'S LOG WILL ACTUALLY HIT, all marked (assumed): take the
+    pack's notes.md taxonomy reference (earned codes for this target) and re-rank for
+    THIS learner's held languages — the zones their languages cannot see come first. Do
+    not port a reference code the pair makes irrelevant, and do not invent codes ahead of
+    data: codes accrete in the session that first needs them.
+  - HOW MANY: 6–10 is the usual count and NOT a cap. What decides is a per-code test, not
+    arithmetic — a code earns a seed slot when all three hold: (a) high traffic — this
+    learner meets the zone in the first weeks; (b) codeable — you can state its boundary
+    against its neighbours in one line (that line is its Scope ruling); (c) not a drain
+    every slip flows into. Zones that fail (b) wait for the session that first needs
+    them. Never pad to reach six, and never fuse two genuinely distinct zones to stay
+    under ten — a fused code's tally points nowhere, which is the failure this whole file
+    exists to prevent. A close pair or a three-anchor ladder legitimately produces more:
+    eleven, on a German/English/French → Romanian instance. (Found generating a
+    German-native level goal with a tutor, 2026-08-15.)
   - CODE FORMAT: CAPS or CAPS-CAPS — uppercase letters (any alphabet; the tally is
     Unicode-aware) plus dash, zone first, aspect second (ART-DEF, VRB-TENSE). Short,
     unambiguous, never renamed once entries cite them.
-  - Keep every engine-doctrine block below verbatim (tokens table, entry format, the
-    scope-section convention) — they carry limba's incident costs and the tally's
-    parsing contract.
+  - Keep every engine-doctrine block below verbatim (tokens table, entry format — tokens
+    included, per the placeholder exception above — and the scope-section convention);
+    they carry limba's incident costs and the tally's parsing contract.
 -->
 # Error taxonomy — codes for the error log
 
@@ -32,8 +45,9 @@
 
 ## Codes
 
-<!-- 6–10 seed rows. Zone = plain-language area; Example = a plausible error for THIS
-     pair, marked ✗, with the correction — generate real examples, not schemas. -->
+<!-- Seed rows per the selection rule above (6–10 typical, more when the pair earns it).
+     Zone = plain-language area; Example = a plausible error for THIS pair, marked ✗,
+     with the correction — generate real examples, not schemas. -->
 
 | Code | Zone | Example error |
 | --- | --- | --- |

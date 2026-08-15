@@ -68,6 +68,12 @@ papers outrank generated material** — sources: {{SAMPLE_TEST_SOURCES — from 
 notes.md materials section}}. Mocks graduate: single sections at phase gates → full
 four-section papers in the final phase. Results feed the plan the same session.
 
+**The verb that runs it:** {{ASSESSMENT_VERB — `mock` where the focus mode keeps mock
+active; otherwise the carrier verb from
+[setup/scenarios/focus_modes.md](../../setup/scenarios/focus_modes.md), which is `drill`
+under `drill` and `vocab`. Write the actual verb name here — this file is what a session
+reads}}. The instrument never changes with the verb; only who carries it does.
+
 ## Non-goals
 
 <!-- What this workspace deliberately does not do, so future sessions can refuse scope
@@ -78,8 +84,11 @@ four-section papers in the final phase. Results feed the plan the same session.
 
 <!-- ## Tuition — include this H2 only in the tuition scenario; delete otherwise.
 
-**Tutor:** {{WHO_AND_CHANNEL}}, {{CADENCE}}. Live speaking practice and oral mocks run
-there under real timing. **Spot-check agreement:** each tutor-prep pack carries the
-current unverified-fact list; what the tutor confirms or corrects returns through the
+**Tutor:** {{WHO_AND_CHANNEL}}, {{MEETING_CADENCE — how often you two actually meet; the
+ONLY cadence this clause states}}. Live speaking practice and oral mocks run there under
+real timing. **Spot-check agreement:** each tutor-prep pack carries the current
+unverified-fact list, uncapped, and every Nth pack adds a sampled spot-check — both
+cadences belong to `playbooks/tutor-prep.md`, which is the file that runs them; do not
+restate either as a number here. What the tutor confirms or corrects returns through the
 feedback intake and clears `?` markers with a `tutor-confirmed <date>` trail
 (docs/mechanics/verification.md). -->

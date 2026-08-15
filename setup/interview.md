@@ -39,11 +39,18 @@ Ask, conversationally:
 From the answers, build the **contrast ranking** yourself — do not ask the learner to
 rank. Rules (limba's, earned): the language most structurally useful for the target ranks
 first when the learner holds it natively; a weakly-held language ranks below a
-strongly-held one even when it is closer to the target, and contributes **grammatical
-concepts only, never vocabulary**; the meta-language earns a slot when it carries a
-loan/cognate layer into the target. State the ranking back in plain words ("I'll explain
-Romanian mostly through Ukrainian, reach for English for the Latin-side words…") and let
-the learner correct it.
+strongly-held one even when it is closer to the target, and is **never a production
+source** — the learner cannot trust their own output in a language they half-hold, so a
+form recalled from it must never be offered as the model. It stays fully legitimate on the
+**recognition side**, vocabulary included: school French earns its rung for a Romance
+target the moment a word is readable through it, and ruling that out throws away the
+learner's largest lexical bridge over a production risk that only exists in the other
+direction. State per rung **what kind of anchor it is** — structural, lexical, or both —
+because the profile's picking rule is written from exactly that. The meta-language earns a
+slot when it carries a loan/cognate layer into the target. State the ranking back in plain
+words ("I'll explain Romanian mostly through Ukrainian, reach for English for the
+Latin-side words…") and let the learner correct it. (Recognition/production split found
+generating a German-native level goal with a tutor, 2026-08-15.)
 
 **Maps to:** config `target_language`, `meta_language`, `native_languages` (comma list),
 `contrast_ranking` (ISO-ish codes, `uk > ru > en > de`), `pack` (the target's pack code —
@@ -98,6 +105,13 @@ some? say anything? read? Anything you know is already easy, or already hard?
 Say plainly that the first study session will be a **placement** — a gentle probe, not a
 test to pass — and that today's answer just sets a starting guess.
 
+**Promise the ritual, not a verb.** Topic 5 has not run yet, so you do not yet know which
+verb carries placement here (`lesson` under `full`, `drill` under `drill` and `vocab`,
+`write` under `writing` — [scenarios/focus_modes.md](scenarios/focus_modes.md) § Placement
+and assessment run in every mode). Say "the first session"; never "the first lesson". The
+handoff names the verb, once the focus mode is settled, and it is the only place that
+should. (Found generating an Italian-native vocabulary-only instance, 2026-08-15.)
+
 **Maps to:** the intake snapshot (`docs/snapshots/`) records the self-assessment
 verbatim; the curriculum step uses it to place the starting units; nothing else trusts
 it. It never sets a `covered` status — only measurement does that.
@@ -147,8 +161,11 @@ them minutes and keeps this workspace honest?
 
 **Maps to:** the goal contract's `## Tuition` section (present only when the answer is
 yes), the tutor-prep verb activation, and the spot-check loop in
-`docs/mechanics/verification.md`. Cadence goes into the tuition clause. See
-[scenarios/tuition.md](scenarios/tuition.md).
+`docs/mechanics/verification.md`. The **meeting** cadence — how often the two of them
+actually sit down — is the one number this topic collects, and the only one the Tuition
+clause states. The prep-pack and spot-check cadences belong to
+[playbooks/tutor-prep.md](../playbooks/tutor-prep.md) and are never re-stated here as a
+number. See [scenarios/tuition.md](scenarios/tuition.md).
 
 ## Topic 7 — Environment probe (RUN, don't ask)
 

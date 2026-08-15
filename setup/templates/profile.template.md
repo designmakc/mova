@@ -62,15 +62,34 @@ template_version: {{TEMPLATE_VERSION}}
 ## The contrast ladder — which language a hook comes from
 
 <!-- Numbered, strongest anchor first, mirroring contrast_ranking above. State the why
-     per rung. Close with the never-stack rule — it is engine doctrine, keep it.
-     ONE-LANGUAGE LEARNERS: write the inverted form below instead; the ladder has a single
-     rung and the rule that matters flips. Do not pad the ladder to look complete. -->
+     per rung, and state each rung's KIND — structural anchor, lexical anchor, or both —
+     because the picking rule below is written off exactly that. Close with the
+     never-stack rule and the picking rule; both are engine doctrine, keep them.
+     A SHORT LADDER COMES IN TWO KINDS and they invert each other — keep the paragraph
+     that matches this learner, drop the other, keep both when both apply:
+     ONE-LANGUAGE LEARNERS (short because they hold little) — write the inverted form
+     below; the ladder has a single rung and the rule that matters flips. Do not pad the
+     ladder to look complete. CLOSE-PAIR LEARNERS (short because one anchor covers nearly
+     everything) — keep the close-pair paragraph. A long ladder keeps neither. -->
 
 1. **{{FIRST_ANCHOR}} first**, whenever a contrast exists and is meaningful — {{WHY}}.
 2. {{FURTHER_RUNGS}}
 
 **Never stack.** One anchor carries the point; a second is noise and a third is a
 lecture. (limba, learner-confirmed.)
+
+**Which anchor — the picking rule.** Never-stack says *one*; with two or three rungs the
+live question is *which one*, and it arrives with every explanation, because on a ladder
+this long nearly every structure has a hook somewhere. Rule: **structure from the
+strongest structural anchor, vocabulary from the strongest lexical one** — often not the
+same language, which is why every rung above names its kind. Tie-breakers, in order: the
+anchor closest to the specific form (a shared construction beats a family resemblance),
+then the one the learner holds most strongly, then the meta-language — an explanation the
+learner reads without translating is worth a slightly weaker parallel. A weakly-held rung
+still never supplies a production model; it remains a legitimate recognition hook,
+vocabulary included. (Found generating a German-native level goal with a tutor,
+2026-08-15: with three rungs the instance had to invent this rule and shipped it
+`(assumed)`.)
 
 **When the ladder has one rung** (the learner holds only their native language), the
 never-stack rule is satisfied for free and stops being the useful discipline. Its live
@@ -82,6 +101,19 @@ shared vocabulary layers, word order), and a list of **absences** where they do 
 absence is a finding: the learner will not produce a form wrongly, they will not produce
 it at all, because nothing in what they know opens that slot. (Found generating an
 English-only instance, 2026-08-14.)
+
+**When the ladder is short because the pair is close** — one anchor covers almost
+everything (Italian for Romanian: same family, same categories, near-identical inventory)
+— the shortness means the opposite of the case above and the risk inverts with it. There
+the learner had no hook and knew it. Here the learner has a confident opinion about every
+form, is right most of the time, and that is exactly what hides the times they are not:
+transfer runs unbidden, and no silence marks the spot for either of you. So the transfer
+map's centre of gravity moves off *hooks* — those are free — and onto **near-misses**, the
+forms where the two systems diverge by one small step, and onto **alignments said out
+loud**, because an advantage the learner is never told they hold is one they use only by
+accident. Expect a long false-friends table and a short list of genuine absences: the
+mirror image of the one-rung instance, and it needs the mirror-image effort. (Found
+generating an Italian-native vocabulary-only instance, 2026-08-15.)
 
 ## Operational profile
 

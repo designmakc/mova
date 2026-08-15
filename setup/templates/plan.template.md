@@ -18,9 +18,15 @@
     starts truthful and non-empty. The three sub-headers below are the test's exact
     labels; keep all three even when empty.
   - PACING: the `~N study blocks` phrase is load-bearing — docs/consequential.test.ts
-    reads it for the SRS-ceiling arithmetic. Derive phases from the goal contract and
-    the interview's time budget; a no-deadline goal gets volume/streak targets, not
-    dates.
+    reads it for the SRS-ceiling arithmetic, against the goal's `**Target volume**` line.
+    Derive phases from the goal contract and the interview's time budget; a no-deadline
+    goal gets volume/streak targets, not dates.
+  - PLACEMENT ROUTING: the seeded placement milestone names a VERB. Use the carrier verb
+    for this instance's focus mode (setup/scenarios/focus_modes.md § Placement and
+    assessment run in every mode) — `lesson` under `full`, `drill` under `drill`/`vocab`,
+    `write` under `writing` — and match the agent glyph to it. A milestone routed to a
+    verb this instance refuses is a milestone nobody can run. (Found generating an
+    Italian-native vocabulary-only instance, 2026-08-15.)
 -->
 # Plan — phases, scope, and routing
 
@@ -70,7 +76,7 @@ Goal: the workspace exists and is trusted; the first placement snapshot replaces
 interview's guesses with data.
 
 - [x] Workspace generated and smoke-tested — {{DATE}}.
-- [ ] **Placement calibration session.** The first lesson probes instead of teaching: establish the real starting level against the intake snapshot, write `docs/snapshots/` placement with Method + "Not exercised:", update this file's pacing — 🟢 Med · 🧠
+- [ ] **Placement calibration session.** The first {{PLACEMENT_VERB — the focus mode's carrier verb}} probes instead of working through material: establish the real starting level against the intake snapshot, write `docs/snapshots/` placement with Method + "Not exercised:", update this file's pacing — 🟢 Med · {{GLYPH — 🧠 for a lesson, ⚙️ for a drill or write}}
 - [ ] {{GOAL_LOGISTICS_MILESTONE — exam: TO-CONFIRM research + registration; level/functional: first descriptor sweep or scenario baseline; keep it one line}} — 🟠 Med · 🔧
 - [ ] {{MATERIALS_MILESTONE — acquire what the goal contract's assessment section names, into untracked materials/}} — 🟡 Low · 🔧
 

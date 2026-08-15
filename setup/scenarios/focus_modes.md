@@ -27,7 +27,9 @@ Notes on the assignments:
   it arrives by capture.
 - **mock is active in `writing` mode** — a timed composition against the goal's rubric
   is exactly what a writing-focused learner means by "test me". It stays inactive in
-  `drill`/`vocab`, where no verb produces mock-shaped work.
+  `drill`/`vocab`, where no verb produces mock-shaped work — but the goal's own
+  assessment instrument still runs there, on the carrier verb below. A goal whose
+  instrument no live verb can run has no way to close.
 - review, vocab, retro, and update run in every mode: the record is the product, and the
   verbs that keep it honest are never pruned.
 
@@ -42,9 +44,17 @@ Per-mode generation deltas:
   titles + status lines only, no per-unit detail beyond the first. Plan phases are
   streak-shaped ("N drill blocks/week"), not unit-paced. Intake happens through vocab
   capture, not lessons — say so in the plan.
-- **vocab** — curriculum optional: generate only if the goal implies a coverage order;
-  otherwise a one-phase plan (capture + review cadence + ledger targets). The ledger cap
-  and tier distribution become the plan's pacing numbers. Goal is usually `ledger` kind.
+- **vocab** — **the curriculum is generated, always** — in every mode, no exceptions:
+  `docs/topics.test.ts` cannot arm without `docs/curriculum.md`, setup step 6 is
+  unconditional, and `units:` is a required config key with no null value. What a narrow
+  focus changes is what the curriculum is *for*: here it **orders capture** rather than
+  being walked. Units are the domains capture moves through (household, work, the news) —
+  each a bucket the ledger fills — and no session opens a unit and teaches it. Keep them
+  coarse (title, status line, one line of domain), and let the ledger cap and tier
+  distribution carry the plan's pacing numbers. With no lesson verb to flip a unit
+  `covered`, name the verb that does in the curriculum's own conventions line — the review
+  verb, at the weekly replan, when that domain's rows genuinely hold. Goal is usually
+  `ledger` kind. (Found generating an Italian-native vocabulary-only instance, 2026-08-15.)
 - **writing** — curriculum organized by **genres**, not grammar systems; every unit's
   assessment is a corrected composition scored as a mock. Error taxonomy gets its
   writing-zone codes seeded most densely.
@@ -52,3 +62,37 @@ Per-mode generation deltas:
 All modes keep: the goal contract (no mode is goalless), both ledgers, the error log,
 the session log, review, and retro — the record is the product; the modes only change
 which activities feed it.
+
+## Placement and assessment run in every mode — on whichever verb is live
+
+Two rituals are **not optional in any focus mode**: the **placement** that replaces the
+interview's guesses with measured data, and the **goal's own assessment instrument**,
+whatever §Assessment calls it. Neither belongs to the verb that normally carries it. When
+that verb is inactive here, the ritual rides the **carrier verb** below — the ritual is
+unchanged, only the verb that runs it changes.
+
+| Ritual | `full` | `drill` | `vocab` | `writing` |
+| --- | --- | --- | --- | --- |
+| **Placement** — the first session probes instead of teaching, and freezes a snapshot | lesson | drill | drill | write |
+| **The goal's assessment instrument** — exam section · descriptor sweep · scenario run · ledger audit | mock | drill | drill | mock |
+
+Nothing else moves: the probe is still a probe rather than a first lesson, the snapshot
+still carries `## Method` and its "Not exercised:" list
+([../../docs/snapshots/README.md](../../docs/snapshots/README.md)), and the instrument is
+still exactly what the goal contract defines. A carrier verb runs the ritual under its own
+name and its own rules — a drill carrying a placement still refuses to teach new material.
+
+**Who must cite this table, and how:**
+
+- [../../playbooks/setup.md](../../playbooks/setup.md) § Handoff — it names the verb the
+  learner is told to say first, and that verb must be one this instance answers to.
+- [../smoke.md](../smoke.md) § 4 — the dry run proves the carrier verb would start.
+- the placement milestone in [../templates/plan.template.md](../templates/plan.template.md).
+- **each goal template's §Assessment** — the only one of the four a *running* instance ever
+  reads. Write the carrier verb into the generated `docs/reference/goal.md` **by name**;
+  a pointer back to this setup-time file is not readable from a session.
+
+A handoff that promises a verb the focus mode refuses fails on the learner's very first
+message: under `focus: vocab` the instance answers "this workspace is vocabulary-only" to
+the one instruction setup just gave it. (Found generating an Italian-native vocabulary-only
+instance, 2026-08-15.)

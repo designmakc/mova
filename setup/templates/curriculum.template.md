@@ -16,6 +16,13 @@
   - Build from the goal: every detailed unit names the assessment sections it serves
     (letters ⊆ profile `sections:`). Functional goals: units serve scenarios, name
     them. Sources are CITATIONS ONLY (unit/page) — never copied content.
+  - FOCUS MODES: the curriculum is generated in EVERY mode, never skipped —
+    docs/topics.test.ts cannot arm without it, setup step 6 is unconditional, and `units:`
+    has no null value. Under a narrow focus it orders CAPTURE instead of being walked:
+    units are coarse domain buckets the ledger fills, and the conventions line below must
+    name the verb that flips a unit `covered`, because no lesson verb exists there to do
+    it (setup/scenarios/focus_modes.md). (Found generating an Italian-native
+    vocabulary-only instance, 2026-08-15.)
   - Draw grammar sequencing from the pack's notes.md grammar-system inventory and the
     transfer file's trap list — front-load the systems the learner's held languages
     cannot see. Every sequencing judgment is `(assumed)` until the placement session.
@@ -28,8 +35,10 @@
 > phase entry, informed by the error log.
 >
 > Conventions: each unit carries exactly one `status:` line — `pending` or
-> `covered YYYY-MM-DD` (flipped by the lesson verb when the unit's last session closes;
-> enforced by `curriculum.test.ts`). Sources are citations only. Assessment-section
+> `covered YYYY-MM-DD` ({{FLIPPED_BY — under `full`: "flipped by the lesson verb when the
+> unit's last session closes"; under a focus mode with no lesson verb: "flipped by the
+> review verb at the weekly replan, when this unit's material genuinely holds"}}; enforced
+> by `curriculum.test.ts`). Sources are citations only. Assessment-section
 > letters: {{LETTER_LEGEND — e.g. **R** Reading · **W** Writing · **L** Listening ·
 > **S** Speaking}}.
 

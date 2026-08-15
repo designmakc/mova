@@ -28,7 +28,15 @@ what a template comment explicitly marks as a learner decision.
 **Reads**: setup/interview.md, setup/scenarios/\*, setup/templates/\*, the chosen
 `packs/<code>/` (pack.md, notes.md), VERSION, docs/mechanics/README.md (provenance
 markers — every generated language-pair claim is born `(assumed)`),
-docs/mechanics/verification.md, docs/visual/SPEC.md.
+docs/mechanics/verification.md, docs/visual/SPEC.md — **and `playbooks/`**: every
+playbook's frontmatter `scenarios:` line (the authority on which verbs this focus mode
+activates), plus the body of any playbook whose rules setup writes into a generated file:
+[tutor-prep.md](tutor-prep.md) (it owns both tuition cadences — the Tuition clause must not
+invent a third), [lesson.md](lesson.md) and [drill.md](drill.md) (the placement the handoff
+promises), [update.md](update.md) (what § 0 Gate hands change over to). A clause generated
+without reading the playbook that runs it contradicts that playbook, and nothing downstream
+can see the contradiction. (Found generating a German-native level goal with a tutor,
+2026-08-15.)
 
 **Writes**: docs/reference/{profile,goal,transfer,topics,resources}.md,
 docs/mechanics/error_taxonomy.md, docs/{concept,curriculum,plan}.md,
@@ -55,6 +63,15 @@ Do not begin generation with an unconfirmed picture.
 
 Each step: fill the template (drop its guidance comments, flip its marker to
 `mova:instance`, leave no `{{PLACEHOLDER}}` behind), then run that step's validation.
+
+**The placeholder rule stops at a fenced block.** "Leave no `{{PLACEHOLDER}}` behind" is
+about **unfilled slots in prose** — never about **examples of slots**. Inside a fenced
+block a template marks as kept verbatim, the tokens *are* the content: they show a format
+the instance fills in later, once per entry, and stripping them leaves an example of
+nothing. `error_taxonomy.template.md`'s log-entry-format block is the case in point —
+`{{WRONG}}` / `{{RIGHT}}` / `{{CODE}}` ship as written. Prose outside the fences takes the
+rule in full. (Both 2026-08-15 test instances hit this collision and resolved it
+differently.)
 
 **Marker placement — the one exception.** The `<!-- mova:instance -->` comment goes on
 line 1 *except* in a file whose first line is load-bearing for a parser: YAML frontmatter
@@ -97,11 +114,13 @@ is a real failure; an unrelated red is the scaffold still being built.
 5. **The hard trio** — transfer, error taxonomy, topics; these three carry the
    language-pair knowledge and everything downstream leans on them.
    - `transfer.template.md` → `docs/reference/transfer.md` — all five mandated
-     sections, ≥10 false-friend rows, every claim `(assumed)`, mined from
-     `packs/<code>/notes.md` first, then your pair knowledge.
-   - `error_taxonomy.template.md` → `docs/mechanics/error_taxonomy.md` — 6–10 starter
-     codes `(assumed)`, re-ranked for this learner's blind zones; engine token blocks
-     kept verbatim.
+     sections, every claim `(assumed)`, mined from `packs/<code>/notes.md` first, then
+     your pair knowledge. False friends: ≥10 rows is the floor and there is no ceiling —
+     the template's selection rule decides which rows come first.
+   - `error_taxonomy.template.md` → `docs/mechanics/error_taxonomy.md` — starter codes
+     `(assumed)`, re-ranked for this learner's blind zones, as many as earn a slot under
+     the template's selection rule (6–10 is the usual count, not a cap); engine token
+     blocks kept verbatim.
    - `topics.template.md` → `docs/reference/topics.md` — systems from the pack's
      inventory, T-NNNN ids from T-0001, unit joins consistent with the curriculum you
      are about to write (draft them together; topics binds in CI once the curriculum
@@ -156,10 +175,19 @@ done until the smoke is clean.
 
 ### 4 · Handoff
 
-Tell the learner, plainly: the workspace is ready; **say "lesson" when you're ready to
-start — the first lesson is a placement**, a gentle probe of where you actually are, and
-everything after it is built on what it finds. One sentence on anything the environment
-can't do (no audio, no dictionary).
+Tell the learner, plainly: the workspace is ready; **say the starting verb when you're
+ready to begin — the first run of it is a placement**, a gentle probe of where you
+actually are, and everything after it is built on what it finds. One sentence on anything
+the environment can't do (no audio, no dictionary).
+
+**The starting verb is whichever one carries placement in this instance's focus mode, and
+you say the actual word** — `lesson` under `full`, `drill` under `drill` and `vocab`,
+`write` under `writing`
+([setup/scenarios/focus_modes.md](../setup/scenarios/focus_modes.md) § Placement and
+assessment run in every mode is the rule). Never hand over a verb the instance refuses:
+under `focus: vocab` a handoff that says "say lesson" is answered with "this workspace is
+vocabulary-only", and that refusal is the first thing the learner ever sees this workspace
+do. (Found generating an Italian-native vocabulary-only instance, 2026-08-15.)
 
 **Then the short list of things only they can do.** Setup's promise is that the learner
 answers questions and nothing else — but some work is theirs by nature, and burying it in

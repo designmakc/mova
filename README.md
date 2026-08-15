@@ -22,7 +22,9 @@ the workspace's own records stop being trustworthy.
 
 The agent interviews you — your languages, your goal, your time — and builds everything:
 your profile, your curriculum, your study plan. You never run a command yourself; the agent
-operates all tooling. Then just show up and say **"lesson"**.
+operates all tooling. Then just show up and say the one word it hands you at the end —
+**"lesson"** for a full program, **"drill"** or **"write"** when you asked for a narrower
+one.
 
 > **Requirements**: Node.js ≥ 20 and git. Your agent will check for both during setup and
 > install what it can. They power the workspace's quality machinery — scheduling, integrity
@@ -90,7 +92,16 @@ of the advice still holds: one agent app, two free engines, switch when one runs
 
 ## Status
 
-Under construction — the engine is being extracted from limba. See [CHANGELOG.md](CHANGELOG.md).
+Working, and young. Everything described above is built and covered by the test suite, and
+three workspaces have been generated from this template — an exam with a deadline, a
+level goal with a tutor, and a no-goal vocabulary run — each passing its own checks.
+
+What has not happened yet: nobody has completed a study session in a workspace built from
+this template. Romanian is the only language pack that ships (any other target makes your
+agent build one, which works but takes a while). Command shims are only generated for
+Claude Code so far; other agents run from `AGENTS.md`, which is the fallback by design.
+
+See [CHANGELOG.md](CHANGELOG.md) for what changed and when.
 
 ## For maintainers
 

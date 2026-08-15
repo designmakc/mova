@@ -98,3 +98,22 @@ pointer. Never teach *and score* a pending system here.
 4. **Close-out ritual** (session_format.md) — every step, including the plain-language
    summary. The SES entry is short for a drill; the ritual is not. If a loop ran, the entry
    records every loop's score, not just the last — the *shape* of the curve is the finding.
+
+**First run special case — placement, when this verb is the one that carries it.** In
+`focus: drill` and `focus: vocab` there is no lesson verb, so drill is the carrier for both
+rituals that survive every focus mode (`setup/scenarios/focus_modes.md`). If **no snapshot
+exists in docs/snapshots/** beyond the intake one, this session is the **placement
+calibration**: probe across the curriculum's early units instead of drilling a queue that
+has nothing in it yet, write `docs/snapshots/YYYY-MM-DD_placement.md` (Method + "Not
+exercised:" per the snapshots README), and update plan.md's placement milestone and pacing
+at close-out. The same holds for the goal's assessment instrument — a scenario run, a
+descriptor sweep, a ledger audit — when the plan says one is due and no mock verb exists to
+run it. Probing is not teaching: the no-new-material rule stands unchanged, and a probe
+that starts teaching has become a lesson this instance does not offer.
+
+This is also the **only** waiver of "the line you may not cross" above, and it is narrow: a
+placement or an assessment instrument may **score** `pending` systems, because measuring
+what the learner already has is the entire point, and it still may not **teach** them. The
+snapshot's "Not exercised:" list carries what the probe skipped. Routine drills keep the
+line exactly where it is. (Found generating an Italian-native vocabulary-only instance,
+2026-08-15: the handoff promised "say lesson" to an instance with no lesson verb.)

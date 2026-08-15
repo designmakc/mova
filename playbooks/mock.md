@@ -46,8 +46,9 @@ here: a snapshot is named by its date and frozen, so a wrong one is expensive to
    judgment plainly — against the pass bar the goal contract states.
 4. **Debrief**: every error → taxonomy code → error log; patterns → repair items.
 5. **Freeze the snapshot**: date-named, with `## Method` (exactly what was exercised,
-   source of the paper, timing) and a **"Not exercised:"** list. Update the snapshots
-   README index table.
+   source of the paper, timing) and a **"Not exercised:"** list. The filename is the
+   index — the snapshots README deliberately carries no table (its Conventions say why);
+   the link the workspace needs is the one from this phase's gate in docs/plan.md.
 6. **Feed the plan**: repair items into docs/plan.md (annotated, one line each); `npm test`.
 7. **Close-out ritual** (session_format.md) — every step, including the plain-language
    summary. After a mock that is the step the learner cares about most: say what the score

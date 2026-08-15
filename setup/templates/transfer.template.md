@@ -13,9 +13,19 @@
     three sessions — a missing teaching hook is the most expensive error because
     nothing surfaces it.
   - THE SECTIONS BELOW ARE MANDATED — all five, in this order, even when one is thin
-    for the pair (say so in the section rather than dropping it). The false-friends
-    table needs ≥10 rows; if you cannot find 10 for the pair, the pair knowledge is
-    too thin to generate from — say so and mark the table as needing tutor input.
+    for the pair (say so in the section rather than dropping it).
+  - FALSE FRIENDS — ≥10 rows is a FLOOR, not a target, and there is no ceiling: a close
+    pair generates dozens (Italian→Romanian wants roughly forty). What earns a row, and
+    what earns a place at the TOP of the table, is the same rule — traffic × cost.
+    Traffic: the learner meets this word in the first weeks. Cost: the wrong reading
+    changes what the sentence means, rather than merely sounding foreign. Order the table
+    by that product — the first ten must be the ten you would keep if you could keep only
+    ten, and a top ten of rare words is a mis-ranked table however long the tail below it
+    is. Cross-language and target-internal confusables compete for the same slots on the
+    same rule. If you cannot find 10 for the pair, the pair knowledge is too thin to
+    generate from — say so and mark the table as needing tutor input. (Found generating an
+    Italian-native vocabulary-only instance, 2026-08-15: it had forty rows worth keeping
+    and no rule for which ten mattered.)
   - Draw on packs/{{PACK_CODE}}/notes.md first (earned facts), then pair knowledge.
     Rank contrasts per the profile's contrast_ranking, and write hooks against the
     languages the learner actually holds — a hook in a language they don't have is
@@ -34,6 +44,16 @@
 > tested row carries `measured YYYY-MM-DD` and says how; before building a teaching
 > hook on a row, check which kind it is. A cognate **resembles** or **matches** — it is
 > never "free": limba measured that resemblance alone does not make a word surface.
+>
+> **Alignment is a finding — in every section, not only Register.** Where the pair's
+> systems match, say so in one line and name what it buys the learner: an alignment nobody
+> is told about is an advantage nobody uses, and on a close pair most of this map is
+> alignments. The guard stands: an alignment line must name **what transfers and where it
+> stops**. "These two are basically the same" with no boundary is the section skipped, not
+> the section written — and on a close pair that boundary is the entire teaching value.
+> This binds appends too, not just generation. (Found generating an Italian-native
+> vocabulary-only instance, 2026-08-15, whose Morphology and Syntax sections were mostly
+> alignments and had no licence to say so.)
 
 ## Script & phonology
 
@@ -61,9 +81,10 @@
 
 ## False friends
 
-<!-- ≥10 rows. Cross-language AND target-internal confusables both belong. The last
-     column names the trap in one line. All (assumed) until a session catches one in
-     the wild — then it gets its incident citation. -->
+<!-- ≥10 rows as a floor, no ceiling, ordered by traffic × cost (see the rules above).
+     Cross-language AND target-internal confusables both belong. The last column names
+     the trap in one line. All (assumed) until a session catches one in the wild — then
+     it gets its incident citation. -->
 
 | {{TARGET}} word | Looks/sounds like | Actually means | The trap |
 | --- | --- | --- | --- |
@@ -73,6 +94,7 @@
 
 <!-- The formality system vs the learner's: T/V distinctions, honorifics, register
      markers the goal's assessment grades. If the pair's systems align, one line saying
-     so — aligned is a finding, not an omission. -->
+     so with its boundary — the file's alignment rule, which holds in all five sections
+     alike, not a permission special to this one. -->
 
 {{CONTENT}} (assumed)

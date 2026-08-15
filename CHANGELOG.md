@@ -4,6 +4,52 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.3.0 — 2026-08-15
+
+Fixes from two generated instances: an Italian-native learner with no formal goal and a
+vocabulary-only focus, and a German-native learner at B1 aiming for B2 with no date and a
+weekly tutor. Both passed their own suites (112 and 130 tests); both friction logs traced
+back to the same root — **the templates assumed a full-focus learner working toward an
+exam**.
+
+- **The handoff promised a verb the instance refuses.** Setup ended by telling every
+  learner to say "lesson", which is switched off under a narrow focus — the first
+  instruction a learner ever received would have failed. `focus_modes.md` now carries the
+  rule everything cites: placement and assessment run in every mode, on whichever verb is
+  live (placement rides lesson / drill / drill / write; assessment rides mock / drill /
+  drill / mock). Five files defer to it. The interview now promises the ritual and never
+  names a verb, because the focus mode is not known when it asks.
+- **The pacing arithmetic check was inert on both no-deadline goal kinds.** It arms only
+  when the goal states a volume target, and neither the level nor the functional template
+  emitted one — so exactly the goals with no date to keep them honest also had no numbers
+  check. Both templates now emit it, and smoke reads a skip as a defect for those kinds.
+- **The tuition cadence contradicted itself** between the scenario file and the playbook
+  that actually runs. Named both cadences, made the playbook the authority, and added
+  `playbooks/` to setup's Reads list — the contradiction had been undiscoverable.
+- Scenario files disagreed about which verbs are active; every goal template's Assessment
+  section now names the verb that runs it, since a running instance never reads `setup/`.
+- The curriculum is no longer described as optional under a narrow focus (everything
+  downstream requires it; under a narrow focus it orders capture rather than being walked).
+- **Two kinds of short contrast ladder.** The existing guidance covered a learner who holds
+  little. A learner whose one language is a close relative has a short ladder for the
+  opposite reason, and the risk inverts: they hold a confident opinion about every form,
+  and it is sometimes wrong. Both cases now stand side by side.
+- "The systems align" is a finding in every transfer section, not only register — an
+  alignment the learner is never told about is an advantage they never use.
+- With several anchors available, the rule that mattered daily was missing: which one to
+  reach for. Added, plus a correction — a weakly-held language is barred as a *production*
+  source, not as a recognition-side lexical bridge.
+- Seed counts became selection rules rather than arithmetic a careful agent has to break.
+- The hub called its topic-aspect total "grammar taught" on a page where many aspects are
+  lexical; the snapshots README carried an index table an instance could not append to
+  without diverging from the template at every update.
+- Five further defects surfaced while wiring the above: the lesson playbook's placement
+  trigger could never fire, the drill playbook had no placement clause to receive it, the
+  mock playbook wrote to the removed index table, and both the README and the level
+  scenario carried the same stale assumptions.
+- instance-impact: engine files auto-update. Existing instances keep their generated
+  files; the setup and template changes affect future generations only.
+
 ## 0.2.2 — 2026-08-15
 
 - **README gained a free-path onboarding section** for people who have never installed a

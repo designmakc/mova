@@ -57,6 +57,12 @@ high tiers, production at the gate tier per docs/mechanics/srs.md — scored per
 frozen as a snapshot with its "Not exercised:" list. It answers "does the ledger's tier
 column tell the truth", which is the only claim this goal makes. Runs every ~{{N}} weeks.
 
+**The verb that runs it:** {{ASSESSMENT_VERB — `mock` where the focus mode keeps mock
+active; otherwise the carrier verb from
+[setup/scenarios/focus_modes.md](../../setup/scenarios/focus_modes.md), which is `drill`
+under `drill` and `vocab`. Write the actual verb name here — this file is what a session
+reads}}. The instrument never changes with the verb; only who carries it does.
+
 ## Non-goals
 
 - Grammar coverage as a program — grammar rows enter the ledger when words drag them in,

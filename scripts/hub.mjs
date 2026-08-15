@@ -970,7 +970,7 @@ const html = `<!doctype html>
     ${un.length ? tile(`${unCovered}/${un.length}`, "units done", nextUnit
         ? `next up: **${nextUnit.id}** — ${nextUnit.title.replace(/\s*\([^)]*\)\s*$/, "")}`
         : "all units covered") : ""}
-    ${tp.length ? tile(`${tpCovered}/${tp.length}`, "grammar taught", `individual pieces of grammar fully covered, out of everything ${goalLabel} needs`) : ""}
+    ${tp.length ? tile(`${tpCovered}/${tp.length}`, "topics taught", `individual points fully covered, out of everything ${goalLabel} needs`) : ""}
     ${tile(all.length, "things to remember", `${vocab.length} words · ${grammar.length} grammar patterns`)}
     ${tile(due.length, "to review today", due.length
         ? `${queue.produce} to produce · ${queue.recognise} to recognise`

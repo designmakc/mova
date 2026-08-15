@@ -84,7 +84,8 @@ session. The flow below is what happens *between* them.
    (`node scripts/hub.mjs`), the commit, and the plain-language summary. If this was the
    unit's last session, flip its curriculum status and run `npm test`.
 
-**First run special case**: if no snapshot exists in docs/snapshots/, this session is the
+**First run special case**: if the only snapshot in docs/snapshots/ is setup's intake one
+(setup always writes it, so "no snapshot at all" would never fire), this session is the
 **placement calibration** — probe across the curriculum's early units instead of teaching
 (limba's placement probed the first half), write `docs/snapshots/YYYY-MM-DD_placement.md`
 (with Method + "Not exercised:" per the snapshots README), and update plan.md's placement

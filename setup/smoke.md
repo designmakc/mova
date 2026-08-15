@@ -38,6 +38,20 @@ mis-generated file, and the failing file names the step:
 | agents adapters | 8 (adapters) |
 | ledgers / logs / insights | none of these are generated — if one fails, you edited an engine or state file; revert it |
 
+**A skipped suite is not a passed suite.** `consequential: SRS ceiling` is the one check
+that reads two independently generated numbers against each other, and it arms only when
+`docs/reference/goal.md` carries `**Target volume**: ~L–H` *and* `docs/plan.md` carries the
+`~N study blocks` phrase. Read a skip like this:
+
+| Goal kind | A skip means |
+| --- | --- |
+| level · functional · ledger | **A defect — redo the step.** These templates always emit a volume target: a skip says the line is missing from goal.md (redo 3) or the pacing phrase is missing from plan.md (redo 7). These are the goal kinds with no date to keep the arithmetic honest, so the skip removes the only check they had |
+| exam | Legitimate **only** when the exam genuinely implies no vocabulary count and you deliberately deleted the line ([scenarios/exam.md](scenarios/exam.md)). Otherwise read it as the row above |
+
+Check the skip line in vitest's output, not just the green summary. (Found generating an
+Italian-native vocabulary-only instance and a German-native level goal, 2026-08-15: both
+goal kinds had shipped with this check permanently inert.)
+
 ## 2 · Scripts run on the empty instance
 
 Each command must exit 0, on ledgers that are still header-only — a script that needs
@@ -57,17 +71,25 @@ adapter installation looks like. Verify those files exist and contain **pointers
 playbooks, never rule text** (a rule copied into an adapter is a future contradiction —
 the agents test also checks this). Failure → redo step 8.
 
-## 4 · Lesson-preconditions dry run
+## 4 · First-session preconditions dry run
 
-The handoff promises "say lesson when ready" — prove the lesson verb would actually
-start:
+The handoff promises a verb — **whichever one carries placement in this focus mode**
+(`lesson` under `full`, `drill` under `drill`/`vocab`, `write` under `writing`;
+[scenarios/focus_modes.md](scenarios/focus_modes.md) § Placement and assessment run in
+every mode). Prove *that* verb would actually start:
 
 - **Profile parses**: `node -e "import('./scripts/profile.mjs').then(m => { m.loadProfile().require('pack'); console.log('ok'); })"` → `ok`. Failure → redo 1.
 - **Goal readable**: `docs/reference/goal.md` exists, spec sentence greppable
   (`grep -E '\*\*The .+ is the spec\.\*\*' docs/reference/goal.md`). Failure → redo 3.
 - **Current unit resolvable**: the first `status: pending` line in `docs/curriculum.md`
-  exists and sits under a `## U` heading — that unit is what the first lesson opens
-  (after its placement half). Failure → redo 6.
+  exists and sits under a `## U` heading — that unit is where the first session lands
+  (after its placement half). True in every focus mode: the curriculum is always
+  generated, and under a narrow focus it orders capture instead of being walked.
+  Failure → redo 6.
+- **The promised verb is live**: the playbook the handoff will name has this instance's
+  `focus:` (or `all`) in its frontmatter `scenarios:` line, and its adapter shim exists.
+  Failure → the handoff is about to promise a verb the instance refuses; redo the carrier
+  lookup, not the shim.
 - **Placement will have its baseline**: the intake snapshot exists in `docs/snapshots/`.
   Failure → redo 2.
 - **The verb table routes**: every playbook the focus mode activates

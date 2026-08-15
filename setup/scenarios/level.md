@@ -12,7 +12,7 @@ conversational") without a certificate to sit.
 | `sections` | Letters for the skill areas the level's descriptors span — default `R W L S`; drop letters the learner explicitly excludes (e.g. no-writing → `R L S`) |
 | `goal_date` | Only when the learner gave a soft deadline; label it "soft" in the Deadline section. Otherwise omit the line and use the no-deadline rule |
 | "Mock" means | A **descriptor sweep**: a session testing a sample of the can-do list under realistic conditions (unrehearsed text, real-time listening, timed writing), each descriptor scored met / partial / not-met, frozen as a snapshot |
-| Active verbs | All; mock runs as descriptor sweeps at phase gates rather than on a paper calendar |
+| Active verbs | **The focus mode decides** ([focus_modes.md](focus_modes.md); playbook frontmatter is the authority). Under `full`, all of them, with mock running as descriptor sweeps at phase gates rather than on a paper calendar. Where mock is inactive, the sweep rides the carrier verb — name it in the generated goal.md §Assessment |
 | Review measures | With a soft date: pace vs date, stated as a projection, never as a countdown. Without: **volume and streak** — units covered, descriptors newly met, sessions held vs planned |
 
 Generation notes:
@@ -21,5 +21,9 @@ Generation notes:
   checkbox-style line each, in the learner's meta-language, sourced from the scale's
   published descriptors (cite the source; unverifiable paraphrases are `(assumed)`).
   These descriptors are what the curriculum's units must collectively exhaust.
-- A level goal usually has no vocabulary target line; add one only if the learner stated
-  a volume, and then the SRS-ceiling check binds.
+- **The vocabulary target line is mandatory here**, stated or not — the template emits
+  `**Target volume**: ~L–H` and the SRS-ceiling check binds on it. It used to be optional,
+  which meant the workspace's only numbers-versus-numbers test skipped forever on exactly
+  the goal kind that has no date to keep it honest. Estimate from the scale where the
+  learner named no number, mark it `(assumed)`, and recalibrate at review. (Found
+  generating a German-native level goal with a tutor, 2026-08-15.)
