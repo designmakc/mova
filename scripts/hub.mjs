@@ -39,6 +39,7 @@ import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
+import { liveVerbs } from "./verbs.mjs";
 import { loadPack } from "./pack.mjs";
 import { canVerify } from "./dictionary.mjs";
 import { FAVICON_LINK } from "./favicon.mjs";
@@ -402,25 +403,19 @@ function nextBlock(all) {
 const calibration = () =>
   must("difficulty calibration", rows(section(read("docs/mechanics/session_format.md"), /^Difficulty calibration/), 3));
 
-/** The verb list, from playbooks/*.md frontmatter (`verb:` + `summary:`) — the
- *  agent-neutral home of what limba kept in .claude/skills/. The shell command list
- *  comes from AGENTS.md's ## Commands block, when it has one. */
+/** The verb list, from playbooks/*.md frontmatter — the agent-neutral home of what limba
+ *  kept in .claude/skills/, narrowed to the verbs THIS instance answers to
+ *  ([verbs.mjs](verbs.mjs): focus mode, plus the goal contract for tutor-prep). The shell
+ *  command list comes from AGENTS.md's ## Commands block, when it has one. */
 function commands() {
-  const dir = join(root, "playbooks");
-  const verbs = existsSync(dir)
-    ? readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => {
-        const fm = readFileSync(join(dir, f), "utf8");
-        // Maintainer verbs (sync-upstream) run against the template repo, not an
-        // instance — a learner's hub listing one would invite running it there.
-        if (/^maintainer:\s*true$/m.test(fm)) return null;
-        const verb = /^verb:\s*(.+)$/m.exec(fm);
-        const summary = /^summary:\s*(.+)$/m.exec(fm);
-        // The summary's first clause is the useful half; the rest is trigger phrasing.
-        const short = summary ? summary[1].split(/\.\s|\s-\s/)[0].trim() : "";
-        return verb ? { name: verb[1].trim(), desc: short } : null;
-      }).filter(Boolean)
-    : [];
-  verbs.sort((a, b) => a.name.localeCompare(b.name));
+  const focus = profile ? profile.get("focus", "full") : "full";
+  const verbs = liveVerbs({
+    root,
+    focus,
+    // `tutor-prep` is live only when the goal contract has a Tuition section — that section
+    // existing IS the tuition scenario (playbooks/tutor-prep.md § Activation rule).
+    tuition: /^##\s+Tuition\b/m.test(readMaybe("docs/reference/goal.md") || ""),
+  });
 
   const agentsMd = readMaybe("AGENTS.md") || "";
   const block = /## Commands\s*```([\s\S]*?)```/.exec(agentsMd);
@@ -430,7 +425,7 @@ function commands() {
         return i > 0 ? { cmd: l.slice(0, i).trim(), desc: l.slice(i + 1).trim() } : { cmd: l, desc: "" };
       })
     : [];
-  return { verbs, shell };
+  return { verbs, shell, focus };
 }
 
 /* --------------------------------------------------------------- assembling */
@@ -508,7 +503,7 @@ const daysToGoal = goalDate ? daysBetween(today, goalDate) : null;
 const last7 = ses.filter((s) => daysBetween(s.date, today) < 7).length;
 const phase = currentPhase();
 const vis = visuals();
-const { verbs, shell } = commands();
+const { verbs, shell, focus } = commands();
 const pacingRows = pacing();
 const target = weeklyTarget(phase);
 const week = paceWeek(ses);
@@ -1357,6 +1352,9 @@ ${FAVICON_LINK}
   <details class="drawer">
     <summary>Commands — what to say to start a session</summary>
     <div class="panel" style="margin-top:12px">
+      ${focus !== "full" ? `<div class="note" style="margin-top:0">This workspace is
+        <strong>${esc(focus)}</strong>-focused, so this is the whole list — the other verbs are
+        switched off and will say so if you try them. Say <code>review</code> to widen it.</div>` : ""}
       <dl class="cmd">
         ${verbs.map((s) => `<dt><code>${esc(s.name)}</code></dt><dd>${esc(s.desc)}</dd>`).join("")}
       </dl>

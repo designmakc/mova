@@ -1,6 +1,6 @@
 {
   "generated": "2026-08-16",
-  "template_version": "0.7.0",
+  "template_version": "0.7.1",
   "files": {
     ".github/workflows/ci.yml": "c4c55c127452f2a6fa479f584e56619445af6d764cbe685d6c7aadd6937be35e",
     ".vscode/settings.json": "c4bc01bd0341a88c85a0082e913ba44a1a3655d4b4077fba26756f75a9974251",
@@ -70,7 +70,7 @@
     "scripts/factcheck.mjs": "861da52ed1f1b8e4a00cead3f61bd2c35e4b8a087b67708093422622d2915bd5",
     "scripts/favicon.mjs": "1150b27507882f6e6e5d36018efc0583c8d46070791fc7bdc29fb1d4bdcda882",
     "scripts/feedback.sh": "8e4f5651a089c8532a5ef63ce9cd457c0e1b7fc172688afb52381b6de6f6b061",
-    "scripts/hub.mjs": "0277fa39d8cde372d1e2be040574d40d449afbf09b306c55a5deee790b55a1a6",
+    "scripts/hub.mjs": "50b044617a9dccf867fe0615d3bc22c595be7c366c0fd64036296836d0594c80",
     "scripts/inline-md.mjs": "db2d5d87a28339a9f79c6f954f2e96febec04f7b328aaebe0e02b4af5cb64ed7",
     "scripts/inline-md.test.ts": "f6422c944ea687f93ab43782505b9ce5a9e759a744cf8d0c9044110f035e5ca2",
     "scripts/leakcheck.mjs": "8d1fbd9c1ff1755171b85b21bd2c8823417f0187b011f8c79a06b6e9e3cb1202",
@@ -88,6 +88,8 @@
     "scripts/tally.mjs": "66b655c307cef5de561827dd85a1a6da413b051f91da45bc9001e4f70b26c1b4",
     "scripts/tts-embed.mjs": "8ea27a6cc8f603c9bf30494ae877b7d27424d55dfdd2146fa1b31bbb3b2ab994",
     "scripts/tts-warm.mjs": "4127c3d476c8fc213166d638b63193f8b3a79ef78cb07a8af2bc7ba444067f9b",
+    "scripts/verbs.mjs": "91b7f3437993ca84cf55f87dd0426fb2600357b45643b1106191caf24a929cd9",
+    "scripts/verbs.test.ts": "7c1d4e78cc2434329f68b9d8830e1e3d80dbba1a81150f93d213a112ea6848d0",
     "scripts/visual-shell.mjs": "0b00adb45a407c31f1bcec77d6df47165125debd9e43d7bc1751f13f28e131a8",
     "scripts/visual-shell.test.ts": "61099a7088a6ff3157c16ded85cba7b93934c3200b3c2886675f3bbcf2144f71",
     "scripts/visualcheck.mjs": "b35f3a2b214d0bf0809c0edf871a3536538f9820e14fbb2fffbc0e06d6741b5a",

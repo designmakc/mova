@@ -4,6 +4,43 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.7.1 — 2026-08-16
+
+The hub stops advertising verbs the workspace will refuse. Its command list is now filtered
+by the instance's own focus mode, and the rule behind it is under CI for the first time.
+
+instance-impact: engine files auto-update. The next `hub.mjs` run rewrites the page; no
+regeneration step and nothing for the learner to do.
+
+- **A narrow instance's hub was naming words its own setup had turned off.** The list was
+  built by reading every file in `playbooks/`, and every copy ships every playbook whatever
+  focus mode was chosen — so a vocabulary-only workspace advertised `lesson`, `write` and
+  `mock`, each of which it refuses politely when asked, and `setup`, which runs once before
+  the hub exists. Nothing failed and no test could fail: the page was internally consistent
+  and externally wrong. The setup tour has carried a rule against exactly this since the
+  first real onboarding run; nothing enforced it anywhere else. Found reading the two drawers
+  at the foot of the hub, not by running anything.
+- **`scripts/verbs.mjs` is the one reader of the focus rule.** It answers "which verbs does
+  this instance answer to" from the authority the scenario doc already names — each
+  playbook's `scenarios:` frontmatter — with `all` meaning every mode and `none` keeping
+  setup and the maintainer sync off a learner's page without a hard-coded name list.
+  `tutor-prep` stays gated on the goal contract's `## Tuition` section rather than on the
+  mode, which is its own activation rule. Extracted rather than inlined for the reason
+  `inline-md.mjs` was: a rule inside `hub.mjs` cannot be tested, and hub defects have reached
+  learners twice.
+- **The two prose tables that derive from that frontmatter are now checked against it.**
+  `setup/scenarios/focus_modes.md` says in its own words that the frontmatter wins when they
+  disagree — which is only true if something notices. `scripts/verbs.test.ts` parses both
+  that table and the learner-facing one in `docs/guide/commands.md` and requires each to name
+  exactly the live verbs of each mode.
+- **A short list now says why it is short.** Under a narrow focus the drawer opens with one
+  line — this workspace is *vocab*-focused, the other verbs are switched off, say `review` to
+  widen it — because a list missing four entries otherwise reads as a workspace that lost
+  something.
+- Also: a verb's one-line description stopped at a full stop or a hyphen but not at an em
+  dash, so `update` printed its entire summary in a column of one-liners, and a one-sentence
+  summary kept a trailing stop while the rest had none.
+
 ## 0.7.0 — 2026-08-16
 
 A lesson no longer opens with a review block that cannot measure anything. Part 1 is now
