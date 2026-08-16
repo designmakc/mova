@@ -56,6 +56,12 @@ session. The flow below is what happens *between* them.
    - a number the data confirms or corrects → update it and promote the marker to
      **measured** (date + what was measured, per docs/mechanics/README.md's marker table);
    - a number still without enough data → leave the default marker in place and say so.
+   **Count the part-1 skips in the same pass.** Session entries carry `skipped — <reason>`
+   when the block did not run (session_format.md); an entry with no score is not evidence of
+   bad retention, and a re-fit that treats it as one is wrong in the direction of shortening
+   every interval. **Three or more declines in a row is a finding about the schedule, not
+   about the learner** — the intake, the interval ladder, or the session cadence is asking
+   for a review block nobody wants. Say which, and act on it here.
    Keep the copies in sync when a number moves: the interval table lives in srs.md
    (canonical) + `scripts/queue.mjs` + `state/ledgers.test.ts`, and `scripts/hub.mjs`
    parses the cost-model constants out of srs.md's own paragraph — edit them together, then

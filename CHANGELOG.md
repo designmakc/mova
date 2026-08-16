@@ -4,6 +4,75 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.7.0 — 2026-08-16
+
+A lesson no longer opens with a review block that cannot measure anything. Part 1 is now
+conditional, and the condition is the queue rather than the calendar. And the README stops
+introducing the workspace with nine verbs: it shows three, tells the learner what the first
+session is and what every session after it looks like, and hands the full list to a guide of
+its own.
+
+instance-impact: engine files auto-update — including `docs/guide/commands.md`, which is new
+and arrives by the update playbook's own rule for a file the instance does not have. No
+regeneration step — the playbook shims are pointers, and the session-entry template ships
+inside `closeout.mjs`.
+
+- **Part 1 of a lesson runs only when it can produce a score or a tier move.** The workspace
+  had already established both halves of the premise and never drawn the conclusion: a row
+  moves tier at most once per calendar day, and the calibration band does not apply to a
+  same-day repeat — after which the session was still told to run the block, as declared
+  re-exposure. That is a ~10′ box inside a 60–75′ lesson spent on rows answered two hours
+  ago. Three cases collapse into one gate: nothing due (a first lesson whose placement just
+  seeded the ledger), every due row already reviewed today (the second or third lesson in an
+  afternoon), and the learner simply asking to start at the teaching. A partly same-day queue
+  is the interesting case and it is not a skip — the queue sorts oldest `last` first, so
+  today's rows are already its tail and part 1 stops where the tail starts.
+- **The gate is a command, not a memory.** `node scripts/queue.mjs --counts` now names the
+  verdict for part 1 beside the counts it already printed. It had been reporting the overlap
+  since the rule that needs it was written, and nothing downstream ever read it.
+- **Re-exposure is offered, not assumed.** It has learner-reported value (*being asked about
+  it is what makes me remember it*) and no measured durable value — nothing in this
+  machinery's history has shown a same-sitting gain surviving to the next session. That
+  combination makes it a two-minute offer, never a mandatory block.
+- **A skipped part 1 and a collapsed one no longer look alike in the log.** The session
+  entry's SRS field takes `skipped — <reason>` in place of counts, because the review
+  playbook re-fits the interval ladder from those entries — and an entry with no score
+  otherwise reads as retention failing, which shortens every interval in the wrong
+  direction. The review playbook now counts the skips, and treats three declines in a row as
+  a finding about the schedule rather than about the learner.
+- **The reclaimed time may not become more new material.** The intake volume is a calibrated
+  constant; an intake number that moves because part 1 happened to be empty is one no review
+  can re-fit. It goes to applied practice, or the session ends early and says so.
+- Housekeeping this paid for: `session_format.md` was at 97% of its word budget, so the
+  repair loop's three audit findings moved to `docs/mechanics/why/` where the rule file had
+  been carrying them.
+- **The reverse channel has a home**: `upstream/backports/` holds one statement per change
+  that originates here and is owed upstream to limba, and `playbooks/sync-upstream.md` names
+  it. The first is this change.
+- **The README's "How you use it" is a walkthrough now, not a table.** It had opened with all
+  nine verbs at once — reference material standing where the answer to "what do I actually
+  do" belongs. It names the three that carry a week, then answers the two questions a new
+  learner has, in order: what happens the first time (setup hands over one word, the first run
+  of it probes instead of teaching, and the probe may be declined), and what the loop is
+  afterwards — read *What to do next* on the hub, say the word in a fresh chat, let the
+  session close itself, browse the deck between sessions, come back through the hub for any
+  topic already covered.
+- **`docs/guide/commands.md` is new** — the full command reference: the plain words that reach
+  each verb, how long each takes, what each leaves behind, and which of them a focus mode keeps
+  live. `how-sessions-run.md` gave up its verb table and its focus table to it and keeps what
+  it is for: the rituals, the five parts, the teaching beats, the surfaces, where files land.
+  The two pages had been growing the same table twice, which is how a table starts lying.
+- **"Chat is the only interface" was inaccurate and is now "chat is the only thing you
+  operate."** The hub and the deck are interfaces as well; the claim worth making is that
+  neither takes input — both are generated from the files at every close-out.
+- **Bookmarking the hub means bookmarking the link, not the path.** `work/visuals/index.html`
+  is not something a browser can bookmark, and the absolute URL differs per machine — so the
+  README points the learner at the clickable `file://` link every session already prints
+  (`docs/mechanics/media.md` → Delivering a visual), rather than at a repo path.
+- **The hub printed its verb list twice** — once inside the "how the learning works" drawer and
+  again in the Commands drawer directly below it. The drawer now names the three verbs a week
+  is made of and points down to the one list.
+
 ## 0.6.0 — 2026-08-15
 
 The first real sync from limba, the reference implementation this engine was extracted

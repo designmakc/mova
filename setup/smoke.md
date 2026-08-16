@@ -59,7 +59,7 @@ data to not-crash is a script the first session cannot run.
 
 | Command | Pass looks like | On failure redo |
 | --- | --- | --- |
-| `node scripts/queue.mjs --counts` | one summary line, zero due | 1 (profile) if it refuses to parse; otherwise an engine bug — do not ship around it, report it |
+| `node scripts/queue.mjs --counts` | a summary line reading zero due, then `⇒ part 1: nothing due — the block does not run` | 1 (profile) if it refuses to parse; otherwise an engine bug — do not ship around it, report it |
 | `node scripts/deck.mjs` | `work/visuals/deck.html` generated | 1 (profile) / 4 (pack) — deck reads both |
 | `node scripts/hub.mjs` | `work/visuals/index.html` generated; the confidence panel renders (it may honestly say the instance runs unattested — the null adapter is loud, never silent) | 1 (profile), 3 (goal), 7 (plan) — the hub reads all three |
 | `node scripts/visualcheck.mjs --all` | every page passes | 9 (theme/tokens) — or the generated page the message names |

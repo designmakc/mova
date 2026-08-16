@@ -1309,10 +1309,9 @@ ${FAVICON_LINK}
       <h4>2 · The week — which session type, how often</h4>
       <p>Lessons carry new material; drills keep the old material warm without adding any;
       the weekly review checks pace against the plan and changes the plan when reality
-      disagrees with it.</p>
-      <dl class="cmd">
-        ${verbs.map((s) => `<dt><code>${esc(s.name)}</code></dt><dd>${esc(s.desc)}</dd>`).join("")}
-      </dl>
+      disagrees with it. Those three carry an ordinary week. Everything else you can say —
+      capture, writing, mocks, tutor prep, updates — is listed once, in
+      <strong>Commands</strong> at the foot of this page.</p>
 
       <h4>3 · One lesson — five parts, in this order</h4>
       <p>The order is deliberate: the graded check comes <em>before</em> applied practice, so

@@ -1,64 +1,20 @@
 <!-- mova:engine -->
 # How sessions run
 
-> The learner's guide to using the workspace: what you say, what happens, and where it
+> The learner's guide to what a session actually does with your hour, and where its output
 > lands. The rules these sessions obey are in [../mechanics/](../mechanics/) and the
 > step-by-step flows in [../../playbooks/](../../playbooks/) — this page is the map, those
 > are the territory. Where they disagree, they win.
 
-## Chat is the only interface
+## What starts a session
 
-You say a verb; your agent follows the playbook behind it and operates everything else —
-every script, every file, every check. That is a rule of the workspace, not a convenience.
-Your job is to answer questions and study.
+Chat is the only thing you operate: you say a verb, and your agent follows the playbook
+behind it and operates everything else — every script, every file, every check. The hub and
+the deck are read-only views of the same files. Your job is to answer questions and study.
 
-Verbs are ordinary words, matched on meaning: "let's study", "quick practice", "test me"
-all route. If your agent supports auto-invoked commands, setup writes a one-line shim per
-verb, so `/lesson` works too. The shims hold no rules — they are pointers, so nothing can
-drift out of sync with the playbook.
-
-## The verbs
-
-| Verb | What it does | What you end up with |
-| --- | --- | --- |
-| **lesson** | The full five-part session on the current unit | New words and patterns in the ledger, a study page, a score |
-| **drill** | Short practice: the due queue plus your top error patterns. Never new material | Tier movements, a repair loop on one weak zone if you ask for it |
-| **write** | A composition task in your goal's genre | Coded corrections, a model answer at your target level, reusable chunks captured |
-| **mock** | One section of your goal's assessment, timed and proctored | A frozen, dated snapshot you can compare against later |
-| **review** | The weekly replan | An updated plan, next week's drill targets, pace decisions |
-| **vocab** | Ad-hoc capture of a word or phrase | One enriched, deduped ledger row, in under a minute |
-| **retro** | Harvest what a session learned about the workspace itself | Fixes where they belong, plus an intake entry for the rest |
-| **tutor-prep** | Prep pack before a tutor session, ingest pass after | A file to bring your tutor; their corrections in your logs |
-| **update** | Pull template improvements into your workspace | A change-by-change conversation, never a git merge |
-
-`setup` runs once, before any of these exist.
-
-`update` also answers a lighter question. Ask **"anything new?"** and your agent checks the
-template, tells you what changed and asks whether you want it — touching nothing until you
-say yes. Your weekly `review` runs that same check for you, so you can also just wait for
-it to come up.
-
-### Not every workspace answers to all of them
-
-The interview asks how wide you want this. The answer sets `focus`, and an inactive verb is
-refused with a one-line pointer rather than run silently.
-
-| Focus | Live verbs |
-| --- | --- |
-| `full` | lesson · drill · write · mock · review · vocab · retro · update |
-| `drill` | drill · vocab · review · retro · update |
-| `vocab` | vocab · drill · review · retro · update |
-| `writing` | write · mock · vocab · review · retro · update |
-
-Two rituals survive every mode and ride whichever verb is live:
-
-- **Placement.** Your first session probes what you already have instead of teaching, and
-  freezes the result. Everything after it is built on what it finds.
-- **The goal's assessment instrument** — an exam section, a descriptor sweep, a scenario
-  run, or a ledger audit, whichever your goal defines.
-
-`review`, `vocab`, `retro` and `update` are live in every mode: the record is the product,
-and the verbs that keep it honest are never pruned.
+→ [Every command](commands.md) — the nine verbs, the plain words that reach each one, what
+each leaves behind, and which of them your focus mode keeps live. This page is what happens
+*after* you say one.
 
 ## The shape of a session
 
@@ -68,6 +24,10 @@ session's next-pointer — and closes with a **close-out ritual**: update the le
 the coverage map, log the session, save every artifact, regenerate the deck and the hub,
 run the tests, commit, and then say plainly what changed for you today, without codes or
 file paths. A session that is not logged did not happen.
+
+Your very first session is the one exception to what sits between them: it probes instead
+of teaching — the placement calibration — and everything after it is built on what it
+found.
 
 A full lesson between those two runs about an hour:
 
@@ -99,12 +59,14 @@ trap, and the interaction. See [../mechanics/teaching.md](../mechanics/teaching.
 
 - **The chat.** Teaching, questions, the full marked sheet after every scored set, and the
   plain-language close-out.
-- **The hub** — `work/visuals/index.html`, your one bookmark. Regenerated from the files
-  that own each number, never hand-written: days to your goal, units done, what you hold,
-  what is due today, a board of every unit with **taught** and **retained** drawn as two
-  separate bars, a confidence panel, and every study page ever built for you. A new page
-  lands on it **as soon as it is built**, marked *not taught yet* until a session teaches
-  it; the numbers are refreshed again at every close-out.
+- **The hub** — `work/visuals/index.html`, your one bookmark. Your agent hands it to you as
+  a clickable `file://` link every time it rebuilds it, so you never go looking for the
+  path. Regenerated from the files that own each number, never hand-written: days to your
+  goal, units done, what you hold, what is due today, a **what to do next** block that
+  prices a drill against a lesson, a board of every unit with **taught** and **retained**
+  drawn as two separate bars, a confidence panel, and every study page ever built for you.
+  A new page lands on it **as soon as it is built**, marked *not taught yet* until a
+  session teaches it; the numbers are refreshed again at every close-out.
 - **The deck** — `work/visuals/deck.html`, the drillable view of your ledgers. Filter by
   unit, tier or part of speech, sort the same ways, hide either side, reveal a row at a
   time, play the audio.

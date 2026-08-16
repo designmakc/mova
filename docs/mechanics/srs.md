@@ -163,11 +163,14 @@ own points, treat any estimate the hub prints as an order of magnitude, not a pr
 
 - **A row moves tier at most once per calendar day.** The first session of the day owns the
   measurement; later sessions cannot promote or demote what it already scored.
-- **A second or later session on the same day runs its SRS block as re-exposure**: declared as
-  such, no score, no tier movement, no retention claim, reported as a pattern instead of a
-  number. The calibration band does not apply to it.
-- `scripts/queue.mjs --counts` prints **`reviewed today`** alongside `due`, so a session sees
-  the floor without computing it.
+- **A second or later session on the same day does not run an SRS block by default.** Nothing
+  it could produce is usable: no tier movement, no score, no retention claim, and the
+  calibration band does not apply. It may be **offered** as declared re-exposure and reported
+  as a pattern instead of a number. [session_format.md](session_format.md) § Part 1 runs only
+  when it can produce something owns that gate, and covers the empty queue and the learner's
+  own refusal with it.
+- `scripts/queue.mjs --counts` prints **`reviewed today`** alongside `due` **and names the
+  verdict**, so a session neither computes the floor nor decides it twice.
 - **This keeps the interval data usable.** The rungs above are limba's learner's, not this
   one's, and re-fitting them needs clean recall data. A row looked at three times in one day
   and once more at its nominal interval would pollute exactly that dataset, so the log must

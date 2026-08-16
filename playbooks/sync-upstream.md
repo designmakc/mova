@@ -60,3 +60,7 @@ limba commit), `upstream/map.md` (the porting contract), `CHANGELOG.md`, `VERSIO
    PORT entry like any machinery change, which this playbook then recognizes on the next
    sync as already ported. Never let a fix live only downstream: the fork's health is the
    feed's health.
+
+   **The statement waits in [`upstream/backports/`](../upstream/backports/README.md)** — one
+   file per owed change, deleted by the commit that names limba's `PORT-NNN`. A file there is
+   a debt this playbook has not paid yet; read the directory before declaring a sync done.

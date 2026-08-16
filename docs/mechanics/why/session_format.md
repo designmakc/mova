@@ -65,6 +65,62 @@ were identical prompts whose answers had just been published. The third round th
 for a third time, the items that had failed twice. The arc measures re-reading two answer
 keys, not repair.
 
+**What survived that audit, and it is the important half** (moved out of the rule file
+2026-08-16, to pay for § Part 1 runs only when it can produce something):
+
+- **The diagnosis step is the loop's real product.** SES-007's grouping found that four verbs
+  had never been given as paradigms — a missing table, after two sessions had logged it as a
+  memory failure. SES-009's grouping found that every noun corrected last session came back
+  right and every uncorrected one went wrong — *storing corrections, not running the rule*.
+  Neither discovery depended on a score, and neither was reachable any other way.
+- **SES-009 is the one loop whose retest used genuinely new items** — 12 different nouns — and
+  it went **71% → 67%**. Flat. That is what an uncontaminated retest looks like, and it is the
+  honest baseline for what the shape delivers in one sitting.
+- SES-005's single-pass repair remains a real negative result: all four items it "fixed" were
+  wrong again two days later. SES-007 said the same thing about its own predecessor.
+  **Nothing in this machinery's history has ever demonstrated that a same-sitting gain
+  survives to the next session** — the loop's retest number and SES-005's both measure
+  minutes-old exposure.
+
+Step 5's "not a re-run of the same paper" was written by SES-007, which had already broken it.
+That is why the check is a script and not an instruction.
+
+## Part 1 runs only when it can produce something
+
+Added 2026-08-16, from the learner's observation that a lesson sometimes opens with a review
+block nobody needs: the first lesson after a placement, a lesson the learner asked to start at
+the teaching, and the second or third lesson inside one afternoon.
+
+**The rule was already half-written and never finished.** limba, 2026-08-12, established both
+halves of the premise — a row moves tier at most once per calendar day, and the calibration
+band does not apply to a same-day repeat — and then told the session to run the block anyway,
+as declared re-exposure. That is a block with no tier move and no usable number holding a ~10′
+box inside a 60–75′ lesson. `queue.mjs --counts` had even been taught to print the overlap
+(`N of those reviewed today`) so a session could see it without computing it; nothing
+downstream acted on what it printed.
+
+**Why "skip" rather than "run it degraded".** Two facts in this repo point the same way. The
+loop section above: no same-sitting gain has ever been shown to survive to the next session.
+And srs.md's cost model: a block is ~6 minutes of real time, so this is not a rounding error.
+Against them stands one genuine counter-fact — limba's learner, 2026-08-09: *being asked about
+it is what makes me remember it*. Re-exposure has learner-reported value and no measured
+durable value, which is exactly the profile of something that should be **offered and cheap**
+rather than **mandatory and boxed**. Hence the offer in the middle row of the gate table.
+
+**Why the gate reads the queue and not the session number.** "First lesson ever" was the
+learner's own framing, and it is not the condition. A placement that ran three days ago and
+seeded twenty rows leaves those rows genuinely due at a real interval, and part 1 should run.
+The queue already knows this; the calendar does not. Same for "second lesson today" — what
+makes it skippable is the same-day overlap the queue prints, not the count of sessions.
+
+**Why the reclaimed time may not go to part 2.** limba cut its intake from 16 to 12 on a
+48-hour retest. An intake number that moves because part 1 happened to be empty is an intake
+number no review can re-fit.
+
+**Why the log needs a token.** The review playbook re-fits the interval ladder from session
+entries. A skipped part 1 and a collapsed part 1 both leave the SRS field without a score, and
+they mean opposite things — one is nothing to measure, the other is retention failing.
+
 ## Repair vs new material
 
 Two limba sessions invented this distinction independently and neither could point at a rule

@@ -221,12 +221,15 @@ carrying the depth. (Found in the first real onboarding run, 2026-08-15.)
 **1 · What you can say.** The verbs *this* instance answers to — one plain line each, from
 the focus mode's live set
 ([setup/scenarios/focus_modes.md](../setup/scenarios/focus_modes.md)), never the README's
-full table, which lists verbs a narrow instance refuses. Say that chat is the only
-interface: they say a verb, you run every script and every file behind it. Name
-[docs/guide/how-sessions-run.md](../docs/guide/how-sessions-run.md) as the long version.
-Mention that `update` also answers "anything new?" — a read-only check against the template
-that changes nothing ([update.md](update.md)) — because a workspace that improves is a fact
-about this product, and nothing else in the tour would ever tell them.
+shortlist or the command guide's full list: both name verbs a narrow instance refuses. Say
+that chat is the only thing they operate: they say a verb, you run every script and every
+file behind it, and the hub and the deck are pages they read. Name
+[docs/guide/commands.md](../docs/guide/commands.md) as the long version — every verb, what
+it costs and what it leaves behind — and
+[docs/guide/how-sessions-run.md](../docs/guide/how-sessions-run.md) for what happens inside
+a session. Mention that `update` also answers "anything new?" — a read-only check against
+the template that changes nothing ([update.md](update.md)) — because a workspace that
+improves is a fact about this product, and nothing else in the tour would ever tell them.
 
 **2 · Where things live.** The chat, plus two pages the smoke run has already built: **the
 hub** (`work/visuals/index.html`) — their one bookmark, days-to-goal and what they hold,

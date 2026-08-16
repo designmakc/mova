@@ -200,7 +200,9 @@ const T = {
     [
       "- **Type.** <lesson | drill | write | mock | review> — <unit, or the focus>",
       "- **Covered.** <what was taught or reviewed; which topics.md aspects flipped to covered>",
-      "- **SRS.** <N due · N reviewed · N promoted · N demoted · N new rows>",
+      "- **SRS.** <N due · N reviewed · N promoted · N demoted · N new rows —",
+      "  or `skipped — <reason>` when part 1 did not run (session_format.md); a skip and a",
+      "  collapse both leave no score and mean opposite things>",
       "- **Score.** <graded check N/M = P%; name any contamination in the same line>",
       "- **Duration.** <N minutes, learner-facing wall clock>",
       "- **Next.** <what the next session should DO>",

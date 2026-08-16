@@ -36,31 +36,56 @@ one word to say when you're ready to begin.
 
 ## How you use it
 
-**Chat is the only interface.** You say a verb; your agent runs the playbook behind it and
-operates everything else — every script, every file, every check. Your job is to answer
-questions and study.
+**Chat is the only thing you operate.** You say a word; your agent runs the playbook behind
+it and operates everything else — every script, every file, every check. The hub and the
+deck are pages you read, never type into. Your job is to answer questions and study.
+
+Three words carry an ordinary week:
 
 | Say… | You get |
 | --- | --- |
-| **lesson** | The full session: review, new material, a graded check, then practice aimed at what the check missed, and close-out |
-| **drill** | Short practice — the due queue plus your top error patterns. Never new material |
-| **write** | A composition in your goal's genre, corrected code by code, with a model answer |
-| **mock** | One section of your goal's assessment, timed and frozen as a snapshot |
-| **review** | The weekly replan: pace, drill targets, plan updates, schedule recalibration |
-| **vocab** | A word captured into the ledger, deduped and enriched, in under a minute |
-| **retro** | The workspace improved from what a session just learned about it |
-| **update** | Template improvements pulled in, decided change by change |
+| **lesson** | The full session, about an hour: everything due, then new material, a graded check, then practice aimed at exactly what the check missed |
+| **drill** | Short practice, 10–15 minutes: the due queue plus your top error patterns. Never new material |
+| **review** | The weekly replan: pace, next week's drill targets, plan updates |
 
-Setup asks how wide you want this. A narrow workspace — drills only, vocabulary only,
-writing only — answers to fewer verbs and refuses the rest politely. Working with a tutor
-adds **tutor-prep**: a pack to bring them, and a pass that ingests their corrections.
+Six more cover writing practice, mock exams, capturing a word you met in the wild, tutor
+sessions, improving the workspace itself, and pulling in template updates.
 
-**Three surfaces.** The chat itself. **The hub** (`work/visuals/index.html`), your one
-bookmark — regenerated at the end of every session from the files that own each number:
-days to your goal, what you hold, what is due, and every unit with *taught* and *retained*
-drawn as two separate bars. **The deck** (`work/visuals/deck.html`), the drillable view of
-everything you know, filterable by unit, tier and part of speech. Study pages are
-self-contained HTML with the audio embedded — they work offline, forever.
+→ [Every command](docs/guide/commands.md) — all nine verbs, what you say to reach each
+one, how long it takes and what it leaves behind.
+
+### Your first session
+
+The word setup hands you at the end of the tour is usually **lesson**. The first session
+on it probes instead of teaching: a gentle placement across the early material, to find
+what you already have. Everything after it is built on what it finds — where you start,
+how fast you go, what gets drilled first. You can decline the probe and
+begin learning straight away; the workspace then writes down that your starting level is a
+guess, so no later session mistakes it for a measurement.
+
+### Every session after that
+
+1. **Open the hub and read *What to do next*.** Every session hands you the hub as a
+   clickable `file://` link when it rebuilds the page — bookmark that link the first time
+   and it stays your way in, loading from disk with no server and no internet. The block
+   tells you how many items are due, what a `drill` costs you versus a `lesson` today,
+   whether you are on your plan's pace, and the pointer the last session left for this one.
+2. **Start a fresh chat with your agent and say the word.** One session, one conversation:
+   every session opens by reading your files and closes by writing them, so nothing you
+   need is carried in the chat.
+3. **The session closes itself.** Ledgers updated, coverage flipped, the session logged,
+   the hub and deck rebuilt, the tests run, the work committed — then a plain-language
+   summary of what changed for you today, with no codes and no file paths.
+4. **Between sessions, open the deck.** Every word and pattern you hold, filtered by unit,
+   tier or part of speech, with either side hidden and revealed a row at a time. This is
+   where you go over what *you* want to practice, rather than what the queue chose.
+5. **Come back through the hub.** It lists every study page ever built for you, so any
+   topic you have covered is one click away — the page it was taught from, with its audio.
+
+That bookmark is the only one you need: **the deck** (`work/visuals/deck.html`) sits next
+to the hub in your copy of the repo, and is one click from it. Both are regenerated from
+the files that own each number, never hand-written. Study pages are self-contained HTML
+with the audio embedded — they open from disk, work offline, and keep working forever.
 
 ![The deck: every known word and pattern, filtered by unit, tier and part of speech, each row with audio](docs/assets/deck.png)
 
@@ -70,8 +95,12 @@ self-contained HTML with the audio embedded — they work offline, forever.
 the pattern is visible without reading; the `?` is the verification marker — that form is
 the agent's word until a source or a tutor confirms it.</sub>
 
-→ [How sessions run](docs/guide/how-sessions-run.md) — every verb, the focus modes, the
-five parts of a lesson, and where each file lands.
+Setup also asks how wide you want this. A narrow workspace — drills only, vocabulary only,
+writing only — answers to fewer verbs and refuses the rest politely. Working with a tutor
+adds **tutor-prep**: a pack to bring them, and a pass that ingests their corrections.
+
+→ [How sessions run](docs/guide/how-sessions-run.md) — the five parts of a lesson, the
+eight teaching beats, and where every file lands.
 
 ## What it tracks
 

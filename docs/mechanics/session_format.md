@@ -9,8 +9,8 @@
 > learner — recalibrate)** — and even there they began as scaffold guesses; part 2 was
 > widened once because a guess did not survive contact. The **part 3/4 order is derived from
 > limba SES-005**, where running the check first visibly worked. The **repair loop's
-> diagnosis step is derived from SES-007 and SES-009**; its score arc is **retracted** — see
-> the ⚠️ under the loop below. The **calibration split** and the **part-1 box rule** are
+> diagnosis step is derived from SES-007 and SES-009**; its score arc is **retracted**
+> ([why/session_format.md](why/session_format.md)). The **calibration split** and the **part-1 box rule** are
 > derived from SES-004. Question the boxes freely; the derived rules need evidence of the
 > same kind that produced them.
 >
@@ -28,7 +28,7 @@
 
 | # | Part | Time | What happens |
 | --- | --- | --- | --- |
-| 1 | SRS review | ~10′ | `node scripts/queue.mjs` → quiz due items **at the mode their tier calls for** (recognition at tier 1, bare production at 2, the full package as the tier-3 gate, sweep at 4–5 — [srs.md](srs.md)); grammar items via one production sentence each → update `tier`/`last` |
+| 1 | SRS review | ~10′ | `node scripts/queue.mjs` → quiz due items **at the mode their tier calls for** (recognition at tier 1, bare production at 2, the full package as the tier-3 gate, sweep at 4–5 — [srs.md](srs.md)); grammar items via one production sentence each → update `tier`/`last`. **Conditional — see § Part 1 runs only when it can produce something** |
 | 2 | New material | ~30′ | Current unit ([../curriculum.md](../curriculum.md)): **10–20 new vocab items** with the pack's per-item facts + transfer hooks; 1 grammar point — built per [teaching.md](teaching.md), all eight beats, **split chat/visual per its table** (paradigms and word lists live in the visual, chat carries the contrast) |
 | 3 | Graded check | ~10′ | 10 questions over today's + due material, **sampling at least 3 of the day's new words** (see below); score recorded in the session log |
 | 4 | Applied practice | ~15′ | Short reading or guided dialogue that forces due + new items into use, **aimed at what part 3 just missed**; goal-adjacent formats preferred |
@@ -154,25 +154,11 @@ reads. One session of lag; the learner can always rename the live tab by hand.
 
 ## The repair loop — test, diagnose, repair, retest
 
-**What survives the audit, and it is the important half:**
-
-- **The diagnosis step is the loop's real product.** SES-007's grouping found that four verbs
-  had never been given as paradigms — a missing table, after two sessions had logged it as a
-  memory failure. SES-009's grouping found that every noun corrected last session came back
-  right and every uncorrected one went wrong — *storing corrections, not running the rule*.
-  Neither discovery depended on a score, and neither was reachable any other way.
-- **SES-009 is the one loop whose retest used genuinely new items** — 12 different nouns — and
-  it went **71% → 67%**. Flat. That is what an uncontaminated retest looks like, and it is the
-  honest baseline for what the shape delivers in one sitting.
-- SES-005's single-pass repair remains a real negative result: all four items it "fixed" were
-  wrong again two days later. SES-007 said the same thing about its own predecessor.
-  **Nothing in this machinery's history has ever demonstrated that a same-sitting gain
-  survives to the next session** — the loop's retest number and SES-005's both measure
-  minutes-old exposure.
-
-So run the loop for its diagnosis, and **retest on genuinely new items or do not report a
-number**. Step 5 already said "not a re-run of the same paper"; SES-007 wrote that rule and
-had already broken it, which is why the check below is a script.
+**The loop's product is the diagnosis, not the retest number.** Grouping the misses by cause
+found a missing paradigm table, and separately a learner storing corrections instead of
+running the rule — neither reachable from a score. And **nothing in this machinery's history
+has ever shown a same-sitting gain surviving to the next session**, so **retest on genuinely
+new items or report no number** ([why/session_format.md](why/session_format.md)).
 
 Every other shape here is **single-pass** — teach then check once, run the queue once, measure
 once. Nothing re-tested the same material later in the same sitting, which is exactly the move
@@ -226,6 +212,37 @@ lesson via the Next pointer.** Do not teach it and then score it. SES-007's verb
 right artifact and became the correct Next pointer; teaching *and grading* the paradigm inside
 a drill is the half that went wrong.
 
+## Part 1 runs only when it can produce something
+
+Part 1's two products are a **retention number** and a **tier move**. When the queue can
+yield neither, the block is ten minutes of pure cost — and [srs.md](srs.md) already concedes
+it can: a row moves tier at most once per calendar day, and a same-day look carries no score
+and no retention claim. **The gate is the queue, not the session number**, and orient already
+runs it:
+
+```
+node scripts/queue.mjs --counts
+```
+
+| What it reports | Part 1 |
+| --- | --- |
+| **Nothing due** | **Does not run.** Say so in a line, go to part 2. A first lesson lands here only when the ledgers are empty or the placement seeded them today. |
+| **Every due row also reviewed today** | **Does not run as a block.** No tier can move, no score is valid. Offer a short unscored sweep — re-exposure teaches — but the learner accepts it; it is not the default. |
+| **Some rows dated today, some not** | **Runs on the rest.** The queue sorts oldest `last` first, so today's rows are its tail: part 1 stops where the tail starts. |
+
+**The learner may also decline it** — *no drill today, just teach me*. Take the answer and
+price it in one sentence with the number: *N rows stay due and roll into the next session.*
+Same shape as declining the placement probe.
+
+**The reclaimed time does not become more new material.** The intake volume is a calibrated
+constant; inflating it here corrupts the measurement the ladder is waiting on. Give it to
+part 4, or end early and say so.
+
+**A skipped part 1 and a collapsed one must not look alike in the log**: the entry's SRS
+field takes `skipped — <reason>` in place of counts, because the review playbook re-fits the
+ladder from these entries. **Three declines in a row is evidence about the schedule, not
+about the learner** — route it to review through the Next pointer.
+
 ## Difficulty calibration
 
 **A collapse in part 1 and a collapse in part 3 mean opposite things and must not share a
@@ -239,7 +256,7 @@ The band's numbers are **default (measured on limba's learner — recalibrate)**
 | --- | --- | --- |
 | **Part 3 — graded check** | *Today's material* was too hard. | Target is **60–70%** — the challenge sweet spot. Two consecutive sessions **> 80%** → pace up (more items, denser texts) at the next review. **< 50%** → pace down and drill the gap before new material. |
 | **Part 1 — SRS review** | *Retention of already-taught material has failed.* The intake volume or the interval is wrong. | **< 50% → do not teach a full part 2 on top of it.** Cut the new intake hard or drop it entirely, spend the reclaimed time on a **repair loop** over the misses, and flag it for the review playbook — this is evidence about the ladder and the intake number, not about today's unit. |
-| **Part 1, second session the same day** | *Nothing.* Those rows were answered hours ago; tier 1 is a zero-day interval, so the queue reports them due again. | **The band does not apply.** Run part 1 as declared re-exposure — no score, no tier movement, report a pattern instead of a number ([srs.md](srs.md), "Due when the row was already reviewed today"). Reading a low number here as failed retention would cut the day's new material for the opposite reason. |
+| **Part 1, second session the same day** | *Nothing.* Those rows were answered hours ago; tier 1 is a zero-day interval, so the queue reports them due again. | **The band does not apply, and the block itself usually does not run** — § Part 1 runs only when it can produce something. Reading a low number here as failed retention would cut the day's new material for the opposite reason. |
 | **A drill's SRS pass** | *Nothing to calibrate.* | **A drill has no target score.** The band is calibrated for ten questions on the day's new material; a drill measures retention of old material, where the same number means the opposite thing. Report the number, do not grade the session against it. limba SES-010 scored 61% and SES-009's blocks 71% and 67%, and all three came close to being read against a band that was never fitted to them. |
 
 Teaching new material onto failed retention is how a backlog compounds: the queue grows while

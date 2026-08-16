@@ -50,7 +50,17 @@ session. The flow below is what happens *between* them.
    teaching: run it per session_format.md → **The placement calibration**, which also covers
    what to do when the learner would rather have a lesson today. Under `focus: full` the
    lesson verb is the carrier (`setup/scenarios/focus_modes.md`).
-1. **SRS review (~10′)**: quiz due items **at the mode their tier calls for** — recognition
+1. **SRS review (~10′) — but first, does it run at all?** `node scripts/queue.mjs --counts`
+   names the verdict, and session_format.md § **Part 1 runs only when it can produce
+   something** owns the rule. Nothing due, or every due row already reviewed today, and the
+   block does not run: no tier can move and no score is valid, so say so in a line and go to
+   part 2 (a short unscored sweep is *offered*, never the default). A partly same-day queue
+   runs on the rest — today's rows are the queue's tail, and part 1 stops where the tail
+   starts. **The learner may also decline it**; take the answer and price it in one sentence
+   with the real number. Reclaimed time goes to part 4 or ends the session early — **never to
+   a bigger part 2**. Whichever way it goes, the session entry's SRS field says
+   `skipped — <reason>` instead of counts, so no review reads a skip as failed retention.
+   When it does run: quiz due items **at the mode their tier calls for** — recognition
    (target→meta) at tier 1, bare production (meta→target) at tier 2, the **full package**
    (the headword plus every fact its row carries) as the tier-3 gate, recognition sweep at
    4–5 ([docs/mechanics/srs.md](../docs/mechanics/srs.md)). Grammar rows get one production
