@@ -48,8 +48,11 @@ worth a clause; *"part 3 of 5"* at the top of every part is noise to someone who
 shape, and it is **false whenever part 1 stands down** — which is a rule this same file
 carries. A fixed denominator cannot describe a conditional first part.
 
-0. **Orient ritual** (session_format.md) — every step, silently. Then the lesson-specific
-   part: current phase + unit, this unit's rows in topics.md, and the session's **placement
+0. **Orient ritual** (session_format.md) — every step, silently: no command, no output, no
+   path ([docs/mechanics/narration.md](../docs/mechanics/narration.md) § 3). **"Silently" is
+   about not showing the work, never licence to disappear** — § 2 still governs every stretch
+   the learner waits through, and orient is short enough that none arises here.
+   Then the lesson-specific part: current phase + unit, this unit's rows in topics.md, and the session's **placement
    announcement** — which unit of the curriculum's total, what it opens or closes, what the
    learner will and will not be able to do afterwards.
    **Price the session in the same breath** ([docs/mechanics/narration.md](../docs/mechanics/narration.md)
@@ -119,8 +122,16 @@ carries. A fixed denominator cannot describe a conditional first part.
       names — backwards, and contradicted by its own exercise on the same page (found in the
       first generated lesson pages, 2026-08-15).
    5. **Play, draw, link** — honor the unit's `- **Media:**` bullet and
-      [docs/mechanics/media.md](../docs/mechanics/media.md) (capability-gated): sound topics
-      are *demonstrated* (`scripts/speak.sh` inline; registry links from
+      [docs/mechanics/media.md](../docs/mechanics/media.md) (capability-gated).
+      **A page build is the lesson's long silence — announce it before the first command**
+      ([docs/mechanics/narration.md](../docs/mechanics/narration.md) § 2). `tts-embed.mjs`
+      makes one network call per clip and the learner has nothing to do for any of it: limba
+      measured a 73-clip page at about fifteen minutes end to end (2026-08-17, and *assumed*
+      for anything else — no instance has timed one). Say it is starting, roughly how long
+      for this many clips, that they can walk away, and re-anchor if it runs longer. Then
+      **one line per finished step** — the page exists, the audio is in, the checks are green
+      — never one line per command, and never the commands themselves (§ 3).
+      Sound topics are *demonstrated* (`scripts/speak.sh` inline; registry links from
       docs/reference/resources.md for native confirmation), system topics get a generated or
       reused visual (`work/visuals/`, **index first** — a row opening `Built —` is material
       a previous session prepared and never taught) with **embedded playable audio**

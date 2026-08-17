@@ -4,6 +4,69 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.15.0 — 2026-08-17
+
+A page build no longer happens in silence. The rule that says so gets the first enforcement
+mechanism narration has ever had, and it is a test over the documents rather than over what
+the agent said.
+
+instance-impact: **engine files auto-update.** Nothing to regenerate. Two things change in
+your sessions: before a lesson builds a page with audio, and before the close-out rebuilds
+your deck and hub, you are told it is starting and roughly how long — instead of the chat
+going quiet. A new engine test arrives with the update and runs inside your `npm test`.
+
+- **What happened, and it was not here.** limba took this narration mechanic as a back-port
+  on 2026-08-17. Five hours later one of its lessons built a 73-clip page — about fifteen
+  minutes — and said nothing before, during, or about how long. The learner read the silence
+  as a crash. Two of limba's three causes were mova's wording, shipped unchanged; its
+  PORT-019 is the diagnosis and this release is mova's answer to it.
+- **A trigger an agent cannot evaluate is not a trigger.** `narration.md` § 2 said *"any
+  stretch over ~2 minutes"*. An agent has no clock, so that sentence described a situation
+  and was never a condition being checked — it fired on nothing, in both repos. **§ 2 now
+  triggers on the command you are about to run**, and says the announcement goes *before* the
+  chain starts, because once it starts the next chance to speak is when it ends.
+- **mova named the ingredient where limba named a chain, and that difference is deliberate.**
+  limba has one long silence and named its three commands. mova has three separate stretches
+  — the setup build, a page build in a lesson, close-out's regeneration — that share no chain
+  but share one slow ingredient: a network call per clip, `tts-embed.mjs` and `tts-warm.mjs`.
+  `newvisual.mjs` and `visualcheck.mjs` are deliberately off the list; they are local and
+  fast, and a trigger list longer than the things that are actually slow stops being read.
+- **The one that was live here: a rule reaches the agent through the verb, not the mechanic.**
+  limba's lesson skill quoted § 2 as one word — *"silently"* — the opposite of what that
+  section's last paragraph asked for. mova's own `playbooks/lesson.md` ran the whole page
+  build with no announcement instruction in the step, and opened its orient with the same
+  bare *"silently"* and no pointer. It had nowhere to fire because no lesson has ever run
+  here. **The announcement now sits at the step**: `lesson.md` part 2, `session_format.md`
+  § Media moves and close-out step 9, `media.md` at both invocations, `teaching.md` rule 10.
+  `setup.md` already had it, and is the one flow that never broke.
+- **Narration stops being the mechanic with no mechanism.** Whether the agent *said* the
+  thing leaves no artifact and never will. But *"the step that runs the slow command carries
+  the announcement"* is a static property of this repo. New
+  **`docs/narration.callsite.test.ts`** asserts it, holds § 2 to naming the slow commands,
+  and fails if § 2 ever reverts to a duration. It is crude the way `agents.test.ts`'s shim
+  leak heuristic is crude, and its header says so.
+- **It also asserts the general form, and that found a live one.** Every numbered rule in
+  `narration.md` must be cited by at least one playbook or mechanic — the weakest useful
+  version of *"the noun reached a verb"*. § 6 (one thing at a time) failed it: the interview
+  obeyed the rule in full and pointed at it nowhere.
+- **A verb may restate a rule; it may not restate it without the pointer.** New convention in
+  `docs/mechanics/README.md`. A verb that only said *"obey narration.md"* would put the rule
+  out of reach at the moment of action, so paraphrase at the call site is required — what it
+  does badly is drop the half it did not quote. Every restatement now carries its `§ N`, and
+  a section holding two opposite defaults is never cited by one of them alone.
+- **What was not adopted: limba's merge of announce-a-silence and never-show-the-work.** They
+  stay two rules here with two headings. The incident is the evidence for that shape — limba's
+  merged section led with *never show the work*, the announcement sat last, and the skill that
+  quoted it took the half it led with.
+- **`narration.md` ends at 899 words of 900, and no rule was dropped to fit.** The room came
+  from moving provenance to `why/`, where the budget test says it belongs and where most of it
+  was already duplicated, plus one paragraph that left `session_format.md` close-out step 7 so
+  step 9 could afford the announcement. limba kept its merge to stay under its own cap and
+  filed the tradeoff as an open question; that is the failure mode this note exists to name.
+- **A statement waits in [`upstream/backports/`](upstream/backports/).** The call-site gate is
+  new machinery limba does not have, and answers the first of the three questions it filed.
+  Which commands belong on its list is left to limba.
+
 ## 0.14.1 — 2026-08-17
 
 0.14.0 stopped the hub promising a drill takes 10–15 minutes. Five other surfaces were still

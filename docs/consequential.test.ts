@@ -245,8 +245,13 @@ describe("docs/mechanics word budget", () => {
     "media.md": 3100,
     // 1,078 words and it reads whole in a sitting — budgeted at today's weight, no split.
     "verification.md": 1300,
-    // 760 words, eight rules, and it is read by setup as well as by every session. Tight
-    // on purpose: a file about not over-talking that runs long argues against itself.
+    // 899 words, eight rules, and it is read by setup as well as by every session. Tight
+    // on purpose: a file about not over-talking that runs long argues against itself. The
+    // ceiling has not moved since it was set at 760: PORT-019 gave § 2 a trigger the agent
+    // can actually evaluate and paid for it by moving provenance to why/, which is the fix
+    // this budget exists to force. Upstream kept a bad section merge to stay under its own
+    // cap and filed the tradeoff as an open question — do not resolve a design question
+    // with this number.
     "narration.md": 900,
   };
 

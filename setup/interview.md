@@ -16,9 +16,10 @@
 
 ## Conduct
 
-- **One topic per exchange.** Never a numbered questionnaire dump. Numbering the topics
-  (next bullet) is the opposite of dumping them: it says how far along they are, not what
-  is coming.
+- **One topic per exchange** ([narration.md](../docs/mechanics/narration.md) § 6, which owns
+  this rule and the reflect-back below). Never a numbered questionnaire dump. Numbering the
+  topics (next bullet) is the opposite of dumping them: it says how far along they are, not
+  what is coming.
 - **Number every topic you ask — `1/4`, `2/4`, `3/4`, `4/4`** — and open the topic with it.
   Four topics are asked; the open floor is one question and not a topic, and the
   environment probe is run silently, so the denominator is fixed at four in every interview

@@ -57,6 +57,10 @@ scripts/pronounce.sh "<text>" [s]  # pronunciation round-trip (mic → whisper.c
 say -v <voice> "<text>"            # last-resort offline voice (manifest tts_say, compact quality) — speak.sh falls back to it automatically
 ```
 
+**Two of these reach the network once per clip — `tts-embed.mjs` and `tts-warm.mjs` — and
+both are announced before they start** ([narration.md](narration.md) § 2). They are the only
+stretches in a session where the learner waits with nothing to do.
+
 Voice quality ladder (limba, 2026-07-30, decided after its compact fallback voice
 disappointed): **`speak.sh` with the pack's neural voice** for all demos — sentence melody
 included, they're genuinely close to native; cached in `materials/tts-cache/` so repeats are
@@ -246,6 +250,10 @@ Author the visual with empty placeholders, then fill them:
 ```
 node scripts/tts-embed.mjs work/visuals/<file>.html
 ```
+
+**Announce the build before this command, not after** ([narration.md](narration.md) § 2):
+one network call per clip, and once the chain starts the next chance to speak is when it
+ends.
 
 Each placeholder becomes a play button with the audio inlined as a base64 data URI —
 self-contained, offline, permanent, and the same neural voice `speak.sh` uses (shared cache,

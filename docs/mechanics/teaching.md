@@ -310,8 +310,9 @@ the fallback TTS voice for an entire lesson because the two files disagreed), so
 9. **Every visual is surfaced in the response** — sent inline *and* named by its repo path.
    A visual the learner cannot reopen is a visual that does not exist.
 10. **Audio is embedded, not commanded.** Visuals carry playable neural audio via
-    `scripts/tts-embed.mjs` (when the profile's capabilities allow TTS — [media.md](media.md));
-    the learner never needs a terminal to hear the language. There is no size budget — embed
+    `scripts/tts-embed.mjs` (when the profile's capabilities allow TTS — [media.md](media.md);
+    one network call per clip, so the build is announced first — [narration.md](narration.md)
+    § 2); the learner never needs a terminal to hear the language. There is no size budget — embed
     every target-language string worth hearing.
 
 ## Time

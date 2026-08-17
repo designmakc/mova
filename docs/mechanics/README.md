@@ -9,6 +9,17 @@
 - **Playbooks are verbs, mechanics are nouns.** `playbooks/` orchestrate; the shared rules
   they all obey (SRS scheduling, session shape, error codes, fact verification) live here
   exactly once, so two playbooks never carry drifting copies.
+
+  **A verb may restate a rule; it may not restate it without the pointer.** Added 2026-08-17
+  on limba's evidence (its PORT-019). A verb that only said *"obey narration.md"* would put
+  the rule out of reach at the moment of action, so paraphrase at the call site is required,
+  not merely tolerated. What a paraphrase does badly is drop the half it did not quote, and
+  it does that silently: limba's lesson skill carried one word of a two-default section —
+  *"silently"* — which was the opposite of what the same section's last paragraph asked for,
+  and a learner sat through fifteen minutes of unexplained silence. **So every restatement
+  carries `§ N` back to the section it came from**, and a section holding two opposite
+  defaults is never cited by one of them alone. Generated shims are the stricter case: they
+  carry pointers and no rules at all, enforced by `docs/agents.test.ts`.
 - **A rule file holds rules; `why/` holds the story.** Ported from limba, 2026-08-15. Every
   rule here was written with the incident that produced it attached, which is right — a rule
   that has lost its reason is a rule nobody can argue with. But the reason is needed only when

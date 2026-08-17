@@ -17,9 +17,8 @@
 **count**, against the budget already agreed. A scored set, a session, a repair loop. If it
 overruns what was agreed, **cut it before you ask, not after**.
 
-**Say the count, not a predicted duration** *(derived from limba, 2026-08-17 — its
-forecasts missed badly while its counts held)*. Quote minutes only where they are
-**measured for this learner**, and never as the headline.
+**Say the count, not a predicted duration** *(derived from limba, 2026-08-17)*. Quote
+minutes only where they are **measured for this learner**, and never as the headline.
 
 **The exception is a stretch the learner sits out**, where a count tells them nothing: the
 setup build is nine steps whether it runs ten minutes or fifty, and someone deciding whether
@@ -31,14 +30,19 @@ model, [../../playbooks/drill.md](../../playbooks/drill.md) § The size rule.
 
 ## 2 · Announce, checkpoint, re-anchor
 
-**Any stretch over ~2 minutes where the learner has nothing to do gets all three.**
+**The trigger is a command you are about to run, not a duration** *(derived from limba,
+2026-08-17)*. You have no clock: "over two minutes" describes a situation, it does not name
+a check. Three flows qualify, each slow for one reason — a network call per clip: the
+**setup build** (`playbooks/setup.md` § 0b), a **page build** (`tts-embed.mjs`),
+**close-out's regeneration** (`tts-warm.mjs`). Each names it where it runs; a test holds
+them to it.
 
-- **Announce** it before it starts, with how long it runs and that they can walk away.
+- **Announce** before the chain starts — after that, your next chance to speak is when it
+  ends. Say what runs, how long, and that they can walk away.
 - **Checkpoint** it: one line per completed step, never per action taken.
 - **Re-anchor** when the estimate moves — say the new number and the one-word reason.
 
-An unannounced silence reads as a crash, not as work, and the longest silences in this
-product arrive right after the agent has said the learner is done.
+An unannounced silence reads as a crash.
 
 ## 3 · Narrate checkpoints, not work
 
@@ -48,7 +52,7 @@ curriculum". They are running an agent, not watching one.
 
 The exception is narrow and it is the whole point of the rule: **say it when it changes
 what they should do.** A missing capability, a fact you could not verify, a decision that is
-theirs, a number that moved. That test is the difference between transparency and noise.
+theirs, a number that moved.
 
 ## 4 · Speak the learner's vocabulary
 
@@ -82,10 +86,9 @@ what it opens, what they will be able to do after. **The clock half is this rule
 the thing they just started costs, and where they are inside it.
 
 **Announce a part only when the shape departs from the one they know, or on resumption**
-*(derived from limba, 2026-08-17)*. A fixed count would lie anyway: **part 1 is conditional**
-(§ Part 1 runs only when it can produce something), so "part 3 of 5" is false on every day
-the review block stands down. Say what changed — *no review today, so we start on the new
-material* — and stay quiet when the shape is the usual one.
+*(derived from limba, 2026-08-17)*. A fixed count would lie: **part 1 is conditional**, so
+"part 3 of 5" is false whenever the review block stands down. Say what changed — *no review
+today, so we start on the new material* — and stay quiet when the shape is the usual one.
 
 ## 8 · Stop when the thing is delivered
 

@@ -161,7 +161,8 @@ placement offered again — is what closes it.
 
 Per [media.md](media.md), capability-gated by the profile: **sounds are played, not
 described** (`scripts/speak.sh` inline, native links for the tricky ones); **systems get a
-visual** with **embedded playable audio** (`node scripts/tts-embed.mjs`) — generate or reuse
+visual** with **embedded playable audio** (`node scripts/tts-embed.mjs`, **announced before
+it starts** — [narration.md](narration.md) § 2) — generate or reuse
 from `work/visuals/`, check its index first, and **surface it in the response**, sent inline
 and named by repo path; **listening runs through `afplay`**, proctored by the session. Every
 link shown comes from, or gets appended to,
@@ -568,17 +569,19 @@ a **path-named** `git add` line.
    `Built —` gets today's date and loses the marker. A page built and still not taught keeps
    `—`. **A page you built and then deleted loses its row in the same breath**: the index test
    fails on a row pointing at a file that is not there.
-   The date matters because a page built outside a numbered session leaves no other trace:
-   limba SES-009 credited a recovery to an unlogged side session and had to dig through
-   `git log` to find it. The workspace decides what to build next from what it believes
-   worked, so *when* a page arrived is part of the record, not metadata.
+   *When* a page arrived is part of the record, not metadata
+   ([why/session_format.md](why/session_format.md) § The delivery date).
 8. **Account for every artifact this session created.** Run `git status --short work/`
    again: each file is either indexed and committed, or deleted. Nothing survives the
    session untracked — an untracked artifact is invisible to the next session, which is how
    one got overwritten unread. `docs/visuals.index.test.ts` enforces the indexed half.
-9. **Regenerate the deck and the hub.** If this session added vocabulary, run
+9. **Regenerate the deck and the hub. Announce this stretch before it starts**
+   ([narration.md](narration.md) § 2) — it is the one silence that lands *after* the learner
+   has been told they are done, and it reads as a crash rather than as work. If this session
+   added vocabulary, run
    `node scripts/tts-warm.mjs` first — it is the only script that reaches the network for
-   audio, and without it the new rows ship mute (`deck.mjs` warns when any do). Then
+   audio, one call per uncached row, and without it the new rows ship mute (`deck.mjs` warns
+   when any do). Then
    `node scripts/deck.mjs` rebuilds
    [../../work/visuals/deck.html](../../work/visuals/deck.html) from the ledgers this
    session just updated — the drill surface is only honest if the session that moved a tier

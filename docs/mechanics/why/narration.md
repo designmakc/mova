@@ -112,3 +112,99 @@ shape, or on resumption.
 The interview counter is untouched in both repos. It earned its place with a learner who
 could not yet see the shape of what they had agreed to; a learner twenty sessions into a
 five-part lesson is not that person.
+
+## Rule 2's trigger did not work, and limba found out first (PORT-019, 2026-08-17)
+
+**Derived from limba, 2026-08-17.** limba took this mechanic as a back-port at 12:22. At
+about 17:00 one of its lessons built a 73-clip, 1.6 MB page — three commands and four
+dictionary lookups, roughly fifteen minutes — and said nothing before it, during it, or
+about how long. The learner read the silence as a crash. limba diagnosed three causes; two
+of them were mova's wording, shipped unchanged.
+
+### Cause 1 — a trigger an agent cannot evaluate is not a trigger
+
+§ 2 said *"any stretch over ~2 minutes where the learner has nothing to do"*. The agent has
+no clock and cannot feel two minutes pass, so that sentence was never a condition being
+checked — it was a description of a situation, and it fired on nothing. Nothing in either
+workspace recorded that 73 clips of speech synthesis is slow, so there was no way to reach
+the number by reasoning either.
+
+**The trigger is now the command, which the agent can always see itself about to run.**
+mova's answer differs from limba's in shape, and the difference is real rather than drift:
+
+- **limba named a chain** — `newvisual.mjs` → `tts-embed.mjs` → `visualcheck.mjs` — because
+  it has exactly one long silence and that silence *is* the chain.
+- **mova named the ingredient.** It has three such stretches, not one: the setup build, a
+  page build inside a lesson, and close-out's regeneration. They do not share a chain, and
+  two of them are owned by other files already. What they share is a network call per clip,
+  which is `tts-embed.mjs` and `tts-warm.mjs`. Naming the two commands covers all three
+  flows without pulling any flow's own steps into the noun.
+
+`newvisual.mjs` and `visualcheck.mjs` are deliberately **not** on mova's list: they scaffold
+and check a file locally, and neither is the reason a page build takes minutes. A trigger
+list that grows past the things that are actually slow stops being read.
+
+### Cause 2 — a rule that lands in a mechanic and not in the verb has not landed
+
+This is the one that matters more here, and mova was carrying it live. `playbooks/lesson.md`
+ran the entire page build — compose, verify, author, embed audio, check, index, rebuild the
+hub — with **no announcement instruction anywhere in the step**, and its orient step opened
+with a bare *"every step, silently"* and no pointer, the same word limba's skill widened into
+a licence to disappear. mova has never run a lesson, so the defect had nowhere to fire yet;
+it was not caught by being lucky, it was caught by limba.
+
+**Fixed by putting the announcement at the step, not at the mechanic**: `lesson.md` part 2
+step 5, `session_format.md` § Media moves and close-out step 9, `media.md` at both places
+that invoke the command, `teaching.md` rule 10. `setup.md` § 2 already had it and is the one
+flow that never broke.
+
+Two sentences moved out of the rule file in the same pass and are kept here. § 2's closer
+used to run *"An unannounced silence reads as a crash, not as work, and the longest silences
+in this product arrive right after the agent has said the learner is done"* — the second half
+is now operative text in close-out step 9, which is the silence it was describing, so the
+rule file keeps only the first. § 3's *"That test is the difference between transparency and
+noise"* went for the same reason: it argues the rule rather than stating it.
+
+### The three questions limba left open (its FB-004), answered on mova's record
+
+**1 · Narration is the only mechanic with no mechanism.** True in limba, and it was true here
+until this sync. **mova's answer: gate the documents, not the speech.** Whether the agent
+actually announced something is not recoverable from the repo afterwards — but *"the step
+that runs the slow command carries the announcement"* is a static property of this repo, and
+that is testable. `docs/narration.callsite.test.ts` asserts it, plus two supports: § 2 must
+keep naming the slow commands, and § 2 must not regress to a duration trigger. It is crude in
+the same way `agents.test.ts`'s leak heuristic is crude — a pointer sixteen lines away
+satisfies it without being a good announcement. It catches the failure that actually
+happened, which was no announcement within reach of the command at all. **This is new
+machinery limba does not have**; a statement waits in `upstream/backports/`.
+
+**2 · Should a verb be forbidden from paraphrasing a mechanic? No** — and the incident argues
+against the ban, not for it. A verb that only pointed would put the rule out of reach at the
+moment of action, which is the same failure one level further away. limba's skill did not
+fail because it paraphrased; it failed because it paraphrased **one half of a two-default
+section with no pointer back**. So the rule added to [../README.md](../README.md) is that a
+restatement carries its `§ N`, and a section holding two opposite defaults is never cited by
+one of them alone. Generated shims stay the stricter case — pointers only, no rules —
+because a shim is not read beside the playbook the way a playbook is read beside the mechanic.
+
+`docs/narration.callsite.test.ts` also asserts the general form: **every numbered rule in
+narration.md is cited by at least one playbook or mechanic.** That is the weakest useful
+version of "the noun reached a verb", and it immediately found § 6 (one thing at a time),
+which the interview obeyed in full and cited nowhere — a rule the agent meets once, out of
+context, and drops. The pointer went into `setup/interview.md` § Conduct.
+
+**3 · Should the merged section be split? mova has nothing to split** — it never merged. § 2
+(announce a silence) and § 3 (never show the work) have been separate rules with separate
+headings since 0.8.0, and this incident is the evidence for that shape: limba's merged § 2
+led with *never show the work*, the announcement sat last, and the skill that quoted the
+section took the half it led with. **Do not adopt the merge on a later sync.** limba kept it
+because its rule file is at 1,116 words against a 1,150 cap, which is a budget decision
+standing in for a design decision, and limba says so.
+
+**mova hit the same wall in the same sync and paid it differently.** `narration.md` finished
+this change at 899 words against its 900 cap. The room came from moving provenance to this
+file — where `docs/consequential.test.ts` says it should go, and where most of it was already
+duplicated — and from one paragraph of story that left `session_format.md` close-out step 7
+so step 9 could afford the announcement. **No rule was dropped to fit a number.** If the next
+addition cannot be paid for that way, the answer is to split the topic, not to shorten a rule
+until it stops being one.

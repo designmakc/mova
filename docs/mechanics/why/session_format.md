@@ -274,6 +274,17 @@ to remember each one. **It never commits and it never writes a log**: `log-appen
 the IDs inside its lock, and a script that commits will eventually sweep a sibling session's
 unfinished work into your commit.
 
+## The delivery date
+
+The date matters because a page built outside a numbered session leaves no other trace:
+limba SES-009 credited a recovery to an unlogged side session and had to dig through
+`git log` to find it. The workspace decides what to build next from what it believes
+worked, so *when* a page arrived is part of the record, not metadata.
+
+*(Moved verbatim from [../session_format.md](../session_format.md) close-out step 7 on
+2026-08-17, PORT-019 — the step needed the words for the announcement rule that step 9
+gained in the same sync.)*
+
 ## A session that continues past its close-out
 
 limba SES-009 completed the ritual and committed; the learner then asked to keep going, and 30
