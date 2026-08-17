@@ -44,10 +44,15 @@ landed, and practice then becomes targeted repair instead of generic use.
 
 A drill is parts 1 and 3 only. Time boxes flex; the order does not.
 
-**A session has visible edges.** Your agent prices it as it opens — what the word you said
-actually costs today, adjusted for what is due — and says which part you are in as each one
-starts. Any set it puts in front of you is counted first: how many items, and the minutes
-they imply. If that is more than you have, say so at the door and take a drill instead.
+**A session has visible edges.** Your agent tells you at the door what today's actually
+holds — how much is due, whether the review block runs at all, how big the new batch is —
+and any set it puts in front of you is counted before you start it. If that is more than you
+have, say so and take a drill instead.
+
+It counts rather than predicts, on purpose: minute estimates for a whole session have proved
+unreliable, item counts have not. And it only calls out where you are in the session when
+today's shape differs from the usual one — when the review block stands down, say — rather
+than narrating every part.
 
 ### Teaching happens in eight beats
 

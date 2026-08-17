@@ -4,6 +4,42 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.13.1 — 2026-08-17
+
+Two rules shipped this morning, corrected the same day by the repo they were sent to. No new
+capability; this is 0.8.0 being wrong and limba having the data to prove it.
+
+instance-impact: **engine files auto-update.** Nothing to do — but the agent will say less
+than it did yesterday, and that is the point.
+
+- **Predicted durations are out; counts are in.** § 1 of the narration mechanic told a block
+  to state "a count and the minutes that count implies", and the lesson opener said "about an
+  hour". limba checked its own session log — which has carried wall-clock durations since the
+  SRS cost model was found unfittable — and its **two recorded minute forecasts missed by
+  roughly 2× over and 5× under, while the item counts were close.** A number a learner plans
+  their evening around, wrong by 5×, costs more than the silence it replaced. Blocks are now
+  priced as a count against the agreed budget; minutes are quoted only where they are
+  measured for that learner, and never as the headline.
+- **The setup build estimate stays in minutes**, and the exception is now stated in the rule
+  rather than left implicit. It answers a different question: the build is nine steps whether
+  it runs ten minutes or fifty, and someone deciding whether to walk away cannot use a step
+  count. It remains marked *assumed*, and setup records its own elapsed time so it can be
+  re-fitted the way limba re-fit these.
+- **"Part 3 of 5" is retracted — it was false on its own terms.** 0.8.0 put a running counter
+  at the top of every part, reasoning from the interview counter (`2/4`) that a real
+  onboarding run had validated. limba declined it, and its second reason applies here and was
+  missed here: **the denominator moves.** Part 1 is conditional — a rule *this repo shipped
+  in 0.7.0* — so on every day the review block stands down there are four parts, and the
+  count lies. A part is now announced only when the shape departs from the one the learner
+  knows, or on resumption.
+- **The interview counter is untouched**, in both repos. It earned its place with a learner
+  who could not yet see the shape of what they had agreed to; someone twenty sessions into a
+  five-part lesson is not that person.
+- The measurements moved to `why/narration.md` rather than into the rule file, which is what
+  the mechanics word budget is for — the rule file went over on the first attempt and the
+  overage was, exactly as the budget's docstring predicts, provenance creeping back in.
+- `upstream/limba.lock` advances to PORT-016, the entry these corrections arrived in.
+
 ## 0.13.0 — 2026-08-17
 
 A shipped language pack can now reach a workspace that was set up before it existed.

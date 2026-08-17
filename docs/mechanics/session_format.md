@@ -86,8 +86,9 @@ The learner runs many sessions and returns cold. **State position before content
 - **Every teaching section** — the Placement beat from [teaching.md](teaching.md) ①,
   derived from [../reference/topics.md](../reference/topics.md), never improvised.
 - **The clock, not only the material** ([narration.md](narration.md) § 7) — what the verb
-  they just said costs, which part of five they are in, and roughly what is left. Both
-  belong to the opener; the second was never stated anywhere until 2026-08-17.
+  they just said holds, as a count against their budget. A part is announced only when the
+  shape departs from the usual one, or on resumption: part 1 is conditional (below), so a
+  fixed "of five" is false whenever the review block stands down.
 
 ## The placement calibration — the first session probes instead of teaching
 

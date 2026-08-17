@@ -80,3 +80,35 @@ side of the product. **Rule 8** generalises the setup handoff's closing instruct
 stop — the first session belongs to the starting verb, not to setup's momentum") to
 close-outs and refusals. None of the three has been tested on its own; they are marked
 assumed and the first instance to run them is the evidence.
+
+## Rules 1 and 7, corrected by limba the day they shipped
+
+**Derived from limba, 2026-08-17 — the same day mova shipped both rules.** mova sent the
+narration mechanic upstream as a back-port statement; limba took it as PORT-016 and answered
+both of its open questions **narrower**, on data mova does not have.
+
+**Rule 1 — the count, not the duration.** mova's version said a block states "a count and
+the minutes that count implies", and its own § 7 told the lesson opener to say "about an
+hour". limba checked its session log, which has carried wall-clock durations since the SRS
+cost model was found unfittable: **its two recorded minute forecasts missed by roughly 2×
+over and 5× under, while the item counts were close.** So limba's opener states a count and
+the agreed budget and predicts no duration at all. A number a learner plans their evening
+around, wrong by 5×, costs more than the silence it replaced — and the count, which is what
+actually stops a 10–15′ drill becoming a 56-item marathon, was reliable the whole time.
+
+mova kept one exception limba does not need: **the setup build estimate stays in minutes.**
+limba has no setup verb, and the question is different — a learner deciding whether to walk
+away from a build cannot use "nine steps". That estimate is still marked *assumed*, and
+setup now records its own elapsed time so it can be re-fitted the way limba re-fit these.
+
+**Rule 7 — the part counter.** mova shipped `"part 3 of 5"` at the top of every part, on the
+strength of the interview counter (`2/4`), which a real onboarding run had validated. limba
+declined it twice over, and the second reason applies to mova and was missed here: **the
+denominator moves.** limba's part 1 is conditional and so is mova's — mova shipped that rule
+itself in 0.7.0 — so on every day the review block stands down there are four parts, and
+"part 3 of 5" is simply false. The counter now fires only on a departure from the known
+shape, or on resumption.
+
+The interview counter is untouched in both repos. It earned its place with a learner who
+could not yet see the shape of what they had agreed to; a learner twenty sessions into a
+five-part lesson is not that person.

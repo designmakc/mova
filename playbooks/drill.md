@@ -65,10 +65,14 @@ this verb owns**, with the rates. The time box is a **constraint, not a descript
 diagnostic, a 46-slot retest and 16 more items under a "10–15′" heading, and nothing in the
 flow noticed until close-out.
 
-**Before presenting any set: state its item count and the minutes it implies, out loud.**
-Rates come from srs.md's cost model (recognition / bare production / full package, plus the
-per-block fixed cost); a written exercise runs ~45s per item. If the number overruns the
-agreed budget, cut it *before* asking, not after. A drill that silently becomes a mock has
+**Before presenting any set: state its item count out loud, against the budget agreed.**
+The count is the number that held when limba checked its own log — its minute forecasts
+missed by 2×–5× while item counts stayed close (docs/mechanics/why/narration.md), so the
+count is what the learner is given and what this rule enforces. srs.md's cost model
+(recognition / bare production / full package, plus the per-block fixed cost; ~45s per
+written item) is how **you** size the set before offering it, and it is quotable when the
+learner asks — never as the headline. If the set overruns the agreed budget, cut it
+*before* asking, not after. A drill that silently becomes a mock has
 stopped measuring what it claims to measure.
 
 ## The line you may not cross

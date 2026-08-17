@@ -41,22 +41,23 @@ session. The flow below is what happens *between* them.
 
 ## Flow
 
-**Each part opens by saying where it sits** — *"part 3 of 5, the graded check, about ten
-minutes"* — one clause at the top of the part, never a heading and never a progress report.
-The learner is inside a sixty-minute session with no visible edges; the interview counter
-(`2/4`) exists for the identical reason on the other side of the product, and it is the one
-narration fix a real onboarding run has already validated.
+**Say where a part sits only when the shape departs from the usual one, or when the learner
+is resuming** ([docs/mechanics/narration.md](../docs/mechanics/narration.md) § 7). *"No
+review today — nothing is due that could be measured, so we start on the new material"* is
+worth a clause; *"part 3 of 5"* at the top of every part is noise to someone who knows the
+shape, and it is **false whenever part 1 stands down** — which is a rule this same file
+carries. A fixed denominator cannot describe a conditional first part.
 
 0. **Orient ritual** (session_format.md) — every step, silently. Then the lesson-specific
    part: current phase + unit, this unit's rows in topics.md, and the session's **placement
    announcement** — which unit of the curriculum's total, what it opens or closes, what the
    learner will and will not be able to do afterwards.
    **Price the session in the same breath** ([docs/mechanics/narration.md](../docs/mechanics/narration.md)
-   § 1 and § 7): a full lesson is about an hour in five parts, and the learner said one word
-   to start it. Say the number, and say it *adjusted* — a part 1 that will not run and a
-   part 2 the queue has already shortened both change it. A learner with forty minutes finds
-   that out at the door or discovers it at part 4; only one of those lets them choose a drill
-   instead.
+   § 1): say **what it holds** — how many rows are due, whether part 1 runs at all, roughly
+   how big today's batch is — against the budget the learner has. Not a predicted duration:
+   limba's own forecasts missed by 2×–5× while its counts held (why/narration.md). A learner
+   with forty minutes should be able to judge that at the door and take a drill instead,
+   rather than discovering it at part 4.
    **Then ask whether the placement calibration is still owed** — one command,
    `ls docs/snapshots/*_placement.md`. Nothing listed means this session probes instead of
    teaching: run it per session_format.md → **The placement calibration**, which also covers

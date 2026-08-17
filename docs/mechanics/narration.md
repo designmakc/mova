@@ -13,14 +13,21 @@
 
 ## 1 · Price it before you present it
 
-**Anything that will cost the learner time states its size before it starts** — a count and
-the minutes that count implies. A scored set, a session, a repair loop, the setup build.
-If the number overruns what was agreed, **cut it before you ask, not after**.
+**Anything that will cost the learner time states its size before it starts** — as a
+**count**, against the budget already agreed. A scored set, a session, a repair loop. If it
+overruns what was agreed, **cut it before you ask, not after**.
+
+**Say the count, not a predicted duration** *(derived from limba, 2026-08-17 — its
+forecasts missed badly while its counts held)*. Quote minutes only where they are
+**measured for this learner**, and never as the headline.
+
+**The exception is a stretch the learner sits out**, where a count tells them nothing: the
+setup build is nine steps whether it runs ten minutes or fifty, and someone deciding whether
+to walk away needs the time. That one stays in minutes — 
+[../../playbooks/setup.md](../../playbooks/setup.md) § The build estimate.
 
 Rates and per-verb detail belong to the file that owns the work: [srs.md](srs.md)'s cost
-model for review items, [../../playbooks/drill.md](../../playbooks/drill.md) § The size rule
-for practice sets, [../../playbooks/setup.md](../../playbooks/setup.md) § The build estimate
-for generation. This rule is why all three exist.
+model, [../../playbooks/drill.md](../../playbooks/drill.md) § The size rule.
 
 ## 2 · Announce, checkpoint, re-anchor
 
@@ -72,8 +79,13 @@ answers; the number counts ground covered, never messages sent.
 
 [session_format.md](session_format.md) § Placement owns the material half: which unit,
 what it opens, what they will be able to do after. **The clock half is this rule**: what
-the thing they just started costs, which part of how many they are in, and roughly what is
-left. A learner who returns cold cannot see either from the inside.
+the thing they just started costs, and where they are inside it.
+
+**Announce a part only when the shape departs from the one they know, or on resumption**
+*(derived from limba, 2026-08-17)*. A fixed count would lie anyway: **part 1 is conditional**
+(§ Part 1 runs only when it can produce something), so "part 3 of 5" is false on every day
+the review block stands down. Say what changed — *no review today, so we start on the new
+material* — and stay quiet when the shape is the usual one.
 
 ## 8 · Stop when the thing is delivered
 
