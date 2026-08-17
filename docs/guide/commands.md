@@ -171,6 +171,11 @@ those minutes are worth compounding.
 
 **Say:** "anything new?" for the read-only check, "update the workspace" for the full pass.
 
+If your language has gained an official pack since you set up — or the one you have has been
+improved — the update offers it, after showing you exactly what it would change about words
+you have already saved. It never swaps it on its own, and "no" is a normal answer that gets
+asked again next time.
+
 Your workspace is a fork of the template plus your own content, with no shared git history, so
 an update is never a git merge. The agent fetches the current template, walks the changelog in
 plain language, and then, for every engine file you have modified, offers the choice: keep

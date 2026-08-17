@@ -4,6 +4,47 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.13.0 — 2026-08-17
+
+A shipped language pack can now reach a workspace that was set up before it existed.
+
+instance-impact: **engine files auto-update, and the next `/update` may offer you a pack.**
+Nothing is swapped without an explicit yes, and the offer is always preceded by a report of
+what it would change about rows you have already saved.
+
+- **The gap.** `/update` diffs engine files through `upstream/manifest.json`, and pack files
+  are deliberately absent from it — hashing them would make every update flag a learner's own
+  corrections to their language facts. Right for the active pack; wrong in one case nobody
+  designed. A learner whose language shipped **after** they set up is still running the pack
+  generated live during setup, by the playbook that once produced a pack advertising an accent
+  fold it had not implemented and a silently disabled ledger guard, and no update would ever
+  mention that a verified one now exists. The same blindness meant a *fix* to a shipped pack
+  could never reach the instances holding it.
+- **`upstream/packs.json`** is the missing baseline: the same idea as the manifest, for packs,
+  written by the same release ritual. It grants no permission to overwrite anything — it only
+  lets update tell three states apart: the template ships no pack for this code, the instance
+  already holds the shipped one (so an improvement is an update to offer), or the two differ
+  with no baseline (generated at setup, or corrected by the learner — **never assume which**).
+- **`scripts/packdiff.mjs` answers the only question worth asking**: not "do the packs
+  differ", but "what breaks for *this* learner". It loads both packs, runs both classifiers
+  over the rows actually in `state/`, and separates the two outcomes that are not alike —
+  a row the candidate cannot classify at all, which fails `state/ledgers.test.ts` and turns a
+  learner's workspace red on words they entered correctly, from a row that merely files under
+  a different facet on the deck. It also catches rows that would owe a required fact the
+  candidate introduces, curriculum levels a candidate's scale drops, and form-marking being
+  switched off underneath existing plurals.
+- **`playbooks/update.md` § 6b offers, and never takes.** The report is shown before any
+  question is asked; a safe swap is offered in one sentence, an unsafe one is described with
+  its damage and left to the learner; "no" is complete and returns next update, exactly as
+  step 6's *keep* does. A swap replaces `packs/<code>/` and nothing else — the transfer notes,
+  error taxonomy and curriculum generated from the old pack at setup have since accreted this
+  learner's measured data, and the pack knows nothing about it.
+- **Tested against real pack tables rather than mocks**, because a fabricated table proves the
+  function runs, not that the shipped packs are safe against each other. German → Spanish
+  loses the neuter and is caught; Romanian → Spanish reclassifies `a vorbi` from verb to
+  phrase and is correctly reported as advisory rather than breaking; moving *to* Romanian
+  catches the rows that would owe its required eu-form.
+
 ## 0.12.1 — 2026-08-17
 
 A flaky CI failure, found and removed. No behaviour change for a learner.

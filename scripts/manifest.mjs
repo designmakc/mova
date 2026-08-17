@@ -112,3 +112,52 @@ console.log(
   `upstream/manifest.json — ${Object.keys(sorted).length} engine files ` +
     `(template ${manifest.template_version}, ${manifest.generated})`,
 );
+
+/* --------------------------------------------------------------- the pack baseline */
+
+/**
+ * `upstream/packs.json` — the same idea as the manifest, for the packs the template ships.
+ *
+ * It is a SEPARATE file on purpose. The manifest is `/update`'s allowlist and its rule is
+ * absolute: what is in it may be replaced, what is not is the learner's. Pack files are
+ * `mova:pack` and stay out of it, because hashing them would make every update flag a
+ * learner's correction to their own language facts.
+ *
+ * But that left a pack unable to reach an existing instance at all. This file is the missing
+ * half: it answers *"did this workspace's pack come from a template, and which one"* without
+ * granting `/update` permission to overwrite it. `playbooks/update.md` § 6b reads it to tell
+ * three states apart —
+ *
+ *   - the instance's pack matches a shipped one  ⇒ it is the template's; a newer one can be
+ *     offered as an update;
+ *   - it differs from the shipped one            ⇒ the learner corrected it, or setup
+ *     generated it before the language shipped; ask, never assume;
+ *   - the template ships no pack for this code   ⇒ nothing to say.
+ *
+ * The offer itself is always gated on `scripts/packdiff.mjs`, which answers the only
+ * question that matters: what breaks for THIS learner.
+ */
+const PACKS_OUT = join(root, "upstream", "packs.json");
+const packsDir = join(root, "packs");
+const packs = {};
+if (existsSync(packsDir)) {
+  for (const name of readdirSync(packsDir).sort()) {
+    const dir = join(packsDir, name);
+    // `_template` is a skeleton and `_shared` is engine code already in the manifest.
+    if (!statSync(dir).isDirectory() || name.startsWith("_")) continue;
+    if (!existsSync(join(dir, "pack.md"))) continue;
+    const entries = {};
+    for (const full of walk(dir)) {
+      entries[relative(dir, full).split("\\").join("/")] = sha256(full);
+    }
+    packs[name] = Object.fromEntries(Object.entries(entries).sort(([a], [b]) => (a < b ? -1 : 1)));
+  }
+}
+writeFileSync(
+  PACKS_OUT,
+  JSON.stringify({ generated: manifest.generated, template_version: manifest.template_version, packs }, null, 2) + "\n",
+);
+console.log(
+  `upstream/packs.json — ${Object.keys(packs).length} packs ` +
+    `(${Object.keys(packs).join(", ") || "none"})`,
+);

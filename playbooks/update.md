@@ -17,13 +17,14 @@ template.** Personal content (ledgers, logs, goal contract, generated pages) int
 engine files in the same tree; a git merge would either clobber it or drown the human in
 conflicts they cannot judge. The agent does the diffing and asks in plain language.
 
-**Reads**: `docs/reference/profile.md` (config: `template_version`, `template_source`),
-`upstream/manifest.json` (the OLD manifest — the engine baseline this instance last synced
-to), the fetched template's `VERSION`, `CHANGELOG.md`, and `upstream/manifest.json`.
+**Reads**: `docs/reference/profile.md` (config: `template_version`, `template_source`,
+`pack`), `upstream/manifest.json` (the OLD manifest — the engine baseline this instance last
+synced to), `upstream/packs.json` (the OLD pack baseline — see § 6b), the fetched template's
+`VERSION`, `CHANGELOG.md`, `upstream/manifest.json` and `upstream/packs.json`.
 
-**Writes**: engine files it replaces, `upstream/manifest.json` (adopted from the fetched
-template), the profile config block (`template_version`, and `template_source` on first
-run), one commit.
+**Writes**: engine files it replaces, `upstream/manifest.json` and `upstream/packs.json`
+(both adopted from the fetched template), `packs/<code>/` **only on an explicit yes** (§ 6b),
+the profile config block (`template_version`, and `template_source` on first run), one commit.
 
 ## Two ways this runs
 
@@ -83,6 +84,58 @@ ask "is there anything new?" was to start the thing that changes files.)
    - **In the OLD manifest but absent from the fetched one** ⇒ the template retired it;
      say so, and delete it unless it was locally modified (then ask).
 
+6b. **The language pack — offer it, never take it.**
+
+   Pack files are `mova:pack` and deliberately absent from the manifest, so step 6 cannot
+   see them and step 7 forbids touching them. That is right for the learner's own
+   corrections and wrong in one case nobody designed: **a pack the template ships can
+   otherwise never reach an existing instance.** A learner whose language shipped *after*
+   they set up is still running the pack generated live at setup — by the playbook that once
+   produced a pack advertising a fold it had not implemented and a silently disabled ledger
+   guard — and no update will ever mention that a verified one exists.
+
+   `upstream/packs.json` in the **fetched** template is the baseline that tells the three
+   states apart, for the instance's own `pack:` code only:
+
+   - **The template ships no pack for this code** ⇒ say nothing, this step is over.
+   - **The instance's files all match the fetched hashes** ⇒ it already has this pack; if
+     the fetched hashes differ from the instance's own `upstream/packs.json` entry, the
+     template has *improved* the pack it gave them, and that is an update to offer.
+   - **They differ, with no matching baseline** ⇒ the pack was generated at setup, or the
+     learner has corrected it. **Never assume which.**
+
+   **Run `node scripts/packdiff.mjs <fetched-root>` and show the learner its output before
+   asking anything.** It loads both packs, runs both classifiers over the rows actually in
+   `state/`, and answers the only question worth asking: what breaks *here*. Manifest
+   differences alone are not an answer — they say the packs differ, not that this learner is
+   affected.
+
+   - **`safe`** (exit 0) ⇒ offer the swap in one plain sentence, with what it gains
+     (usually: facts verified against a real dictionary instead of generated once and never
+     checked). Take a **yes** or a **no**; a no is complete and is asked again next update,
+     the same way step 6's *keep* is.
+   - **Not safe** (exit 1) ⇒ **do not offer it as the obvious choice.** Say what would break
+     in the learner's own words — the script prints rows, not codes — and what they would
+     have to fix afterwards. A row the new pack cannot classify fails
+     `state/ledgers.test.ts`, which means their workspace goes red on words they entered
+     correctly. That is their decision to make with the number in front of them, not a
+     default to nudge.
+
+   **What a swap replaces, and what it must not.** Copy `packs/<code>/` from the fetched
+   template, whole. Do **not** regenerate `docs/reference/transfer.md`,
+   `docs/mechanics/error_taxonomy.md` or the curriculum: those were generated from the old
+   pack's notes at setup and have since accreted this learner's measured data, which the
+   pack knows nothing about. A pack holds no learner state — the ledgers are in `state/` —
+   which is what makes the swap survivable at all.
+
+   Two consequences to state plainly if they apply: a changed voice means the audio cache
+   re-warms on the next session (`node scripts/tts-warm.mjs`), and a pack that gains a
+   dictionary adapter turns the workspace from *unattested* to *attested*, which is the
+   change the learner will actually feel.
+
+   Then `node scripts/packcheck.mjs <code>` and `npm test` must both be green before the
+   step is done.
+
 7. **Never touch instance-owned files.** Anything *not* in the manifest — `state/`,
    `docs/logs/`, `docs/reference/` content, `work/`, generated pages and adapter shims,
    files marked `mova:instance` — is the learner's and is out of bounds. The manifest is
@@ -93,13 +146,16 @@ ask "is there anything new?" was to start the thing that changes files.)
    "engine files auto-update" need nothing beyond step 6.
 
 9. **Verify and record.** Run `npm test` (must be green) and the checks in
-   `setup/smoke.md`. Copy the **fetched** template's `upstream/manifest.json` over the
-   instance's — the new baseline must carry the *template's* hashes, so a file the human
+   `setup/smoke.md`. Copy the **fetched** template's `upstream/manifest.json` **and
+   `upstream/packs.json`** over the instance's — the new baseline must carry the *template's* hashes, so a file the human
    chose to **keep** in step 6 stays visibly divergent and is asked about again next
    update, instead of being silently overwritten the update after. (For the same reason,
    do **not** regenerate the manifest locally with `scripts/manifest.mjs` here — that
    would bless local modifications as the baseline and make the *next* update clobber
    them without asking. That script is for the template repo's release ritual.)
+   The pack baseline moves for the same reason and carries the same consequence: a learner
+   who declined the pack in step 6b now differs from the recorded hashes, so the offer
+   returns next update instead of quietly disappearing.
    Bump `template_version` in the profile config block to the fetched `VERSION`.
    Commit: `update: template <old> → <new>`, naming the paths touched.
 

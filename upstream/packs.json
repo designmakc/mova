@@ -1,0 +1,83 @@
+{
+  "generated": "2026-08-17",
+  "template_version": "0.13.0",
+  "packs": {
+    "de": {
+      "dictionary.mjs": "f2cd730651455ca3e6dd3fde707087c0005b3b696a14aef80d262a8a3f7016c5",
+      "golden/dictionary.json": "6451d35dd2f49a3837da1642acd3a810f558a762b8c27f97370c9daa3060bb99",
+      "golden/normalize.json": "81de1e2c3b6da66385bbaf66ac94887c6420f750142c37b2fc194c93d6d980ff",
+      "golden/pairs.json": "e7b03c7e6dc61bf6c69a3135771998aa230dda0e3002f3e767ca11172726c47e",
+      "golden/words.json": "518a097feb58cfa6d9ca7ad1091d5ed24924bf6e9a8da37d3f486ce010ff4d74",
+      "normalize.mjs": "f18b67180454b912a380f2a5e07ca77cec756b63dcf1d379e054a936e124802c",
+      "notes.md": "c40e99a53867485083713d41a1c737376905f87235327164ebbc0f74905f131e",
+      "pack.md": "d20a6e98c95ca3fa34b9499b4eb01079532753ac1ae25d232711289a28423cf7",
+      "pos-tables.mjs": "9261ebab5119ea5249353e5ee3a9f6cb6aebc3fbabc3de2cf9998099fb399150"
+    },
+    "el": {
+      "dictionary.mjs": "8c2f3f9fec3466591787493f499d6d948723a03bb94fee3bcc4b999a8c67662d",
+      "golden/dictionary.json": "65e1e080004db49f25e11e1e7e69749d97ea806a9cdf516bd04c6a18e03dd0e0",
+      "golden/normalize.json": "36a328070287103e02601bc04e0785319cf7dbda4d7b86ac3b060feea1894b2c",
+      "golden/pairs.json": "0344b99c729351077a9d910d50592a8f898959f17acbc9c6afc8858152d1e89e",
+      "golden/words.json": "7b84df506cafada6e8cfb706fc44144e55839055305e627975f709eda37d60e3",
+      "normalize.mjs": "998dcc626d530c4077f37e423315dbecba8d83b33e303b276054f9b35e5c834e",
+      "notes.md": "05bb104d8a5b70cc1f19719a113cc83dc4c807ea070fc2faccd3c66f0519265c",
+      "pack.md": "f86c7cb66e2bb58d5f6877d3e96aa34f499cce353302f9e5f7c2f22ef29f8ae2",
+      "pos-tables.mjs": "7eaf20dc1ec88353e97223e71972183f63795a0f16139e7b29b4d66e2150ddea"
+    },
+    "es": {
+      "dictionary.mjs": "05d4b890fd570003b30ad02aa48c6abecee2e3bef175edea118e1686d34d8dd4",
+      "golden/dictionary.json": "083f85bafef39b203b954f5a7d6eb354ce4381aa484803a918bc6966167ed2c6",
+      "golden/normalize.json": "bbc34126e5351f48d567fbf3e6c113ad607c248b8128629ba87f79621b0c9afd",
+      "golden/pairs.json": "77e62f85e0901ad322b1fcf396607d8e29099d2c2404dc0195707f2cef45e9b0",
+      "golden/words.json": "a383b2c07a72321ed31e8ed55921ee91d7c70b16897c8e209765e4c750230979",
+      "normalize.mjs": "3276af26cf99278901bf6d313d46acf0af58652d27a58ea866435672b7d96e70",
+      "notes.md": "d590fb3e0e1c51ce92663004ee32c95303a495c1d76d102e8170b5c630cf9201",
+      "pack.md": "ab6863ff460d8062fed91f9d1e81e7fc6dbc6a82ff58f3389b2d313ec69218e8",
+      "pos-tables.mjs": "eea4f4709cb0b786a870c9d64bc4b19a82eb38a29bc91bdb9aebe26690639850"
+    },
+    "fr": {
+      "dictionary.mjs": "8dff23a16b81f94043ab3fabd941f245fd2fdc6468ebcc662c5ebebc83824785",
+      "golden/dictionary.json": "915609a570c3f030f82a7c7c80e3c168d4c704c288ea25b8c4ede22f525b6ad7",
+      "golden/normalize.json": "550cc046781bcb7fd597aa6aed3618a0fd2ef271a1f5712ce54f931711438ee4",
+      "golden/pairs.json": "47cb7e09b17160b966df917b0ea3eb5637aa79d3119b2cc9f5938bee12d42bc7",
+      "golden/words.json": "18812b77747bcdbbf6dee192f4da4bd0281ec7353d168e3e7f0d646195b312ca",
+      "normalize.mjs": "bb1a7340a0725185636a608e792ecb0bb8c663c53faef67919b84b30969f7848",
+      "notes.md": "6b4ded5917cc8422d393472e66b1777b2f062a9e9a0675baba9f2697eccd10df",
+      "pack.md": "b56ebf18647f125f009684bf51dcf389591f0694ff55cea1833c53bad01c886a",
+      "pos-tables.mjs": "ffd63d21c1b2bc6f4ca1f775e289ce6336169e80db317114b5b64a7945bd2f5f"
+    },
+    "it": {
+      "dictionary.mjs": "5e484e186d7595cde42a0a8fc4ffad67482bb9eb11c45971db70e8df426e959a",
+      "golden/dictionary.json": "607b3419ac45e1e421b7b6c860e59033f79bd99f597f2ed5d57bdc95dabb9719",
+      "golden/normalize.json": "4b06a264eb839c18dfe82fb23e37b10ed2905bd8e223864958cba29ca9ff289f",
+      "golden/pairs.json": "760b5e5b6082445982ded01ed73c569f1116622434dbdac4bc6e0deefabd1f8e",
+      "golden/words.json": "0de0d15f129750ec5ff2b672a97266ab999fdf45f9c55905945db1776e30160c",
+      "normalize.mjs": "ff07a9f434e76c5febeb0b1f2bba0889174e0b9789da4a3132e85a965324800c",
+      "notes.md": "68f85ac801ee58926ffc6ab0dabf10f4d5bf72445783eedb20bb988a8df31372",
+      "pack.md": "9a40d431f5bb6a2b2b0894a1fafecef06700a79ebf555c7b339428759353c535",
+      "pos-tables.mjs": "6925345f7f0ab1eb652be967b31d77b57e75aafe53947fa51d124c02fc310622"
+    },
+    "pt": {
+      "dictionary.mjs": "3e7e47af08fff74364084a4479101154a55c6b67d9537365f08dcfc177a3e43d",
+      "golden/dictionary.json": "0a1c9ebbe7a00a9298f20091c2b2383066c3116241acc1eaa65c27a0c6294945",
+      "golden/normalize.json": "79264d7075e87e6fb1c07bc00fe616e9acfdb77b35fba8ef3cb25ee586f21571",
+      "golden/pairs.json": "c4f2e585db956951321ed096677b0c068c04a9d40d935e12b900cd66cc0e4d09",
+      "golden/words.json": "6f030f05b18a157eec38ea59885d171d79e6cf01e99628cb261d9905c64554e3",
+      "normalize.mjs": "986f2a0db6b1277d4a89ffc2a49b02827ee7b87ca88c48f5a5d88a34dfb103da",
+      "notes.md": "9c628efe14656670f9557eb419147f631800342b8c04f14fd86e40a7018f0745",
+      "pack.md": "ba4c4c1ee7d0e6e3e74cb5214963849f2c57bd00b85ccfec5e6256831869c45e",
+      "pos-tables.mjs": "db1ccc1669d3b35270a32de6bda7b0cd093fdeba47c7dc7227ec118f0a21c2c1"
+    },
+    "ro": {
+      "dictionary.mjs": "69ee1855b0ce6ecceaa3203e1742b634b67b6b80af9937ab70b5d52b0530ff4a",
+      "golden/dictionary.json": "8812e9583de9fcbd951fb37c59fb60fa4078647295de3976b71f8dd986f3658b",
+      "golden/normalize.json": "8838b7e9ba89095a5ecfb3fcfb4e306a41b7f7b1bebfc9cef5f04a53f5485c08",
+      "golden/pairs.json": "af8a80afc62c5188f2acc2b4bbee1cb1988124e2ce68b380d3d00f89ea9031cb",
+      "golden/words.json": "e6746bce85b7bb3336a6c1c37aeb2503f23b3168300af27b9fc185682d00a6dd",
+      "normalize.mjs": "2d5d191ff733d6f1d1d8220e9f8795ae39afe44f8ecfcf19536b92f511050b6c",
+      "notes.md": "85979e23213b51ee08e29a97cbd8eb76ae93b33281e9ff5f3095c12e28bf6468",
+      "pack.md": "b10211955bcc2fbf6fcdf9c0bcff5702d8bc7580c20b7b296e704fd61fb0e504",
+      "pos-tables.mjs": "9f813d5b8971623ced51c113421dd64f5cb740091cb8ec4b233aa1a08a4cdba7"
+    }
+  }
+}

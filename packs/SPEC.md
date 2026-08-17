@@ -26,6 +26,16 @@ packs/<code>/
 
 Ownership markers: first line `<!-- mova:pack -->` in `.md`, `// mova:pack` in `.mjs`.
 
+**Pack files are never in `upstream/manifest.json`.** That manifest is `/update`'s allowlist
+for engine files, and hashing a pack would make every update flag a learner's own correction
+to their language facts. The cost of that exclusion is that a shipped pack could not reach an
+existing instance at all, so a second baseline exists: **`upstream/packs.json`**, written by
+the same release ritual, hashing every shipped pack file. It grants no permission to
+overwrite anything — it only lets `/update` tell a template's pack from a setup-generated one
+([playbooks/update.md](../playbooks/update.md) § 6b). The offer itself is always gated on
+`node scripts/packdiff.mjs`, which runs both classifiers over the rows in `state/` and
+reports what would break for that learner.
+
 ## Manifest — `pack.md`
 
 Prose first (what the pack is, where its facts come from), then exactly one fenced
