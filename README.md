@@ -47,9 +47,16 @@ Three words carry an ordinary week:
 
 | Say… | You get |
 | --- | --- |
-| **lesson** | The full session, about an hour: everything due, then new material, a graded check, then practice aimed at exactly what the check missed |
-| **drill** | Short practice, 10–15 minutes: the due queue plus your top error patterns. Never new material |
+| **lesson** | The full session: everything due, then new material, a graded check, then practice aimed at exactly what the check missed |
+| **drill** | Short practice: the due queue plus your top error patterns, sized to the time you have. Never new material |
 | **review** | The weekly replan: pace, next week's drill targets, plan updates |
+
+**How long a block takes is a budget you agree, not a promise this file can make.** You say what
+you have; the set is sized to fit it, and cut before it is offered if it does not. For scale,
+from the reference workspace this engine came out of: its drills ran 15, 36 and 55 minutes
+depending on how much was due, and its one timed full lesson took about 70 — which did not have
+to be a single sitting. Those are one person's numbers. Once you have a queue of your own, your
+hub prices it from your own ledger.
 
 Seven more cover writing practice, mock exams, capturing a word you met in the wild, tutor
 sessions, improving the workspace itself, reporting a defect back to the template, and

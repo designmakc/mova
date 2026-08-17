@@ -36,6 +36,40 @@ the deck rather than offering it as a choice.
 
 **Hard cap of 3 repair loops**: limba SES-007 stabilised on the third.
 
+## The drill's 10–15′ box, and why it is not a prediction
+
+**limba measured three drills against that heading: 15′, 36′ and 55′** — a 3.7× spread, and the
+55′ run is the one that also produced a 56-slot diagnostic, a 46-slot retest and 16 more items
+before anything noticed (PORT-016, 2026-08-17). The heading was a scaffold guess, and its own
+record contradicts it.
+
+**limba deliberately did not re-fit the number**, and mova follows: three points justify stopping
+the quote, not replacing it with a different quote. Its `/review` verb owns the re-fit once ~10
+sessions of one learner's data exist. What changed instead is the framing — the box is a budget
+the learner agrees and the set is sized to fit it (`playbooks/drill.md` § The size rule), and the
+hub prices the actual queue from `srs.md`'s cost model rather than repeating a figure measured on
+nobody (0.14.0).
+
+**The learner-facing surfaces followed in 0.14.0.** `README.md` and `docs/guide/commands.md` had
+carried "10–15 minutes" as a plain fact about the reader. They now name the work and say what the
+reference workspace actually measured, because a person deciding whether to adopt this needs a
+time and a person already studying has a hub that computes theirs.
+
+## A drill's SRS pass has no band
+
+limba SES-010 scored 61%, and SES-009's blocks 71% and 67%. All three came close to being read
+against the part-3 band, which was fitted to ten questions on a day's new material and means
+something else entirely on a pass over old rows.
+
+## Part 1's box does not bind a drill
+
+limba's learner found this after SES-009 left 53 items unreviewed, and asked why a drill would
+ever aim at anything but zero.
+
+## A block budget is held across the session, not per set
+
+limba SES-014's individual sets were each reasonable and the session still ran past two hours.
+
 ## The five parts
 
 **Parts 3 and 4 swapped** (limba SES-006 / 2026-08-03), after SES-005 ran them in this order

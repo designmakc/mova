@@ -29,9 +29,12 @@ Your very first session is the one exception to what sits between them: it probe
 of teaching — the placement calibration — and everything after it is built on what it
 found.
 
-A full lesson between those two runs about an hour:
+A full lesson between those two has five parts, in this order. **The boxes below are the
+default split of a session's budget — fitted to one learner, the reference workspace this engine
+came from, and not to you.** You say what time you have; the parts are sized to fit it, and the
+review playbook re-fits these numbers to your own record once there is enough of it.
 
-| # | Part | Time | What happens |
+| # | Part | Default box | What happens |
 | --- | --- | --- | --- |
 | 1 | Review | ~10′ | Everything due, each item asked at the level its tier calls for |
 | 2 | New material | ~30′ | One unit's vocabulary batch and one grammar point, taught in eight fixed beats |

@@ -30,8 +30,8 @@ transcript to find today's work.
 
 | Say… | What it is | How long |
 | --- | --- | --- |
-| **lesson** | The full session on the current unit | ~1 hour |
-| **drill** | The due queue plus your weak spots. No new material | 10–15′ |
+| **lesson** | The full session on the current unit | Your budget — the unit's material inside it |
+| **drill** | The due queue plus your weak spots. No new material | Your budget — the queue inside it |
 | **review** | The weekly replan | Weekly, whenever suits you |
 | **write** | A composition in your goal's genre, corrected | One genre task |
 | **mock** | One section of your goal's assessment, timed | The real section's time |
@@ -41,6 +41,11 @@ transcript to find today's work.
 | **tutor-prep** | A pack to bring your tutor, and an ingest pass after | Minutes each side |
 | **update** | Template improvements, decided change by change | Minutes |
 
+**The two study blocks are budgeted, not predicted.** You say how long you have and the set is
+sized to fit — that is the whole protocol, and it is why this column does not price them in
+minutes measured on somebody else. Your hub prices today's actual queue from your own ledger; that is the
+one number on the subject measured on you.
+
 `setup` runs once, before any of these exist. Not every workspace answers to all of them —
 see [focus modes](#not-every-workspace-answers-to-all-of-them) at the end.
 
@@ -48,7 +53,8 @@ see [focus modes](#not-every-workspace-answers-to-all-of-them) at the end.
 
 ### `lesson` — the full session
 
-**Say:** "lesson", "let's study", or just show up ready to work. **About an hour.**
+**Say:** "lesson", "let's study", or just show up ready to work. **Say the time you have; the
+parts are sized to fit it.**
 
 Five parts in a fixed order: everything due, then one unit's vocabulary batch and one grammar
 point, then a ten-question graded check, then practice aimed at exactly what the check missed,
@@ -64,7 +70,8 @@ a recorded score, and the hub and deck rebuilt.
 
 ### `drill` — the short-day session
 
-**Say:** "drill", "quick practice", "I'm short on time", "review only". **10–15 minutes.**
+**Say:** "drill", "quick practice", "I'm short on time", "review only". **Say the time you have;
+the set is sized to fit it** — and the hub tells you what the whole queue would cost first.
 
 Everything due, asked at the level each item's tier calls for, plus your top error patterns.
 **Never new material** — that is what makes it safe to run tired. Ask for a loop on one weak

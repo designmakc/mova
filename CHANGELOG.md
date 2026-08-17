@@ -4,6 +4,50 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.14.1 — 2026-08-17
+
+0.14.0 stopped the hub promising a drill takes 10–15 minutes. Five other surfaces were still
+promising it. No new capability; this is the rest of the same correction.
+
+instance-impact: **engine files auto-update.** Nothing to regenerate. Your guide pages and the
+session-format mechanic stop quoting a drill's minutes as fact about you, and the lesson's
+per-part boxes are now labelled as the default split they always were.
+
+- **The gap 0.14.0 left.** `narration.md` § 1 (0.13.1) bars predicted durations and allows
+  minutes only where they are measured for *this* learner. The hub now obeys it and prices the
+  real queue from `srs.md`'s model. Meanwhile `README.md`, both guide pages and the mechanic
+  itself still stated a flat **10–15 minutes** for a drill, and **about an hour** for a lesson,
+  to a reader they were measured on. On the same page as a computed ≈66′ figure, that is the
+  two-totals-for-one-thing defect 0.14.0 was released to fix, one level up.
+- **Nobody re-fitted the number, deliberately.** limba measured 15′, 36′ and 55′ against that
+  heading — a 3.7× spread — and judged three points enough to stop quoting it and not enough to
+  replace it (its PORT-016). Its `/review` verb owns the re-fit. mova has taught nobody, so it
+  has no standing to invent a replacement. **What changed is the claim, not the figure.**
+- **`docs/mechanics/session_format.md`** now says the drill's box is **a budget to size the set
+  against, never a prediction**, and points at the playbook's size rule, which already framed it
+  that way and was the only place saying so. The 3.7× overrun and the decision not to re-fit
+  moved to `why/session_format.md`.
+- **The two guide pages state the protocol instead of a number.** The verb table's length column
+  reads *"Your budget — the queue inside it"*, and each block's section says *say the time you
+  have; the set is sized to fit it*. That is what actually happens, and it is more use to a
+  learner than a figure that was wrong by 3.7× for the person it was taken from.
+- **The five-part table is labelled `Default box`** with one sentence saying whose learner it was
+  fitted to and that the review playbook re-fits it. The numbers are unchanged — this is the
+  mechanics' `default (measured on limba's learner — recalibrate)` marker translated into the
+  language a learner reads.
+- **`README.md` keeps real minutes, and that is not an exception being smuggled.** Its reader has
+  not adopted anything yet and cannot use "one unit's material" to decide whether this fits their
+  evening — the same case `narration.md` § 1 already carves out for the setup build. So it quotes
+  what the reference workspace actually measured (drills at 15, 36 and 55 minutes; its one timed
+  lesson ≈70, not necessarily in one sitting) and says whose numbers those are.
+- **Two statements now wait in [`upstream/backports/`](upstream/backports/).** limba's own
+  `session_format.md` states the box bare while its drill skill calls it a constraint — the same
+  one-line gap. Whether limba should re-fit rather than re-frame is left to limba, which is where
+  the sessions are.
+- The mechanics word budget bit twice more. `session_format.md` ends at 7,375 of 7,400 words with
+  three more incident retellings moved to `why/` — including one that had been inlined in a table
+  cell the hub renders, where nobody would look for provenance.
+
 ## 0.14.0 — 2026-08-17
 
 The hub stops publishing three signals and letting the learner arbitrate. It states one

@@ -25,8 +25,10 @@
 | 4 | Applied practice | ~15′ | Short reading or guided dialogue that forces due + new items into use, **aimed at what part 3 just missed**; goal-adjacent formats preferred |
 | 5 | Close-out | ~5′ | The ritual below |
 
-The drill variant (10–15′) is parts 1 + 3 only, with error-pattern items mixed in
-(→ [playbooks/drill.md](../../playbooks/drill.md)). Time boxes flex; the order doesn't.
+The drill variant is parts 1 + 3 only, with error-pattern items mixed in
+(→ [playbooks/drill.md](../../playbooks/drill.md) § The size rule, which owns its sizing). Its
+**10–15′ is a budget to size the set against, never a prediction** — measured drills overran it
+3.7× ([why/session_format.md](why/session_format.md)). Time boxes flex; the order doesn't.
 
 ## The orient ritual (every session, every playbook)
 
@@ -280,7 +282,7 @@ The band's numbers are **default (measured on limba's learner — recalibrate)**
 | **Part 3 — graded check** | *Today's material* was too hard. | Target is **60–70%** — the challenge sweet spot. Two consecutive sessions **> 80%** → pace up (more items, denser texts) at the next review. **< 50%** → pace down and drill the gap before new material. |
 | **Part 1 — SRS review** | *Retention of already-taught material has failed.* The intake volume or the interval is wrong. | **< 50% → do not teach a full part 2 on top of it.** Cut the new intake hard or drop it entirely, spend the reclaimed time on a **repair loop** over the misses, and flag it for the review playbook — this is evidence about the ladder and the intake number, not about today's unit. |
 | **Part 1, second session the same day** | *Nothing.* Those rows were answered hours ago; tier 1 is a zero-day interval, so the queue reports them due again. | **The band does not apply, and the block itself usually does not run** — § Part 1 runs only when it can produce something. Reading a low number here as failed retention would cut the day's new material for the opposite reason. |
-| **A drill's SRS pass** | *Nothing to calibrate.* | **A drill has no target score.** The band is calibrated for ten questions on the day's new material; a drill measures retention of old material, where the same number means the opposite thing. Report the number, do not grade the session against it. limba SES-010 scored 61% and SES-009's blocks 71% and 67%, and all three came close to being read against a band that was never fitted to them. |
+| **A drill's SRS pass** | *Nothing to calibrate.* | **A drill has no target score.** The band is calibrated for ten questions on the day's new material; a drill measures retention of old material, where the same number means the opposite thing. Report the number, do not grade the session against it ([why/session_format.md](why/session_format.md)). |
 
 Teaching new material onto failed retention is how a backlog compounds: the queue grows while
 the part of it that is already shaky never gets fixed.
@@ -311,8 +313,7 @@ oldest-first precisely so this is safe. **Never speed-run production items to ma
 
 The rule above exists because part 1 competes with four other parts for one hour. **On a drill
 the queue is the entire session and nothing competes with it**, so the box was being applied
-where its own reason does not hold. limba's learner found this after SES-009 left 53 items
-unreviewed and asked why a drill would ever aim at anything but zero.
+where its own reason does not hold ([why/session_format.md](why/session_format.md)).
 
 Two facts make the answer clearer than a preference:
 
@@ -334,8 +335,8 @@ break — was decided in limba's 2026-08-12 housekeeping pass, on the evidence i
   learner reading and typing, marking, publishing the sheet, the diagnosis. Per-item arithmetic
   under-predicted a 73-item drill by about **5×**.
 - **Agree a block budget before the first set**, out loud, and hold the running total across the
-  whole session — not per set. limba SES-014's individual sets were each reasonable and the
-  session still ran past two hours.
+  whole session — not per set. Reasonable sets, one after another, still ran a session past two
+  hours.
 - **Above the budget, the learner chooses**: split across days, or extend deliberately. A drill
   that silently becomes a two-hour mock has stopped being the thing that was agreed to.
 - **Then clear what is unseen inside the budget** and say plainly what it could not reach. Zero
