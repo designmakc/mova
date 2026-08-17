@@ -1,0 +1,130 @@
+[
+  {
+    "sg": "casa",
+    "pl": "case",
+    "expected": {
+      "sg": "cas<b class=\"mk\">a</b>",
+      "pl": "cas<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "libro",
+    "pl": "libri",
+    "expected": {
+      "sg": "libr<b class=\"mk\">o</b>",
+      "pl": "libr<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "uomo",
+    "pl": "uomini",
+    "expected": {
+      "sg": "uom<b class=\"mk\">o</b>",
+      "pl": "uom<b class=\"st\">in</b><b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "mano",
+    "pl": "mani",
+    "expected": {
+      "sg": "man<b class=\"mk\">o</b>",
+      "pl": "man<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "città",
+    "pl": "città",
+    "expected": {
+      "sg": "città",
+      "pl": "città"
+    }
+  },
+  {
+    "sg": "amico",
+    "pl": "amici",
+    "expected": {
+      "sg": "amic<b class=\"mk\">o</b>",
+      "pl": "amic<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "amica",
+    "pl": "amiche",
+    "expected": {
+      "sg": "amic<b class=\"mk\">a</b>",
+      "pl": "amic<b class=\"mk\">he</b>"
+    }
+  },
+  {
+    "sg": "problema",
+    "pl": "problemi",
+    "expected": {
+      "sg": "problem<b class=\"mk\">a</b>",
+      "pl": "problem<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "notte",
+    "pl": "notti",
+    "expected": {
+      "sg": "nott<b class=\"mk\">e</b>",
+      "pl": "nott<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "albergo",
+    "pl": "alberghi",
+    "expected": {
+      "sg": "alberg<b class=\"mk\">o</b>",
+      "pl": "alberg<b class=\"mk\">hi</b>"
+    }
+  },
+  {
+    "sg": "uovo",
+    "pl": "uova",
+    "expected": {
+      "sg": "uov<b class=\"mk\">o</b>",
+      "pl": "uov<b class=\"mk\">a</b>"
+    }
+  },
+  {
+    "sg": "chiave",
+    "pl": "chiavi",
+    "expected": {
+      "sg": "chiav<b class=\"mk\">e</b>",
+      "pl": "chiav<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "braccio",
+    "pl": "braccia",
+    "expected": {
+      "sg": "bracci<b class=\"mk\">o</b>",
+      "pl": "bracci<b class=\"mk\">a</b>"
+    }
+  },
+  {
+    "sg": "gatto",
+    "pl": "gatti",
+    "expected": {
+      "sg": "gatt<b class=\"mk\">o</b>",
+      "pl": "gatt<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "studente",
+    "pl": "studenti",
+    "expected": {
+      "sg": "student<b class=\"mk\">e</b>",
+      "pl": "student<b class=\"mk\">i</b>"
+    }
+  },
+  {
+    "sg": "caffè",
+    "pl": "caffè",
+    "expected": {
+      "sg": "caffè",
+      "pl": "caffè"
+    }
+  }
+]

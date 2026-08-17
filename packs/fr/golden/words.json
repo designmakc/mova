@@ -1,0 +1,177 @@
+[
+  {
+    "target": "maison (f, maisons)",
+    "id": "V-0001",
+    "expected": "noun"
+  },
+  {
+    "target": "livre (m, livres)",
+    "id": "V-0002",
+    "expected": "noun"
+  },
+  {
+    "target": "eau (f, eaux)",
+    "id": "V-0003",
+    "expected": "noun"
+  },
+  {
+    "target": "cheval (m, chevaux)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "journal (m, journaux)",
+    "id": "V-0005",
+    "expected": "noun"
+  },
+  {
+    "target": "bateau (m, bateaux)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "travail (m, travaux)",
+    "id": "V-0007",
+    "expected": "noun"
+  },
+  {
+    "target": "pays (m, pays)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "fille (f, filles)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "nez (m, nez)",
+    "id": "V-0010",
+    "expected": "noun"
+  },
+  {
+    "target": "voix (f, voix)",
+    "id": "V-0011",
+    "expected": "noun"
+  },
+  {
+    "target": "parler (v)",
+    "id": "V-0020",
+    "expected": "verb"
+  },
+  {
+    "target": "finir (v)",
+    "id": "V-0021",
+    "expected": "verb"
+  },
+  {
+    "target": "prendre (v)",
+    "id": "V-0022",
+    "expected": "verb"
+  },
+  {
+    "target": "être (v)",
+    "id": "V-0023",
+    "expected": "verb"
+  },
+  {
+    "target": "aller (v)",
+    "id": "V-0024",
+    "expected": "verb"
+  },
+  {
+    "target": "rouge (adj)",
+    "id": "V-0030",
+    "expected": "adj"
+  },
+  {
+    "target": "grand (adj)",
+    "id": "V-0031",
+    "expected": "adj"
+  },
+  {
+    "target": "petit (adj)",
+    "id": "V-0032",
+    "expected": "adj"
+  },
+  {
+    "target": "heureux (adj)",
+    "id": "V-0033",
+    "expected": "adj"
+  },
+  {
+    "target": "où (interog)",
+    "id": "V-0040",
+    "expected": "interog"
+  },
+  {
+    "target": "quand (interog)",
+    "id": "V-0041",
+    "expected": "interog"
+  },
+  {
+    "target": "combien (interog)",
+    "id": "V-0042",
+    "expected": "interog"
+  },
+  {
+    "target": "s'il vous plaît",
+    "id": "V-0050",
+    "expected": "phrase"
+  },
+  {
+    "target": "bonne nuit",
+    "id": "V-0051",
+    "expected": "phrase"
+  },
+  {
+    "target": "au revoir",
+    "id": "V-0052",
+    "expected": "phrase"
+  },
+  {
+    "target": "de rien",
+    "id": "V-0053",
+    "expected": "phrase"
+  },
+  {
+    "target": "à bientôt",
+    "id": "V-0054",
+    "expected": "phrase"
+  },
+  {
+    "target": "sans (prep)",
+    "id": "V-0060",
+    "expected": "word"
+  },
+  {
+    "target": "toujours (adv)",
+    "id": "V-0061",
+    "expected": "word"
+  },
+  {
+    "target": "mais (conj)",
+    "id": "V-0062",
+    "expected": "word"
+  },
+  {
+    "target": "coucou (interj)",
+    "id": "V-0063",
+    "expected": "word"
+  },
+  {
+    "target": "être, présent (je suis, tu es, il est, nous sommes, vous êtes, ils sont)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "le nom et son pluriel (le livre → les livres, le cheval → les chevaux)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "table",
+    "id": "V-9999",
+    "expected": null
+  }
+]

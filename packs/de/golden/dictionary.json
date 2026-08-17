@@ -1,0 +1,154 @@
+{
+  "source": "wiktionary:de",
+  "recorded": "2026-08-17",
+  "cases": [
+    {
+      "word": "Buch",
+      "why": "Umlaut plural. Bücher comes back computed; a per-language umlaut expander was budgeted for this pack and proved unnecessary.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "n"
+        ],
+        "forms": [
+          "Bücher"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Buch",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==German==\n{{wp|de:}}\n\n[[File:Alkmar, H. von (1752) © Foto H.-P.Haack.jpg|thumb|ein Buch]]\n\n===Etymology 1===\n{{ety|de|id=book|:inh|gmh:buoch<ety:inh<goh:buoh>>}}\nFrom {{inh|de|gmh|buoch}}, from {{inh|de|goh|buoh}}, from {{inh|de|gmw-pro|*bōk}}, from {{inh|de|gem-pro|*bōks}}. Cognate with {{cog|en|book}}.\n\n====Pronunciation====\n* {{IPA|de|/buːx/}}\n* {{hyph|de|Buch}}\n* {{audio|de|De-Buch.ogg}}\n* {{audio|de|De-Buch2.ogg}}\n* {{homophones|de|Bug}} {{a|de|nonstandard}}\n* {{rhyme|de|uːx|s=1}}\n\n====Noun====\n{{de-noun|n,(e)s,^er|dim=^lein,^elchen}}\n\n# [[book]] {{gloss|collection of sheets of paper bound together to hinge at one edge; long work fit for publication}}\n#* '''2006''', Kai Steiner, ''Schmetterlinge im Bauch (Junge Liebe, Band 8)'', Himmelstürmer Verlag, p.103:\n#*: {{quote|de|Eine Figur, wie sie im '''Buche''' steht, und sie erinnerte mich an Mark Spitz, als er seine Goldmedaillen einfuhr.}}\n# {{lb|de|accounting|usually|in the plural}} [[books]] {{gloss|accounting records}}\n\n=====Declension=====\n{{de-ndecl|n,(e)s,^er}}\n\n=====Related terms=====\n{{col4|de\n|Arbeitsbuch|Arzneibuch\n|Aufgabenbuch|Ausgabenbuch\n|Bilderbuch|Blaubuch|Branchenbuch\n|Büchchen|Büchelchen|buchen\n|Bücherei|Bücherbord|Bücherregal|Bücherskorpion|Bücherwurm\n|Buche|Buchdeckel|Buchhalter|Buchhaltung|Buchhändler|Buchhandlung\n|Buchkapitel|Buchladen|Büchlein|Buchlunge|Buchmagen|Buchmesse|Buchrücken\n|Buchstabe|Buchstütze|Buchgemeinschaft\n|Drehbuch\n|Gebetbuch|Gesangbuch|Geschichtenbuch|Geschichtsbuch|Gesetzbuch|Grünbuch|Hauptbuch\n|Handbuch|Hörbuch|Jahrbuch\n|Kinderbuch|Kirchenbuch|Kochbuch|Kursbuch\n|Lehrbuch|Lesebuch|Logbuch\n|Märchenbuch|Notizbuch\n|Sachbuch|Schulbuch|Skizzenbuch|Studenbuck\n|Tagebuch|Taschenbuch|Telefonbuch\n|Urkundenbuch|Übungsbuch\n|verbuchen\n|Wappenbuch|Weißbuch|Wimmelbuch|Wörterbuch\n|Zauberbuch\n|zu Buche schlagen\n}}\n\n===Etymology 2===\n{{ety|de|id=omasum|:inh|goh:būh}}\nFrom {{inh|de|goh|būh}}.\n\n====Noun====\n{{de-noun|n,(e)s,^er}}\n\n# {{lb|de|rare}} [[omasum]], the third compartment of the stomach of a [[ruminant]]\n#: {{syn|de|Buchmagen|Blättermagen|Psalter|Faltenmagen|Kalender|Löser}}\n\n===Etymology 3===\n{{wp|de:+ (Ortsname)}}\n\n====Proper noun====\n{{de-proper noun|toponym}}\n\n# {{place|de|municipality|s/Vorarlberg|c/Austria}}\n# {{place|de|municipality|s/Bavaria|c/Germany}}\n# either of two municipalities in the [[Rhineland-Palatinate]], Germany\n\n===Further reading===\n* {{R:de:DWDS}}\n* {{R:de:Duden}}\n* {{R:de:Grimm}}\n\n{{C|de|Textual division|Books|Animal body parts}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"de\">Buch</strong>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span> (<i>[[Appendix:Glossary#strong declension|strong]]</i>, <i>genitive</i> <b class=\"Latn\" lang=\"de\">[[:Buches#German|Buches]]</b> <i>or</i> <b class=\"Latn\" lang=\"de\">[[:Buchs#German|Buchs]]</b>, <i>plural</i> <b class=\"Latn\" lang=\"de\">[[:Bücher#German|Bücher]]</b>, <i>diminutive</i> <b class=\"Latn form-of lang-de diminutive-form-of\" lang=\"de\">[[:Büchlein#German|Büchlein]]</b>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span> <i>or</i> <b class=\"Latn form-of lang-de diminutive-form-of\" lang=\"de\">[[:Büchelchen#German|Büchelchen]]</b>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span>)</span>[[Category:German lemmas|BUCH]][[Category:German nouns|BUCH]][[Category:German entries with incorrect language header|BUCH]][[Category:German neuter nouns|BUCH]][[Category:Pages with entries|BUCH]][[Category:Pages with 6 entries|BUCH]]\n<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"de\">Buch</strong>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span> (<i>[[Appendix:Glossary#strong declension|strong]]</i>, <i>genitive</i> <b class=\"Latn\" lang=\"de\">[[:Buches#German|Buches]]</b> <i>or</i> <b class=\"Latn\" lang=\"de\">[[:Buchs#German|Buchs]]</b>, <i>plural</i> <b class=\"Latn\" lang=\"de\">[[:Bücher#German|Bücher]]</b>)</span>[[Category:German lemmas|BUCH]][[Category:German nouns|BUCH]][[Category:German entries with incorrect language header|BUCH]][[Category:German neuter nouns|BUCH]][[Category:Pages with entries|BUCH]][[Category:Pages with 6 entries|BUCH]]"
+        }
+      }
+    },
+    {
+      "word": "Mädchen",
+      "why": "Neuter despite meaning, and a zero plural. Two traps in one row: gender that contradicts sense, and a plural identical to the singular.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "n"
+        ],
+        "forms": [
+          "Mädchen"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Mädchen",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==German==\n[[File:Mädchen 1.jpg|thumb|right|220px|Ein '''Mädchen''']]\n[[File:Bundesarchiv Bild 194-0109-24A, Urdenbach, Betreuung von Flüchtlingskindern.jpg|thumb|right|Two German girls in the children refugee care center in Urdenbach, Germany in the immediate post-Second World War period]]\n\n===Alternative forms===\n* {{alter|de|Mägdchen||obsolete}}\n\n===Etymology===\nFrom {{inh|de|gmh|magedichīn}}, {{m|gmh|meidichīn}}, from {{inh|de|goh|*magadihhīn}} or calqued from {{cal|de|gml|mēgedeken|notext=1}}, {{m|gml|megedekīn}}, both from {{inh|de|gmw-pro|*magaþukīn}}. Equivalent to {{af|de|Magd|-chen}}.\n\n===Pronunciation===\n* {{IPA|de|/ˈmɛːtçən/|aa=Germany,prescriptive; used naturally in western Germany}}\n* {{IPA|de|/ˈmeːtçən/|aa=Germany,overall more common; particularly northern and eastern regions}}\n** {{audio|de|De-Mädchen.ogg|aa=Germany}}\n** {{audio|de|De-Mädchen2.ogg|aa=<<Germany>> (<<Berlin>>)}}\n** {{rhyme|de|ɛːtçən|s=2}}\n* {{IPA|de|/ˈmeːtçɛn/|aa=Austria,South German}}\n* {{IPA|de|/ˈmɛːtçɛn/|aa=Switzerland}}\n\n===Noun===\n{{de-noun|n,s,-:s[nonstandard, uncommon]}}\n\n# [[girl]]\n# [[maiden]]\n\n====Usage notes====\n* Since {{m|de||Mädchen}} is a grammatically neuter noun, all preceding articles, determiners, and adjectives take neuter forms: ''<u>ein</u> klein<u>es</u> Mädchen'' (“a little girl”). This rule is followed throughout all registers of German.\n* There is more variation concerning pronouns referring back to ''Mädchen''. These are usually neuter within the same sentence: ''Das Mädchen, <u>das</u> eben hier war, hat <u>seine</u> Tasche vergessen.'' – “The girl who was just here, forgot her purse.” (But feminine {{m|de|ihre}} would be acceptable in colloquial usage.) It is quite common, however, to use feminine pronouns in following sentences: ''Siehst du das Mädchen, <u>das</u> da steht? Kennst du <u>die</u>?'' – “Do you see the girl who [''neuter''] is standing there? Do you know her [''feminine'']?” (But neuter {{m|de|es}} would be acceptable in literary usage.)\n* {{m|de||Mädchen}} is typically used to refer to young women up to the age of 30. Past this age it is uncommon (unlike {{cog|en|girl}}) – the related term {{m|de|Mädel}} is more widely used colloquially for adult women.\n* The plural {{m|de|Mädchens}} is archaic. Compare colloquial {{m|de|Jungs}}.\n\n====Declension====\n{{de-ndecl|n,s,-:s[nonstandard, uncommon]}}\n\n====Synonyms====\n* {{l|de|Mädel|g=n}} {{q|colloquial}}\n* {{l|de|Mädken}}, {{l|de|Mädle|g=n}} {{q|regional}}\n\n====Antonyms====\n* {{q|by gender}} {{l|de|Bub|g=m}}, {{l|de|Bube|g=m}} {{q|Austrian|Swiss}}, {{l|de|Junge|g=m}}, {{l|de|Knabe|g=m}}\n* {{q|by age}} {{l|de|Frau|g=f}}, {{l|de|Greisin|g=f}}\n\n====Derived terms====\n{{col3|de\n|Dienstmädchen\n|Freudenmädchen\n|Hausmädchen\n|Kindermädchen\n|Kopftuchmädchen\n|Mädchenherze\n|Milchmädchen\n|Schulmädchen\n|Zimmermädchen\n}}\n\n===Further reading===\n* {{R:de:Duden}}\n* {{R:de:DWDS}}\n* {{R:de:Grimm}}\n* {{R:Kluge 1891}}\n\n{{cln|de|diminutiva tantum}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"de\">Mädchen</strong>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span> (<i>[[Appendix:Glossary#strong declension|strong]]</i>, <i>genitive</i> <b class=\"Latn\" lang=\"de\">[[:Mädchens#German|Mädchens]]</b>, <i>plural</i> <b class=\"Latn\" lang=\"de\">[[:Mädchen#German|Mädchen]]</b> <i>or</i> <span class=\"ib-brac qualifier-brac\">(</span><span class=\"ib-content qualifier-content\">nonstandard, uncommon</span><span class=\"ib-brac qualifier-brac\">)</span> <b class=\"Latn\" lang=\"de\">[[:Mädchens#German|Mädchens]]</b>)</span>[[Category:German lemmas|MADCHEN]][[Category:German nouns|MADCHEN]][[Category:German entries with incorrect language header|MADCHEN]][[Category:German neuter nouns|MADCHEN]][[Category:Pages with entries|MÄDCHEN]][[Category:Pages with 1 entry|MÄDCHEN]]"
+        }
+      }
+    },
+    {
+      "word": "Stadt",
+      "why": "Feminine with an umlaut plural — the class that would need its own rule if the forms were not computed upstream.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": [
+          "Städte"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Stadt",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==German==\n===Etymology===\n{{ety|de|:inh|gmh:stat<ety:inh<goh:stat>>|tree=1}}\nFrom {{inh|de|gmh|stat}}, from {{inh|de|goh|stat}}, from {{inh|de|gmw-pro|*stadi}}, from {{inh|de|gem-pro|*stadiz}}, from {{inh|de|ine-pro|*stéh₂tis}}. Cognate with {{cog|en|stead}}. {{doublet|de|Statt|Stätte}}.\n\n===Pronunciation===\n* {{IPA|de|/ʃtat/}}\n* {{audio|de|De-Stadt2.ogg|a=<<Germany>> (<<Berlin>>)}}\n* {{homophones|de|statt}}\n* {{rhymes|de|at|s=1}}\n\n===Noun===\n{{de-noun|f,^e|dim=^chen,^lein}}\n\n# [[city]] {{gl|a large settlement}}\n#* {{quote-book|de|year=1931|author=w:de:Gebhard Mehring|title=s:de:Schrift und Schrifttum|publisher=Silberburg-Verlag|page=13\n|passage=Der Zerfall des Römerreiches raubte der '''Stadt''' Rom die alte Stellung als Mittelpunkt alles Geschehens.|t=The decay of the Roman empire robbed the '''city''' of Rome of the old position as the center of all that was happening.}}\n# [[town]] {{gl|a settlement larger than a village}}\n# {{lb|de|metonymy}} [[city center]] {{gl|a central business area of a city}}\n# {{lb|de|metonymy}} city, town, [[town council]], [[city council]] {{gl|a governing body of people elected to oversee management of a municipality}}\n\n====Usage notes====\n* For some speakers, the plural has an irregular lengthening of the stem vowel. See {{m|de|Städte}}.\n* Not to be confused with {{m|de|Staat}}.\n\n====Declension====\n{{de-ndecl|f,^e}}\n\n====Derived terms====\n{{col4|de\n|Atomstadt\n|Außenstadt\n|Aussenstadt\n|Bundesstadt\n|Darmstadt\n|Grenzstadt\n|Großstadt\n|Grossstadt\n|Hafenstadt\n|Hansestadt\n|Hauptstadt\n|Innenstadt\n|Kleinstadt\n|Kreisstadt\n|Oberstadt\n|Schlafstadt\n|Stadtamman\n|Stadtammann\n|Stadtamtmann\n|Stadtanlage\n|Stadtansicht\n|Stadtarbeiter\n|Stadtarchäologie\n|Stadtarchitekt\n|Stadtarchiv\n|Stadtareal\n|Stadtarmut\n|stadtartig\n|Stadtarzt\n|stadtaufwärts\n|Stadtausgabe\n|Stadtausrufer\n|stadtauswärts\n|Stadtauto\n|Stadtbad\n|Stadtbahn\n|Stadtbau\n|Stadtbaum\n|Stadtbaumeister\n|Stadtbeamter\n|Stadtbeamtin\n|Stadtbefestigung\n|Stadtbegrünung\n|Stadtbehörde\n|stadtbekannt\n|Stadtberner\n|stadtbernisch\n|Stadtbeschreibung\n|Stadtbesichtigung\n|Stadtbevölkerung\n|Stadtbewohner\n|Stadtbezirk\n|Stadtbibliothek\n|Stadtbild\n|Stadtboden\n|Stadtbrand\n|Stadtbrunnen\n|Stadtbuch\n|Stadtbücherei\n|Stadtbummel\n|Stadtbudget\n|Stadtburg\n|Stadtbürger\n|Stadtbüro\n|Stadtbus\n|Stadtchampignon\n|Stadt-Champignon\n|Stadtchronik\n|Stadtderby\n|Stadtdirektor\n|Stadtegerling\n|Stadt-Egerling\n|stadteigen\n|stadteinwärts\n|Städter\n|Stadtentfernung\n|tadtentstehung\n|Stadtentwicklung\n|Stadterforschung\n|Stadterkundung\n|Stadterneuerung\n|Stadterweiterung\n|Stadtfahrrad\n|Stadtfarben\n|stadtfein\n|Stadtfest\n|Stadtfestung\n|Stadtfläche\n|Stadtflitzer\n|Stadtflucht\n|Stadtflughafen\n|Stadtform\n|Stadtforscher\n|Stadtforschung\n|Stadtfrau\n|Stadtfriedhof\n|Stadtfuchs\n|Stadtführer\n|Stadtführung\n|Stadtgarde\n|Stadtgarten\n|Stadtgas\n|Stadtgebiet\n|Stadtgefängnis\n|Stadtgefüge\n|Stadtgelände\n|Stadtgemeinde\n|Stadtgeographie\n|Stadtgericht\n|Stadtgeschäft\n|Stadtgeschichte\n|Stadtgesellschaft\n|Stadtgespräch\n|Stadtgestalt\n|Stadtgestaltung\n|Stadtgewühl\n|Stadtgliederung\n|Stadtgott\n|Stadtgraben\n|Stadtgrafschaft\n|Stadtgrenze\n|Stadtgrün\n|Stadtgründer\n|Stadtgrundriss\n|Stadtgrundriß\n|Stadtgründung\n|Stadtguardia\n|Stadtguerilla\n|Stadthälfte\n|Stadthalle\n|Stadthauptmann\n|Stadthaus\n|Stadthaushalt\n|Stadtheilige\n|Stadtheiliger\n|Stadtherr\n|Stadthotel\n|Stadthügel\n|Stadthygiene\n|Stadtimker\n|Stadtoberinspektor\n|städtisch\n|Stadtjunge\n|Stadtjungs\n|Stadtkämmerer\n|Stadtkampf\n|Stadtkanton\n|Stadtkanzlei\n|Stadtkapelle\n|Stadtkarte\n|Stadtkasse\n|Stadtkern\n|Stadtkind\n|Stadtkirche\n|Stadtklatsch\n|Stadtkleidung\n|Stadtknecht\n|Stadtkommandant\n|Stadtkommune\n|Stadtkreis\n|Stadtkult\n|Stadtkultur\n|stadtkundig\n|Stadt-Land-Gefälle\n|Stadt-Land-Graben\n|Stadt-Land-Kontinuum\n|Stadtlandschaft\n|Stadtlauf\n|Stadtleben\n|Stadtlegende\n|Stadtleute\n|Stadtlinie\n|Stadtluft\n|Stadtmädchen\n|Stadtmagazin\n|Stadtmagistrat\n|Stadtmaler\n|Stadtmann\n|Stadtmänner\n|Stadtmarathon\n|Stadtmarketing\n|Stadtmarkt\n|Stadtmatratze\n|Stadtmauer\n|stadtmeidend\n|Stadtmeisterschaft\n|Stadtmensch\n|Stadtmiliz\n|Stadtmission\n|Stadtmitte\n|Stadtmöbel\n|Stadtmobil\n|Stadtmöblierung\n|Stadtmodell\n|Stadtmorphologie\n|Stadtmotto\n|Stadtmühle\n|Stadtmüll\n|Stadtmundart\n|Stadtmuseum\n|Stadtmusik\n|Stadtmusikant\n|Stadtmusiker\n|Stadtmusikus\n|Stadtmutter\n|Stadtnähe\n|stadtnah\n|Stadtname\n|Stadtoase\n|Stadtoberhaupt\n|Stadtökologie\n|Stadtomnibus\n|Stadtorganist\n|Stadtpalais\n|Stadtparlament\n|Stadtpalast\n|Stadtpanorama\n|Stadtpark\n|Stadtpatron\n|Stadtpelz\n|Stadtpersonal\n|Stadtpfarre\n|Stadtpfarrer\n|Stadtpfeifer\n|Stadtphysicus\n|Stadtplan\n|Stadtplaner\n|Stadtplanung\n|Stadtplatz\n|Stadtpolitik\n|Stadtpolizei\n|Stadtpost\n|Stadtpräsident\n|Stadtprediger\n|Stadtprivileg\n|Stadtquartier\n|Stadtrad\n|Stadtrand\n|Stadtrang\n|Stadtrat\n|Stadtraum\n|Stadtrecht\n|Stadtreformation\n|Stadtregierung\n|Stadtregiment\n|Stadtregion\n|Stadtregister\n|Stadtreinigung\n|Stadtrepublik\n|Stadtring\n|Stadtrivale\n|stadtrömisch\n|Stadtrundgang\n|Stadtsanierung\n|Stadtsaum\n|Stadtschloss\n|Stadtschloß\n|Stadtschlüssel\n|Stadtschönheit\n|Stadtschreiber\n|Stadtschreier\n|Stadtschule\n|Stadtschwalbe\n|Stadtsekretär\n|Stadtsiegel\n|Stadtsklave\n|Stadtsoziologie\n|Stadtsparkasse\n|Stadtspaziergang\n|Stadtstaat\n|Stadtsteuer\n|Stadtstrand\n|Stadtstraße\n|Stadtstrasse\n|Stadtstreicher\n|Stadtstruktur\n|Stadtsymbol\n|Stadtsystem\n|Stadtszene\n|Stadttaube\n|Stadtteil\n|Stadttempel\n|Stadttheater\n|Stadttheorie\n|Stadttier\n|Stadttor\n|Stadttour\n|Stadttransport\n|Stadttrip\n|Stadtturm\n|Stadttyche\n|Stadtumbau\n|Stadtumgehung\n|Stadtumland\n|Stadtvater\n|Stadtverantwortliche\n|Stadtverfall\n|Stadtverfassung\n|Stadtverkehr\n|Stadtvermesser\n|Stadtverordnete\n|Stadtverordneter\n|Stadtverordnung\n|Stadtversammlung\n|Stadtverschönerung\n|Stadtverwaltung\n|Stadtviertel\n|Stadtvilla\n|Stadtvogt\n|Stadtwaage\n|Stadtwache\n|Stadtwachstum\n|Stadtwahrzeichen\n|Stadtwald\n|Stadtwappen\n|stadtwärts\n|Stadtwasser\n|stadtweit\n|Stadtwelt\n|Stadtwerk\n|Stadtwerker\n|Stadtwirtschaft\n|Stadtwohnung\n|Stadtwurst\n|Stadtzentrum\n|Stadtzürcher\n|Trabantenstadt\n|Unterstadt\n|Quadratestadt\n}}\n\n====Related terms====\n{{col4|de\n|Stadtarbeiterin\n|Stadtarchitektin\n|Stadtarchivar\n|Stadtarchivarin\n|Stadtärztin\n|Stadtausruferin\n|Stadtautobahn\n|Stadtbahnfahrzeug\n|Stadtbahnhaltestelle\n|Stadtbahnwagen\n|Stadtbauamt\n|Stadtbaukunst\n|Stadtbaumeisterin\n|Stadtbaurat\n|Stadtbaurätin\n|Stadtbernerin\n|Stadtbewohnerin\n|Stadtbranddirektor\n|Stadtbranddirektorin\n|Stadtbrandmeister\n|Stadtbrandmeisterin\n|Stadtbürgerin\n|Stadtbürgerschaft\n|Stadtbürgertum\n|Stadtdirektorin\n|Stadtentfernung\n|Stadtentstehung\n|Stadtentwicklung\n|Städterin\n|Stadterneuerungsbüro\n|Stadtforscherin\n|Stadtführerin\n|Stadtgartenamt\n|Stadtgärtnerei\n|Stadtgeländewagen\n|Stadtgemeinderat\n|Stadtgöttin\n|Stadtgründerin\n|Stadtgründungsurkunde\n|Stadtimkerin\n|Stadtlinienbus\n|Stadtmusikantin\n|Stadtmusikerin\n|Stadtparkbank\n|Stadtpatronin\n|Stadtpfarrerin\n|Stadtpfarrkirche\n|Stadtplanerin\n|Stadtplanungsbeamter\n|Stadtplanungsbeamtin\n|Stadtpräsidentin\n|Stadtpredigerin\n|Stadtrandgebiet\n|Stadtrandsiedlung\n|Stadtrangliste\n|Stadträtin\n|Stadtratssitzung\n|Stadtrechtsurkunde\n|Stadtrundfahrt\n|Stadtrundkurs\n|Stadtsanierungsprojekt\n|Stadtschreiberin\n|Stadtschreierin\n|Stadtsekretärin\n|Stadtsklavin\n|Stadtstreicherei\n|Stadtstreicherin\n|Stadtteilentwicklung\n|Stadtteilentwicklungsprojekt\n|Stadtteilfest\n|Stadtteilmanagement\n|Stadtteilmarkt\n|Stadtteilzentrum\n|Stadtvermesserin\n|Stadtverordnetensitzung\n|Stadtverordnetenversammlung\n|Stadtviertelfest\n|Stadtvögtin\n|Stadtwäldchen\n|Stadtwerkerin\n|Stadtzürcherin\n}}\n\n===Further reading===\n* {{R:de:Duden}}\n* {{R:de:DWDS}}\n* {{R:Kluge 1891}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"de\">Stadt</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>genitive</i> <b class=\"Latn\" lang=\"de\">[[:Stadt#German|Stadt]]</b>, <i>plural</i> <b class=\"Latn\" lang=\"de\">[[:Städte#German|Städte]]</b>, <i>diminutive</i> <b class=\"Latn form-of lang-de diminutive-form-of\" lang=\"de\">[[:Städtchen#German|Städtchen]]</b>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span> <i>or</i> <b class=\"Latn form-of lang-de diminutive-form-of\" lang=\"de\">[[:Städtlein#German|Städtlein]]</b>&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span>)</span>[[Category:German lemmas|STADT]][[Category:German nouns|STADT]][[Category:German entries with incorrect language header|STADT]][[Category:German feminine nouns|STADT]][[Category:Pages with entries|STADT]][[Category:Pages with 1 entry|STADT]]"
+        }
+      }
+    },
+    {
+      "word": "lápiz",
+      "why": "A REAL Wiktionary page with no German section. found:false is the disambiguation story.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "lápiz",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": ""
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "word": "zzzqqxnotaword",
+      "why": "No page at all — the not-in-the-dictionary branch.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "zzzqqxnotaword",
+              "missing": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

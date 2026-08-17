@@ -1,0 +1,130 @@
+[
+  {
+    "sg": "casa",
+    "pl": "casas",
+    "expected": {
+      "sg": "cas<b class=\"mk\">a</b>",
+      "pl": "cas<b class=\"mk\">as</b>"
+    }
+  },
+  {
+    "sg": "livro",
+    "pl": "livros",
+    "expected": {
+      "sg": "livr<b class=\"mk\">o</b>",
+      "pl": "livr<b class=\"mk\">os</b>"
+    }
+  },
+  {
+    "sg": "mão",
+    "pl": "mãos",
+    "expected": {
+      "sg": "mã<b class=\"mk\">o</b>",
+      "pl": "mã<b class=\"mk\">os</b>"
+    }
+  },
+  {
+    "sg": "pão",
+    "pl": "pães",
+    "expected": {
+      "sg": "pã<b class=\"mk\">o</b>",
+      "pl": "pã<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "limão",
+    "pl": "limões",
+    "expected": {
+      "sg": "lim<b class=\"mk\">ão</b>",
+      "pl": "lim<b class=\"mk\">ões</b>"
+    }
+  },
+  {
+    "sg": "cidade",
+    "pl": "cidades",
+    "expected": {
+      "sg": "cidad<b class=\"mk\">e</b>",
+      "pl": "cidad<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "flor",
+    "pl": "flores",
+    "expected": {
+      "sg": "flor",
+      "pl": "flor<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "mulher",
+    "pl": "mulheres",
+    "expected": {
+      "sg": "mulher",
+      "pl": "mulher<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "papel",
+    "pl": "papéis",
+    "expected": {
+      "sg": "pap<b class=\"mk\">el</b>",
+      "pl": "pap<b class=\"mk\">éis</b>"
+    }
+  },
+  {
+    "sg": "lápis",
+    "pl": "lápis",
+    "expected": {
+      "sg": "lápis",
+      "pl": "lápis"
+    }
+  },
+  {
+    "sg": "mapa",
+    "pl": "mapas",
+    "expected": {
+      "sg": "map<b class=\"mk\">a</b>",
+      "pl": "map<b class=\"mk\">as</b>"
+    }
+  },
+  {
+    "sg": "problema",
+    "pl": "problemas",
+    "expected": {
+      "sg": "problem<b class=\"mk\">a</b>",
+      "pl": "problem<b class=\"mk\">as</b>"
+    }
+  },
+  {
+    "sg": "coração",
+    "pl": "corações",
+    "expected": {
+      "sg": "coraç<b class=\"mk\">ão</b>",
+      "pl": "coraç<b class=\"mk\">ões</b>"
+    }
+  },
+  {
+    "sg": "animal",
+    "pl": "animais",
+    "expected": {
+      "sg": "anim<b class=\"st\">al</b>",
+      "pl": "anim<b class=\"mk\">ais</b>"
+    }
+  },
+  {
+    "sg": "hotel",
+    "pl": "hotéis",
+    "expected": {
+      "sg": "hot<b class=\"mk\">el</b>",
+      "pl": "hot<b class=\"mk\">éis</b>"
+    }
+  },
+  {
+    "sg": "irmão",
+    "pl": "irmãos",
+    "expected": {
+      "sg": "irm<b class=\"mk\">ão</b>",
+      "pl": "irm<b class=\"mk\">ãos</b>"
+    }
+  }
+]

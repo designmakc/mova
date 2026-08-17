@@ -1,0 +1,177 @@
+[
+  {
+    "target": "Buch (n, Bücher)",
+    "id": "V-0001",
+    "expected": "noun"
+  },
+  {
+    "target": "Frau (f, Frauen)",
+    "id": "V-0002",
+    "expected": "noun"
+  },
+  {
+    "target": "Kind (n, Kinder)",
+    "id": "V-0003",
+    "expected": "noun"
+  },
+  {
+    "target": "Tisch (m, Tische)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "Auto (n, Autos)",
+    "id": "V-0005",
+    "expected": "noun"
+  },
+  {
+    "target": "Mädchen (n, Mädchen)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "Stadt (f, Städte)",
+    "id": "V-0007",
+    "expected": "noun"
+  },
+  {
+    "target": "Hand (f, Hände)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "Löffel (m, Löffel)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "Mann (m, Männer)",
+    "id": "V-0010",
+    "expected": "noun"
+  },
+  {
+    "target": "Blume (f, Blumen)",
+    "id": "V-0011",
+    "expected": "noun"
+  },
+  {
+    "target": "sprechen (v)",
+    "id": "V-0020",
+    "expected": "verb"
+  },
+  {
+    "target": "gehen (v)",
+    "id": "V-0021",
+    "expected": "verb"
+  },
+  {
+    "target": "haben (v)",
+    "id": "V-0022",
+    "expected": "verb"
+  },
+  {
+    "target": "sein (v)",
+    "id": "V-0023",
+    "expected": "verb"
+  },
+  {
+    "target": "lesen (v)",
+    "id": "V-0024",
+    "expected": "verb"
+  },
+  {
+    "target": "gut (adj)",
+    "id": "V-0030",
+    "expected": "adj"
+  },
+  {
+    "target": "groß (adj)",
+    "id": "V-0031",
+    "expected": "adj"
+  },
+  {
+    "target": "klein (adj)",
+    "id": "V-0032",
+    "expected": "adj"
+  },
+  {
+    "target": "schön (adj)",
+    "id": "V-0033",
+    "expected": "adj"
+  },
+  {
+    "target": "wo (interog)",
+    "id": "V-0040",
+    "expected": "interog"
+  },
+  {
+    "target": "wann (interog)",
+    "id": "V-0041",
+    "expected": "interog"
+  },
+  {
+    "target": "warum (interog)",
+    "id": "V-0042",
+    "expected": "interog"
+  },
+  {
+    "target": "guten Morgen",
+    "id": "V-0050",
+    "expected": "phrase"
+  },
+  {
+    "target": "guten Tag",
+    "id": "V-0051",
+    "expected": "phrase"
+  },
+  {
+    "target": "auf Wiedersehen",
+    "id": "V-0052",
+    "expected": "phrase"
+  },
+  {
+    "target": "bitte schön",
+    "id": "V-0053",
+    "expected": "phrase"
+  },
+  {
+    "target": "wie geht es dir",
+    "id": "V-0054",
+    "expected": "phrase"
+  },
+  {
+    "target": "mit (prep)",
+    "id": "V-0060",
+    "expected": "word"
+  },
+  {
+    "target": "immer (adv)",
+    "id": "V-0061",
+    "expected": "word"
+  },
+  {
+    "target": "aber (conj)",
+    "id": "V-0062",
+    "expected": "word"
+  },
+  {
+    "target": "hallo (interj)",
+    "id": "V-0063",
+    "expected": "word"
+  },
+  {
+    "target": "sein, Präsens (ich bin, du bist, er ist, wir sind, ihr seid, sie sind)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "Genus und Plural (der Tisch → die Tische, das Buch → die Bücher)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "Fenster",
+    "id": "V-9999",
+    "expected": null
+  }
+]

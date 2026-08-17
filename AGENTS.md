@@ -96,14 +96,16 @@ any session sharing the tree. Never discard uncommitted work you did not create.
 ## Status
 
 Everything the verb table names exists and is CI-green: the engine (mechanics, scripts,
-contract tests, the visual system), the Romanian reference pack and a Spanish pack, all twelve playbooks,
+contract tests, the visual system), six language packs, all twelve playbooks,
 and the setup system. Three instances have been generated from this template and each
 passed its own contract suite.
 
 **Not yet exercised:** an actual study session — no lesson, drill, review or tutor pack
-has ever run to completion. Adapters have only been generated for Claude Code. Two
-language packs ship — Romanian (extracted from a measured learner) and Spanish (built
-from references, never taught). The update, sync and feedback paths are written but unrun.
+has ever run to completion. Adapters have only been generated for Claude Code. Six
+language packs ship, but only Romanian was extracted from a measured learner — Spanish,
+French, German, Italian and Portuguese were built from references and have taught nobody,
+and each says so in its own notes. The update, sync and feedback paths are written but
+unrun.
 Treat those as untested, not as broken — and **report what you find**: an engine-shaped
 finding goes back to the template through [playbooks/feedback.md](playbooks/feedback.md),
 not into a local file nobody upstream reads.

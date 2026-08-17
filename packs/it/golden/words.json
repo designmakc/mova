@@ -1,0 +1,177 @@
+[
+  {
+    "target": "casa (f, case)",
+    "id": "V-0001",
+    "expected": "noun"
+  },
+  {
+    "target": "libro (m, libri)",
+    "id": "V-0002",
+    "expected": "noun"
+  },
+  {
+    "target": "uomo (m, uomini)",
+    "id": "V-0003",
+    "expected": "noun"
+  },
+  {
+    "target": "mano (f, mani)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "città (f, città)",
+    "id": "V-0005",
+    "expected": "noun"
+  },
+  {
+    "target": "amico (m, amici)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "amica (f, amiche)",
+    "id": "V-0007",
+    "expected": "noun"
+  },
+  {
+    "target": "problema (m, problemi)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "notte (f, notti)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "albergo (m, alberghi)",
+    "id": "V-0010",
+    "expected": "noun"
+  },
+  {
+    "target": "chiave (f, chiavi)",
+    "id": "V-0011",
+    "expected": "noun"
+  },
+  {
+    "target": "parlare (v)",
+    "id": "V-0020",
+    "expected": "verb"
+  },
+  {
+    "target": "leggere (v)",
+    "id": "V-0021",
+    "expected": "verb"
+  },
+  {
+    "target": "dormire (v)",
+    "id": "V-0022",
+    "expected": "verb"
+  },
+  {
+    "target": "essere (v)",
+    "id": "V-0023",
+    "expected": "verb"
+  },
+  {
+    "target": "avere (v)",
+    "id": "V-0024",
+    "expected": "verb"
+  },
+  {
+    "target": "rosso (adj)",
+    "id": "V-0030",
+    "expected": "adj"
+  },
+  {
+    "target": "grande (adj)",
+    "id": "V-0031",
+    "expected": "adj"
+  },
+  {
+    "target": "piccolo (adj)",
+    "id": "V-0032",
+    "expected": "adj"
+  },
+  {
+    "target": "felice (adj)",
+    "id": "V-0033",
+    "expected": "adj"
+  },
+  {
+    "target": "dove (interog)",
+    "id": "V-0040",
+    "expected": "interog"
+  },
+  {
+    "target": "quando (interog)",
+    "id": "V-0041",
+    "expected": "interog"
+  },
+  {
+    "target": "perché (interog)",
+    "id": "V-0042",
+    "expected": "interog"
+  },
+  {
+    "target": "buona sera",
+    "id": "V-0050",
+    "expected": "phrase"
+  },
+  {
+    "target": "buona notte",
+    "id": "V-0051",
+    "expected": "phrase"
+  },
+  {
+    "target": "per favore",
+    "id": "V-0052",
+    "expected": "phrase"
+  },
+  {
+    "target": "a domani",
+    "id": "V-0053",
+    "expected": "phrase"
+  },
+  {
+    "target": "mi dispiace",
+    "id": "V-0054",
+    "expected": "phrase"
+  },
+  {
+    "target": "con (prep)",
+    "id": "V-0060",
+    "expected": "word"
+  },
+  {
+    "target": "sempre (adv)",
+    "id": "V-0061",
+    "expected": "word"
+  },
+  {
+    "target": "ma (conj)",
+    "id": "V-0062",
+    "expected": "word"
+  },
+  {
+    "target": "ciao (interj)",
+    "id": "V-0063",
+    "expected": "word"
+  },
+  {
+    "target": "essere, presente (sono, sei, è, siamo, siete, sono)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "il nome e il plurale (il libro → i libri, la casa → le case)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "tavolo",
+    "id": "V-9999",
+    "expected": null
+  }
+]

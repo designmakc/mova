@@ -1,0 +1,152 @@
+{
+  "source": "wiktionary:it",
+  "recorded": "2026-08-17",
+  "cases": [
+    {
+      "word": "uovo",
+      "why": "The Latin neuter remnant: the plural uova carries its OWN gender. Wiktionary renders it, and the pack's notes carry the gender switch as curriculum.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "uova"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "uovo",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Italian==\n{{wp|it:+ (biologia)}}\n{{wp|it:+ (alimento)}}\n[[File:White chicken egg square.jpg|thumb|200px|un '''uovo''' di gallina]]\n\n===Alternative forms===\n* {{alt|it|huovo|vuovo||archaic}}\n* {{alt|it|ovo||Tuscany|central Italy}}\n\n===Etymology===\n{{etymon|it|:inh|la-vul:*ŏvum}}\n{{inh+|it|la-vul|*ovum|(*)ŏvum}}, from {{inh|it|la|ōvum|g=n}}.\n\n===Pronunciation===\n{{it-pr|[uò]<r:DiPI><r:DOP:lid#1093470><audio:It-un uovo.ogg;Audio (''un uovo'', “an egg”)>}}\n\n===Noun===\n{{it-noun|m|uova<g:f>|dim=ovetto}}\n\n# [[egg]]\n#: {{uxi|it|un '''uovo''' di gallina|a chicken '''egg'''}}\n\n====Coordinate terms====\n{{col|it\n|albume\n|chiara\n|frittata\n|tuorlo\n}}\n\n====Derived terms====\n{{col2\n|it|gallina dalle uova d'oro\n|pasta all'uovo\n|pesceduovo\n|pieno come un uovo\n|cercare il pelo nell'uovo\n|uovo di Colombo\n|meglio un uovo oggi che una gallina domani\n|tagliauova\n|rompere le uova nel paniere\n|uovo alla coque\n|uovo all'occhio di bue\n|uovo all'ostrica\n|uovo al tegamino\n|uovo affogato\n|uova strapazzate\n|uovo di giornata\n|uovo di Pasqua\n|uovo sodo\n|uovo in camicia\n|rosso d'uovo\n|bianco d'uovo\n}}\n\n====Related terms====\n{{col4\n|it|ovo-\n|ovolo\n|ovulo\n|ovulare\n|ovulazione\n|ovalizzare\n|ovaia\n|ovale\n|ovario\n|ovarico\n|ovoide\n|ovoidale\n}}\n\n===References===\n{{reflist}}\n\n{{C|it|Eggs}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"it\">uovo</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-it p-form-of\" lang=\"it\">[[:uova#Italian|uova]]</b>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span>, <i>[[Appendix:Glossary#diminutive|diminutive]]</i> <b class=\"Latn\" lang=\"it\">[[:ovetto#Italian|ovetto]]</b>)</span>[[Category:Italian lemmas|UOVO]][[Category:Italian nouns|UOVO]][[Category:Italian countable nouns|UOVO]][[Category:Italian nouns that change gender in the plural|UOVO]][[Category:Italian entries with incorrect language header|UOVO]][[Category:Italian masculine nouns|UOVO]][[Category:Pages with entries|UOVO]][[Category:Pages with 2 entries|UOVO]]"
+        }
+      }
+    },
+    {
+      "word": "mano",
+      "why": "Feminine despite the -o ending — the trap whose whole class an ending-based guess gets wrong.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": [
+          "mani"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "mano",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Italian==\n{{wp|it:}}\n{{picdic\n|image=Paume de main.jpeg\n|width=310\n|labels=\n{{picdiclabel|it|color=white|fontsize=18|posx=100|posy=179|link=palmo}}\n{{picdiclabel|it|color=white|fontsize=12|posx=20|posy=200|link=polso|align=left}}\n{{picdiclabel|it|color=white|fontsize=12|posx=90|posy=70|link=pollice}}\n{{picdiclabel|it|color=white|fontsize=12|posx=90|posy=85|link=dito grosso|altlink=(dito grosso)}}\n{{picdiclabel|it|color=white|fontsize=12|posx=200|posy=125|link=dito indice}}\n{{picdiclabel|it|color=white|fontsize=12|posx=225|posy=160|link=dito medio}}\n{{picdiclabel|it|color=white|fontsize=12|posx=220|posy=205|link=anulare}}\n{{picdiclabel|it|color=white|fontsize=12|posx=200|posy=245|link=mignolo}}\n|detail1=Click on labels in the image\n|detail2=\n{{picdicimg|it|image=Arm flex supinate.jpg|link=braccio}}\n}}\n\n===Alternative forms===\n* {{alt|it|mana||regional}}\n\n===Etymology===\n{{inh+|it|la|manus}} (whence also {{cog|en|manual}}, etc.), from {{inh|it|itc-pro|*manus}}, perhaps from {{der|it|ine-pro|*méh₂r̥|*méh₂-r̥ ~ *mh₂-én-}}, derived from {{der|it|ine-pro|*(s)meh₂-||to beckon}}, or perhaps from a {{der|it|ine-pro||*mon-u-}} (see the Proto-Italic entry).\n\n===Pronunciation===\n* {{rhymes|it|ano|s=2}}\n{{it-pr|màno<audio:it-mano.ogg;Audio (ITA)>}}\n\n===Noun===\n{{it-noun|f|+,mano<l:archaic,or,dialectal>|dim=manìna|aug=manóna|end_derog=manùccia|pej=manàccia}}\n\n# {{lb|it|anatomy}} [[hand]]\n# {{lb|it|zoology}} front [[foot]]\n# {{lb|it|figurative}} [[means]] of execution of an [[action]] or a [[job]]; [[ability]], [[skill]], [[dexterity]], [[labor]]\n# {{lb|it|figurative}} [[style]], characteristic [[mark]] of someone\n# {{lb|it|figurative|by extension}} [[handwriting]], [[calligraphy]]\n# {{lb|it|figurative}} [[help]], [[support]]\n# each of the [[side]]s corresponding to the two hands, either [[left]] or [[right]]\n# {{lb|it|by extension}} each of the two [[direction]]s in which [[vehicular]] [[traffic]] flows on a [[street]]\n# {{lb|it|card games}} [[round]]\n# {{lb|it|games|by extension}} [[phase]]\n# {{lb|it|slang|extensive}} occasional [[sexual intercourse]]\n# [[coat]] of [[paint]], [[layer]] of [[varnish]]\n# {{lb|it|extensive}} [[handful]]\n# {{lb|it|figurative}} [[order]], [[series]], [[row]]\n# {{lb|it|colloquial|plural}} [[manicure]]\n# {{lb|it|uncommon}} [[team]] of [[workers]]\n# {{lb|it|textiles}}  [[set]] of [[characteristic]]s of a [[fabric]] and similar revealed by [[touch]] that establishes its specific use\n# {{lb|it|heraldry}} [[charge]] of a [[hand]], either [[appaumé]] or [[aversant]], of [[carnation]] and [[argent]] [[tincture]]\n# {{lb|it|paleography|philology}}  [[handwriting]] of each individual [[writer]] and its unique characteristics\n# {{lb|it|historical|Roman law}} [[power]] and [[authority]], often of the [[paterfamilias]]\n# {{lb|it|literary|military}} [[maniple]], [[platoon]], [[company]]\n# {{lb|it|literary|by extension}} [[group]], [[squad]], [[gang]] \n\n====Derived terms====\n{{col4|it\n|a man bassa\n|a man salva\n|a mani basse\n|a mani nude\n|a mani vuote\n|a mano\n|a mano a mano\n|a mano armata\n|a mano libera\n|a piene mani\n|a portata di mano\n|a quattro mani\n|adoperare le mani\n|agitare la mano\n|alla mano\n|allungare le mani\n|alzare le mani\n|asciugamano\n|avere in mano\n|avere la mano leggera\n|avere le mani bucate\n|avere le mani d'oro\n|avere le mani impegnate\n|avere le mani in pasta\n|avere le mani legate\n|avere le mani occupate\n|avere per le mani\n|baciamano\n|battere le mani\n|bimane\n|bomba a mano\n|calcare la mano\n|cambiare di mano\n|chiavi in mano\n|chiedere la mano\n|col cappello in mano\n|col cerino in mano\n|colpo di mano\n|con le mani in mano\n|con le mani nel sacco\n|con le mani nella marmellata\n|contromano\n|corrimano\n|dare la mano\n|dare una mano\n|destrimano\n|di prima mano\n|di seconda mano\n|essere di mano\n|fare man bassa\n|farsi prendere la mano\n|forzare la mano\n|freno a mano\n|fuori mano\n|guardamano\n|in mano\n|lavarsene le mani\n|lettore della mano\n|manaccia\n|manata\n|manciata\n|mancorrente\n|mandritta\n|mandritto\n|manesco\n|manetta\n|manevole\n|manforte\n|mangiarsi le mani\n|mani bucate\n|mani di burro\n|mani di fata\n|mani di pastafrolla\n|mani di ricotta\n|mani in alto\n|mani nette\n|Mani pulite\n|maniccia//manizza\n|maniluvio\n|manina\n|mano di gioco\n|mano ferma\n|mano libera\n|mano nella mano\n|Mano Nera\n|mano pesante\n|mano santa\n|mano stanca\n|mano vincente\n|manodopera\n|manomorta\n|manona\n|manopesca\n|manoregia\n|manoso\n|manrovescia\n|manrovescio\n|mettere le mani\n|mettere le mani addosso\n|mettere le mani avanti\n|mettere le mani sul fuoco\n|mettere mano\n|mettere mano al portafoglio\n|mettersi le mani nei capelli\n|mordere la mano che ti nutre\n|mordersi le mani\n|nelle mani di\n|palla a mano\n|passare la mano\n|per alzata di mano\n|per mano di\n|portare in palmo di mano\n|prendere la mano\n|prendere per mano\n|rimettere le mani\n|riprendere in mano\n|sfregarsi le mani\n|sfuggire di mano\n|spada a due mani\n|sporcarsi le mani\n|stretta di mano\n|su le mani\n|svelto di mano\n|tendere la mano\n|tendere una mano\n|toccare con mano\n|una mano lava l'altra\n|venire alle mani\n}}\n\n====Related terms====\n{{col4|it\n|amanuense\n|ammennicolo\n|comandare\n|commendare\n|contrammandare\n|contromandare\n|domandare\n|emancipare\n|magnano\n|mallevare\n|manaiuola\n|manca\n|mancare\n|mancia\n|mancipare\n|mancipe\n|mancipio\n|manco\n|mandare\n|maneggiare\n|manere\n|manica\n|manicchia//manecchia\n|manico\n|manicure\n|maniera\n|maniero\n|manifattura\n|manifestare\n|manifesto\n|maniglia\n|manipolare\n|manipolo\n|manna\n|mannaia\n|manocchio//mannocchio\n|manodurre\n|manoletto\n|manomettere\n|manomissione\n|manomissore\n|manopola\n|manoscritto\n|manovale\n|manovella\n|manovra\n|manovrare\n|mansuescere\n|mantenere\n|mantice\n|mantrugiare\n|manu militari\n|manuale\n|manubalista\n|manubiale\n|manubie\n|manubrio\n|manufatto\n|manutergio\n|masturbare\n|monco\n|quadrumane\n|smanacciare\n|squalo longimano\n}}\n\n===Anagrams===\n* {{anagrams|it|a=amno|Maon|Oman|mona|noma}}\n\n{{C|it|Body parts}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"it\">mano</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-it p-form-of\" lang=\"it\">[[:mani#Italian|mani]]</b> <i>or</i> <span class=\"ib-brac qualifier-brac\">(</span><span class=\"ib-content qualifier-content\"><span class=\"usage-label-sense\">[[Appendix:Glossary#archaic|archaic]]&#32;or&#32;[[Appendix:Glossary#dialectal|dialectal]]</span></span><span class=\"ib-brac qualifier-brac\">)</span> <b class=\"Latn form-of lang-it p-form-of\" lang=\"it\">[[:mano#Italian|mano]]</b>, <i>[[Appendix:Glossary#diminutive|diminutive]]</i> <b class=\"Latn\" lang=\"it\">[[:manina#Italian|manìna]]</b>[[Category:Italian links with redundant wikilinks|MANO]], <i>[[Appendix:Glossary#augmentative|augmentative]]</i> <b class=\"Latn\" lang=\"it\">[[:manona#Italian|manóna]]</b>[[Category:Italian links with redundant wikilinks|MANO]], <i>[[Appendix:Glossary#pejorative|pejorative]]</i> <b class=\"Latn\" lang=\"it\">[[:manaccia#Italian|manàccia]]</b>[[Category:Italian links with redundant wikilinks|MANO]], <i>[[Appendix:Glossary#endearing|endearing]]-[[Appendix:Glossary#derogatory|derogatory]]</i> <b class=\"Latn\" lang=\"it\">[[:manuccia#Italian|manùccia]]</b>[[Category:Italian links with redundant wikilinks|MANO]])</span>[[Category:Italian lemmas|MANO]][[Category:Italian nouns|MANO]][[Category:Italian countable nouns|MANO]][[Category:Italian nouns with multiple plurals|MANO]][[Category:Italian nouns with irregular gender|MANO]][[Category:Italian entries with incorrect language header|MANO]][[Category:Italian feminine nouns|MANO]][[Category:Pages with entries|MANO]][[Category:Pages with 31 entries|MANO]]"
+        }
+      }
+    },
+    {
+      "word": "città",
+      "why": "Invariable. The plural equals the singular, and a parser that invented one would be caught here.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "città",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Italian==\n{{swp|it:}}\n\n===Alternative forms===\n* {{alt|it|cittade||archaic}}\n* {{alt|it|Civita||toponym}}\n\n===Etymology===\n{{inh+|it|la-lat|cīvitās|cīvitātem|t=city}}. {{doublet|it|city}}.\n\n===Pronunciation===\n{{it-pr|+<audio:It-una città.ogg;Audio (''una città'')><audio:It-città.ogg>}}\n\n===Noun===\n{{it-noun|f|#}}\n\n# [[town]], [[city]]\n#: {{syn|it|abitato|capoluogo|centro|metropoli}}\n#: {{ant|it|campagna}}\n\n====Derived terms====\n{{col3|it|Città del Vaticano\n|città santa\n|città stato\n|cittadella\n|cittadinanza\n|cittadino\n}}\n\n====Related terms====\n* {{l|it|civile}}\n* {{l|it|civico}}\n\n====Descendants====\n* {{desc|sc|tzitade|bor=1}}\n* {{desc|svm|čita|bor=1}}\n\n====See also====\n* {{l|it|capitale}}\n* {{l|it|megalopoli}}\n* {{l|it|urbe}}\n* {{l|it|urbano}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"it\">città</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>[[Appendix:Glossary#invariable|invariable]]</i>)</span>[[Category:Italian lemmas|CITTA]][[Category:Italian nouns|CITTA]][[Category:Italian countable nouns|CITTA]][[Category:Italian indeclinable nouns|CITTA]][[Category:Italian entries with incorrect language header|CITTA]][[Category:Italian feminine nouns|CITTA]][[Category:Pages with entries|CITTÀ]][[Category:Pages with 1 entry|CITTÀ]]"
+        }
+      }
+    },
+    {
+      "word": "Buch",
+      "why": "A REAL Wiktionary page with no Italian section.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Buch",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": ""
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "word": "zzzqqxnotaword",
+      "why": "No page at all — the not-in-the-dictionary branch.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "zzzqqxnotaword",
+              "missing": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

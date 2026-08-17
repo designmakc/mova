@@ -27,8 +27,9 @@ produce; the learner is invented.</sub>
 The agent interviews you — four short topics, numbered so you can see the end from the
 start: your languages, your goal, your time, and how wide you want this. Then it builds
 everything on its own: your profile, your curriculum, your study plan. Expect a few minutes
-of questions, then **5–15 minutes of building** — or **around 45** if your language needs a
-grammar pack built first. Your agent works out which one you are getting, tells you before
+of questions, then **5–15 minutes of building**. Spanish, French, German, Italian,
+Portuguese and Romanian start straight away; any other language adds **around half an
+hour** while your agent builds a grammar pack for it first. Your agent works out which one you are getting, tells you before
 it starts, and reports each finished piece as it goes. It ends with a short tour of what it
 made and how to use it, and one word to say when you're ready to begin.
 

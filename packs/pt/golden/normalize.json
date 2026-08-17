@@ -1,0 +1,97 @@
+[
+  {
+    "input": "cafè",
+    "expected": "café",
+    "note": "è U+00E8 (e with grave) → é — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "Ès",
+    "expected": "És",
+    "note": "È U+00C8 (E with grave) → É — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "aì",
+    "expected": "aí",
+    "note": "ì U+00EC (i with grave) → í — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "Ìndice",
+    "expected": "Índice",
+    "note": "Ì U+00CC (I with grave) → Í — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "avò",
+    "expected": "avó",
+    "note": "ò U+00F2 (o with grave) → ó — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "Òpera",
+    "expected": "Ópera",
+    "note": "Ò U+00D2 (O with grave) → Ó — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "ùltimo",
+    "expected": "último",
+    "note": "ù U+00F9 (u with grave) → ú — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "Ùltima",
+    "expected": "Última",
+    "note": "Ù U+00D9 (U with grave) → Ú — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "aî",
+    "expected": "aí",
+    "note": "î U+00EE (i with circumflex) → í — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "Îndice",
+    "expected": "Índice",
+    "note": "Î U+00CE (I with circumflex) → Í — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "ûltimo",
+    "expected": "último",
+    "note": "û U+00FB (u with circumflex) → ú — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "Ûltima",
+    "expected": "Última",
+    "note": "Û U+00DB (U with circumflex) → Ú — Portuguese graves only the letter a, and circumflexes only a, e and o"
+  },
+  {
+    "input": "ıgual",
+    "expected": "igual",
+    "note": "ı U+0131 (Turkish dotless i) → i — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "İgual",
+    "expected": "Igual",
+    "note": "İ U+0130 (I with dot above) → I — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "irmão",
+    "expected": "irmão",
+    "note": "NFD input (a + combining tilde) composes to ão before folding"
+  },
+  {
+    "input": "coração",
+    "expected": "coração",
+    "note": "already canonical — the tilde is never touched"
+  },
+  {
+    "input": "cafe",
+    "expected": "cafe",
+    "note": "a MISSING accent is a language error and is never repaired here"
+  },
+  {
+    "input": "à praia",
+    "expected": "à praia",
+    "note": "à is a real Portuguese letter (the crase) and is never folded to á"
+  },
+  {
+    "input": "avô",
+    "expected": "avô",
+    "note": "â ê ô are left alone: avô and avó are different people"
+  }
+]

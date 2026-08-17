@@ -1,0 +1,177 @@
+[
+  {
+    "target": "casa (f, casas)",
+    "id": "V-0001",
+    "expected": "noun"
+  },
+  {
+    "target": "livro (m, livros)",
+    "id": "V-0002",
+    "expected": "noun"
+  },
+  {
+    "target": "mão (f, mãos)",
+    "id": "V-0003",
+    "expected": "noun"
+  },
+  {
+    "target": "pão (m, pães)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "limão (m, limões)",
+    "id": "V-0005",
+    "expected": "noun"
+  },
+  {
+    "target": "cidade (f, cidades)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "flor (f, flores)",
+    "id": "V-0007",
+    "expected": "noun"
+  },
+  {
+    "target": "mulher (f, mulheres)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "papel (m, papéis)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "lápis (m, lápis)",
+    "id": "V-0010",
+    "expected": "noun"
+  },
+  {
+    "target": "mapa (m, mapas)",
+    "id": "V-0011",
+    "expected": "noun"
+  },
+  {
+    "target": "falar (v)",
+    "id": "V-0020",
+    "expected": "verb"
+  },
+  {
+    "target": "comer (v)",
+    "id": "V-0021",
+    "expected": "verb"
+  },
+  {
+    "target": "partir (v)",
+    "id": "V-0022",
+    "expected": "verb"
+  },
+  {
+    "target": "ser (v)",
+    "id": "V-0023",
+    "expected": "verb"
+  },
+  {
+    "target": "ter (v)",
+    "id": "V-0024",
+    "expected": "verb"
+  },
+  {
+    "target": "vermelho (adj)",
+    "id": "V-0030",
+    "expected": "adj"
+  },
+  {
+    "target": "grande (adj)",
+    "id": "V-0031",
+    "expected": "adj"
+  },
+  {
+    "target": "pequeno (adj)",
+    "id": "V-0032",
+    "expected": "adj"
+  },
+  {
+    "target": "feliz (adj)",
+    "id": "V-0033",
+    "expected": "adj"
+  },
+  {
+    "target": "onde (interog)",
+    "id": "V-0040",
+    "expected": "interog"
+  },
+  {
+    "target": "quando (interog)",
+    "id": "V-0041",
+    "expected": "interog"
+  },
+  {
+    "target": "quantos (interog)",
+    "id": "V-0042",
+    "expected": "interog"
+  },
+  {
+    "target": "bom dia",
+    "id": "V-0050",
+    "expected": "phrase"
+  },
+  {
+    "target": "boa noite",
+    "id": "V-0051",
+    "expected": "phrase"
+  },
+  {
+    "target": "por favor",
+    "id": "V-0052",
+    "expected": "phrase"
+  },
+  {
+    "target": "de nada",
+    "id": "V-0053",
+    "expected": "phrase"
+  },
+  {
+    "target": "até logo",
+    "id": "V-0054",
+    "expected": "phrase"
+  },
+  {
+    "target": "sem (prep)",
+    "id": "V-0060",
+    "expected": "word"
+  },
+  {
+    "target": "sempre (adv)",
+    "id": "V-0061",
+    "expected": "word"
+  },
+  {
+    "target": "mas (conj)",
+    "id": "V-0062",
+    "expected": "word"
+  },
+  {
+    "target": "olá (interj)",
+    "id": "V-0063",
+    "expected": "word"
+  },
+  {
+    "target": "ser, presente (sou, és, é, somos, sois, são)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "o substantivo e o plural (o livro → os livros, o pão → os pães)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "janela",
+    "id": "V-9999",
+    "expected": null
+  }
+]

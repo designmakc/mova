@@ -1,0 +1,130 @@
+[
+  {
+    "sg": "maison",
+    "pl": "maisons",
+    "expected": {
+      "sg": "maison",
+      "pl": "maison<b class=\"mk\">s</b>"
+    }
+  },
+  {
+    "sg": "livre",
+    "pl": "livres",
+    "expected": {
+      "sg": "livr<b class=\"mk\">e</b>",
+      "pl": "livr<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "cheval",
+    "pl": "chevaux",
+    "expected": {
+      "sg": "chev<b class=\"mk\">al</b>",
+      "pl": "chev<b class=\"mk\">aux</b>"
+    }
+  },
+  {
+    "sg": "journal",
+    "pl": "journaux",
+    "expected": {
+      "sg": "journ<b class=\"mk\">al</b>",
+      "pl": "journ<b class=\"mk\">aux</b>"
+    }
+  },
+  {
+    "sg": "bateau",
+    "pl": "bateaux",
+    "expected": {
+      "sg": "bat<b class=\"mk\">eau</b>",
+      "pl": "bat<b class=\"mk\">eaux</b>"
+    }
+  },
+  {
+    "sg": "cheveu",
+    "pl": "cheveux",
+    "expected": {
+      "sg": "chev<b class=\"mk\">eu</b>",
+      "pl": "chev<b class=\"mk\">eux</b>"
+    }
+  },
+  {
+    "sg": "travail",
+    "pl": "travaux",
+    "expected": {
+      "sg": "trav<b class=\"mk\">ail</b>",
+      "pl": "trav<b class=\"mk\">aux</b>"
+    }
+  },
+  {
+    "sg": "eau",
+    "pl": "eaux",
+    "expected": {
+      "sg": "eau",
+      "pl": "eau<b class=\"mk\">x</b>"
+    }
+  },
+  {
+    "sg": "fille",
+    "pl": "filles",
+    "expected": {
+      "sg": "fill<b class=\"mk\">e</b>",
+      "pl": "fill<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "pays",
+    "pl": "pays",
+    "expected": {
+      "sg": "pays",
+      "pl": "pays"
+    }
+  },
+  {
+    "sg": "nez",
+    "pl": "nez",
+    "expected": {
+      "sg": "nez",
+      "pl": "nez"
+    }
+  },
+  {
+    "sg": "voix",
+    "pl": "voix",
+    "expected": {
+      "sg": "voix",
+      "pl": "voix"
+    }
+  },
+  {
+    "sg": "école",
+    "pl": "écoles",
+    "expected": {
+      "sg": "écol<b class=\"mk\">e</b>",
+      "pl": "écol<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "ciel",
+    "pl": "cieux",
+    "expected": {
+      "sg": "ci<b class=\"st\">el</b>",
+      "pl": "ci<b class=\"mk\">eux</b>"
+    }
+  },
+  {
+    "sg": "oiseau",
+    "pl": "oiseaux",
+    "expected": {
+      "sg": "ois<b class=\"mk\">eau</b>",
+      "pl": "ois<b class=\"mk\">eaux</b>"
+    }
+  },
+  {
+    "sg": "hôpital",
+    "pl": "hôpitaux",
+    "expected": {
+      "sg": "hôpit<b class=\"mk\">al</b>",
+      "pl": "hôpit<b class=\"mk\">aux</b>"
+    }
+  }
+]

@@ -1,0 +1,154 @@
+{
+  "source": "wiktionary:fr",
+  "recorded": "2026-08-17",
+  "cases": [
+    {
+      "word": "cheval",
+      "why": "The -al → -aux class. The plural is computed by Wiktionary's module; this pack contains no rule that would produce chevaux.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "chevaux"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "cheval",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==French==\n{{wp|fr:}}\n\n===Etymology===\n{{etymon|fr|:inh|frm:cheval}}\n{{inh+|fr|frm|cheval}}, from {{inh|fr|fro|cheval}}, from {{inh|fr|la-lat|caballus||horse}}, from {{inh|fr|la|caballus||pack horse}}, of disputed origin.\n\n===Pronunciation===\n* {{fr-IPA|+|chval}}\n* {{audio|fr|LL-Q150 (fra)-Bananax47-cheval.wav|a=<<France>> (<<Agen>>)}}\n* {{audio|fr|LL-Q150 (fra)-Benoît Prieur-cheval.wav|a=<<France>> (<<Saint-Maurice-de-Beynost>>)}}\n* {{audio|fr|LL-Q150 (fra)-DenisdeShawi-cheval.wav|a=<<Canada>> (<<Shawinigan>>)}}\n* {{audio|fr|LL-Q150 (fra)-DSwissK-cheval.wav|a=<<Switzerland>> (<<Valais>>)}}\n* {{audio|fr|LL-Q150 (fra)-GrandCelinien-cheval.wav|a=<<France>> (<<Paris>>)}}\n* {{audio|fr|LL-Q150 (fra)-Lepticed7-cheval.wav|a=<<France>> (<<Toulouse>>)}}\n* {{audio|fr|LL-Q150 (fra)-LoquaxFR-cheval.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-Lyokoï-cheval.wav|a=<<France>> (<<Lyon>>)}}\n* {{audio|fr|LL-Q150 (fra)-Penegal-cheval.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-Poslovitch-cheval.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-WikiLucas00-cheval.wav|a=<<France>> (<<Lyon>>)}}\n* {{audio|fr|LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-cheval.wav|a=<<France>> (<<Somain>>)}}\n\n===Noun===\n{{fr-noun|m|f=jument}}\n\n# [[horse]]\n# {{ellipsis of|fr|cheval-vapeur|t=[[horsepower]]}}\n# {{ellipsis of|fr|cheval fiscal|t=[[tax horsepower]]}}\n# {{lb|fr|slang}} [[horse]], [[H]] {{gl|narcotic}}\n\n====Hypernyms====\n* {{l|fr|équidé}}\n\n====Derived terms====\n{{col3|fr\n|à cheval\n|à cheval donné on ne regarde pas la bride\n|à cheval donné on ne regarde pas les dents\n|antilope cheval\n|changer de cheval au milieu du gué\n|cheval à bascule\n|cheval d'arçons\n|cheval de bât\n|cheval de bataille\n|cheval de frise\n|cheval de main\n|cheval de Przewalski\n|cheval de trait\n|cheval de Troie\n|cheval du diable\n|chevalet\n|cheval-jupon\n|cheval qui boit dans son blanc\n|cheval-vapeur\n|de cheval\n|dose de cheval\n|fer à cheval\n|fièvre de cheval\n|il n'est si bon cheval qui ne bronche\n|miser sur le mauvais cheval\n|monter sur ses grands chevaux\n|ne pas se trouver sous le sabot d'un cheval\n|ne pas se trouver sous les sabots d'un cheval\n|queue-de-cheval\n|remède de cheval\n|saut de cheval\n}}\n\n====Related terms====\n{{col6|fr\n|cavalier\n|cavalerie\n|chevaleresque\n|chevalin\n|chevalier\n|chevaucher\n}}\n\n====Descendants====\n* {{desc|gcf|chouval}}\n* {{desc|fr-CA|joual}}\n* {{desc|lou|shval}}\n* {{desc|gcr|chouval}}\n* {{desc|ht|chwal}}\n* {{desc|crg|zhwal}}\n* {{desc|bor=1|en|cheval}}\n* {{desc|bor=1|eo|ĉevalo}}\n* {{desc|bor=1|cab|xuval}}\n* {{desc|bor=1|mg|soavaly}}\n* {{desc|bor=1|mic|te'sipow}}\n\n===See also===\n* {{l|fr|équin}}\n* {{l|fr|équitation}}\n\n===Further reading===\n* {{R:fr:TLFi}}\n\n{{C|fr|Horses}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"fr\">cheval</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-fr p-form-of\" lang=\"fr\">[[:chevaux#French|chevaux]]</b>, <i>feminine</i> <b class=\"Latn form-of lang-fr f-form-of\" lang=\"fr\">[[:jument#French|jument]]</b>)</span>[[Category:French lemmas|CHEVAL]][[Category:French nouns|CHEVAL]][[Category:French countable nouns|CHEVAL]][[Category:French entries with incorrect language header|CHEVAL]][[Category:French masculine nouns|CHEVAL]][[Category:Pages with entries|CHEVAL]][[Category:Pages with 4 entries|CHEVAL]]"
+        }
+      }
+    },
+    {
+      "word": "eau",
+      "why": "Feminine, and the -eau → -eaux plural, which is the other class the endings table is built around.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": [
+          "eaux"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "eau",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==French==\n===Etymology===\n{{etymon|fr|:inh|frm:eau}}\n{{inh+|fr|frm|[[eau]], [[eaue]]}}, from {{inh|fr|fro|ewe}}, {{m|fro|euwe}}, {{m|fro|egua||water}}, from {{inh|fr|la|aqua||water}}, from {{inh|fr|ine-pro|*h₂ekʷeh₂|t=water, flowing water}}, related to {{cog|frk|*ahu|*ahu ~ ahwā|t=stream, water}}. See also {{cog|en|ea|t=watercourse, river}}.\n\n{{col-top|2|cog}}\nSee also {{cog|roa-ang|ave}}, {{m|roa-ang|eive}}, {{m|roa-ang|ève}}, {{m|roa-ang|ieau}}, {{cog|an|augua}}, {{cog|rup|apã}}, {{cog|ast|agua}}, {{cog|roa-bbn|aïe}}, {{m|roa-bbn|aigue}}, {{cog|roa-brg|eâ}}, {{cog|gme-bur|eai}}, {{cog|ca|aigua}}, {{cog|roa-cha|aive}}, {{m|roa-cha|ève}}, {{cog|co|acqua}}, {{cog|roa-fcm|âve}}, {{cog|frp|aigva}}, {{m|frp|égoua}}, {{m|frp|éva}}, {{cog|fur|aghe}}, {{cog|gl|auga}}, {{cog|roa-gal|aèv}}, {{m|roa-gal|ève}}, {{m|roa-gal|iao}}, {{m|roa-gal|iau}}, {{cog|ruo|åpe}}, {{cog|it|acqua}}, {{cog|lij|ægoa}}, {{m|lij|ægua}}, {{cog|lmo|acqua}}, {{m|lmo|agua}}, {{m|lmo|aqua}}, {{cog|roa-lor|aoue}}, {{cog|ruq|apu}}, {{cog|nap|acqua}}, {{cog|nrf|iâo}}, {{cog|oc|aiga}}, {{m|oc|aigue}}, {{cog|ang|ēa||flowing water, stream, river}}, {{cog|roa-orl|iau}}, {{cog|pcd|iau}}, {{m|pcd|ieau}}, {{cog|pms|aqua}}, {{m|pms|eva}}, {{cog|roa-poi|ève}}, {{cog|pt|água}}, {{cog|ro|apă}}, {{cog|sc|abba}}, {{cog|scn|acqua}}, {{m|scn|eva}}, {{cog|es|agua}}, {{cog|vec|acua}}, {{cog|wa|aiwe}}.\n{{col-bottom}}\n\n===Pronunciation===\n* {{fr-IPA}}\n* {{audio|fr|Fr-eau.ogg|text=de l'eau}}\n* {{audio|fr|LL-Q150 (fra)-DSwissK-eau.wav|a=<<Switzerland>> (<<Valais>>)}}\n* {{audio|fr|LL-Q150 (fra)-GrandCelinien-eau.wav|a=<<France>> (<<Paris>>)}}\n* {{audio|fr|LL-Q150 (fra)-Lepticed7-eau.wav|a=<<France>> (<<Toulouse>>)}}\n* {{audio|fr|LL-Q150 (fra)-LoquaxFR-eau.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-Mecanautes-eau.wav|a=France}}\n* {{audio|fr|LL-Q150 (fra)-Opsylac-eau.wav|a=<<France>> (<<Grenoble>>)}}\n* {{audio|fr|LL-Q150 (fra)-Penegal-eau.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-Poslovitch-eau.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-T. Le Berre-eau.wav|a=<<France>> (<<Hérault>>)}}\n* {{audio|fr|LL-Q150 (fra)-WikiLucas00-eau.wav|a=<<France>> (<<Lyon>>)}}\n* {{audio|fr|LL-Q150 (fra)-X-Javier-eau.wav|a=<<France>> (<<Massy>>)}}\n* {{rhymes|fr|o|s=1}}\n* {{homophones|fr|au|aux|aulx|eaux|haut|hauts|ho|o|ô|oh|os}}\n\n===Noun===\n{{fr-noun|f}}\n\n# [[water]], a [[liquid]] that is [[transparent]], [[colorless]], [[odorless]]{{,}} and [[tasteless]] in its pure form, the primary constituent of [[lake]]s, [[river]]s, [[sea]]s{{,}} and [[ocean]]s\n#: {{ux|fr|Il buvait un verre d’'''eau''' fraîche.|He drank a cool glass of '''water'''.}}\n#: {{ux|fr|L’'''eau''' de mer et l’'''eau''' de rivière n’ont pas la même teneur en sel et n’abritent donc pas les mêmes poissons.|Sea '''water''' and river '''water''' do not have the same salt content and thus do not harbor the same fish.}}\n#* {{quote-text|fr|year=1951|title=First Congress on Irrigation and Drainage. Transactions|volume=2|page=149\n|passage=L'alteration de l′'''eau''' du lac par l'effect des courants du fond vers la surface semble s'expliquer par le fait, que le courant à densité avait une temperature plus élevée que les couches inférieures et moyennes du lac.|t=The alteration of the lake's '''water''' by the effect of the current from the bottom to the surface seems to be explained by the fact that the density current had a higher temperature than the inferior and medium layers of the lake.}}\n# In particular, [[rain]]\n#: {{ux|fr|Si le vent dure, nous aurons de l’'''eau'''.|If the wind persists, we will have '''rain'''.}}\n# {{lb|fr|chemistry}} the chemical compound with molecular formula H<sub>2</sub>O existing in the form of [[ice]], [[liquid water]] or [[steam]]\n#: {{ux|fr|L’'''eau''' se durcit par le froid et se vaporise par la chaleur.|'''Water''' hardens with cold and vaporises with heat.}}\n# Natural liquid quantities or expanses\n#: {{ux|fr|Le soir, ils se baignaient dans les '''eaux''' du lac Titicaca.|In the evening, they bathed in the '''waters''' of Lake Titicaca.}}\n# Fluids such as sweat, formed and found in the body of man or animal\n#: {{ux|fr|Les vésicatoires font des ampoules pleines d’'''eau'''.|Vesicants make blisters full of '''fluid'''.}}\n#: {{ux|fr|L’'''eau''' m'en vint à la bouche.|That made my mouth '''water'''.}}\n#: {{ux|fr|Il s’est échauffé à courir, il est tout en '''eau'''.|He warmed up to run. He's all '''sweaty'''.}}\n\n====Derived terms====\n{{col3|fr\n|moulin à eau\n|nager entre deux eaux\n|rat d'eau\n|sortir la tête de l'eau\n|suer sang et eau\n|eau de surface\n|eau à ressort\n|eaux usées\n|mettre l'eau à la bouche\n|canon à eau\n|poche des eaux\n|dégât des eaux\n|eau de rose\n|eau de surface\n|eau de vaisselle\n|araignée d'eau\n|au fil de l'eau\n|bataille d'eau\n|boire le vin de l'étrier\n|chasse d'eau\n|chat échaudé craint l'eau froide\n|château d'eau\n|chien d'eau\n|chute d'eau\n|clair comme de l'eau de roche\n|comme deux gouttes d'eau\n|comme un poisson dans l'eau\n|cours d'eau\n|cycle de l'eau\n|eau à ressort\n|eau de source\n|eau de Javel\n|eau de mer\n|eau de Cologne\n|eau de Seltz\n|eau de toilette\n|eau douce\n|eau du robinet\n|eau dure\n|eau gazeuse\n|eau oxygénée\n|eau pétillante\n|eau plate\n|eau lourde\n|eau régale\n|eau tonique\n|eaux territoriales\n|eau micellaire\n|eau minérale\n|eaux grises\n|eaux usées\n|encens d'eau\n|faire eau\n|goutte d'eau dans l'océan\n|iris d'eau\n|jeter le bébé avec l'eau du bain\n|la goutte d'eau qui fait déborder le vase\n|ligne de partage des eaux\n|marée de morte eau\n|melon d'eau\n|ne pas avoir inventé l'eau chaude\n|œufs dans l'eau\n|pêcher en eau trouble\n|perdre les eaux\n|plan d'eau\n|point d'eau\n|porter de l'eau à la rivière\n|poule d'eau\n|prendre l'eau\n|se jeter à l'eau\n|se noyer dans un verre d'eau\n|tant va la cruche à l'eau qu'à la fin elle se brise\n|tant va la cruche à l'eau qu'à la fin elle se casse\n|tempête dans un verre d'eau\n|tirant d'eau\n|tomber à l'eau\n|vapeur d'eau\n|vivre d'amour et d'eau fraiche\n|voie d'eau\n|y avoir de l'eau dans le gaz\n}}\n\n====Descendants====\n* {{desc|gcf|dlo}}\n* {{desc|gcr|dilo}}\n* {{desc|ht|dlo}}\n* {{desc|kmv|djilo|dlo}}\n* {{desc|lou|dolo|alts=1}}\n* {{desc|mfe|dilo}}\n* {{desc|crs|delo}}\n* {{desc|cks|delo|dolo}}\n\n===Further reading===\n* {{R:fr:TLFi}}\n\n{{cln|fr|nouns with irregular gender}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"fr\">eau</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-fr p-form-of\" lang=\"fr\">[[:eaux#French|eaux]]</b>)</span>[[Category:French lemmas|EAU]][[Category:French nouns|EAU]][[Category:French countable nouns|EAU]][[Category:French entries with incorrect language header|EAU]][[Category:French feminine nouns|EAU]][[Category:Pages with entries|EAU]][[Category:Pages with 6 entries|EAU]]"
+        }
+      }
+    },
+    {
+      "word": "main",
+      "why": "A common feminine noun — the everyday case that must not regress while the irregulars are being pinned.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": [
+          "mains"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "main",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==French==\n{{picdic\n|image=Paume de main.jpeg\n|width=310\n|labels=\n{{picdiclabel|fr|color=white|fontsize=18|posx=100|posy=179|link=paume}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=20|posy=200|link=poignet|align=left}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=90|posy=70|link=pouce}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=200|posy=125|link=index}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=225|posy=160|link=majeur}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=220|posy=205|link=annulaire}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=200|posy=245|link=auriculaire}}\n{{picdiclabel|fr|color=white|fontsize=12|posx=200|posy=260|link=petit doigt|altlink=(petit doigt)}}\n|detail1=Click on labels in the image\n|detail2=\n{{picdicimg|fr|image=Arm flex supinate.jpg|link=bras}}\n}}\n\n===Etymology===\n{{inh+|fr|frm|main}}, {{inh|fr|fro|main}}, {{m|fro|mein}}, {{m|fro|man}}, from {{inh|fr|la|manus||hand}}, from {{inh|fr|itc-pro|*manus}}, perhaps from {{der|fr|ine-pro|*méh₂r̥|*méh₂-r̥ ~ *mh₂-én-}}, derived from {{der|fr|ine-pro|*(s)meh₂-||to beckon}}, or perhaps from a {{der|fr|ine-pro||*mon-u-}} (see the Proto-Italic entry). Compare {{cog|es|mano}} and {{cog|it|mano}}.\n\n===Pronunciation===\n* {{fr-IPA}}\n* {{audio|fr|Fr-main.ogg|text=la main}}\n* {{audio|fr|LL-Q150 (fra)-DenisdeShawi-main.wav|a=<<Canada>> (<<Shawinigan>>)}}\n* {{audio|fr|LL-Q150 (fra)-DSwissK-main.wav|a=<<Switzerland>> (<<Valais>>)}}\n* {{audio|fr|LL-Q150 (fra)-GrandCelinien-main.wav|a=<<France>> (<<Paris>>)}}\n* {{audio|fr|LL-Q150 (fra)-Lepticed7-main.wav|a=<<France>> (<<Toulouse>>)}}\n* {{audio|fr|LL-Q150 (fra)-LoquaxFR-main.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-Mecanautes-main.wav|a=France}}\n* {{audio|fr|LL-Q150 (fra)-Opsylac-main.wav|a=<<France>> (<<Grenoble>>)}}\n* {{audio|fr|LL-Q150 (fra)-Poslovitch-main.wav|a=<<France>> (<<Vosges>>)}}\n* {{audio|fr|LL-Q150 (fra)-T. Le Berre-main.wav|a=<<France>> (<<Hérault>>)}}\n* {{audio|fr|LL-Q150 (fra)-WikiLucas00-main.wav|a=<<France>> (<<Lyon>>)}}\n* {{audio|fr|LL-Q150 (fra)-X-Javier-main.wav|a=<<France>> (<<Massy>>)}}\n* {{audio|fr|LL-Q150 (fra)-Jérémy-Günther-Heinz Jähnick-main.wav|a=<<France>> (<<Somain>>)}}\n* {{homophones|fr|mains|maint|maints}}\n* {{hyphenation|fr|main}}\n\n===Noun===\n{{fr-noun|f}}\n\n# [[hand]]\n# {{lb|fr|soccer}} [[handball]]\n# {{lb|fr|poker}} hand\n# {{C|fr|Units of measure|Paper}} [[quire]]\n\n====Synonyms====\n* {{l|fr|louche}}\n* {{l|fr|mimine}}\n* {{l|fr|paluche}}\n* {{l|fr|pince}}\n\n====Meronyms====\n* {{l|fr|doigt}}\n* {{l|fr|dos}}\n* {{l|fr|paume}}\n* {{l|fr|poignet}}\n* {{l|fr|pouce}}\n\n====Holonyms====\n* {{l|fr|bras}}\n\n====Derived terms====\n{{col3|fr\n|à la main\n|à main armée\n|à mains nues\n|avoir deux mains gauches\n|avoir du sang sur les mains\n|avoir la main lourde\n|avoir le cœur sur la main\n|avoir les mains liées\n|avoir un poil dans la main\n|baisemain\n|changer de mains\n|cheval de main\n|comme les doigts de la main\n|compter sur les doigts d'une main\n|compter sur les doigts de la main\n|coup de main\n|de longue main\n|de main de maître\n|de seconde main\n|en bonnes mains\n|en main propre\n|en mains propres\n|en venir aux mains\n|entre de bonnes mains\n|faire des pieds et des mains\n|faire main basse\n|forcer la main\n|frein à main\n|haut la main\n|haut les mains\n|homme de main\n|jeu de main, jeu de vilain\n|la main sur le cœur\n|léger de main\n|les mains dans les poches\n|les mains vides\n|main courante\n|main invisible\n|main dans la main\n|main verte\n|mainlevée\n|mainmettre\n|mainmortable\n|mainmorte\n|mainmuable\n|mettre la main\n|mettre la main à la pâte\n|mettre la main sur\n|mettre les mains dans le cambouis\n|mettre sa main au feu\n|mettre sa main à couper\n|montre en main\n|parle à ma main\n|passer la main\n|passer par les mains\n|perdre la main\n|petite main\n|poignée de main\n|prendre en main\n|prendre la main dans le sac\n|prendre son courage à deux mains\n|prendre ses couilles en main\n|reprendre en main\n|sac à main\n|se faire la main\n|se frotter les mains\n|se laver les mains\n|se salir les mains\n|serrer la main\n|sous la main\n|tournemain\n|vol à main armée\n|vote à main levée\n}}\n\n====Related terms====\n{{col|fr\n|manche\n|manicle\n|manier\n|manipuler\n|manivelle\n|manuel\n}}\n\n====Descendants====\n* {{desc|ht|men}}\n* {{desc|lou|men}}\n* {{desc|mfe|lame|der=1}}\n* {{desc|rcf|min}}\n* {{desc|en|main|bor=1|unc=1}}\n* {{desc|de|Lamäng|bor=1|der=1}}\n\n===Further reading===\n* {{R:fr:TLFi}}\n\n===Anagrams===\n* {{l|fr|mina}}\n\n{{C|fr|Anatomy}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"fr\">main</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-fr p-form-of\" lang=\"fr\">[[:mains#French|mains]]</b>)</span>[[Category:French lemmas|MAIN]][[Category:French nouns|MAIN]][[Category:French countable nouns|MAIN]][[Category:French entries with incorrect language header|MAIN]][[Category:French feminine nouns|MAIN]][[Category:Pages with entries|MAIN]][[Category:Pages with 18 entries|MAIN]]"
+        }
+      }
+    },
+    {
+      "word": "Buch",
+      "why": "A REAL Wiktionary page with no French section. found:false is the disambiguation story: the reference adapter's worst defect was entries that merely mentioned the query contributing facts.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Buch",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": ""
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "word": "zzzqqxnotaword",
+      "why": "No page at all — the not-in-the-dictionary branch, where a parser invents facts.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "zzzqqxnotaword",
+              "missing": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "sg": "Buch",
+    "pl": "Bücher",
+    "expected": {
+      "sg": "B<b class=\"st\">u</b>ch",
+      "pl": "B<b class=\"st\">ü</b>ch<b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "Frau",
+    "pl": "Frauen",
+    "expected": {
+      "sg": "Frau",
+      "pl": "Frau<b class=\"mk\">en</b>"
+    }
+  },
+  {
+    "sg": "Kind",
+    "pl": "Kinder",
+    "expected": {
+      "sg": "Kind",
+      "pl": "Kind<b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "Tisch",
+    "pl": "Tische",
+    "expected": {
+      "sg": "Tisch",
+      "pl": "Tisch<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "Auto",
+    "pl": "Autos",
+    "expected": {
+      "sg": "Auto",
+      "pl": "Auto<b class=\"mk\">s</b>"
+    }
+  },
+  {
+    "sg": "Mädchen",
+    "pl": "Mädchen",
+    "expected": {
+      "sg": "Mädchen",
+      "pl": "Mädchen"
+    }
+  },
+  {
+    "sg": "Stadt",
+    "pl": "Städte",
+    "expected": {
+      "sg": "St<b class=\"st\">a</b>dt",
+      "pl": "St<b class=\"st\">ä</b>dt<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "Hand",
+    "pl": "Hände",
+    "expected": {
+      "sg": "H<b class=\"st\">a</b>nd",
+      "pl": "H<b class=\"st\">ä</b>nd<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "Löffel",
+    "pl": "Löffel",
+    "expected": {
+      "sg": "Löffel",
+      "pl": "Löffel"
+    }
+  },
+  {
+    "sg": "Mann",
+    "pl": "Männer",
+    "expected": {
+      "sg": "M<b class=\"st\">a</b>nn",
+      "pl": "M<b class=\"st\">ä</b>nn<b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "Jahr",
+    "pl": "Jahre",
+    "expected": {
+      "sg": "Jahr",
+      "pl": "Jahr<b class=\"mk\">e</b>"
+    }
+  },
+  {
+    "sg": "Blume",
+    "pl": "Blumen",
+    "expected": {
+      "sg": "Blum<b class=\"mk\">e</b>",
+      "pl": "Blum<b class=\"mk\">en</b>"
+    }
+  },
+  {
+    "sg": "Haus",
+    "pl": "Häuser",
+    "expected": {
+      "sg": "H<b class=\"st\">a</b>u<b class=\"mk\">s</b>",
+      "pl": "H<b class=\"st\">ä</b>u<b class=\"st\">s</b><b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "Apfel",
+    "pl": "Äpfel",
+    "expected": {
+      "sg": "<b class=\"st\">A</b>pfel",
+      "pl": "<b class=\"st\">Ä</b>pfel"
+    }
+  },
+  {
+    "sg": "Lehrer",
+    "pl": "Lehrer",
+    "expected": {
+      "sg": "Lehrer",
+      "pl": "Lehrer"
+    }
+  },
+  {
+    "sg": "Straße",
+    "pl": "Straßen",
+    "expected": {
+      "sg": "Straß<b class=\"mk\">e</b>",
+      "pl": "Straß<b class=\"mk\">en</b>"
+    }
+  }
+]

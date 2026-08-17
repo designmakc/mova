@@ -1,0 +1,154 @@
+{
+  "source": "wiktionary:pt",
+  "recorded": "2026-08-17",
+  "cases": [
+    {
+      "word": "pão",
+      "why": "The -ão class, branch one: pães. Nothing in the singular predicts which of three plurals it takes.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "pães"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "pão",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Portuguese==\n{{wp|pt:}}\n[[File:FD 1.jpg|thumb|Diversos pães - Various breads]]\n\n===Etymology===\n{{etymon|pt|id=bread|:inh|roa-opt:pan<id:bread>|tree=+|text=+2}}<ref>{{R:pt:Infopédia}}</ref><ref>{{R:pt:Priberam}}</ref>\n\nCompare {{cog|gl,ast,roa-leo,es|pan}}, {{cog|ca|pa}}, {{cog|fr|pain}}, {{cog|it|pane}}, and {{cog|ro|pâine}}.\n\n===Pronunciation===\n{{pt-IPA}}\n* {{audio|pt|LL-Q5146 (por)-Nelson Ricardo 2500-pão.wav |a=Portugal}} \n* {{rhymes|pt|ɐ̃w̃|s=1}}\n* {{hyphenation|pt|pão}}\n\n===Noun===\n{{pt-noun|m|pães}}\n\n# [[bread]]\n# {{lb|pt|figuratively}} [[food]], [[sustenance]]\n#* {{RQ:Nosso Lar|passage=O Amor, meu amigo, é o '''pão''' divino das almas, o pábulo sublime dos corações.}}\n# {{lb|pt|colloquial}} an [[attractive]] or [[hot]] [[man]]\n# {{lb|pt|Portugal|dated|slang}} [[punch]]<ref>[https://dicionario.acad-ciencias.pt/pesquisa/?word=p%C3%A3o Dicionário da Língua Portuguesa, Academia das Ciências de Lisboa]\n</ref>\n#: {{uxi|pt|Tem cuidado, ou levas já um '''pão'''|Be careful, or I'll give you a '''punch''' right now}}\n\n====Derived terms====\n{{col4|pt\n|casa onde não há pão, todos ralham e ninguém tem razão\n|pão, pão, queijo, queijo\n|pôr a pão e água\n|pão de leite|pão de açúcar|pão biju|pão branco|pão com chouriço|pão dormido|pão amanhecido|pão de calo|pão de mistura|pão integral|pão de deus|pão árabe|pão pita|pão sírio|pão ázimo|pão celeste|pão da alma|pão de forma|pão de lenha|pão de munição|pão de queijo|pão de saluga|pão de saruga|pão do céu|pão do espírito|pão francês|pão integral|pão ralado|pão seco|pão sem sal|pão e circo|pão doce\n}}\n\n====Related terms====\n{{col|pt\n|empada|empadão|empadaria\n|padaria|padeiro\n|panificar|panificação|panificador|panificadora|panífero|panar|panado|panadeiro|paneiro|empanar|empanado\n|companha|companhia|companheiro|companheirão|companheirismo|acompanhar|acompanhamento|acompanhante|acompanhável|acompanhado\n}}\n\n====Descendants====\n{{top2}}\n* {{desc|pov|pon}}\n* {{desc|kea|pom}}\n* {{desc|vkp|pãw}}\n* {{desc|mcm|pang}}\n* {{desc|pap|pan}}\n* {{desc|bn|পাঁউরুটি|bor=1}}\n* {{desc|my|ပေါင်မုန့်|bor=1|qq=compounded with {{l|my|မုန့်||snack}}}}\n* {{desc|gu|પાઉં|alts=1|bor=1}}\n* {{desc|ja|パン|tr=pan|bor=1}} {{see desc}}\n* {{desc|kbc|paon|bor=1}}\n* {{desc|ko|빵|bor=1}}\n* {{desc|mjb|paun|t=bread|bor=1}}\n* {{desc|ms|paung|bor=1}}\n* {{desctree|mr|पाव|bor=1}}\n* {{desc|yrl|pãu|bor=1}}\n* {{desc|si|පාන්|bor=1}}\n* {{desc|ta|பாண்|bor=1}}\n* {{desc|tet|paun|bor=1}}\n* {{desc|th|ปัง|bor=1}}\n{{bottom}}\n\n===References===\n<references/>\n\n===Further reading===\n* {{R:pt:Aulete}}\n\n{{C|pt|Breads|Foods}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"pt\">pão</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-pt p-form-of\" lang=\"pt\">[[:pães#Portuguese|pães]]</b>)</span>[[Category:Portuguese lemmas|PAO]][[Category:Portuguese nouns|PAO]][[Category:Portuguese countable nouns|PAO]][[Category:Portuguese entries with incorrect language header|PAO]][[Category:Portuguese masculine nouns|PAO]][[Category:Pages with entries|PÃO]][[Category:Pages with 2 entries|PÃO]]"
+        }
+      }
+    },
+    {
+      "word": "limão",
+      "why": "The -ão class, branch two: limões. Same ending, different plural, and only memory tells them apart.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "limões"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "limão",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Portuguese==\n[[Image:Lemon and lime.jpg|thumb|{{uxi|pt|Um '''limão''' à esquerda e uma lima à direita.|A lemon on the left and a lime on the right.}}]]\n\n===Etymology===\n{{etymon|pt|id=lemon|:bor|ar:لَيْمُون|tree=1}}\n{{bor+|pt|ar|لَيْمُون}} via {{bor|pt|xaa|-}}, from {{der|pt|fa|لیمون//لیمو|tr=limun, limu}}, from {{der|pt|sa|निम्बू}}.\n\n===Pronunciation===\n{{pt-IPA}}\n* {{hyphenation|pt|li|mão}}\n\n===Noun===\n{{pt-noun|m}}\n\n# [[lemon]] {{gloss|citrus fruit}}\n#: {{syn|pt|limão-siciliano<q:Brazil>}}\n# {{lb|pt|Brazil}} [[lime#Noun_3|lime]] {{gloss|citrus fruit}}\n#: {{syn|pt|lima}}\n#: {{hypo|pt|limão-taiti}}\n# {{lb|pt|South Brazil}} [[lemandarin]], [[rangpur]]\n#: {{syn|pt|limão-cravo}}\n\n====Usage notes====\n* In Brazil, unless otherwise specified, the variants {{vern|persian lime}} ({{taxlink|Citrus × latifolia|nothospecies}}) and {{l|en|Key lime}} ({{taxlink|Citrus × aurantiifolia|nothospecies}}) are assumed. In southern regions, {{l|en|lemandarin}} ({{taxlink|Citrus × limonia|nothospecies}}) may be assumed as well.\n* Brazilians also consider a {{l|en|lemon}} ({{taxfmt|Citrus limon|species}}) to be a {{m|pt|limão}}; specifically, {{m|pt|limão siciliano}}.\n* Non-Brazilians distinguish {{m|pt|lima||lime}} from {{m|pt|limão}}.\n\n====Related terms====\n* {{l|pt|limoeiro}}\n\n====Descendants====\n{{top2}}\n* {{desc|sw|limau}}\n{{bottom}}\n\n===Further reading===\n* {{R:pt:Aulete}}\n* {{R:pt:Priberam}}\n\n{{C|pt|Fruits}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"pt\">limão</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-pt p-form-of\" lang=\"pt\">[[:limões#Portuguese|limões]]</b>)</span>[[Category:Portuguese lemmas|LIMAO]][[Category:Portuguese nouns|LIMAO]][[Category:Portuguese countable nouns|LIMAO]][[Category:Portuguese entries with incorrect language header|LIMAO]][[Category:Portuguese masculine nouns|LIMAO]][[Category:Pages with entries|LIMÃO]][[Category:Pages with 1 entry|LIMÃO]]"
+        }
+      }
+    },
+    {
+      "word": "mão",
+      "why": "The -ão class, branch three: mãos. Three words, one ending, three plurals — this is why the pack ships no -ão rule.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": [
+          "mãos"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "mão",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Portuguese==\n{{wp|pt:}}\n{{picdic\n|image=Paume de main.jpeg\n|width=310\n|labels=\n{{picdiclabel|pt|color=white|fontsize=18|posx=100|posy=179|link=palma}}\n{{picdiclabel|pt|color=white|fontsize=12|posx=20|posy=200|link=pulso|align=left}}\n{{picdiclabel|pt|color=white|fontsize=12|posx=90|posy=70|link=polegar}}\n{{picdiclabel|pt|color=white|fontsize=12|posx=200|posy=125|link=indicador}}\n{{picdiclabel|pt|color=white|fontsize=12|posx=225|posy=160|link=médio}}\n{{picdiclabel|pt|color=white|fontsize=12|posx=220|posy=205|link=anelar}}\n{{picdiclabel|pt|color=white|fontsize=12|posx=200|posy=245|link=mínimo}}\n|detail1=Click on labels in the image\n|detail2=\n{{picdicimg|pt|image=Arm flex supinate.jpg|link=braço}}\n}}\n\n===Alternative forms===\n* {{alt|pt|maõ||obsolete}}\n\n===Etymology===\n{{inh+|pt|roa-opt|mão||hand}}, from {{inh|pt|la|manus|5=hand}}, from {{inh|pt|itc-pro|*manus}}, perhaps from {{der|pt|ine-pro|*méh₂r̥|*méh₂-r̥ ~ *mh₂-én-}}, derived from {{der|pt|ine-pro|*(s)meh₂-||to beckon}}, or perhaps from a {{der|pt|ine-pro||*mon-u-}} (see the Proto-Italic entry). Cognate with {{cog|gl|man}}, {{cog|es|mano}}, {{cog|ca|mà}}, {{cog|oc|man}}, {{cog|fr|main}}, {{cog|it|mano}} and {{cog|ro|mână}}.\n\n===Pronunciation===\n{{pt-IPA}}\n* {{audio|pt|LL-Q5146 (por)-Santamarcanda-mão.wav|a=<<Portugal>> (<<Porto>>)}}\n* {{rhymes|pt|ɐ̃w̃|s=1}}\n* {{hyphenation|pt|mão}}\n\n===Noun===\n{{pt-noun|f|#s}}\n\n# [[hand]]\n#* {{RQ:mul:Rowling Harry Potter|pt-BR|6|page=52|text=Apontara com a '''mão''' machucada.|t=He had pointed it using his wounded '''hand'''.}}\n# [[forefoot]] {{gloss|either of the front feet of a quadruped}}\n# {{lb|pt|card games}} [[hand]] {{gloss|a round of a card game}}\n# [[coat]] {{gloss|a covering of material, such as paint}}\n#: {{syn|pt|demão}}\n# {{lb|pt|sports}} [[leg]] {{gloss|a single game or match played in a tournament or other sporting contest}}\n# {{lb|pt|soccer}} [[handball]] {{gloss|football offence}}\n# {{lb|pt|figurative}} [[hand]] {{gloss|an instance of helping}}\n#: {{syn|pt|ajuda|auxílio}}\n# [[direction]] (of travel), [[way]]\n\n====Quotations====\n{{see citations|pt}}\n\n====Derived terms====\n{{col4|pt\n|abrir mão de\n|mão-leve\n|à mão\n|nas mãos de\n|untar as mãos a alguém\n|comer nas mãos de alguém\n|cair em mãos erradas\n|meter os pés pelas mãos\n|trocar os pés pelas mãos\n|joguete nas mãos de\n|mais vale um pássaro na mão do que dois voando // mais vale um pássaro na mão do que dois a voar\n|mãos ao alto\n|à mão de semear\n|de mãos a abanar // de mãos abanando\n|de mãos atadas\n|de mãos dadas\n|de mãos vazias\n|em boas mãos\n|em mão\n|com uma mão na frente e a outra atrás\n|em primeira mão\n|em segunda mão // de segunda mão\n|a mão esquerda não sabe o que faz a direita\n|pelas mãos de\n|uma mão lava a outra\n|nada nessa mão\n|dar a mão à palmatória\n|de primeira mão\n|conhecer como a palma da mão\n|com uma mão nas costas\n|lavar as mãos\n|mão de obra\n|mão-posta\n|mão amiga\n|mão morta\n|mãos à obra\n|mãos largas\n|mãos limpas\n|mãozinha\n|mãozita\n|mãozona\n|mãozudo\n|ter mão em\n|travão de mão\n|pôr a mão no fogo // pôr as mãos no fogo\n|pôr a mão na massa\n|mão de vaca\n|mancheia // mão-cheia\n|mãozada\n|lançar mão \n|mão francesa\n|largar mão\n|abrir mão\n|mão na roda\n|deixar na mão\n|meter a mão na massa // meter as mãos na massa\n|largar de mão\n|regra da mão direita\n|de mão beijada\n|mão-aberta\n|com o cu na mão\n|mão de ferro\n|mão inglesa\n|contramão\n|dar uma mão\n|dar a mão\n|aperto de mão\n|carrinho de mão\n|rua de mão única\n|mão única\n|mão-pelada\n|bagagem de mão\n|freio de mão\n|granada de mão\n}}\n\n====Related terms====\n{{col4|pt\n|maneio\n|maneira\n|manejar\n|maneta\n|manete\n|manobra\n|manobrar\n|manter\n|manilha\n|manual\n|manufatura\n|manuscrito\n|manusear\n|manuseio\n|manutenção\n|mandar\n|mandatório\n|mandado\n|mandato\n|demanda\n|demandar\n|molho\n}}\n\n====Descendants====\n* {{desc|kea|mo}}\n* {{desc|mcm|mang}}\n* {{desc|mzs|mám}}\n* {{desc|srm|máun|unc=1}}\n\n===References===\n* {{R:pt:Aulete}}\n* {{R:pt:DAN}}\n\n===Further reading===\n* {{R:pt:Priberam}}\n\n{{C|pt|Anatomy}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"pt\">mão</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-pt p-form-of\" lang=\"pt\">[[:mãos#Portuguese|mãos]]</b>)</span>[[Category:Portuguese lemmas|MAO]][[Category:Portuguese nouns|MAO]][[Category:Portuguese countable nouns|MAO]][[Category:Portuguese entries with incorrect language header|MAO]][[Category:Portuguese feminine nouns|MAO]][[Category:Pages with entries|MÃO]][[Category:Pages with 4 entries|MÃO]]"
+        }
+      }
+    },
+    {
+      "word": "Buch",
+      "why": "A REAL Wiktionary page with no Portuguese section.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Buch",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": ""
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "word": "zzzqqxnotaword",
+      "why": "No page at all — the not-in-the-dictionary branch.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "zzzqqxnotaword",
+              "missing": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

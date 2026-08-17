@@ -1,0 +1,112 @@
+[
+  {
+    "input": "cittá",
+    "expected": "città",
+    "note": "á U+00E1 (a with acute) → à — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Áncora",
+    "expected": "Àncora",
+    "note": "Á U+00C1 (A with acute) → À — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "cosí",
+    "expected": "così",
+    "note": "í U+00ED (i with acute) → ì — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Ímpeto",
+    "expected": "Ìmpeto",
+    "note": "Í U+00CD (I with acute) → Ì — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "piú",
+    "expected": "più",
+    "note": "ú U+00FA (u with acute) → ù — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Último",
+    "expected": "Ùltimo",
+    "note": "Ú U+00DA (U with acute) → Ù — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "cittâ",
+    "expected": "città",
+    "note": "â U+00E2 (a with circumflex) → à — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Âncora",
+    "expected": "Àncora",
+    "note": "Â U+00C2 (A with circumflex) → À — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "caffê",
+    "expected": "caffè",
+    "note": "ê U+00EA (e with circumflex) → è — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Ê",
+    "expected": "È",
+    "note": "Ê U+00CA (E with circumflex) → È — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "cosî",
+    "expected": "così",
+    "note": "î U+00EE (i with circumflex) → ì — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Împeto",
+    "expected": "Ìmpeto",
+    "note": "Î U+00CE (I with circumflex) → Ì — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "perô",
+    "expected": "però",
+    "note": "ô U+00F4 (o with circumflex) → ò — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Ôvulo",
+    "expected": "Òvulo",
+    "note": "Ô U+00D4 (O with circumflex) → Ò — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "piû",
+    "expected": "più",
+    "note": "û U+00FB (u with circumflex) → ù — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "Ûltimo",
+    "expected": "Ùltimo",
+    "note": "Û U+00DB (U with circumflex) → Ù — Italian never puts an acute on this letter"
+  },
+  {
+    "input": "ıdea",
+    "expected": "idea",
+    "note": "ı U+0131 (Turkish dotless i) → i — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "İdea",
+    "expected": "Idea",
+    "note": "İ U+0130 (I with dot above) → I — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "città",
+    "expected": "città",
+    "note": "NFD input (a + combining grave) composes to à before folding"
+  },
+  {
+    "input": "perché",
+    "expected": "perché",
+    "note": "already canonical — and é is never folded: perché against caffè is a real distinction"
+  },
+  {
+    "input": "citta",
+    "expected": "citta",
+    "note": "a MISSING accent is a language error — in Italian the final accent is also the stress mark"
+  },
+  {
+    "input": "però",
+    "expected": "però",
+    "note": "ò is left alone: the open/closed o distinction is live in dictionaries"
+  }
+]

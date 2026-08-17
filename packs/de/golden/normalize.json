@@ -1,0 +1,92 @@
+[
+  {
+    "input": "schőn",
+    "expected": "schön",
+    "note": "ő U+0151 (o with double acute (Hungarian)) → ö — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Ől",
+    "expected": "Öl",
+    "note": "Ő U+0150 (O with double acute) → Ö — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "űber",
+    "expected": "über",
+    "note": "ű U+0171 (u with double acute (Hungarian)) → ü — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Űber",
+    "expected": "Über",
+    "note": "Ű U+0170 (U with double acute) → Ü — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Mādchen",
+    "expected": "Mädchen",
+    "note": "ā U+0101 (a with macron) → ä — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Ārzte",
+    "expected": "Ärzte",
+    "note": "Ā U+0100 (A with macron) → Ä — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "schōn",
+    "expected": "schön",
+    "note": "ō U+014D (o with macron) → ö — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Ōl",
+    "expected": "Öl",
+    "note": "Ō U+014C (O with macron) → Ö — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "ūber",
+    "expected": "über",
+    "note": "ū U+016B (u with macron) → ü — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Ūber",
+    "expected": "Über",
+    "note": "Ū U+016A (U with macron) → Ü — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "Straβe",
+    "expected": "Straße",
+    "note": "β U+03B2 (Greek small beta) → ß — a look-alike codepoint from another alphabet, not a German letter"
+  },
+  {
+    "input": "ımmer",
+    "expected": "immer",
+    "note": "ı U+0131 (Turkish dotless i) → i — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "İmmer",
+    "expected": "Immer",
+    "note": "İ U+0130 (I with dot above) → I — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "schön",
+    "expected": "schön",
+    "note": "NFD input (o + combining diaeresis) composes to ö before folding"
+  },
+  {
+    "input": "Straße",
+    "expected": "Straße",
+    "note": "already canonical — normalize is idempotent"
+  },
+  {
+    "input": "schon",
+    "expected": "schon",
+    "note": "a MISSING umlaut is a language error — and in German usually a DIFFERENT WORD (schon/schön)"
+  },
+  {
+    "input": "Steuer",
+    "expected": "Steuer",
+    "note": "the ue digraph is NOT folded: Steuer, Feuer and Museum spell it as two ordinary letters"
+  },
+  {
+    "input": "Masse",
+    "expected": "Masse",
+    "note": "ss is NOT folded to ß: Maße and Masse are different words, and Swiss German writes ss throughout"
+  }
+]

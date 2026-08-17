@@ -1,0 +1,92 @@
+[
+  {
+    "input": "lá",
+    "expected": "là",
+    "note": "á U+00E1 (a with acute) → à — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "Á",
+    "expected": "À",
+    "note": "Á U+00C1 (A with acute) → À — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "íle",
+    "expected": "île",
+    "note": "í U+00ED (i with acute) → î — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "Íle",
+    "expected": "Île",
+    "note": "Í U+00CD (I with acute) → Î — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "hótel",
+    "expected": "hôtel",
+    "note": "ó U+00F3 (o with acute) → ô — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "Óter",
+    "expected": "Ôter",
+    "note": "Ó U+00D3 (O with acute) → Ô — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "oú",
+    "expected": "où",
+    "note": "ú U+00FA (u with acute) → ù — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "OÚ",
+    "expected": "OÙ",
+    "note": "Ú U+00DA (U with acute) → Ù — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "ća",
+    "expected": "ça",
+    "note": "ć U+0107 (c with acute) → ç — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "Ća",
+    "expected": "Ça",
+    "note": "Ć U+0106 (C with acute) → Ç — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "ĉa",
+    "expected": "ça",
+    "note": "ĉ U+0109 (c with circumflex) → ç — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "Ĉa",
+    "expected": "Ça",
+    "note": "Ĉ U+0108 (C with circumflex) → Ç — French puts an acute only on e, so this can only be a dead-key slip"
+  },
+  {
+    "input": "ıdée",
+    "expected": "idée",
+    "note": "ı U+0131 (Turkish dotless i) → i — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "İdée",
+    "expected": "Idée",
+    "note": "İ U+0130 (I with dot above) → I — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "élève",
+    "expected": "élève",
+    "note": "NFD input (e + combining acute/grave) composes before folding — macOS paste delivers this"
+  },
+  {
+    "input": "français",
+    "expected": "français",
+    "note": "already canonical — normalize is idempotent"
+  },
+  {
+    "input": "eleve",
+    "expected": "eleve",
+    "note": "a MISSING accent is a language error and is never repaired here"
+  },
+  {
+    "input": "Noël",
+    "expected": "Noël",
+    "note": "the diaeresis is a real French letter and is never folded"
+  }
+]

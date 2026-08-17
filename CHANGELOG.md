@@ -4,6 +4,51 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.11.0 — 2026-08-17
+
+French, German, Italian and Portuguese. With Spanish and Romanian that is six packs, and
+the five most-requested European languages now start with no pack build at all — the branch
+that dominated the setup estimate.
+
+instance-impact: **none for an existing instance.** A pack is read only by the instance that
+selected it at setup; the new directories are inert in an existing workspace.
+
+- **Four packs, each green through the same gate** — `packcheck` exits 0 with no warnings
+  for all six, and CI runs every one. Each ships 35 classification fixtures spanning every
+  facet, 16 marked form pairs, a normalize fixture per look-alike including uppercase, and
+  five recorded dictionary cases of which two expect `found:false`.
+- **The endings tables were tuned against real pairs rather than written from grammar
+  books**, and four were wrong on the first pass. French needed `eu` and `ail` before
+  `cheveu/cheveux` and `travail/travaux` stopped reading as stem changes. German needed `n`
+  REMOVED — it cut `Mann` into `Man`+`n` and turned a clean umlaut plural into a fake stem
+  change. Italian needed `che/ghe/chi/ghi` replaced by plain `he/hi`, which is the
+  difference between `amic|a → amic|he` and a fabricated stem change. Portuguese needed
+  `res` removed, because it cut `flor` at its own `r`.
+- **What the tuned cuts now teach, without a rule anywhere:** `cheval → chevaux`,
+  `Buch → Bücher` and `Stadt → Städte` as umlaut-plus-suffix in two colours,
+  `pão → pães` against `limão → limões` against `mão → mãos` side by side, and
+  `Mädchen`, `Löffel`, `pays`, `città` and `lápis` marked nowhere at all because nothing
+  changes.
+- **Every normalizer argues its own list, and two of them argue mostly about what they
+  refuse to fold.** German does NOT fold `ae/oe/ue/ss` — the convention is real but
+  `Steuer`, `Feuer` and `Museum` spell those pairs as ordinary letters, and `Maße`/`Masse`
+  are different words while Swiss German writes `ss` throughout. That is the direct
+  correction of the 2026-08-15 pack, which advertised the fold and shipped an identity
+  function. Portuguese refuses to touch `à` (the crase), the tilde, and `â ê ô` — `avô` and
+  `avó` are different people. French refuses the whole é/è/ê family. What each one DOES fold
+  is only the diacritics its language never uses, where a fold cannot hide an error.
+- **The empty `required_fact:` is argued four more times, and the answers differ.** French
+  and Italian: the fact is gender and the row already carries it. Portuguese: gender plus
+  the `-ão` plural, and the second one is a real unguarded gap, stated as such. German: the
+  closest call of the five — capitalisation would select nouns cleanly, better than any
+  Romance pack manages, but the guard matches its second pattern against the notes cell
+  while gender and plural live in the parenthetical, so declaring it would demand the plural
+  twice. Italian names a fact its own row shape cannot hold: `uovo (m) → uova (f)`.
+- **Provenance is stated in every pack.** Only Romanian was extracted from a measured
+  learner. The other five were assembled from references and have taught nobody; each
+  `notes.md` says so and marks its rankings assumed, and each ranks its interference notes
+  for an English L1 while telling setup to re-rank for any other.
+
 ## 0.10.0 — 2026-08-17
 
 The first pack built on the shared dictionary adapter, and the first language a learner can

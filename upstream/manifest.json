@@ -1,10 +1,10 @@
 {
   "generated": "2026-08-17",
-  "template_version": "0.10.0",
+  "template_version": "0.11.0",
   "files": {
     ".github/workflows/ci.yml": "c4c55c127452f2a6fa479f584e56619445af6d764cbe685d6c7aadd6937be35e",
     ".vscode/settings.json": "c4bc01bd0341a88c85a0082e913ba44a1a3655d4b4077fba26756f75a9974251",
-    "AGENTS.md": "3d24c26ae91b202f0b653be418ff7df0acfb60ee1c7fcc624b0c4abf892100fa",
+    "AGENTS.md": "01f79ab32cb37a7e99142c548c7f53ba434049eae6cca909024b37eca5ce62c1",
     "agents/antigravity/README.md": "350a1beb8c8a52911c7a2724b32353e18353198ef2035062af2888452da479cd",
     "agents/claude-code/README.md": "142212123a4a0750e407b555f311633a83e4462e773aee098c500b9c72c3f240",
     "agents/claude-code/launch.json": "6afd67a85e9010827752bfcaec910497caf1be3833217face0c843517d3938f9",
