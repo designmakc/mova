@@ -4,6 +4,46 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.12.0 — 2026-08-17
+
+Greek — the first pack in a non-Latin script, and the bug it found in the shared adapter.
+
+instance-impact: **engine files auto-update.** `packs/_shared/wiktionary.mjs` changed how it
+reads gender; every pack that uses it benefits, and no instance action is needed. The new
+`packs/el/` is inert in a workspace that did not select it.
+
+- **`packs/el/` — Modern Greek.** Three genders, an endings list that turns every regular
+  Greek plural into one clean swap (`-ο → -α`, `-ος → -οι`, `-η → -εις`, `-ί → -ιά` with the
+  accent visibly moving), and the neuter `-ας/-ατα` and `-ως/-ώτα` classes left to show as
+  the genuine stem growth they are. `packcheck` exits 0; CI now runs seven packs.
+- **The engine held; the shared adapter did not.** It read a noun's gender from the position
+  of a token in the rendered dictionary line, which works in Latin script and fails
+  completely in Greek: `βιβλίο • (vivlío) n (plural βιβλία)` puts a transliteration exactly
+  where the gender was expected, so **every Greek noun came back genderless** while the rule
+  looked correct on five packs. It now reads Wiktionary's own gender markup.
+- **That fix had two regressions, and the existing packs' fixtures caught both.** Reading
+  the markup naively also picked up the genders of the *forms* listed after the headword:
+  Italian `uovo` came back masculine **and** feminine (that is its plural `uova`), and German
+  `Stadt` came back feminine and neuter (its diminutive `Städtchen`). The parser now scopes
+  gender to the head of each line. Neither would have been visible without recorded
+  fixtures pinning the old answers — this is the first time the golden sets have caught a
+  live defect rather than documented one.
+- **Greek recognises its own verbs.** `verbHeadword` is not null for only the second time
+  (the Romanian reference pack is the other): Greek cites verbs in the first person singular
+  (`γράφω`, `μιλάω`, `έρχομαι`), which ends in `-ω`, `-ώ` or `-μαι` where nouns do not. Greek
+  verb rows need no `(v)` tag, unlike all five Romance and Germanic packs.
+- **The normalizer is doing structural work rather than tidying.** Greek is the only pack
+  whose look-alikes are *identical glyphs*: `Α` (Greek), `A` (Latin) and `А` (Cyrillic)
+  render the same in every font, so a mixed-script word is invisible to the eye and unmatched
+  by the ledger. It folds the fourteen Latin capitals, lowercase `o`, and twelve Cyrillic
+  homoglyphs — the last is not hypothetical, since this engine came from a learner who types
+  Ukrainian daily. It refuses the final sigma (`ς`/`σ` are one letter in two positions) and
+  the tonos (a missing accent is a language error that also moves the spoken stress).
+- **A fact no pack's row shape can hold** is named rather than hidden: where the accent lands
+  in the plural. `παιδί → παιδιά` moves it, `βιβλίο → βιβλία` does not, and nothing
+  mechanical catches a row that gets it wrong. The pair marking shows it moving; the
+  curriculum teaches the rule.
+
 ## 0.11.0 — 2026-08-17
 
 French, German, Italian and Portuguese. With Spanish and Romanian that is six packs, and

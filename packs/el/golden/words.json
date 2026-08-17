@@ -1,0 +1,177 @@
+[
+  {
+    "target": "βιβλίο (n, βιβλία)",
+    "id": "V-0001",
+    "expected": "noun"
+  },
+  {
+    "target": "άνθρωπος (m, άνθρωποι)",
+    "id": "V-0002",
+    "expected": "noun"
+  },
+  {
+    "target": "γυναίκα (f, γυναίκες)",
+    "id": "V-0003",
+    "expected": "noun"
+  },
+  {
+    "target": "παιδί (n, παιδιά)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "πόλη (f, πόλεις)",
+    "id": "V-0005",
+    "expected": "noun"
+  },
+  {
+    "target": "μαθητής (m, μαθητές)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "νερό (n, νερά)",
+    "id": "V-0007",
+    "expected": "noun"
+  },
+  {
+    "target": "χέρι (n, χέρια)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "μέρα (f, μέρες)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "φως (n, φώτα)",
+    "id": "V-0010",
+    "expected": "noun"
+  },
+  {
+    "target": "ταξί (n, ταξί)",
+    "id": "V-0011",
+    "expected": "noun"
+  },
+  {
+    "target": "γράφω",
+    "id": "V-0020",
+    "expected": "verb"
+  },
+  {
+    "target": "διαβάζω",
+    "id": "V-0021",
+    "expected": "verb"
+  },
+  {
+    "target": "μιλάω",
+    "id": "V-0022",
+    "expected": "verb"
+  },
+  {
+    "target": "είμαι",
+    "id": "V-0023",
+    "expected": "verb"
+  },
+  {
+    "target": "έρχομαι",
+    "id": "V-0024",
+    "expected": "verb"
+  },
+  {
+    "target": "κόκκινος (adj)",
+    "id": "V-0030",
+    "expected": "adj"
+  },
+  {
+    "target": "μεγάλος (adj)",
+    "id": "V-0031",
+    "expected": "adj"
+  },
+  {
+    "target": "μικρός (adj)",
+    "id": "V-0032",
+    "expected": "adj"
+  },
+  {
+    "target": "καλός (adj)",
+    "id": "V-0033",
+    "expected": "adj"
+  },
+  {
+    "target": "πού (interog)",
+    "id": "V-0040",
+    "expected": "interog"
+  },
+  {
+    "target": "πότε (interog)",
+    "id": "V-0041",
+    "expected": "interog"
+  },
+  {
+    "target": "γιατί (interog)",
+    "id": "V-0042",
+    "expected": "interog"
+  },
+  {
+    "target": "καλημέρα σας",
+    "id": "V-0050",
+    "expected": "phrase"
+  },
+  {
+    "target": "καλή όρεξη",
+    "id": "V-0051",
+    "expected": "phrase"
+  },
+  {
+    "target": "τι κάνεις",
+    "id": "V-0052",
+    "expected": "phrase"
+  },
+  {
+    "target": "με συγχωρείτε",
+    "id": "V-0053",
+    "expected": "phrase"
+  },
+  {
+    "target": "στην υγειά σας",
+    "id": "V-0054",
+    "expected": "phrase"
+  },
+  {
+    "target": "χωρίς (prep)",
+    "id": "V-0060",
+    "expected": "word"
+  },
+  {
+    "target": "πάντα (adv)",
+    "id": "V-0061",
+    "expected": "word"
+  },
+  {
+    "target": "αλλά (conj)",
+    "id": "V-0062",
+    "expected": "word"
+  },
+  {
+    "target": "γεια (interj)",
+    "id": "V-0063",
+    "expected": "word"
+  },
+  {
+    "target": "είμαι, ενεστώτας (είμαι, είσαι, είναι, είμαστε, είστε, είναι)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "το άρθρο και το γένος (ο δρόμος → οι δρόμοι, η πόλη → οι πόλεις, το βιβλίο → τα βιβλία)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "τραπέζι",
+    "id": "V-9999",
+    "expected": null
+  }
+]

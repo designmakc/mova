@@ -105,8 +105,21 @@ function plain(s) {
     .trim();
 }
 
-/** `lápiz m (plural lápices)` → `m`. Also `mf`, and `m or f`. */
-const GENDER_RE = /^\S+\s+((?:mf|[mfn])(?:\s+or\s+(?:mf|[mfn]))*)(?:\s|$|\()/;
+/**
+ * Gender is read from the MARKUP, not from the rendered text.
+ *
+ * Wiktionary tags it semantically — `<span class="gender"><abbr title="neuter gender">n
+ * </abbr></span>` — and that is the only reading that survives a non-Latin script. A Greek
+ * headword renders as `βιβλίο • (vivlío) n (plural βιβλία)`: the transliteration sits
+ * between the word and its gender, so a text rule anchored to "the token after the
+ * headword" finds nothing. Found building the Greek pack, 2026-08-17, after the first four
+ * Latin-script packs let the weaker rule look correct.
+ */
+const GENDER_SPAN = /<span[^>]*class="[^"]*\bgender\b[^"]*"[^>]*>([\s\S]*?)<\/span>/g;
+const ABBR = /<abbr[^>]*>([^<]*)<\/abbr>/g;
+
+/** The gender tokens a pack may legitimately report; anything else is markup noise. */
+const GENDER_TOKENS = new Set(["m", "f", "n", "c", "mf", "m-p", "f-p", "n-p"]);
 
 /**
  * A labelled form inside the parenthetical. Deliberately narrow: `plural` only by
@@ -118,10 +131,34 @@ const LABEL_RE = /\b(plural|genitive|feminine)\s+([^\s,()]+)/g;
 function parseRendered(text, formLabels) {
   const genders = new Set();
   const forms = new Set();
+
+  // Genders off the markup — one headword line per sense, each carrying its own gender
+  // span (Spanish `mano` renders a feminine line and a masculine one).
+  //
+  // Scoped to the HEAD of each line, meaning everything before the first `<i>`. The
+  // inflection parenthetical labels its entries in italics — `(<i>plural</i> …)` — and the
+  // forms inside carry gender spans of their OWN: Italian `uovo m (plural uova f)` and
+  // German `Stadt f (… diminutive Städtchen n)`. Reading the whole line reported `uovo` as
+  // both masculine and feminine, which is a fact about its plural, not about the headword.
+  // (Found extending the parser for Greek, 2026-08-17 — both regressions were caught by the
+  // packs' own recorded fixtures.)
+  for (const line of text.split("\n")) {
+    const head = line.includes("<i>") ? line.slice(0, line.indexOf("<i>")) : line;
+    GENDER_SPAN.lastIndex = 0;
+    let span;
+    while ((span = GENDER_SPAN.exec(head))) {
+      ABBR.lastIndex = 0;
+      let abbr;
+      while ((abbr = ABBR.exec(span[1]))) {
+        const token = abbr[1].trim();
+        if (GENDER_TOKENS.has(token)) genders.add(token);
+      }
+    }
+  }
+
+  // Forms off the rendered text, where the label and its value sit together.
   for (const line of plain(text).split("\n")) {
     if (!line.trim()) continue;
-    const g = GENDER_RE.exec(line);
-    if (g) for (const one of g[1].split(/\s+or\s+/)) genders.add(one);
     LABEL_RE.lastIndex = 0;
     let m;
     while ((m = LABEL_RE.exec(line))) {

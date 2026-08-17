@@ -1,10 +1,10 @@
 {
   "generated": "2026-08-17",
-  "template_version": "0.11.0",
+  "template_version": "0.12.0",
   "files": {
     ".github/workflows/ci.yml": "c4c55c127452f2a6fa479f584e56619445af6d764cbe685d6c7aadd6937be35e",
     ".vscode/settings.json": "c4bc01bd0341a88c85a0082e913ba44a1a3655d4b4077fba26756f75a9974251",
-    "AGENTS.md": "01f79ab32cb37a7e99142c548c7f53ba434049eae6cca909024b37eca5ce62c1",
+    "AGENTS.md": "07f3b8bcdcba5982bf8174bec28ed8878cd77160626fe6a341062a61435c9f5c",
     "agents/antigravity/README.md": "350a1beb8c8a52911c7a2724b32353e18353198ef2035062af2888452da479cd",
     "agents/claude-code/README.md": "142212123a4a0750e407b555f311633a83e4462e773aee098c500b9c72c3f240",
     "agents/claude-code/launch.json": "6afd67a85e9010827752bfcaec910497caf1be3833217face0c843517d3938f9",
@@ -49,7 +49,7 @@
     "docs/visuals.index.test.ts": "4a620d965d1e3ee7b1391a3e9189029beaa72d36a2b65ec09452c560b83b8a6f",
     "package.json": "96ef463f4d50087d8c544dd137a29e7e7a44e6749f79b3c7607e86585673b834",
     "packs/SPEC.md": "6fb4a851d8f5cdbb798fb6a18bc4fbf041a031a23c4ed5a67b41e78993040d93",
-    "packs/_shared/wiktionary.mjs": "851e5f266abeb918c2c16c8af5bb773ca1763172a3ffaf602d7ac427d8227ec7",
+    "packs/_shared/wiktionary.mjs": "94803246586bf4863296e00b22efbe83d118b5ea1763dc2e8b478a1ce2bfe61c",
     "packs/_template/GENERATE.md": "4e9116a5592f45f3f18854bd68fcb70dfeb91696d38baa189b75222f7b88de23",
     "packs/_template/golden/README.md": "6ca3bdcdd148b265c554e7efa1a8027e13ec32a58903530c8ae21a4ea6e2a9f4",
     "packs/_template/normalize.mjs": "236013ff09884cc3253c9cd3d3c584d4b51fa3c66179907982ee26106cfd0007",

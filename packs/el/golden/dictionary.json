@@ -1,0 +1,154 @@
+{
+  "source": "wiktionary:el",
+  "recorded": "2026-08-17",
+  "cases": [
+    {
+      "word": "βιβλίο",
+      "why": "Neuter, and the -ο → -α plural. This is the case that forced the shared adapter to read gender from the markup: the rendered line is `βιβλίο • (vivlío) n (plural βιβλία)`, and a rule keyed to the token after the headword finds the transliteration instead.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "n"
+        ],
+        "forms": [
+          "βιβλία"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "βιβλίο",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Greek==\n===Etymology===\nFrom {{inh|el|grc|βιβλίον}}, from {{m|grc|βυβλίον}}, from {{m|grc|βύβλος||papyrus}}, from the city of {{m|grc|Βύβλος||Byblos}}, from {{der|el|phn|-}}.\n\nCompare {{cog|grk-mar|вивли́о}}.\n\n===Pronunciation===\n* {{IPA|el|/viˈvli.o/}}\n* {{hyphenation|el|βι|βλί|ο}}\n\n===Noun===\n{{el-noun|n|βιβλία}}\n\n# [[book]]\n\n====Declension====\n{{el-nN-ο-α-2a|βιβλί}}\n\n====Derived terms====\n{{col|el\n|βιβλιαράκι<t:booklet><g:n>\n|βιβλιάριο<t:booklet><g:n>\n|βιβλιοπωλείο<t:bookshop><g:n>\n|βιβλιοθήκη<t:library, bookcase><g:n>\n|βιβλιοθηκάριος<t:librarian><g:m,f>\n|βιβλιοδεσία<t:bookbinding><g:f>\n|βιβλιοδέτης<t:bookbinder><g:m>\n|βιβλιοδετείο<t:bookbindery><g:n>\n|βιβλιόφιλος<t:bibliophile><g:m>\n|[[βιβλίο]] [[επισκέπτης|επισκεπτών]]<t:visitors' book, guest book><g:n>\n}}\n\n===Further reading===\n* {{R:DSMG}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Grek headword\" lang=\"el\">βιβλίο</strong> [[Wiktionary:Greek transliteration|•]] (<span lang=\"el-Latn\" class=\"headword-tr tr Latn\" dir=\"ltr\">vivlío</span>)&nbsp;<span class=\"gender\"><abbr title=\"neuter gender\">n</abbr></span> (<i>plural</i> <b class=\"Grek\" lang=\"el\">[[:βιβλία#Greek|βιβλία]]</b>)</span>[[Category:Greek lemmas|ΒΙΒΛΙΟ]][[Category:Greek nouns|ΒΙΒΛΙΟ]][[Category:Greek entries with incorrect language header|ΒΙΒΛΙΟ]][[Category:Greek neuter nouns|ΒΙΒΛΙΟ]][[Category:Pages with entries|ΒΙΒΛΙΟ]][[Category:Pages with 1 entry|ΒΙΒΛΙΟ]]"
+        }
+      }
+    },
+    {
+      "word": "πόλη",
+      "why": "Feminine with the -η → -εις plural, one of the ancient-declension survivals that no ending rule in this pack would produce.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f"
+        ],
+        "forms": [
+          "πόλεις"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "πόλη",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Greek==\n===Etymology===\nLearnedly,<ref>{{R:DSMG}}</ref> from {{der|el|grc|πόλις}}, from {{der|el|grk-pro|*ptólis}}, from {{der|el|ine-pro|*tpólHis}}, from {{m|ine-pro|*tpelH-}}.\n\n===Pronunciation===\n* {{IPA|el|/ˈpoli/}}\n* {{audio|el|El-Πόλη.ogg}}\n\n===Noun===\n{{el-noun|f|πόλεις}}\n\n# [[town]]; [[city]]\n# [[townspeople]]\n\n====Declension====\n{{el-nF-η-εις-2a|πόλ}}\n\n====Synonyms====\n* {{l|el|πολιτεία|g=n}}\n* {{l|el|άστυ|g=n|gloss=city center}}\n\n====Related terms====\n{{col|el|keeplast=1\n|αντιπολιτικός<t:unpolitical><pos:a>\n|απολιτικός<t:apolitical><pos:a>\n|κωμόπολη<t:small town><g:f>\n|πολιτεία<t:state><g:f>\n|πολίτευμα<t:governance><g:n>\n|πολίτης<t:citizen><g:m>\n|πολιτική<t:politics, policy><g:f>\n|πολιτικός<t:civil, political><pos:a>\n|πολιτικός<t:politician><pos:n><g:m,f>\n|πολίτις<t:citizen><g:f>\n|πολιτισμός<t:culture, civilisation><g:m>\n|πολίχνη<t:township><g:f>\n|{{see|el|noast=1|and=1|αντιπολίτευση|t=political opposition|g=f}}\n}}\n\n====See also====\n* {{l|el|κώμη|t=market town|g=f}}\n* {{l|el|χωριό|t=village, hometown|g=n}}\n* {{l|el|πόλις|g=f}} (''also in [[Katharevousa]]'')\n\n===References===\n<references />\n\n===Further reading===\n* {{pedia|lang=el}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Grek headword\" lang=\"el\">πόλη</strong> [[Wiktionary:Greek transliteration|•]] (<span lang=\"el-Latn\" class=\"headword-tr tr Latn\" dir=\"ltr\">póli</span>)&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>plural</i> <b class=\"Grek\" lang=\"el\">[[:πόλεις#Greek|πόλεις]]</b>)</span>[[Category:Greek lemmas|ΠΟΛΗ]][[Category:Greek nouns|ΠΟΛΗ]][[Category:Greek entries with incorrect language header|ΠΟΛΗ]][[Category:Greek feminine nouns|ΠΟΛΗ]][[Category:Pages with entries|ΠΟΛΗ]][[Category:Pages with 2 entries|ΠΟΛΗ]]"
+        }
+      }
+    },
+    {
+      "word": "άνθρωπος",
+      "why": "Masculine -ος → -οι. The everyday case that must not regress while the irregulars are pinned.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "άνθρωποι"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "άνθρωπος",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Greek==\n===Etymology===\nInherited<ref>{{R:DSMG}}</ref> from {{inh|el|grc|ἄνθρωπος||man}}, as also are variants<ref>[http://repository.academyofathens.gr/kendi/index.php/gr/listItems/118776 άνθρωπος] - ''Historical Dictionary of the Academy of Athens'', vol.2</ref> like {{m|el|άθρωπος}}, already since {{m|grc|ἄθρωπος}} of the 3rd century.<ref>[https://www.greek-language.gr/greekLang/medieval_greek/em_kriaras/scanned_new/index.html?start=301&id=50&show=1 p.214], [https://www.greek-language.gr/greekLang/medieval_greek/em_kriaras/scanned_new/index.html?start=301&id=50&show=1 215] - {{R:Kriaras Medieval2}}</ref><ref>{{R:Kriaras Medieval}}</ref><br>\nAccording to other etymologists, an internal learned borrowing,<ref>{{R:Georgakas}}</ref> replacing {{m|el|άθρωπος}}.<ref>{{cite-book|author=Julián Mendez Dosuna|chapter=Once again on allophonic spellings in Ancient Greek|title=Miscellanea Indogermanica: Festschrift for José Luis García Ramón herausgegeben von 65. Geburtstag|editors=Ivo Hajnal, Daniel Kölligan, Katharina Zipser|page=491|location=Innsbruck|year=2017|publisher=Innsbrucker Beiträge zur Sprachwissenschaft}}</ref>\n\n===Pronunciation===\n* {{IPA|el|/ˈan.θɾo.pos/}}\n* {{audio|el|El-άνθρωπος.ogg}}\n* {{hyphenation|el|άν|θρω|πος}}\n\n===Noun===\n{{el-noun|m|άνθρωποι}}\n\n# a [[human]]; [[person]]; the species [[man]]\n## {{lb|el|in the plural}} [[people]]\n\n====Usage notes====\nThis masculine noun covers both male and female meanings of the definition. Articles and adjectives will both follow the masculine gender.\n\n====Declension====\n{{el-nM-ος-οι-3b|άνθρωπ|ανθρώπ}}\n\n====Derived terms====\n{{col|el|keeplast=1\n|ανθρωπο-<pos:prefix>\n|ανθρωπό-<pos:prefix>\n|ανθρωπάκι<pos:diminutive form><g:n>\n|ανθρωπάριο<pos:diminutive form><g:n>\n|αγριάνθρωπος<t:wild man><g:m>\n|ανθρωπεύω<t:to civilise>\n|ανθρωπιά<t:compassion><g:f>\n|ανθρωπινός<t:humane><pos:a>\n|ανθρώπινος<t:human><pos:a>\n|ανθρωπισμός<t:humanism><g:m>\n|ανθρωπιστής<t:humanist><g:m>\n|ανθρωπίστρια<t:humanist><g:f>\n|ανθρωπιστικά<t:compassionately><pos:adverb>\n|ανθρωπιστικός<t:compassionate, humanistic>\n|ανθρωπογένεση<t:anthropogeny><g:f>\n|ανθρωπογεωγραφία<t:anthropogeography><g:f>\n|ανθρωπογνωσία<t:knowledge of man><g:f>\n|ανθρωποειδής<t:anthropoid, humanoid><pos:a>\n|ανθρωποθάλασσα<t:huge crowd><g:f>\n|ανθρωποθυσία<t:human sacrifice><g:f>\n|Ανθρωπόκαινο<t:Anthropocene><g:n>\n|ανθρωπόκαινος<t:Anthropocene><pos:a>\n|ανθρωποκεντρικός<t:anthropocentric><pos:a>\n|ανθρωποκεντρισμός<t:anthropocentrism><g:m>\n|ανθρωποκτονία<t:homicide><g:f>\n|ανθρωποκτόνος<t:homicidal><pos:a>\n|ανθρωπομετρία<t:anthropometry><g:f>\n|ανθρωπομορφικός<t:anthropomorphic><pos:a>\n|ανθρωπομορφισμός<t:anthropomorphism><g:m>\n|ανθρωπόμορφος<t:anthropomorphous><pos:a>\n|ανθρωποπίθηκος<t:anthropithecus><g:m>\n|ανθρωποπλημμύρα<t:huge crowd><g:f>\n|ανθρωποσύναξη<t:crowd, assembly><g:f>\n|ανθρωποσφαγή<t:massacre><g:f>\n|ανθρωποσωτήριος<t:humanitarian><pos:a>\n|ανθρωπότητα<t:mankind><g:f>\n|ανθρωποφαγία<t:cannibalism><g:f>\n|ανθρωποφαγικός<t:cannibalistic><pos:a>\n|ανθρωποφάγος<t:cannibal><g:m>\n|ανθρωποφοβία<t:anthropophobia><g:f>\n|συνάνθρωπος<t:fellow man><g:m>\n|φιλάνθρωπος<t:philanthropic><pos:a>\n|χιονάνθρωπος<t:snowman><g:m>\n|{{see|el|noast=1|and=1|ανθρωπολογία|t=anthropology|g=f}} ''and'' {{l|el|απάνθρωπος|t=inhuman, cruel}}\n}}\n\n===References===\n<references/>"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Grek headword\" lang=\"el\">άνθρωπος</strong> [[Wiktionary:Greek transliteration|•]] (<span lang=\"el-Latn\" class=\"headword-tr tr Latn\" dir=\"ltr\">ánthropos</span>)&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Grek\" lang=\"el\">[[:άνθρωποι#Greek|άνθρωποι]]</b>)</span>[[Category:Greek lemmas|ΑΝΘΡΩΠΟΣ]][[Category:Greek nouns|ΑΝΘΡΩΠΟΣ]][[Category:Greek entries with incorrect language header|ΑΝΘΡΩΠΟΣ]][[Category:Greek masculine nouns|ΑΝΘΡΩΠΟΣ]][[Category:Pages with entries|ΑΝΘΡΩΠΟΣ]][[Category:Pages with 1 entry|ΑΝΘΡΩΠΟΣ]]"
+        }
+      }
+    },
+    {
+      "word": "casa",
+      "why": "A REAL Wiktionary page with no Greek section. found:false is the disambiguation story, and it matters more here: a Greek learner's ledger will contain Latin-script loanwords.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "casa",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": ""
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "word": "ζζζκκξnotaword",
+      "why": "No page at all — the not-in-the-dictionary branch, where a parser invents facts.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "ζζζκκξnotaword",
+              "missing": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

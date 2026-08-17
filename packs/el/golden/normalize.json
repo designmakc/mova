@@ -1,0 +1,157 @@
+[
+  {
+    "input": "Aθήνα",
+    "expected": "Αθήνα",
+    "note": "A U+0041 (Latin) → Α U+0391 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Bόλος",
+    "expected": "Βόλος",
+    "note": "B U+0042 (Latin) → Β U+0392 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Eλλάδα",
+    "expected": "Ελλάδα",
+    "note": "E U+0045 (Latin) → Ε U+0395 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Hλίας",
+    "expected": "Ηλίας",
+    "note": "H U+0048 (Latin) → Η U+0397 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Iταλία",
+    "expected": "Ιταλία",
+    "note": "I U+0049 (Latin) → Ι U+0399 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Kρήτη",
+    "expected": "Κρήτη",
+    "note": "K U+004B (Latin) → Κ U+039A — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Mαρία",
+    "expected": "Μαρία",
+    "note": "M U+004D (Latin) → Μ U+039C — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Nίκος",
+    "expected": "Νίκος",
+    "note": "N U+004E (Latin) → Ν U+039D — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Oκτώβριος",
+    "expected": "Οκτώβριος",
+    "note": "O U+004F (Latin) → Ο U+039F — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Pόδος",
+    "expected": "Ρόδος",
+    "note": "P U+0050 (Latin) → Ρ U+03A1 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Tρίτη",
+    "expected": "Τρίτη",
+    "note": "T U+0054 (Latin) → Τ U+03A4 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Xίος",
+    "expected": "Χίος",
+    "note": "X U+0058 (Latin) → Χ U+03A7 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Yγεία",
+    "expected": "Υγεία",
+    "note": "Y U+0059 (Latin) → Υ U+03A5 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Zάκυνθος",
+    "expected": "Ζάκυνθος",
+    "note": "Z U+005A (Latin) → Ζ U+0396 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "κόσμoς",
+    "expected": "κόσμος",
+    "note": "o U+006F (Latin) → ο U+03BF — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Аθήνα",
+    "expected": "Αθήνα",
+    "note": "А U+0410 (Cyrillic) → Α U+0391 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Еλλάδα",
+    "expected": "Ελλάδα",
+    "note": "Е U+0415 (Cyrillic) → Ε U+0395 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Оκτώβριος",
+    "expected": "Οκτώβριος",
+    "note": "О U+041E (Cyrillic) → Ο U+039F — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Рόδος",
+    "expected": "Ρόδος",
+    "note": "Р U+0420 (Cyrillic) → Ρ U+03A1 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Тρίτη",
+    "expected": "Τρίτη",
+    "note": "Т U+0422 (Cyrillic) → Τ U+03A4 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "Хίος",
+    "expected": "Χίος",
+    "note": "Х U+0425 (Cyrillic) → Χ U+03A7 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "κаλά",
+    "expected": "καλά",
+    "note": "а U+0430 (Cyrillic) → α U+03B1 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "νеρό",
+    "expected": "νερό",
+    "note": "е U+0435 (Cyrillic) → ε U+03B5 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "κόσμоς",
+    "expected": "κόσμος",
+    "note": "о U+043E (Cyrillic) → ο U+03BF — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "μέрα",
+    "expected": "μέρα",
+    "note": "р U+0440 (Cyrillic) → ρ U+03C1 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "хέρι",
+    "expected": "χέρι",
+    "note": "х U+0445 (Cyrillic) → χ U+03C7 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "οуρανός",
+    "expected": "ουρανός",
+    "note": "у U+0443 (Cyrillic) → υ U+03C5 — identical glyph, invisible in the ledger"
+  },
+  {
+    "input": "καλημέρα",
+    "expected": "καλημέρα",
+    "note": "NFD input (vowel + combining tonos) composes before folding — macOS paste delivers this"
+  },
+  {
+    "input": "ευχαριστώ",
+    "expected": "ευχαριστώ",
+    "note": "already canonical — normalize is idempotent"
+  },
+  {
+    "input": "καλημερα",
+    "expected": "καλημερα",
+    "note": "a MISSING tonos is a language error and is never repaired — in Greek the accent also carries the stress"
+  },
+  {
+    "input": "κόσμος",
+    "expected": "κόσμος",
+    "note": "final sigma is NEVER folded: ς and σ are the same letter in two positions and κόσμος correctly takes both"
+  }
+]
