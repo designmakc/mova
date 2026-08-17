@@ -106,6 +106,7 @@
     "setup/smoke.md": "ad1ec5aa6468507d33b11df594204d3d3b8c3776a1a46189c96682c07c48c081",
     "state/ledgers.test.ts": "32be2fa95cc92e491006fdae5c8f0bc0ce60d547bc7d39266922edb8792bd2fc",
     "tsconfig.json": "32b805bde97b8039a4342588f234cbdb4bcafa24a7a252c22fff4ad2ab9e5c1f",
+    "upstream/backports/2026-08-17_narration-mechanic.md": "632eb065d4b2722e8143351e80159e9417427f94e5f0bf2088b9edd9622e19d1",
     "upstream/backports/README.md": "ae1264728eb9164a2c6f64be85218cf94deadbe57863088d0e3098a9a5b886d9",
     "upstream/map.md": "0fce1b5b4bcf5a5ff238890ffc087dccb59f203985fdf68a1a87d989ce61a273",
     "work/feedback/PROMPT.md": "64f88849bbec4c16293cd9d85603dad658bfca8d535ed018dc71a160c144a5fb",
