@@ -58,6 +58,7 @@ them. Playbooks are **verbs** and stay thin; shared rules live once, in `docs/me
 | `docs/mechanics/` | The rules in force: SRS, session format, teaching beats, media, verification. Playbooks obey these. |
 | `docs/mechanics/why/` | **Only a retro reads this.** Why each rule exists — the incidents and measurements behind it. A study session never opens it. |
 | `docs/mechanics/teaching.md` | **You're about to teach anything.** |
+| `docs/mechanics/narration.md` | **You're about to say anything to the learner** — what to price, what to announce, what never to show them. Setup obeys it too. |
 | `docs/reference/topics.md` | Coverage map — the arbiter for repair-vs-new-material. |
 | `docs/reference/transfer.md` | You're explaining anything — contrast hooks and false friends for this learner's language pair. |
 | `docs/visual/SPEC.md` | **You're about to build any page** — tokens, components; begin with `node scripts/newvisual.mjs <slug>`. |

@@ -60,7 +60,8 @@ session_format.md's answer-leak sections). **Retest on genuinely new items, run
 
 ## The size rule — count before you ask
 
-The time box is a **constraint, not a description**. limba's drill once ran a 56-slot
+**The instance of [docs/mechanics/narration.md](../docs/mechanics/narration.md) § 1 that
+this verb owns**, with the rates. The time box is a **constraint, not a description**. limba's drill once ran a 56-slot
 diagnostic, a 46-slot retest and 16 more items under a "10–15′" heading, and nothing in the
 flow noticed until close-out.
 

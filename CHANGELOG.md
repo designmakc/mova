@@ -4,6 +4,93 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.8.0 — 2026-08-17
+
+Narration becomes a mechanic, and onboarding stops guessing how long it will take. 0.5.0
+fixed what the first real onboarding run said out loud — the missing topic counter, the
+unannounced silence, the handoff that was a verb instead of a tour. This release goes after
+what that run could not see: the interview asked for answers it could work out itself, the
+build priced every workspace the same, an interrupted build could not be resumed at all,
+and the rules for how the agent talks lived in five files and one generated one.
+
+instance-impact: **engine files auto-update, plus one optional profile edit.** The
+narration mechanic, the session rules and the guides all arrive through `/update`. The
+setup and interview changes affect newly generated workspaces only; setup does not run
+twice. Optional: your profile's Operational profile carries a seeded bullet reading
+*"Plain language at the moments that matter…"* — that rule now lives in the engine
+(`docs/mechanics/narration.md`) and reaches you through updates. Replace the bullet with a
+pointer to it, and keep a bullet there only for a way **your** narration differs from the
+default.
+
+- **How the agent talks was a rule with no owner.** `playbooks/drill.md` owned "state the
+  item count and the minutes it implies", the close-out ritual owned "say it plainly", media
+  owned the clickable link, setup owned the two clocks, `session_format.md` owned "state
+  position before content" — and the profile *template* shipped "plain language at the
+  moments that matter" as a seeded bullet, so an engine rule sat once per instance where no
+  template update could ever reach it. New `docs/mechanics/narration.md` owns all of it in
+  eight rules and 760 words, with the story in `why/narration.md` and the scattered copies
+  reduced to pointers. The scattering had a real cost: 0.5.0's interview counter was never
+  applied to the build or to the session, because nothing connected the three as one
+  problem.
+- **The rule nobody had written down: never show the work.** Every agent that runs this
+  workspace is a coding agent whose default register is the tool call — the command, the
+  output, the green tick. The learner is not a developer and setup's promise is that they
+  answer questions and nothing else. Narration rule 3 states the test: say it only when it
+  changes what the learner should do.
+- **An interrupted setup could not be resumed, and the gate made sure of it.** The gate
+  asked one question — does `docs/reference/profile.md` exist — and the profile is written
+  at generation step 1 of 9. So a build that died at step 4 answered the learner's second
+  attempt with "this is already an instance, use update": ten minutes of interview thrown
+  away, and a half-built workspace that looked finished. The gate now decides between three
+  states, resumes at the first missing artifact, and re-asks only the one or two answers
+  that live outside the profile and are genuinely gone with their file.
+- **One estimate for every build, and the builds differ by a factor of four.** "5–15
+  minutes" was stated three times and computed never. A target language with no pack adds a
+  full pack build; a zip copy adds an install; an exam goal adds format research; a narrow
+  focus subtracts. Setup now carries a branch table, prices *this* build at the interview's
+  close, re-anchors when a branch runs long, and says the reason with the number — "closer
+  to 45, because Georgian has no language pack yet".
+- **Nine steps, nine validations, nine commits, and the learner heard none of it.** 0.5.0
+  announced the silence; the silence still ran unbroken to the handoff. Each finished step
+  now reports one plain line saying what now exists — not what is being done, and never a
+  command, a path or a test result.
+- **The greeting described the questions and not the consequences.** It never said what the
+  learner would end up with, and never said what setup does on their machine: installs
+  dependencies, writes inside this folder and nowhere else, commits after each step, runs
+  its own checks, and reaches the network exactly three times, each named. That paragraph is
+  where a learner decides whether to leave an agent alone with their disk for a quarter of
+  an hour.
+- **The tour never said what the product is.** Its four parts told the learner what to say,
+  where things live, what the plan holds and what happens next — all true, all downstream of
+  a sentence nobody had written: what this thing is and what a week with it looks like. The
+  README says it; the learner who was handed a copy by a friend has never read the README.
+  The tour now opens with the loop in two or three sentences.
+- **Six interview topics became four, and one of them stopped being a question.** The
+  starting level merged into the goal topic — it is the one answer nothing downstream trusts,
+  since the placement measures it — and tuition merged into a "shape of the program" topic.
+  The explanation language is confirmed rather than asked (they opened the conversation in
+  it), and the focus mode is now **proposed from the goal** rather than offered as a
+  four-way menu to someone who has not yet seen the apparatus. `full` remains the default
+  and the only mode any real run has exercised. Nothing the templates consume was dropped;
+  the counter reads `1/4` through `4/4`.
+- **A new last question: "anything else I should know before I build this?"** The four topics
+  collect what generation cannot run without. They collected nothing about the keyboard that
+  cannot type the target language, the six weeks already lost to a move, or the job the
+  language actually has to work in — and every one of those is cheaper now than as a
+  correction three sessions in. It is one open question with two or three examples, silence
+  is a complete answer, and it is not numbered so it cannot become a fifth topic. The profile
+  template already had the slot.
+- **A session now has visible edges.** `session_format.md` had said "state position before
+  content" since the scaffold and meant position *in the material*. A learner inside a
+  sixty-minute session was never told which of five parts they were in — the identical
+  complaint the interview counter answered on the other side of the product. The lesson
+  prices itself at the door, adjusted for what is actually due, and each part opens by
+  saying where it sits.
+- **Setup now records what the build cost.** One line in the generation record: wall-clock
+  minutes, the estimate it was given, and the branches taken. The branch table above is a
+  guess until instances report back, and the SRS cost model spent weeks unfittable for
+  exactly this reason — nobody had written the number down.
+
 ## 0.7.1 — 2026-08-16
 
 The hub stops advertising verbs the workspace will refuse. Its command list is now filtered

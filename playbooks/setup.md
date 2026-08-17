@@ -28,7 +28,9 @@ what a template comment explicitly marks as a learner decision.
 **Reads**: setup/interview.md, setup/scenarios/\*, setup/templates/\*, the chosen
 `packs/<code>/` (pack.md, notes.md), VERSION, docs/mechanics/README.md (provenance
 markers — every generated language-pair claim is born `(assumed)`),
-docs/mechanics/verification.md, docs/visual/SPEC.md — **and `playbooks/`**: every
+docs/mechanics/verification.md, **docs/mechanics/narration.md** (what setup says, when it
+says it, and what the learner never sees — this playbook is its longest single obligation),
+docs/visual/SPEC.md — **and `playbooks/`**: every
 playbook's frontmatter `scenarios:` line (the authority on which verbs this focus mode
 activates), plus the body of any playbook whose rules setup writes into a generated file:
 [tutor-prep.md](tutor-prep.md) (it owns both tuition cadences — the Tuition clause must not
@@ -46,32 +48,111 @@ agents/<agent>/ adapter output, git commits per step (when `mode: enforced`).
 
 ## Flow
 
-### 0 · Gate
+### 0 · Gate — three states, not two
 
-If `docs/reference/profile.md` exists, this is already an instance — stop and say so
-(the update verb handles change). Otherwise greet in one warm paragraph: what this is, that
-you'll ask questions and then build everything yourself, and that the first study session
-afterwards is a gentle placement, not a test.
+**A tree with a profile in it is not necessarily a finished instance.** The profile is
+written at generation step 1 of 9, so every state from "died at step 2" to "shipped and
+studying" has one. Gating on that file alone answers a half-built workspace with *"this is
+already an instance — use update"*, which throws away an interview the learner has just
+spent ten minutes on and hands them a workspace that looks finished and is not. Decide
+between three states before saying anything:
 
-**The greeting also shows the shape of what is about to happen.** A learner who cannot see
-the shape cannot size their answers, and gives the first topic the answer that belonged to
-the fourth. Three things, briefly:
+```
+ls docs/reference/profile.md docs/reference/goal.md docs/reference/topics.md \
+   docs/reference/transfer.md docs/reference/resources.md docs/mechanics/error_taxonomy.md \
+   docs/curriculum.md docs/plan.md docs/concept.md docs/projects/workspace_setup.md \
+   docs/snapshots/*_intake.md work/visuals/README.md 2>&1
+git log --oneline | grep -c '^[0-9a-f]* setup:'      # how far the last attempt got
+```
 
-- **The ground the questions cover — six short phrases, not six questions**: your
-  languages, what success would look like, where you're starting from, how much time you
-  have, how wide you want this, and whether you work with a tutor. Name the areas and stop
-  there. **No sub-questions, no options, no form** — a preview that enumerates *is* the
-  questionnaire dump the interview forbids
+- **No profile** → the bare template. Greet, then run the interview.
+- **Profile plus every file above, and `npm test` green** → a finished instance. Stop and
+  say so; [update.md](update.md) handles change from here.
+- **Profile and anything missing** → **an interrupted build. Resume it; do not re-interview
+  and do not start over.** Say so in one line — *"your answers are all here; I stopped
+  partway through building and I'm picking it up now"* — give the remaining estimate
+  (§ The build estimate, counting only the steps left), then re-enter § 2 Generation at the
+  **first missing artifact** and run forward to the smoke as normal.
+
+**What a resume may and may not re-ask.** The profile holds every interview answer that
+generation consumes, so the four topics are never asked twice. Two answers live somewhere
+other than the profile, and if that file is the missing one they are genuinely gone: the
+**goal in the learner's own words** (`docs/reference/goal.md`, and the scenario list with
+it) and the **starting-level self-report** (the intake snapshot). Re-ask only the one whose
+file is missing, name it as a re-ask — *"I lost your own wording of the goal; give it to me
+once more"* — and never re-run a topic whose output survived.
+
+Otherwise, greet in one warm paragraph: what this is, that you'll ask questions and then
+build everything yourself, and that the first study session afterwards is a gentle
+placement, not a test.
+
+**The greeting shows the shape of what is about to happen** — four things, briefly. A
+learner who cannot see the shape cannot size their answers, and gives the first topic the
+answer that belonged to the fourth.
+
+- **The ground the questions cover — four short phrases, not four questions**: your
+  languages, what success looks like and where you're starting, how much time you have, and
+  how wide you want this. Name the areas and stop there. **No sub-questions, no options, no
+  form** — a preview that enumerates *is* the questionnaire dump the interview forbids
   ([setup/interview.md](../setup/interview.md) § Conduct), and it also invites the learner
-  to answer all six at once, which destroys the reflect-back that catches wrong guesses.
-- **The two clocks**: a few minutes of questions — six numbered topics, so they can see the
-  end from the start — then **5–15 minutes while you build alone**. Say the second number
-  again at the close, when it actually starts (interview § Close).
-- **That everything after the questions is yours**: every command, every file, every check.
+  to answer all four at once, which destroys the reflect-back that catches wrong guesses.
+- **What they will have at the end**, in their own terms and one sentence: a profile of how
+  they learn, a written goal with a finish line, a curriculum, a study plan with dates, a
+  map of what has been covered, the two records that hold every word and every mistake, and
+  two pages — a dashboard and a deck of everything they know. This is the half the 0.5.0
+  greeting never covered: the learner agreed to ten minutes of questions with no idea what
+  was being made of the answers, and only met the answer in the handoff.
+- **What you will do on their machine**, plainly, because this is where trust is decided
+  and the learner is about to leave you alone with it: install this workspace's
+  dependencies, write files inside this folder and nowhere else, make a commit after each
+  finished step so nothing is lost, and run the checks yourself. Three things reach the
+  network and you name them — one dictionary lookup and one text-to-speech check now, and a
+  search for the exam's format if they named an exam. Nothing else leaves the machine.
+- **The two clocks**: a few minutes of questions — four numbered topics, so they can see the
+  end from the start — then **the build, which you do alone**. Give the range from
+  § The build estimate, and say the number again at the close when it actually starts
+  (interview § Close).
+- **That everything after the questions is theirs to watch, not to do**: every command,
+  every file, every check is yours.
 
 (Found in the first real onboarding run, 2026-08-15: the greeting promised "a few
 questions" and gave the learner no way to judge the size or the length of what they had
 just agreed to.)
+
+### 0b · The build estimate
+
+**Compute it; never quote a fixed figure.** By the end of the interview every branch below
+is settled, so the number is arithmetic, not a guess — and the branches move it by a factor
+of four. Price it once at the interview's close, re-anchor it whenever a branch turns out
+worse than estimated ([../docs/mechanics/narration.md](../docs/mechanics/narration.md) § 1
+and § 2), and count only the remaining steps when resuming.
+
+| Branch | Condition | Add |
+| --- | --- | --- |
+| **Base** — nine steps, templates filled and validated | always | **5–15 min** |
+| **Pack build** | `packs/<code>/` does not exist for the target | **+20–40 min** — [packs/_template/GENERATE.md](../packs/_template/GENERATE.md) end to end, every step gated on a pasted result |
+| **Dependency install** | zip copy, no `node_modules/` | +1–3 min |
+| **Goal research** | `goal_kind: exam`, format or descriptors not known | +3–8 min |
+| **Theming** | Hallmark available (step 9) | +2–5 min |
+| **Narrow focus** | `focus:` is not `full` | −2–5 min — the curriculum and plan are generated coarse |
+
+**Every number in that table is *assumed***
+([../docs/mechanics/README.md](../docs/mechanics/README.md) — the provenance markers). The
+base is inherited from the scaffold and has never been measured; the branches are sized from
+the work each one names. What changed in 0.8.0 is not the accuracy of the base — it is that
+a build with a pack build in it stops being quoted the base at all.
+
+So a `full` instance in a language with a pack, on a machine with node and git, is the
+short end of the base; a language with no pack is **35–60 minutes** and the learner must
+hear that number before it starts, not when step 4 arrives. **State a range with a reason,
+never a point estimate** — "about 10 minutes" and "closer to 45, because Georgian has no
+language pack yet and I have to build one first" are both honest; "5–15 minutes" said to
+the second learner is not.
+
+**Record what it actually took.** Step 7's seed project carries the real elapsed time, so
+this table can be re-fitted from instances instead of re-guessed — the same discipline the
+session log's `duration` field exists for ([../docs/mechanics/srs.md](../docs/mechanics/srs.md),
+the cost model, which was unfittable for exactly as long as nobody wrote the number down).
 
 ### 1 · Interview
 
@@ -81,12 +162,29 @@ Do not begin generation with an unconfirmed picture.
 
 ### 2 · Generation — in order, validated per step
 
-**Say the build has started, and repeat the 5–15 minute figure once**, before step 1.
-The interview was turn-by-turn; the generation is a long silence, and a silence that was
-not announced reads as a crash. From here to the handoff the learner has nothing to do —
-which is the promise above, and it only lands if they know how long nothing lasts. The one
-branch that breaks the estimate is step 4's pack build; that step warns again when it is
-taken.
+**Announce, checkpoint, re-anchor** — the three obligations of any long stretch the learner
+sits out ([../docs/mechanics/narration.md](../docs/mechanics/narration.md) § 2). This is the
+longest one in the product.
+
+- **Announce**, before step 1: the build has started, it runs *this* long (§ 0b, the same
+  number the interview's close gave), and they can walk away and come back.
+- **Checkpoint**: **one short line per finished step**, in the learner's terms — *"your
+  profile is written"*, *"the goal is down, with the exam's four sections in it"*, *"the
+  curriculum is laid out: 14 units, the first one is greetings and the alphabet"*. Nine
+  steps, nine lines, and each one lands only once the step's validation is green. Say what
+  now exists, never what you are about to do.
+- **Never show the work.** No commands, no test output, no green ticks, no file paths, no
+  commit messages ([narration.md](../docs/mechanics/narration.md) § 3 and § 4). A failed
+  validation that you fix by re-running the step is not a checkpoint and the learner never
+  hears about it — the promise is that every fix is yours.
+- **Re-anchor** the moment a branch runs longer than estimated: the new number and the
+  one-word reason, once. Step 4's pack build is the branch that most often does this, and it
+  warns again when it is taken.
+
+From here to the handoff the learner has nothing to do — which is the promise above, and it
+only lands if they can see it being kept. The interview was turn-by-turn; an unannounced
+silence after it reads as a crash, and an announced silence with no checkpoints reads as
+one too, about six minutes in.
 
 Each step: fill the template (drop its guidance comments, flip its marker to
 `mova:instance`, leave no `{{PLACEHOLDER}}` behind), then run that step's validation.
@@ -131,19 +229,22 @@ is a real failure; an unrelated red is the scaffold still being built.
    run, 2026-08-15: the update path made the learner produce a URL the setup agent had had
    in hand all along.)
    *Validate*: `node -e "import('./scripts/profile.mjs').then(m => { const p = m.loadProfile(); for (const k of ['pack','target_language','meta_language','native_languages','contrast_ranking','goal_kind','goal_label','sections','units','mode','agent','audio','tts','publishing','template_version']) p.require(k); console.log('profile ok'); })"`
-2. **Intake snapshot** — `docs/snapshots/<today>_intake.md`: the Topic 3 self-assessment
+2. **Intake snapshot** — `docs/snapshots/<today>_intake.md`: the Topic 2 self-assessment (the starting-point half)
    verbatim, with `## Method` saying *self-report, nothing exercised* and
    `Not exercised: everything — the placement session measures`. This is the record the
    placement checks itself against, and the workspace's first dated artifact.
 3. **Goal** — the variant `setup/templates/goal-<kind>.template.md` per the scenario
-   ([setup/scenarios/](../setup/scenarios/)); tuition clause only when Topic 6 said yes.
+   ([setup/scenarios/](../setup/scenarios/)); tuition clause only when Topic 4 found a tutor.
    Research what the template marks researchable (exam format, descriptors); unverified
    facts go on the TO-CONFIRM list, never into silent prose.
    *Validate*: H1 + the H2 order + the bolded spec sentence are present (grep them);
    `sections` letters match the profile.
-4. **Pack** — does `packs/<code>/` exist for the target? Use it. If not, **warn the
-   learner this is the one long step** (a new language pack: tables, fixtures,
-   dictionary adapter), then follow [packs/_template/GENERATE.md](../packs/_template/GENERATE.md)
+4. **Pack** — does `packs/<code>/` exist for the target? Use it. If not, **re-anchor the
+   estimate here with the real number** — a new language pack (tables, fixtures, dictionary
+   adapter) is **+20–40 minutes** on top of everything else, it is the single largest branch
+   in § 0b, and the learner has already been told at the interview's close that this build
+   takes the long shape. Say it once, in one line, then follow
+   [packs/_template/GENERATE.md](../packs/_template/GENERATE.md)
    to completion. *Validate*: `node scripts/packcheck.mjs <code>` exits 0; one live
    dictionary lookup matches the probe's finding.
 5. **The hard trio** — transfer, error taxonomy, topics; these three carry the
@@ -183,6 +284,12 @@ is a real failure; an unrelated red is the scaffold still being built.
      `## Todo` (empty), `## Design` (the interview's load-bearing answers and every
      judgment call you made generating — the file a future "why is the workspace like
      this?" question greps).
+     **`## Status` also carries what this build actually cost**: one line —
+     `Build: <N> min wall-clock (estimated <range>; branches taken: <pack build | install |
+     goal research | theming | none>)`. It is the only record of it, and § 0b's table is a
+     guess until instances report back. A number nobody writes down is a number nobody can
+     re-fit — the session log's `duration` field exists because the SRS cost model spent
+     weeks unfittable for exactly that reason.
    *Validate*: `npx vitest run docs/plan.annotations.test.ts docs/projects.index.test.ts
    docs/consequential.test.ts` (a failed SRS-ceiling check means the goal's volume target
    and the plan's pace disagree: fix the numbers, not the test).
@@ -214,9 +321,20 @@ done until the smoke is clean.
 moment is a workspace they have never seen, built while they were away, in a shape nobody
 described to them: they know the questions they answered and nothing about what those
 answers produced. "Ready — say lesson" hands them a verb and leaves them to discover the
-rest by accident. Four parts, in this order, then stop. Keep the whole thing to about a
-screen: this is orientation, not documentation, and each part below has a guide page
-carrying the depth. (Found in the first real onboarding run, 2026-08-15.)
+rest by accident. **An opener, then four parts, in this order, then stop.** Keep the whole
+thing to about a screen: this is orientation, not documentation, and each part below has a
+guide page carrying the depth. (Found in the first real onboarding run, 2026-08-15.)
+
+**Open with what this is and how a week with it works** — two or three sentences, before
+any of the four parts. Not what setup built; **what the product is**. The loop, in the
+learner's terms: *this workspace teaches you and keeps the record — the dashboard tells you
+what is due, you open a fresh chat and say one word, the session teaches, tests you and
+writes everything down, and the dashboard is current again by the time you close it. You
+never touch a file; you talk to me and study.* The README says this, and the learner who
+was handed a copy by a friend, or who came back to it three weeks later, has never read the
+README — the tour is the only place the product ever explains itself to the person using
+it. Name [../docs/guide/how-sessions-run.md](../docs/guide/how-sessions-run.md) once as
+where the long version lives.
 
 **1 · What you can say.** The verbs *this* instance answers to — one plain line each, from
 the focus mode's live set
@@ -272,7 +390,8 @@ workspace cannot tell them from real spelling. Each item is also a `🔧` milest
 genuinely blocked on them — a list of five is a handoff, a list of fifteen is homework.
 
 Then stop — the first session belongs to the starting verb, not to setup's momentum. **The
-tour is the last thing setup says, so it does not compete with the placement**: four parts
-and the human-only list, not a walkthrough of the mechanics, the SRS tiers or the file
-layout. Everything left over is what the guides are for, and the learner will meet it when
-a session needs them to.
+tour is the last thing setup says, so it does not compete with the placement**
+([../docs/mechanics/narration.md](../docs/mechanics/narration.md) § 8): the opener, four
+parts and the human-only list, not a walkthrough of the mechanics, the SRS tiers or the
+file layout. Everything left over is what the guides are for, and the learner will meet it
+when a session needs them to.

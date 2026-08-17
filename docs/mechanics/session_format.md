@@ -85,6 +85,9 @@ The learner runs many sessions and returns cold. **State position before content
   and what the learner will and will not be able to do afterwards.
 - **Every teaching section** — the Placement beat from [teaching.md](teaching.md) ①,
   derived from [../reference/topics.md](../reference/topics.md), never improvised.
+- **The clock, not only the material** ([narration.md](narration.md) § 7) — what the verb
+  they just said costs, which part of five they are in, and roughly what is left. Both
+  belong to the opener; the second was never stated anywhere until 2026-08-17.
 
 ## The placement calibration — the first session probes instead of teaching
 
@@ -595,10 +598,10 @@ a **path-named** `git add` line.
 12. **Say it plainly.** Steps 1–11 write for a future session that greps this repo; they are
     dense, coded and full of paths **by design**. The learner reads something else: what they
     can now do that they could not this morning, what broke and what it means, what happens
-    next — no error codes, no tier numbers, no file paths, no `SES-NNN`. In limba a close-out
-    summary quoted "0.71× headroom" and the learner had to ask twice for plain language
-    (2026-08-03). This step is the one the learner actually reads; the log entry is not a
-    substitute for it, and neither is a rewording of it.
+    next — the learner's vocabulary, and none of the workspace's
+    ([narration.md](narration.md) § 4, which owns that rule and its provenance). This step
+    is the one the learner actually reads; the log entry is not a substitute for it, and
+    neither is a rewording of it.
 
 ### The materials-prepared exit — built, not taught (2026-08-15)
 

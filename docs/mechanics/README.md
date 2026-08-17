@@ -61,6 +61,7 @@
 | [session_format.md](session_format.md) | The five-part session, calibration target, close-out ritual |
 | [teaching.md](teaching.md) | The eight beats, chat/visual split, marking, completeness and claim discipline |
 | [media.md](media.md) | When to play, draw, or link; TTS voices; visual delivery |
+| [narration.md](narration.md) | What the agent says while it works — pricing, silences, checkpoints, the learner's vocabulary |
 | [verification.md](verification.md) | The fact-verification policy — dictionary-verified, tutor-confirmed, or visibly marked |
 | [why/](why/) | The provenance of the rules — incidents, measurements, retractions. **Not read at orient.** |
 | `error_taxonomy.md` | Error codes and log-entry format — generated at setup from `setup/templates/error_taxonomy.template.md` for this learner's language pair; instance-owned, engine-shaped |

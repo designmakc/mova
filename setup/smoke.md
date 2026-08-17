@@ -23,7 +23,7 @@ the instance's own files.**
 > `vitest: command not found` is not a mis-generation — dependencies were never installed
 > (the zip-download path ships no `node_modules/`). Run `npm install`, then this step
 > again, and add it to the environment probe next time
-> ([setup/interview.md](interview.md) Topic 7). It is the one failure here that is yours,
+> ([setup/interview.md](interview.md) § The environment probe). It is the one failure here that is yours,
 > not the generated files'. A fresh instance has no waiver; a red test is a
 mis-generated file, and the failing file names the step:
 
@@ -72,6 +72,10 @@ playbooks, never rule text** (a rule copied into an adapter is a future contradi
 the agents test also checks this). Failure → redo step 8.
 
 ## 4 · First-session preconditions dry run
+
+> These are also what "finished" means for [playbooks/setup.md](../playbooks/setup.md)
+> § 0's three-state gate: a tree holding a profile but failing any check below is an
+> **interrupted build to resume**, never an instance to refuse.
 
 The handoff promises a verb — **whichever one carries placement in this focus mode**
 (`lesson` under `full`, `drill` under `drill`/`vocab`, `write` under `writing`;

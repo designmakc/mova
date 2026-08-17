@@ -133,9 +133,18 @@ retro verb routes them here).
 - **Keyboard / input method:** {{KEYBOARD_NOTES}}. <!-- If nothing was declared, write:
   "nothing declared yet — watch for look-alike codepoints; findings route to the pack's
   normalize.mjs, never to the error tally". -->
-- **Plain language at the moments that matter** — decision questions and close-outs drop
-  codes, tiers and file paths. (Engine default; every learner so far has wanted it.)
-- {{FURTHER_INTERVIEW_FACTS}}
+- **How this workspace talks to you** is an engine rule, not a per-learner setting —
+  `docs/mechanics/narration.md` owns it: what gets priced before it starts, what gets
+  announced, and the codes, tiers and paths you never have to read. Note a **departure**
+  here if this learner wants one (more detail, less, a different language for corrections);
+  the default needs no bullet. <!-- This line was a seeded engine default until 0.8.0, which
+  meant an engine rule was stored once per instance where no template update could reach
+  it. Keep it as a pointer; write a bullet only for what this learner asked to change. -->
+- {{FURTHER_INTERVIEW_FACTS}} <!-- The open floor's home — whatever the learner
+  volunteered when asked "anything else I should know before I build this?"
+  (setup/interview.md § The open floor): a stretch of weeks they will lose, the domain the
+  language has to work in, something that failed for them before. One bullet each, seeded
+  `(assumed)`, dated. Nothing volunteered ⇒ drop this line entirely. -->
 
 ## Measured, not assumed
 

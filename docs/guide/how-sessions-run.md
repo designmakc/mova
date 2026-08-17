@@ -44,6 +44,11 @@ landed, and practice then becomes targeted repair instead of generic use.
 
 A drill is parts 1 and 3 only. Time boxes flex; the order does not.
 
+**A session has visible edges.** Your agent prices it as it opens — what the word you said
+actually costs today, adjusted for what is due — and says which part you are in as each one
+starts. Any set it puts in front of you is counted first: how many items, and the minutes
+they imply. If that is more than you have, say so at the door and take a drill instead.
+
 ### Teaching happens in eight beats
 
 Every new system is delivered the same way — placement first (where this sits, what it

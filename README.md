@@ -24,11 +24,13 @@ produce; the learner is invented.</sub>
 3. **Open that copy in your agent** — the folder you just unpacked or it just cloned — and
    say: **"set up my workspace"**.
 
-The agent interviews you — six short topics, numbered so you can see the end from the
-start: your languages, your goal, your time. Then it builds everything on its own: your
-profile, your curriculum, your study plan. Expect a few minutes of questions and 5–15
-minutes of building. It finishes with a short tour of what it made and how to use it, and
-one word to say when you're ready to begin.
+The agent interviews you — four short topics, numbered so you can see the end from the
+start: your languages, your goal, your time, and how wide you want this. Then it builds
+everything on its own: your profile, your curriculum, your study plan. Expect a few minutes
+of questions, then **5–15 minutes of building** — or **around 45** if your language needs a
+grammar pack built first. Your agent works out which one you are getting, tells you before
+it starts, and reports each finished piece as it goes. It ends with a short tour of what it
+made and how to use it, and one word to say when you're ready to begin.
 
 > **Requirements**: Node.js ≥ 20 and git. Your agent checks for both during setup and
 > installs what it can. They power the scheduling, the integrity checks, and the contract
@@ -95,8 +97,9 @@ with the audio embedded — they open from disk, work offline, and keep working 
 the pattern is visible without reading; the `?` is the verification marker — that form is
 the agent's word until a source or a tutor confirms it.</sub>
 
-Setup also asks how wide you want this. A narrow workspace — drills only, vocabulary only,
-writing only — answers to fewer verbs and refuses the rest politely. Working with a tutor
+Setup proposes how wide this should be, from what your goal needs, and you can narrow it on
+the spot. A narrow workspace — drills only, vocabulary only, writing only — answers to fewer
+verbs and refuses the rest politely. Working with a tutor
 adds **tutor-prep**: a pack to bring them, and a pass that ingests their corrections.
 
 → [How sessions run](docs/guide/how-sessions-run.md) — the five parts of a lesson, the

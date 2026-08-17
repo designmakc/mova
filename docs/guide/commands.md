@@ -162,15 +162,23 @@ of bounds by construction. The check changes nothing until you say yes — and y
 
 **Say:** "set up my workspace".
 
-The onboarding interview — six short numbered topics: your languages, your goal, your time —
-followed by the build: profile, curriculum, plan, language pack, and the first version of the
-hub. It ends with a short tour and names the one word to say when you are ready to begin.
-Everything on this page exists because setup generated it.
+The onboarding interview — four short numbered topics: your languages, your goal and where
+you are starting, your time, and how wide you want this — plus one open question at the end
+for anything else worth knowing. Then the build: profile, curriculum, plan, language pack,
+and the first version of the hub. Your agent tells you how long that build will take before
+it starts, and reports each finished piece as it goes. It ends with a short tour and names
+the one word to say when you are ready to begin. Everything on this page exists because
+setup generated it.
+
+**If the build is interrupted** — a closed laptop, an agent that ran out of room — say "set
+up my workspace" again in a new chat. It picks up from the last finished piece and does not
+re-interview you.
 
 ## Not every workspace answers to all of them
 
-The interview asks how wide you want this. The answer sets your **focus mode**, and a verb
-that is inactive in your mode is refused with a one-line pointer rather than run silently.
+At the interview your agent proposes a shape from what your goal needs — usually the full
+program — and you can narrow it on the spot. That sets your **focus mode**, and a verb that
+is inactive in your mode is refused with a one-line pointer rather than run silently.
 
 | Focus | Live verbs |
 | --- | --- |

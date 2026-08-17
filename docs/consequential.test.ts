@@ -245,6 +245,9 @@ describe("docs/mechanics word budget", () => {
     "media.md": 3100,
     // 1,078 words and it reads whole in a sitting — budgeted at today's weight, no split.
     "verification.md": 1300,
+    // 760 words, eight rules, and it is read by setup as well as by every session. Tight
+    // on purpose: a file about not over-talking that runs long argues against itself.
+    "narration.md": 900,
   };
 
   const words = (rel: string) => read(rel).split(/\s+/).filter(Boolean).length;

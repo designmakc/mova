@@ -1,7 +1,7 @@
 <!-- mova:engine -->
 # Scenario: focus modes — which verbs the workspace answers to
 
-**Orthogonal to the goal scenarios.** Topic 5's answer sets `focus:` in the profile
+**Orthogonal to the goal scenarios.** Topic 4's answer sets `focus:` in the profile
 config (extension key — `full` is the default and the only mode the reference instance
 ever ran; the narrow modes are **assumed** shapes, recalibrate on real use).
 

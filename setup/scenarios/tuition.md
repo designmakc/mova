@@ -2,7 +2,7 @@
 # Scenario: tuition — a human tutor exists
 
 **Orthogonal to the goal scenarios** — combines with exam, level, functional, or ledger.
-Applies when Topic 6 found a tutor (or a firm plan to get one).
+Applies when Topic 4 found a tutor (or a firm plan to get one).
 
 | Decision | Ruling |
 | --- | --- |
@@ -26,7 +26,7 @@ Generation notes:
 
   | Cadence | Number | Who owns it |
   | --- | --- | --- |
-  | **Meetings** — how often learner and tutor sit down | the learner's answer to interview Topic 6 | the Tuition clause. The only number setup writes |
+  | **Meetings** — how often learner and tutor sit down | the learner's answer to interview Topic 4 | the Tuition clause. The only number setup writes |
   | **The unverified-fact (`?`) list** — everything still unconfirmed, printed for bulk clearing | **every prep pack, uncapped** | tutor-prep.md § Before the session, item 4 |
   | **The spot-check** — 10 sampled ledger rows + 5 sampled transfer/taxonomy claims | **every Nth prep pack, default N = 5** | tutor-prep.md § Every Nth session |
 

@@ -32,7 +32,8 @@ free path below genuinely works, but you keep it running yourself.
      explanation; switch **away** for the work around it.
 3. **Run setup on DeepSeek.** The setup interview and the build after it are the most
    tool-heavy stretch this workspace ever runs — a few minutes of questions, then 5–15
-   minutes of the agent working on its own. That is the wrong place to spend a metered free
+   minutes of the agent working on its own, or up to an hour if your language needs a
+   grammar pack built first. That is the wrong place to spend a metered free
    allowance. Then go back to the README's first five minutes; when the interview asks
    which agent is running, answer `opencode`.
 

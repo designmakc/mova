@@ -25,7 +25,7 @@ docs/reference/topics.md (**what this unit's material exhausts and what is defer
 source for every placement statement), last SES entry's Next pointer,
 `node scripts/queue.mjs`, docs/reference/transfer.md, docs/reference/resources.md,
 docs/mechanics/* (**teaching.md** — the eight beats; media.md — when to play, draw, or
-link), work/visuals/README.md (reusable visuals, **and pages already built but not yet
+link; **narration.md** — what to price, what to announce, what the learner never sees), work/visuals/README.md (reusable visuals, **and pages already built but not yet
 taught**).
 
 **Writes**: state/vocab.md + state/grammar.md (tiers, `last`, new rows),
@@ -41,10 +41,22 @@ session. The flow below is what happens *between* them.
 
 ## Flow
 
+**Each part opens by saying where it sits** — *"part 3 of 5, the graded check, about ten
+minutes"* — one clause at the top of the part, never a heading and never a progress report.
+The learner is inside a sixty-minute session with no visible edges; the interview counter
+(`2/4`) exists for the identical reason on the other side of the product, and it is the one
+narration fix a real onboarding run has already validated.
+
 0. **Orient ritual** (session_format.md) — every step, silently. Then the lesson-specific
    part: current phase + unit, this unit's rows in topics.md, and the session's **placement
    announcement** — which unit of the curriculum's total, what it opens or closes, what the
    learner will and will not be able to do afterwards.
+   **Price the session in the same breath** ([docs/mechanics/narration.md](../docs/mechanics/narration.md)
+   § 1 and § 7): a full lesson is about an hour in five parts, and the learner said one word
+   to start it. Say the number, and say it *adjusted* — a part 1 that will not run and a
+   part 2 the queue has already shortened both change it. A learner with forty minutes finds
+   that out at the door or discovers it at part 4; only one of those lets them choose a drill
+   instead.
    **Then ask whether the placement calibration is still owed** — one command,
    `ls docs/snapshots/*_placement.md`. Nothing listed means this session probes instead of
    teaching: run it per session_format.md → **The placement calibration**, which also covers
