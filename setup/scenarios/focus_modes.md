@@ -12,10 +12,10 @@ this table gets fixed.
 
 | Mode | Active verbs | Inactive verbs answer with |
 | --- | --- | --- |
-| `full` | lesson · drill · write · mock · review · vocab · retro · update (+ tutor-prep under tuition) | — |
-| `drill` | drill · vocab · review · retro · update | "this workspace is drill-only — say 'review' to widen it" |
-| `vocab` | vocab · drill · review · retro · update | same pattern |
-| `writing` | write · mock · vocab · review · retro · update | same pattern |
+| `full` | lesson · drill · write · mock · review · vocab · retro · feedback · update (+ tutor-prep under tuition) | — |
+| `drill` | drill · vocab · review · retro · feedback · update | "this workspace is drill-only — say 'review' to widen it" |
+| `vocab` | vocab · drill · review · retro · feedback · update | same pattern |
+| `writing` | write · mock · vocab · review · retro · feedback · update | same pattern |
 
 Notes on the assignments:
 
@@ -30,8 +30,9 @@ Notes on the assignments:
   `drill`/`vocab`, where no verb produces mock-shaped work — but the goal's own
   assessment instrument still runs there, on the carrier verb below. A goal whose
   instrument no live verb can run has no way to close.
-- review, vocab, retro, and update run in every mode: the record is the product, and the
-  verbs that keep it honest are never pruned.
+- review, vocab, retro, feedback and update run in every mode: the record is the product,
+  and the verbs that keep it honest are never pruned. **feedback** is the only one that
+  leaves the machine, and only on an explicit yes to a payload the learner has read.
 
 An inactive verb is refused politely with the one-line pointer above — never silently
 run. Widening the focus is a review-verb decision: update `focus:` and the plan in the

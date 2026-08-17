@@ -50,10 +50,11 @@ Three words carry an ordinary week:
 | **drill** | Short practice, 10–15 minutes: the due queue plus your top error patterns. Never new material |
 | **review** | The weekly replan: pace, next week's drill targets, plan updates |
 
-Six more cover writing practice, mock exams, capturing a word you met in the wild, tutor
-sessions, improving the workspace itself, and pulling in template updates.
+Seven more cover writing practice, mock exams, capturing a word you met in the wild, tutor
+sessions, improving the workspace itself, reporting a defect back to the template, and
+pulling in template updates.
 
-→ [Every command](docs/guide/commands.md) — all nine verbs, what you say to reach each
+→ [Every command](docs/guide/commands.md) — all ten verbs, what you say to reach each
 one, how long it takes and what it leaves behind.
 
 ### Your first session

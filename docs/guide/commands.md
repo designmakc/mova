@@ -37,6 +37,7 @@ transcript to find today's work.
 | **mock** | One section of your goal's assessment, timed | The real section's time |
 | **vocab** | One word captured into the ledger | Under a minute |
 | **retro** | A fix for something the workspace itself got wrong | Minutes |
+| **feedback** | A defect report sent back to the template, after you read every word | Minutes |
 | **tutor-prep** | A pack to bring your tutor, and an ingest pass after | Minutes each side |
 | **update** | Template improvements, decided change by change | Minutes |
 
@@ -135,6 +136,25 @@ becomes the next version of the workspace instead of dying with the transcript.
 
 **You end up with:** fixes where they belong, and an intake entry for everything else.
 
+### `feedback` — tell the template it got something wrong
+
+**Say:** "report this", "send feedback", "this is wrong".
+
+`retro` fixes *your* workspace. This one sends the finding back to the template everyone
+else copies, so the next person does not meet the same defect. Your agent writes the report,
+**shows you every line of it**, and sends nothing until you say yes — "no" is a normal
+answer and the report just stays on your disk.
+
+It carries structure, never content: which version you run, your language pair as codes,
+what broke and how to reproduce it. Never your goal, your words, your writing, your ledger,
+or anything you told setup about your life. If a defect cannot be shown without those, the
+report describes the shape instead and says so.
+
+Filing it on GitHub needs a GitHub account. Without one you lose nothing — the full report
+is a file you can paste anywhere, or send to nobody.
+
+**You end up with:** a copy of exactly what was sent, in `work/feedback/outbound/`.
+
 ### `tutor-prep` — before and after a tutor session
 
 **Say:** "prep my tutor session", "back from my tutor".
@@ -182,10 +202,10 @@ is inactive in your mode is refused with a one-line pointer rather than run sile
 
 | Focus | Live verbs |
 | --- | --- |
-| `full` | lesson · drill · write · mock · review · vocab · retro · update |
-| `drill` | drill · vocab · review · retro · update |
-| `vocab` | vocab · drill · review · retro · update |
-| `writing` | write · mock · vocab · review · retro · update |
+| `full` | lesson · drill · write · mock · review · vocab · retro · feedback · update |
+| `drill` | drill · vocab · review · retro · feedback · update |
+| `vocab` | vocab · drill · review · retro · feedback · update |
+| `writing` | write · mock · vocab · review · retro · feedback · update |
 
 `tutor-prep` is added to any mode when your goal contract has a tuition section. Widening a
 narrow workspace into the full program — or narrowing it — is a `review` decision.
@@ -201,7 +221,7 @@ Two rituals survive every mode and ride whichever verb is live in yours:
   or a ledger audit, whichever your goal defines. A goal no live verb can measure has no way
   to close.
 
-`review`, `vocab`, `retro` and `update` are live in every mode: the record is the product, and
+`review`, `vocab`, `retro`, `feedback` and `update` are live in every mode: the record is the product, and
 the verbs that keep it honest are never pruned.
 
 ## What you say inside a session

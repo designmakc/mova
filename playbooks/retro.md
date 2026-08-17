@@ -45,6 +45,14 @@ convention that a discovery updates its file in the task that found it:
 | A wrong or stale line in a mechanic | that mechanic | yes, if the fix is unambiguous |
 | A resource worth keeping | `docs/reference/resources.md` | yes |
 
+**A finding about the engine rather than about this learner has a second home**, and the
+intake is not it: `work/feedback/insights.md` is read by this workspace's own housekeeping
+pass and by nobody upstream. A rule that misfired, a script that failed, a setup step that
+generated something wrong — those are defects in the template every other instance was
+copied from, and [feedback.md](feedback.md) is the only channel that carries them there.
+File the local half here if this instance needs a workaround now, then offer the report.
+Offer it once, in a sentence, and drop it if the answer is no.
+
 Everything else — anything that changes a **rule**, trades one design against another, spans
 several files, or that you are not confident enough to decide alone — goes to the intake
 instead. **Do not fix a mechanic you are still arguing with yourself about.** A session in

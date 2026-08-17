@@ -1,10 +1,10 @@
 {
   "generated": "2026-08-17",
-  "template_version": "0.8.0",
+  "template_version": "0.9.0",
   "files": {
     ".github/workflows/ci.yml": "c4c55c127452f2a6fa479f584e56619445af6d764cbe685d6c7aadd6937be35e",
     ".vscode/settings.json": "c4bc01bd0341a88c85a0082e913ba44a1a3655d4b4077fba26756f75a9974251",
-    "AGENTS.md": "223eaa55ec41a9d8779ab32bc8dea98ef8c780839afea6384dac6f38f3cc88b6",
+    "AGENTS.md": "3bfd79d3e54d7f939998cc8ec1865d4695474063978ac8fe0874c1506c568c28",
     "agents/antigravity/README.md": "350a1beb8c8a52911c7a2724b32353e18353198ef2035062af2888452da479cd",
     "agents/claude-code/README.md": "142212123a4a0750e407b555f311633a83e4462e773aee098c500b9c72c3f240",
     "agents/claude-code/launch.json": "6afd67a85e9010827752bfcaec910497caf1be3833217face0c843517d3938f9",
@@ -18,9 +18,9 @@
     "docs/curriculum.test.ts": "48321d3fd6bde31868b8a1e3532c00c2bea6e92d683537912b7cfd0757755bb8",
     "docs/goal.test.ts": "7e01b9b0668f62e3e6146c476f0eaae38b36dfd64af41aa41030e72f1ab5fe42",
     "docs/guide/adjusting-it.md": "cdab0d3519134b80abda88f2c13d2401f4c0c3d514e425fea9595e532f8a3dd6",
-    "docs/guide/commands.md": "b0d6b370a570a888f360eb04c9a8899ee70fd4941c19d441e707183e289e223b",
+    "docs/guide/commands.md": "8c7ab7e767c2ba2915666781912b5ac160ef66db4c564cabf70ea32bb85d1d99",
     "docs/guide/free-setup.md": "8fef9c259543662e9a476302f1b4e916eea714f368e71094e694a52bcb1d7ee7",
-    "docs/guide/how-sessions-run.md": "01b4837c63c3a2bdcf07399a6a2f1bce03a66edfa0ca6127cf438ebcb0d2b151",
+    "docs/guide/how-sessions-run.md": "d638c5cc8cdb3885725b8053a4a18bc86df1b6175452c5223697c4106e905081",
     "docs/guide/what-it-tracks.md": "14878d3c6ba7551328a9d0945004be92b52e3abf6455f1354d0eaa2a6b74a3bd",
     "docs/logs.entries.test.ts": "53a82ff8a601b647c06ec48562dea3f3a315124cf14cec79f1a9bbaa4b8290f2",
     "docs/logs/README.md": "87b44d9bf1999c4943fab74ddf68104b3f62e90efc80c73f0b3dc1c65717a9d9",
@@ -56,9 +56,10 @@
     "packs/_template/pack.md": "587cbe133d55e7d5f897f254a3ca9f62c2a56665bf0acb1fe8a9071b0d73ae44",
     "packs/_template/pos-tables.mjs": "cdf816a44577c02ef29eb235f99179154ad4b0de5ae763fb3870f52b0877b309",
     "playbooks/drill.md": "6709be6637edbc96b5bc65ce9d3ccf2d9894e19eb7f26987946edbc3c41f5ad8",
+    "playbooks/feedback.md": "5587f652aadab519a4fbc7d3d4fca2e0164ffa515df1242f7b8421a358a70d70",
     "playbooks/lesson.md": "6a5cbdac5ff4c616fc811ece786ccc60101b6514ccbc8824b514217ef2f72dbc",
     "playbooks/mock.md": "21bb7ddf598c2b628f68f823f919bc7dc1acfebcc6b8737cef6e853e574e47b6",
-    "playbooks/retro.md": "040dbbab651f4936f09f4a73454be737548ea4ff09c02025b4ce0d78c2737e2b",
+    "playbooks/retro.md": "f4777c1f639b7419fe5a75ac603e0fd5d401bd7c2eee4eb2a7c951ffcf06918d",
     "playbooks/review.md": "f1eef5f9eb654c6b1540e41b7441802a70a79f9fde790f4ee65e892f51e41c43",
     "playbooks/setup.md": "835937f77929563c2c853c119f85ff468cc12eb0286c2779d0b320c5734c7d53",
     "playbooks/sync-upstream.md": "87398bf0df13a74cf4439f3cfe7f63f77958805f142eff3a0ca19e5e1aa405ac",
@@ -97,7 +98,7 @@
     "scripts/visualcheck.mjs": "b35f3a2b214d0bf0809c0edf871a3536538f9820e14fbb2fffbc0e06d6741b5a",
     "setup/interview.md": "699b22440baeaa0c99db0181504b02dd1a5c471ddff43f0b50ff26d4a3585a2c",
     "setup/scenarios/exam.md": "1c53d106fefeedb701663b62f72a7e0e8fbd23b5be20b2781f160cdbd0c4cfa0",
-    "setup/scenarios/focus_modes.md": "c2c08be03b2a43ccdbca7584179ce3030ea50052f7406e901232923e392e873a",
+    "setup/scenarios/focus_modes.md": "6d73db437752d4e4a18fabd58420b1eba815dd5f9f637c49816e564768f51c1c",
     "setup/scenarios/functional.md": "0556baa17f7abcda9af79a2464143009b948f7b7ad79f36ba4bed647ddec9e15",
     "setup/scenarios/level.md": "364c9d9374fec9ef071e3bd7fab1275bdcebc4d3e7eb9505aaf19efd1831ac8d",
     "setup/scenarios/tuition.md": "580721aaaed3c01ecb7614dd96b5082f3fb714881c43886704322ff9fce6fa57",
@@ -107,6 +108,7 @@
     "upstream/backports/README.md": "ae1264728eb9164a2c6f64be85218cf94deadbe57863088d0e3098a9a5b886d9",
     "upstream/map.md": "0fce1b5b4bcf5a5ff238890ffc087dccb59f203985fdf68a1a87d989ce61a273",
     "work/feedback/PROMPT.md": "64f88849bbec4c16293cd9d85603dad658bfca8d535ed018dc71a160c144a5fb",
-    "work/feedback/insights.test.ts": "2744f6e47b76987e4a4c876ebf6d7c55d6186c8e92ec23be4e6d3e17a87d77c1"
+    "work/feedback/insights.test.ts": "2744f6e47b76987e4a4c876ebf6d7c55d6186c8e92ec23be4e6d3e17a87d77c1",
+    "work/feedback/outbound/README.md": "23ed00a0dfcf7fcb94ced8993689470f898606c27fcc3c7ac4638d6e64af5874"
   }
 }

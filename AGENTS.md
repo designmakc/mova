@@ -39,6 +39,7 @@ An instance without a goal contract is mis-generated; stop and re-run that setup
 | "review" / "weekly review" / "replan" | [playbooks/review.md](playbooks/review.md) |
 | "add this word" / "what does X mean" (and wants it kept) | [playbooks/vocab.md](playbooks/vocab.md) |
 | "retro" / "what did we learn" | [playbooks/retro.md](playbooks/retro.md) |
+| "report this" / "send feedback" / "this is wrong" (about the workspace, not the language) | [playbooks/feedback.md](playbooks/feedback.md) |
 | "prep my tutor session" | [playbooks/tutor-prep.md](playbooks/tutor-prep.md) |
 | "update the workspace" / "anything new?" / "check for updates" | [playbooks/update.md](playbooks/update.md) |
 
@@ -65,7 +66,7 @@ them. Playbooks are **verbs** and stay thin; shared rules live once, in `docs/me
 | `docs/logs/` | Append-only session + error logs (`SES-NNN`, `ERR-NNN`). |
 | `docs/snapshots/` | Frozen assessments, each with its "Not exercised:" list. |
 | `state/` | The SRS ledgers — the workspace's memory. Edit only per `docs/mechanics/srs.md`. |
-| `work/` | Produced artifacts: visuals, scored sets, writing, tutor packs, retro intake. |
+| `work/` | Produced artifacts: visuals, scored sets, writing, tutor packs, retro intake, sent defect reports. |
 | `packs/` | Language packs — the target language's grammar tables, normalization, dictionary adapter, voices. |
 
 ## Hard invariants (do not violate)
@@ -95,11 +96,13 @@ any session sharing the tree. Never discard uncommitted work you did not create.
 ## Status
 
 Everything the verb table names exists and is CI-green: the engine (mechanics, scripts,
-contract tests, the visual system), the Romanian reference pack, all eleven playbooks,
+contract tests, the visual system), the Romanian reference pack, all twelve playbooks,
 and the setup system. Three instances have been generated from this template and each
 passed its own contract suite.
 
 **Not yet exercised:** an actual study session — no lesson, drill, review or tutor pack
 has ever run to completion. Adapters have only been generated for Claude Code. Romanian
-is the only language pack. The update and sync paths are written but unrun. Treat those
-as untested, not as broken; report what you find (see CHANGELOG.md).
+is the only language pack. The update, sync and feedback paths are written but unrun.
+Treat those as untested, not as broken — and **report what you find**: an engine-shaped
+finding goes back to the template through [playbooks/feedback.md](playbooks/feedback.md),
+not into a local file nobody upstream reads.

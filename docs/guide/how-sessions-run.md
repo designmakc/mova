@@ -12,7 +12,7 @@ Chat is the only thing you operate: you say a verb, and your agent follows the p
 behind it and operates everything else — every script, every file, every check. The hub and
 the deck are read-only views of the same files. Your job is to answer questions and study.
 
-→ [Every command](commands.md) — the nine verbs, the plain words that reach each one, what
+→ [Every command](commands.md) — the ten verbs, the plain words that reach each one, what
 each leaves behind, and which of them your focus mode keeps live. This page is what happens
 *after* you say one.
 

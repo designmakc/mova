@@ -4,6 +4,46 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.9.0 — 2026-08-17
+
+A workspace can now report a defect back to the template it was copied from. Until today
+every channel pointed inward: `retro` files findings into the instance, `update` pulls the
+template's changes in, and a defect found in a generated workspace died there. AGENTS.md
+had asked for a report since the bootstrap commit and named no mechanism.
+
+instance-impact: **engine files auto-update, plus one regeneration step.** A new verb
+means a new adapter shim — **regenerate the adapters (setup step 8)** so "report this" and
+"send feedback" route. The verb is live in every focus mode.
+
+- **New verb: `feedback`.** The agent drafts an engine-defect report, **shows the learner
+  every line that would leave their machine**, and sends nothing without a yes to that
+  specific report. "No" is a complete ending and the report stays on disk. Three exits, in
+  order: `gh issue create` when the CLI is authenticated, otherwise a prefilled issue link
+  the learner clicks and submits themselves, otherwise the file to paste anywhere. Filing on
+  GitHub needs an account, and the verb says so in one sentence rather than letting the
+  learner discover it at a sign-in wall.
+- **The payload carries structure and never content.** Version, agent, OS, mode, focus,
+  `goal_kind` as a kind, pack code and contrast-ranking codes, capability flags, the engine
+  file, and a reproduction. Never the goal in the learner's words, the scenario list, ledger
+  rows, log entries, snapshots, their writing, or **the open-floor answers the interview
+  collects** — which are the most personal thing setup ever asks for. A defect that cannot
+  be shown without personal content is described in shape, and the report says so. The
+  product's promise is that nothing leaves the machine; a feedback verb that quietly ships a
+  study record would break the thing that makes the workspace worth trusting.
+- **The reporter is usually the agent, not the learner.** A learner cannot report that a
+  compressed rule was backwards or that a drill under-predicted its own length by 5× —
+  they do not know those were wrong. Both happened in generated instances and both died
+  locally. `retro` now routes engine-shaped findings here, offers the report once, and drops
+  it if the answer is no.
+- **What the verb will not do**, stated as rules rather than left to judgment: never send on
+  a standing permission or an earlier yes, never batch (a queue that drains itself is
+  telemetry with extra steps), never send a usage digest unless the learner asked for exactly
+  that and read it, never fabricate a reproduction.
+- Sent and declined reports are kept in `work/feedback/outbound/`, so the same defect is not
+  reported twice and the learner keeps a copy of what they approved.
+- A GitHub issue template lands in `.github/ISSUE_TEMPLATE/`, carrying the same sections and
+  the same warning about personal content, for anyone filing by hand.
+
 ## 0.8.0 — 2026-08-17
 
 Narration becomes a mechanic, and onboarding stops guessing how long it will take. 0.5.0
