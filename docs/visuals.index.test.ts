@@ -44,6 +44,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join, basename } from "node:path";
+import { FIXTURE_DATE } from "../scripts/visualcheck.mjs";
 
 const CONTRACT = {
   dir: "work/visuals",
@@ -62,7 +63,10 @@ const active = existsSync(indexPath) && existsSync(visualsDir);
 const indexText = active ? readFileSync(indexPath, "utf8") : "";
 
 const isVisual = (f: string) =>
-  CONTRACT.extensions.some((e) => f.endsWith(e)) && !CONTRACT.exclude.includes(f as never);
+  CONTRACT.extensions.some((e) => f.endsWith(e)) &&
+  !CONTRACT.exclude.includes(f as never) &&
+  // A test fixture mid-flight is not a learner's page — see FIXTURE_DATE in visualcheck.mjs.
+  !f.startsWith(FIXTURE_DATE);
 
 /** Tracked files only — untracked means a session still has it open. */
 function trackedVisuals(): string[] {

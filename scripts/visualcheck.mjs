@@ -70,6 +70,32 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 /** Generated files — rebuilt by scripts at close-out, checked at their source. */
 export const GENERATED = new Set(["index.html", "deck.html"]);
 
+/**
+ * The date `scripts/visual-shell.test.ts` reserves for its fixture. **Nothing else may use
+ * it, and every scanner of `work/visuals/` skips it.**
+ *
+ * That test drives the real `newvisual.mjs` CLI deliberately — the skeleton's own content
+ * is part of what it checks — and `newvisual.mjs` writes into `work/visuals/`, because that
+ * is where a real page lives and the hub-link rule differs inside `docs/visual/`. So for a
+ * few hundred milliseconds a page exists in the scanned directory that belongs to no
+ * learner, and vitest runs test FILES in parallel.
+ *
+ * CI caught the collision on 2026-08-17 (run 32017772485): `docs/visuals.content.test.ts`
+ * enumerated the fixture, then leakcheck opened it after the shell test's `afterAll` had
+ * removed it. The ENOENT surfaced as *"the answer-leak gate did not run"* — a failure
+ * reported against a page that was never the learner's, on a run whose actual subject was
+ * green. It had been latent since the tests were ported and fired once the suite grew
+ * enough to shift the scheduling.
+ */
+export const FIXTURE_DATE = "0000-00-00";
+
+/**
+ * A page a learner authored: not a generated surface, and not a test fixture mid-flight.
+ * The one predicate all three scanners share, so they cannot drift about what they scan.
+ */
+export const isAuthoredPage = (name) =>
+  name.endsWith(".html") && !GENERATED.has(name) && !name.startsWith(FIXTURE_DATE);
+
 /** The CORE layer of the token contract (docs/visual/tokens.css). */
 export const CORE_TOKENS = [
   "--bg", "--fg", "--muted", "--line", "--card", "--ok", "--bad", "--hi", "--hiBg",
@@ -746,7 +772,7 @@ if (isMain) {
     const dir = join(root, "work/visuals");
     const authored = existsSync(dir)
       ? readdirSync(dir)
-          .filter((f) => f.endsWith(".html") && !GENERATED.has(f))
+          .filter(isAuthoredPage)
           .sort()
           .map((f) => join(dir, f))
       : [];

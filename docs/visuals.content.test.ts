@@ -29,7 +29,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import {
   checkFile,
-  GENERATED,
+  isAuthoredPage,
   instanceLanguages,
   readRetiredClaims,
 } from "../scripts/visualcheck.mjs";
@@ -63,7 +63,7 @@ try {
 
 const instancePages = existsSync(visualsDir)
   ? readdirSync(visualsDir)
-      .filter((f) => f.endsWith(".html") && !GENERATED.has(f))
+      .filter(isAuthoredPage)
       .sort()
   : [];
 

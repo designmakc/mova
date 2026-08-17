@@ -15,11 +15,14 @@ import { describe, it, expect, afterAll } from "vitest";
 import { rmSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, basename } from "node:path";
 // @ts-expect-error — untyped engine module
 import { frame, page, STARTER } from "./visual-shell.mjs";
 // @ts-expect-error — untyped engine module
-import { CORE_TOKENS, checkPlayerCount, checkPlayerStyle, checkTokenBlock, checkFile } from "./visualcheck.mjs";
+import {
+  CORE_TOKENS, checkPlayerCount, checkPlayerStyle, checkTokenBlock, checkFile,
+  FIXTURE_DATE, isAuthoredPage,
+} from "./visualcheck.mjs";
 
 const built = () => page({ title: "contract page", sub: "fixture", body: "<p>x</p>" });
 
@@ -33,6 +36,19 @@ const DATE = "0000-00-00";
 const SLUG = "shell-contract-fixture";
 const FIXTURE = join(root, `work/visuals/${DATE}_${SLUG}.html`);
 afterAll(() => rmSync(FIXTURE, { force: true }));
+
+/**
+ * The fixture lives in the directory three other scanners read, and vitest runs test files
+ * in parallel — so for a few hundred milliseconds this page is visible to them. CI caught
+ * exactly that on 2026-08-17: the content test enumerated it, then leakcheck opened it after
+ * the afterAll above had removed it, and reported "the answer-leak gate did not run" against
+ * a page that was never a learner's. The reserved date is what keeps the scanners off it,
+ * and this asserts the two halves still agree.
+ */
+it("uses the date every work/visuals scanner is required to skip", () => {
+  expect(basename(FIXTURE).startsWith(FIXTURE_DATE)).toBe(true);
+  expect(isAuthoredPage(basename(FIXTURE))).toBe(false);
+});
 
 describe("the page frame", () => {
   it("reads the pinned reference page, so there is one definition of the frame", () => {

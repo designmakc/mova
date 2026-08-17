@@ -4,6 +4,36 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.12.1 — 2026-08-17
+
+A flaky CI failure, found and removed. No behaviour change for a learner.
+
+instance-impact: **engine files auto-update.** Nothing to do.
+
+- **CI failed on the 0.12.0 push against a page that was never a learner's.**
+  `scripts/visual-shell.test.ts` drives the real `newvisual.mjs` CLI on purpose — the
+  skeleton's own content is part of what it checks — and that CLI writes into
+  `work/visuals/`, where three other scanners look. vitest runs test files in parallel, so
+  for a few hundred milliseconds the fixture is visible to them. On the runner,
+  `docs/visuals.content.test.ts` enumerated it and then leakcheck opened it *after* the
+  shell test's cleanup had removed it. The ENOENT surfaced as **"the answer-leak gate did
+  not run"** — the loudest failure message in the visual system, reported against a file
+  with no learner behind it, on a run whose actual subject was green.
+- **Latent since the tests were ported**, and it fired now because the suite grew enough to
+  shift the scheduling. The next push passed with no change, which is the signature worth
+  naming: a red run followed by a green one on unrelated work is a race, not a fix.
+- **The fixture date is now reserved and every scanner skips it.** `visualcheck.mjs` exports
+  `FIXTURE_DATE` and one shared `isAuthoredPage` predicate, and the three places that
+  enumerate `work/visuals/` — the CLI's `--all`, the content test, the index test — all use
+  it, so they cannot drift about what counts as a learner's page.
+- **The two halves are pinned to each other by a test.** `visual-shell.test.ts` now asserts
+  that its own fixture carries the reserved date and that `isAuthoredPage` rejects it. A
+  future fixture renamed without reading this entry fails immediately instead of flaking
+  once a month.
+- Verified both directions: the broken probe page is invisible to every scanner under the
+  reserved date, and the identical file under a real date still fails on its missing favicon
+  and theme overrides.
+
 ## 0.12.0 — 2026-08-17
 
 Greek — the first pack in a non-Latin script, and the bug it found in the shared adapter.
