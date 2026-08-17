@@ -49,6 +49,7 @@
     "docs/visuals.index.test.ts": "4a620d965d1e3ee7b1391a3e9189029beaa72d36a2b65ec09452c560b83b8a6f",
     "package.json": "96ef463f4d50087d8c544dd137a29e7e7a44e6749f79b3c7607e86585673b834",
     "packs/SPEC.md": "6fb4a851d8f5cdbb798fb6a18bc4fbf041a031a23c4ed5a67b41e78993040d93",
+    "packs/_shared/wiktionary.mjs": "851e5f266abeb918c2c16c8af5bb773ca1763172a3ffaf602d7ac427d8227ec7",
     "packs/_template/GENERATE.md": "4e9116a5592f45f3f18854bd68fcb70dfeb91696d38baa189b75222f7b88de23",
     "packs/_template/golden/README.md": "6ca3bdcdd148b265c554e7efa1a8027e13ec32a58903530c8ae21a4ea6e2a9f4",
     "packs/_template/normalize.mjs": "236013ff09884cc3253c9cd3d3c584d4b51fa3c66179907982ee26106cfd0007",
