@@ -1,0 +1,155 @@
+{
+  "source": "wiktionary:es",
+  "recorded": "2026-08-17",
+  "cases": [
+    {
+      "word": "lápiz",
+      "why": "The plural is irregular (z→ces) and this pack contains no Spanish plural rule: the form comes back computed by Wiktionary's own module. If expandtemplates is ever skipped, this case goes empty.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "lápices"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "lápiz",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Spanish==\n{{wp|es:}}\n[[File:Pencil 01 kamranki.jpg|thumb|250px|La punta de un '''lápiz''' (the tip of a '''pencil''').]]\n\n===Etymology===\n{{ety|es|:bor|la:lapis|it:lapis|tree=1}}\n{{bor+|es|la|lapis||stone}}, whence also {{cog|en|lapidary}} and {{m|en|lapis lazuli}}). Alternatively through {{der|es|it|lapis}};<ref>{{R:es:DCECH}}</ref> compare {{cog|pt|lápis}}. {{doublet|es|lápida}}.\n\n===Pronunciation===\n{{es-pr|+<audio:LL-Q1321 (spa)-AdrianAbdulBaha-lápiz.wav<a:Colombia>>}}\n\n===Noun===\n{{es-noun|m}}\n\n# [[pencil]]\n#: {{syn|es|crión<qq:Louisiana>}}\n\n====Derived terms====\n{{col|es|falda lápiz|lapicera|lapicero|lapizar|lápiz cortasangre|lápiz de cera|lápiz de color|lápiz de labios|lápiz de memoria|lápiz de ojos|lápiz de plomo |lápiz de tinta|lápiz labial|lápiz mecánico|lápiz óptico}}\n\n====Related terms====\n{{col|es|lápida|lapidar|lapidación|lapislázuli}}\n\n====Descendants====\n{{top3}}\n* {{desc|smk|lapis|bor=1}}\n* {{desc|ceb|lapis|bor=1}}\n* {{desc|bcl|lapis|bor=1}}\n* {{desc|trc|lapé|bor=1}}\n* {{desc|cyo|lapis|bor=1}}\n* {{desc|pam|lapis|bor=1}}\n* {{desc|kmk|lapis|bor=1}}\n* {{desc|knb|lapis|bor=1}}\n* {{desc|msb|lapis|bor=1}}\n* {{desc|mbt|lapis|bor=1}}\n* {{desc|pag|lapis|bor=1}}\n* {{desc|bgs|lapis|bor=1}}\n* {{desc|tl|lapis|bor=1}}\n* {{desc|nhg|löpi̱s|bor=1}}\n* {{desc|war|lapis|bor=1}}\n* {{desc|yog|lapis|bor=1}}\n{{bottom}}\n\n===References===\n<references/>\n\n===Further reading===\n* {{R:es:DRAE}}\n\n{{C|es|Writing instruments}}"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"es\">lápiz</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-es p-form-of\" lang=\"es\">[[:lápices#Spanish|lápices]]</b>)</span>[[Category:Spanish lemmas|LAPIZ]][[Category:Spanish nouns|LAPIZ]][[Category:Spanish countable nouns|LAPIZ]][[Category:Spanish entries with incorrect language header|LAPIZ]][[Category:Spanish masculine nouns|LAPIZ]][[Category:Pages with entries|LÁPIZ]][[Category:Pages with 1 entry|LÁPIZ]]"
+        }
+      }
+    },
+    {
+      "word": "mano",
+      "why": "Two senses, two genders — feminine 'hand' and a masculine sense. genders is a LIST for exactly this reason; reporting one would make factcheck contradict a correct ledger row.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "f",
+          "m"
+        ],
+        "forms": [
+          "manos"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "mano",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Spanish==\n{{multiple images\n| align = right\n| direction = vertical\n| width = 180\n| image1 = Goya 3may hand.jpg\n| alt1 =\n| caption1 = ''Sense 1''\n}}\n\n===Pronunciation===\n{{es-pr|+<audio:LL-Q1321 (spa)-Rodelar-mano.wav>}}\n\n===Etymology 1===\n{{ety|es|:inh|osp:mano|id=hand}}\n{{inh+|es|osp|mano}}, from {{inh|es|la|manus}}, from {{inh|es|itc-pro|*manus}}, perhaps from {{der|es|ine-pro|*méh₂r̥|*méh₂-r̥ ~ *mh₂-én-}}, derived from {{der|es|ine-pro|*(s)meh₂-||to beckon}}, or perhaps from {{der|es|ine-pro||*mon-u-}} (see the Proto-Italic entry). Cognate with {{cog|gl|man}} and {{cog|pt|mão}}. Compare {{cog|fr|main}}.\n\n====Noun====\n{{es-noun|f}}\n\n# {{lb|es|anatomy|of a person}} [[hand]]\n#: {{ux|es|Lávate las '''manos'''.|Wash your '''hands'''.}}\n# {{lb|es|of an animal}} front [[foot]]\n# {{lb|es|in a game}} [[round]]; [[hand]]\n# {{lb|es|of paint}} [[coat]], [[lick]]\n# {{lb|es|of a clock}} [[hand]]\n# [[skill]], [[talent]]\n# {{l|en|mano}} {{gloss|a stone resembling a rolling pin, used to grind maize or other grain on a metate}}\n#: {{syn|es|metlapil}}\n# A [[group]] of [[people]] united for a [[job]]\n#: {{syn|es|grupo}}\n\n=====Usage notes=====\n* As with other nouns denoting body parts, the definite article {{m|es|la||the}} is used where English would use a possessive determiner (e.g. {{m|en|my}}, {{m|en|your}}, {{m|en|his}}, or {{m|en|her}}), as long as the verb that it complements is pronominal and therefore implies possession. Examples: \"''Lávate las manos, por favor''\" (Wash your hands, please) and \"''Átale las manos''\" (Tie his hands); contrast with \"''Dibuja tus manos''\" (Draw your hands).\n\n=====Derived terms=====\n{{col|es\n|manos besa el hombre, que querría ver cortadas\n|probar la mano\n|apartar la mano\n|tener la mano\n|bajar la mano|cagar fuego en su propia mano\n|parada de manos\n|parado de manos\n|paro de mano\n|paro de manos\n|vertical de manos\n|pararse de manos\n|a dos manos\n|a la mano\n|a mano\n|tener a mano\n|a mano alzada\n|a mano armada\n|darse la mano\n|a mano limpia\n|a manos llenas\n|abrir la mano\n|alargar la mano\n|antemano|apretar la mano\n|correr la mano\n|hacer la mano\n|asentar la mano\n|calentar la mano\n|entre gitanos no nos leemos la mano\n|apretón de manos\n|besamanos\n|bomba de mano\n|buena mano\n|dar la mano\n|dar la última mano\n|de segunda mano\n|de una mano a otra\n|cambiar de manos\n|como por la palma de la mano\n|con el corazón en la mano\n|con la mano en el corazón\n|con las armas en la mano\n|con las manos cruzadas\n|con las manos en la cabeza\n|con las manos en la masa\n|con las manos vacías\n|con una mano atrás y otra delante\n|de la mano\n|de la mano a la boca desaparece la sopa\n|de mano a mano\n|de primera mano\n|echar la mano\n|echar las manos\n|echar mano\n|echar mano de\n|echar una mano\n|en buenas manos\n|entre las manos\n|escalera de mano\n|estar a mano\n|estrechón de manos\n|frotarse las manos\n|freno de mano\n|granada de mano\n|guardamanos\n|ir de la mano\n|hecho a mano\n|imposición de manos\n|irse de las manos\n|juego de manos\n|lavamanos\n|lavarse las manos\n|llave en mano\n|llegar a las manos\n|llevarse las manos a la cabeza\n|manaza\n|mano de gato\n|mano de jabón\n|mano de Judas\n|mano de rienda\n|mano de santo\n|mano derecha\n|mano dura\n|manos arriba\n|manos a la obra\n|manazas\n|manija\n|manilla\n|manillar\n|manito,manita\n|mano a mano\n|mano auxiliar\n|mano de obra\n|mano izquierda\n|mano negra\n|mano sobre mano\n|manopla\n|manos de mantequilla\n|manos libres\n|manual\n|meter mano\n|morder la mano que te da de comer\n|muchas manos en un plato causan arrebato\n|paño de manos\n|pasamano\n|pedida de mano\n|pedir la mano\n|petición de mano\n|poner la mano en el pecho\n|poner la mano en el seno\n|poner las manos en la masa\n|poner mano en\n|por su manos\n|robo a mano armada\n|saque de mano\n|secamanos\n|mano de mortero<t:pestle>\n|sacar el ascua con la mano del gato\n|sacar el ascua con mano ajena\n|sierra de mano\n|silla de manos\n|tener a mano\n|títere de mano\n|toalla de mano\n|tomarse la justicia por su mano\n|venir a las manos\n}}\n\n=====Related terms=====\n{{col|es|manual\n|manada\n|manear\n|manejar\n|manero\n|manojo\n|quiro-\n}}\n\n=====Descendants=====\n* {{desc|cbk|mano}}\n* {{desc|ceb|mano|lamano|bor=1|der2=1}}\n* {{desc|en|mano|bor=1}}\n* {{desc|pap|man|bor=1}}\n* {{desc|tl|mano|bor=1}}\n\n===Etymology 2===\n{{ety|es|:clipping|hermano<t:brother, sibling>|text=+|id=friend|tree=1}}\n\n====Noun====\n{{es-noun|m|f=+}}\n\n# {{lb|es|slang|Canary|Venezuela|Central America|Caribbean|Mexico|Colombia|Peru}} [[buddy]], [[friend]], [[bro]], [[homie]]\n\n=====Descendants=====\n* {{desc|ceb|mano|alts=1|bor=1}}\n* {{desc|pt|mano|bor=1}}\n* {{desc|tl|manong|der1=1|alts=1|bor=1}}\n\n===Etymology 3===\n{{ety|es|nl=1}}\n\n====Verb====\n{{head|es|verb form}}\n\n# {{es-verb form of|manar}}\n\n===Further reading===\n* {{R:es:DRAE}}\n* {{R:es:DA}}\n* {{R:es:DBC}}\n\n{{C|es|Body parts|Card games}}\n{{cln|es|terms of address}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"es\">mano</strong>&nbsp;<span class=\"gender\"><abbr title=\"feminine gender\">f</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-es p-form-of\" lang=\"es\">[[:manos#Spanish|manos]]</b>)</span>[[Category:Spanish lemmas|MANO]][[Category:Spanish nouns|MANO]][[Category:Spanish countable nouns|MANO]][[Category:Spanish nouns with irregular gender|MANO]][[Category:Spanish entries with incorrect language header|MANO]][[Category:Spanish feminine nouns|MANO]][[Category:Pages with entries|MANO]][[Category:Pages with 31 entries|MANO]]\n<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"es\">mano</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-es p-form-of\" lang=\"es\">[[:manos#Spanish|manos]]</b>, <i>feminine</i> <b class=\"Latn form-of lang-es f-form-of\" lang=\"es\">[[:mana#Spanish|mana]]</b>, <i>feminine plural</i> <b class=\"Latn form-of lang-es p-form-of origin-mana\" lang=\"es\">[[:manas#Spanish|manas]]</b>)</span>[[Category:Spanish lemmas|MANO]][[Category:Spanish nouns|MANO]][[Category:Spanish countable nouns|MANO]][[Category:Spanish entries with incorrect language header|MANO]][[Category:Spanish masculine nouns|MANO]][[Category:Pages with entries|MANO]][[Category:Pages with 31 entries|MANO]]"
+        }
+      }
+    },
+    {
+      "word": "problema",
+      "why": "The trap the ending lies about: -a and masculine. A pack that guessed gender from the ending would fail here, and this is the single most common Spanish gender error.",
+      "expect": {
+        "found": true,
+        "genders": [
+          "m"
+        ],
+        "forms": [
+          "problemas"
+        ]
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "problema",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": "==Spanish==\n===Etymology===\n{{bor+|es|la|problēma}}, from {{der|es|grc|πρόβλημα|t=obstacle}}.\n\n===Pronunciation===\n{{es-pr|+<audio:LL-Q1321 (spa)-AdrianAbdulBaha-problema.wav<a:Colombia>>}}\n\n===Noun===\n{{es-noun|m}}\n\n# [[problem]], [[issue]], [[challenge]] {{gl|a difficulty or obstacle that has to be dealt with}}\n#* {{quote-journal|es|author=Alejandra Jaramillo|title=Trump exige investigación sobre presunto \"triple sabotaje\" en la ONU|magazine=w:CNN en Español|url=https://cnnespanol.cnn.com/2025/09/24/eeuu/trump-investigacion-sabotaje-onu-trax|date=2025-09-24|passage=En redes sociales afirmó que una serie de fallos técnicos, que incluyeron una escalera mecánica detenida, un fallo del teleprompter y '''problemas''' de audio, fueron actos deliberados para socavar su credibilidad. {{...}} El exmandatario amplió el tema en una publicación en sus redes sociales, donde también mencionó el '''problema''' de un audio “totalmente desincronizado”.}}\n# [[trouble]] {{lb|es|in singular|_|or|_|in plural}}\n# [[question]], [[dilemma]], [[conundrum]]\n#: {{syn|es|dilema}}\n# [[condition]] {{gl|illness}}\n#: {{syn|es|condición}}\n\n====Hyponyms====\n* {{l|es|problema técnico||technical difficulty}}\n\n====Derived terms====\n{{col|es|no te hagas problema|problemita<g:m><pos:diminutive>|problemilla<g:m><pos:diminutive>|aproblemar<pos:v>|planteamiento del problema|resolución de problemas<t:problem-solving>}}\n\n====Related terms====\n{{col|es|problemático}}\n\n====Descendants====\n* {{desc|ceb|problema|bor=1}}\n* {{desc|cbk|problema|inh=1}}\n* {{desc|tl|problema|bor=1}}\n\n===Further reading===\n* {{R:es:DRAE}}\n\n"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "expandtemplates": {
+          "wikitext": "<span class=\"headword-line\"><strong class=\"Latn headword\" lang=\"es\">problema</strong>&nbsp;<span class=\"gender\"><abbr title=\"masculine gender\">m</abbr></span> (<i>plural</i> <b class=\"Latn form-of lang-es p-form-of\" lang=\"es\">[[:problemas#Spanish|problemas]]</b>)</span>[[Category:Spanish lemmas|PROBLEMA]][[Category:Spanish nouns|PROBLEMA]][[Category:Spanish countable nouns|PROBLEMA]][[Category:Spanish nouns with irregular gender|PROBLEMA]][[Category:Spanish entries with incorrect language header|PROBLEMA]][[Category:Spanish masculine nouns|PROBLEMA]][[Category:Pages with entries|PROBLEMA]][[Category:Pages with 27 entries|PROBLEMA]]"
+        }
+      }
+    },
+    {
+      "word": "Buch",
+      "why": "A REAL Wiktionary page with no Spanish section. found:false is the whole disambiguation story — the reference adapter's worst defect was entries that merely mentioned the query contributing their facts.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "Buch",
+              "revisions": [
+                {
+                  "slots": {
+                    "main": {
+                      "content": ""
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "word": "zzzqqxnotaword",
+      "why": "No page at all. The not-in-the-dictionary branch, which is exactly where a parser invents facts.",
+      "expect": {
+        "found": false,
+        "genders": [],
+        "forms": []
+      },
+      "response": {
+        "query": {
+          "pages": [
+            {
+              "title": "zzzqqxnotaword",
+              "missing": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

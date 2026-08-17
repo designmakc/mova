@@ -1,0 +1,130 @@
+[
+  {
+    "sg": "casa",
+    "pl": "casas",
+    "expected": {
+      "sg": "cas<b class=\"mk\">a</b>",
+      "pl": "cas<b class=\"mk\">as</b>"
+    }
+  },
+  {
+    "sg": "libro",
+    "pl": "libros",
+    "expected": {
+      "sg": "libr<b class=\"mk\">o</b>",
+      "pl": "libr<b class=\"mk\">os</b>"
+    }
+  },
+  {
+    "sg": "problema",
+    "pl": "problemas",
+    "expected": {
+      "sg": "problem<b class=\"mk\">a</b>",
+      "pl": "problem<b class=\"mk\">as</b>"
+    }
+  },
+  {
+    "sg": "mano",
+    "pl": "manos",
+    "expected": {
+      "sg": "man<b class=\"mk\">o</b>",
+      "pl": "man<b class=\"mk\">os</b>"
+    }
+  },
+  {
+    "sg": "día",
+    "pl": "días",
+    "expected": {
+      "sg": "dí<b class=\"mk\">a</b>",
+      "pl": "dí<b class=\"mk\">as</b>"
+    }
+  },
+  {
+    "sg": "ciudad",
+    "pl": "ciudades",
+    "expected": {
+      "sg": "ciudad",
+      "pl": "ciudad<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "lápiz",
+    "pl": "lápices",
+    "expected": {
+      "sg": "lápi<b class=\"st\">z</b>",
+      "pl": "lápi<b class=\"st\">c</b><b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "crisis",
+    "pl": "crisis",
+    "expected": {
+      "sg": "crisis",
+      "pl": "crisis"
+    }
+  },
+  {
+    "sg": "mujer",
+    "pl": "mujeres",
+    "expected": {
+      "sg": "mujer",
+      "pl": "mujer<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "coche",
+    "pl": "coches",
+    "expected": {
+      "sg": "coch<b class=\"mk\">e</b>",
+      "pl": "coch<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "canción",
+    "pl": "canciones",
+    "expected": {
+      "sg": "canci<b class=\"st\">ó</b>n",
+      "pl": "canci<b class=\"st\">o</b>n<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "luz",
+    "pl": "luces",
+    "expected": {
+      "sg": "lu<b class=\"st\">z</b>",
+      "pl": "lu<b class=\"st\">c</b><b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "joven",
+    "pl": "jóvenes",
+    "expected": {
+      "sg": "j<b class=\"st\">o</b>ven",
+      "pl": "j<b class=\"st\">ó</b>ven<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "inglés",
+    "pl": "ingleses",
+    "expected": {
+      "sg": "ingl<b class=\"st\">é</b><b class=\"mk\">s</b>",
+      "pl": "ingl<b class=\"st\">es</b><b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "lunes",
+    "pl": "lunes",
+    "expected": {
+      "sg": "lunes",
+      "pl": "lunes"
+    }
+  },
+  {
+    "sg": "flor",
+    "pl": "flores",
+    "expected": {
+      "sg": "flor",
+      "pl": "flor<b class=\"mk\">es</b>"
+    }
+  }
+]

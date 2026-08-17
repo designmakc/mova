@@ -1,0 +1,177 @@
+[
+  {
+    "target": "casa (f, casas)",
+    "id": "V-0001",
+    "expected": "noun"
+  },
+  {
+    "target": "libro (m, libros)",
+    "id": "V-0002",
+    "expected": "noun"
+  },
+  {
+    "target": "problema (m, problemas)",
+    "id": "V-0003",
+    "expected": "noun"
+  },
+  {
+    "target": "mano (f, manos)",
+    "id": "V-0004",
+    "expected": "noun"
+  },
+  {
+    "target": "día (m, días)",
+    "id": "V-0005",
+    "expected": "noun"
+  },
+  {
+    "target": "ciudad (f, ciudades)",
+    "id": "V-0006",
+    "expected": "noun"
+  },
+  {
+    "target": "lápiz (m, lápices)",
+    "id": "V-0007",
+    "expected": "noun"
+  },
+  {
+    "target": "crisis (f, crisis)",
+    "id": "V-0008",
+    "expected": "noun"
+  },
+  {
+    "target": "mujer (f, mujeres)",
+    "id": "V-0009",
+    "expected": "noun"
+  },
+  {
+    "target": "coche (m, coches)",
+    "id": "V-0010",
+    "expected": "noun"
+  },
+  {
+    "target": "canción (f, canciones)",
+    "id": "V-0011",
+    "expected": "noun"
+  },
+  {
+    "target": "hablar (v)",
+    "id": "V-0020",
+    "expected": "verb"
+  },
+  {
+    "target": "comer (v)",
+    "id": "V-0021",
+    "expected": "verb"
+  },
+  {
+    "target": "vivir (v)",
+    "id": "V-0022",
+    "expected": "verb"
+  },
+  {
+    "target": "pensar (v)",
+    "id": "V-0023",
+    "expected": "verb"
+  },
+  {
+    "target": "ser (v)",
+    "id": "V-0024",
+    "expected": "verb"
+  },
+  {
+    "target": "rojo (adj)",
+    "id": "V-0030",
+    "expected": "adj"
+  },
+  {
+    "target": "grande (adj)",
+    "id": "V-0031",
+    "expected": "adj"
+  },
+  {
+    "target": "difícil (adj)",
+    "id": "V-0032",
+    "expected": "adj"
+  },
+  {
+    "target": "feliz (adj)",
+    "id": "V-0033",
+    "expected": "adj"
+  },
+  {
+    "target": "¿dónde? (interog)",
+    "id": "V-0040",
+    "expected": "interog"
+  },
+  {
+    "target": "¿cuándo? (interog)",
+    "id": "V-0041",
+    "expected": "interog"
+  },
+  {
+    "target": "¿cuánto? (interog, m) · ¿cuánta? (f)",
+    "id": "V-0042",
+    "expected": "interog"
+  },
+  {
+    "target": "buenos días",
+    "id": "V-0050",
+    "expected": "phrase"
+  },
+  {
+    "target": "por favor",
+    "id": "V-0051",
+    "expected": "phrase"
+  },
+  {
+    "target": "de nada",
+    "id": "V-0052",
+    "expected": "phrase"
+  },
+  {
+    "target": "hasta luego",
+    "id": "V-0053",
+    "expected": "phrase"
+  },
+  {
+    "target": "lo siento",
+    "id": "V-0054",
+    "expected": "phrase"
+  },
+  {
+    "target": "sin (prep)",
+    "id": "V-0060",
+    "expected": "word"
+  },
+  {
+    "target": "siempre (adv)",
+    "id": "V-0061",
+    "expected": "word"
+  },
+  {
+    "target": "pero (conj)",
+    "id": "V-0062",
+    "expected": "word"
+  },
+  {
+    "target": "hola (interj)",
+    "id": "V-0063",
+    "expected": "word"
+  },
+  {
+    "target": "ser, presente (soy, eres, es, somos, sois, son)",
+    "id": "G-0001",
+    "expected": "pattern"
+  },
+  {
+    "target": "el sustantivo y su plural (el libro→los libros, la casa→las casas)",
+    "id": "G-0002",
+    "expected": "pattern"
+  },
+  {
+    "target": "mesa",
+    "id": "V-9999",
+    "expected": null
+  }
+]

@@ -4,6 +4,47 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.10.0 — 2026-08-17
+
+The first pack built on the shared dictionary adapter, and the first language a learner can
+start without waiting for one to be generated. Spanish is also the language every screenshot
+in the README already used.
+
+instance-impact: **none for an existing instance.** A pack is only read by the instance that
+selected it at setup; `packs/es/` is inert in a Romanian workspace. A learner who wants to
+switch languages generates a new workspace rather than re-pointing this key.
+
+- **`packs/es/` — Spanish.** Two genders, an endings list cut so that a singular and its
+  plural land on the same stem, the indefinite article as the gender test in both numbers,
+  and 35 classification fixtures spanning every facet the deck shows. Verified through the
+  same gate as the reference pack: `node scripts/packcheck.mjs es` exits 0 with no warnings,
+  and CI now runs it for both packs.
+- **The pair fixtures teach what Spanish plurals actually do**, because the endings list was
+  chosen for it: `lápiz → lápices` and `luz → luces` mark the z→c stem change, `canción →
+  canciones` and `inglés → ingleses` mark the accent that drops, `joven → jóvenes` marks the
+  accent that appears, and `crisis` and `lunes` are marked nowhere at all because nothing
+  changes. None of that is hand-written; it falls out of the cut.
+- **The normalizer folds two classes and says why each is safe.** ñ typed on a layout that
+  has none (`ń`, `ň`, `ǹ`, `ṅ`), and the wrong accent direction from layouts where grave or
+  circumflex is the easy key. The second is safe *for Spanish specifically*: the language
+  uses neither diacritic, so `à` is not a possible Spanish spelling and folding it cannot
+  hide a real error. The identical fold would be destructive in French or Italian — which is
+  the reason normalizers belong to packs. A **missing** accent is still graded as an error,
+  and `ü` is never touched. All 24 look-alikes carry a fixture, uppercase included.
+- **The one empty manifest key is argued in prose rather than left blank.** Spanish has an
+  unpredictable per-lexeme fact — the verb stem-change class, `pensar → pienso` — and it is
+  deliberately NOT declared, because the ledger guard selects rows by matching the target
+  string and Spanish has no infinitive marker: any pattern that catches `pensar` also
+  catches `mujer` and `lugar`. The pack states the key, what is lost, and why declaring an
+  unenforceable guard would be worse. That is the failure the first agent-generated pack
+  shipped silently.
+- **`verbHeadword` is `null` for the same reason**, so Spanish verb rows carry an explicit
+  tag. A shape rule would classify `mujer` as a verb.
+- **The shared adapter is now under CI.** `packs/es/dictionary.mjs` is fourteen lines of
+  configuration; the recorded fixtures pin the cases that matter — the irregular plural this
+  pack contains no rule for, the two-gender headword, the `-a`-and-masculine trap, a real
+  Wiktionary page with no Spanish section, and a word with no page at all.
+
 ## 0.9.0 — 2026-08-17
 
 A workspace can now report a defect back to the template it was copied from. Until today

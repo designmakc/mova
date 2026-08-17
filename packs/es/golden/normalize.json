@@ -1,0 +1,172 @@
+[
+  {
+    "input": "ańo",
+    "expected": "año",
+    "note": "ń U+0144 (n with acute (Polish layout)) → ñ — no non-Spanish layout carries ñ; the nearest dead key produces this, the invisible-duplicate case"
+  },
+  {
+    "input": "Ńandú",
+    "expected": "Ñandú",
+    "note": "Ń U+0143 (N with acute) → Ñ — no non-Spanish layout carries ñ; the nearest dead key produces this, uppercase"
+  },
+  {
+    "input": "aňo",
+    "expected": "año",
+    "note": "ň U+0148 (n with caron (Czech layout)) → ñ — no non-Spanish layout carries ñ; the nearest dead key produces this, the invisible-duplicate case"
+  },
+  {
+    "input": "Ňandú",
+    "expected": "Ñandú",
+    "note": "Ň U+0147 (N with caron) → Ñ — no non-Spanish layout carries ñ; the nearest dead key produces this, uppercase"
+  },
+  {
+    "input": "aǹo",
+    "expected": "año",
+    "note": "ǹ U+01F9 (n with grave) → ñ — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, the invisible-duplicate case"
+  },
+  {
+    "input": "Ǹandú",
+    "expected": "Ñandú",
+    "note": "Ǹ U+01F8 (N with grave) → Ñ — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "aṅo",
+    "expected": "año",
+    "note": "ṅ U+1E45 (n with dot above) → ñ — no non-Spanish layout carries ñ; the nearest dead key produces this, the invisible-duplicate case"
+  },
+  {
+    "input": "Ṅandú",
+    "expected": "Ñandú",
+    "note": "Ṅ U+1E44 (N with dot above) → Ñ — no non-Spanish layout carries ñ; the nearest dead key produces this, uppercase"
+  },
+  {
+    "input": "màs",
+    "expected": "más",
+    "note": "à U+00E0 (a with grave) → á — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Àngel",
+    "expected": "Ángel",
+    "note": "À U+00C0 (A with grave) → Á — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "cafè",
+    "expected": "café",
+    "note": "è U+00E8 (e with grave) → é — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Èl",
+    "expected": "Él",
+    "note": "È U+00C8 (E with grave) → É — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "aquì",
+    "expected": "aquí",
+    "note": "ì U+00EC (i with grave) → í — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Ìndice",
+    "expected": "Índice",
+    "note": "Ì U+00CC (I with grave) → Í — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "adiòs",
+    "expected": "adiós",
+    "note": "ò U+00F2 (o with grave) → ó — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Òptica",
+    "expected": "Óptica",
+    "note": "Ò U+00D2 (O with grave) → Ó — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "ùltimo",
+    "expected": "último",
+    "note": "ù U+00F9 (u with grave) → ú — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Ùltima",
+    "expected": "Última",
+    "note": "Ù U+00D9 (U with grave) → Ú — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "mâs",
+    "expected": "más",
+    "note": "â U+00E2 (a with circumflex) → á — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Ângel",
+    "expected": "Ángel",
+    "note": "Â U+00C2 (A with circumflex) → Á — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "cafê",
+    "expected": "café",
+    "note": "ê U+00EA (e with circumflex) → é — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Êl",
+    "expected": "Él",
+    "note": "Ê U+00CA (E with circumflex) → É — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "aquî",
+    "expected": "aquí",
+    "note": "î U+00EE (i with circumflex) → í — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Îndice",
+    "expected": "Índice",
+    "note": "Î U+00CE (I with circumflex) → Í — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "adiôs",
+    "expected": "adiós",
+    "note": "ô U+00F4 (o with circumflex) → ó — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Ôptica",
+    "expected": "Óptica",
+    "note": "Ô U+00D4 (O with circumflex) → Ó — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "ûltimo",
+    "expected": "último",
+    "note": "û U+00FB (u with circumflex) → ú — Spanish uses no grave and no circumflex, so this can only be a mistyped acute"
+  },
+  {
+    "input": "Ûltima",
+    "expected": "Última",
+    "note": "Û U+00DB (U with circumflex) → Ú — Spanish uses no grave and no circumflex, so this can only be a mistyped acute, uppercase"
+  },
+  {
+    "input": "ıgual",
+    "expected": "igual",
+    "note": "ı U+0131 (Turkish dotless i) → i — a paste artefact that renders as a bare i"
+  },
+  {
+    "input": "İgual",
+    "expected": "Igual",
+    "note": "İ U+0130 (I with dot above) → I — a paste artefact that renders as a bare i, uppercase"
+  },
+  {
+    "input": "mañana",
+    "expected": "mañana",
+    "note": "NFD input (n + combining tilde) composes to ñ before folding — macOS paste delivers this"
+  },
+  {
+    "input": "canción",
+    "expected": "canción",
+    "note": "already canonical — normalize is idempotent and changes nothing"
+  },
+  {
+    "input": "cancion",
+    "expected": "cancion",
+    "note": "a MISSING accent is a language error (ORTH-ACC) and is never repaired here"
+  },
+  {
+    "input": "pingüino",
+    "expected": "pingüino",
+    "note": "ü is a real Spanish letter carrying meaning — never folded"
+  }
+]
