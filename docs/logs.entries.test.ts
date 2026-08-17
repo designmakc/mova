@@ -226,3 +226,76 @@ describe("session_log.md entry budget", () => {
     expect(true).toBe(true); // a warning, never a failure — that is what warnAt means
   });
 });
+
+/* --------------------------------------------- the Next pointer states work, never counts */
+
+/**
+ * A pointer's counts freeze; every surface that quotes it recomputes its own.
+ *
+ * WHY A TEST. The `Next` field is the one line the next session is guaranteed to read, and it
+ * is read verbatim — by the orient ritual and by `scripts/hub.mjs`, which quotes it in the
+ * "What to do next" panel. Upstream, a close-out wrote `the queue is now 87 vocab · 17
+ * grammar` into item (1). The next morning the queue was 108, the panel printed its own live
+ * count a few lines below the quoted one, and the learner read the two as contradicting
+ * instructions and stopped to arbitrate. The cost is not the wrong number — it is that the
+ * surface whose whole job is "what do I do now" became something to double-check
+ * (`docs/mechanics/session_format.md` → *Which block to run*).
+ *
+ * WHAT IS BARRED: a measurement of the queue — `87 vocab`, `17 grammar`, `59 due`, `12 items`,
+ * `4 rows`, or an `N · N` pair. What stays legal is NAMING a set: "the 14 city words", "the
+ * five unrehearsed adjectives". A name is an identity and stays true; a count is a measurement,
+ * and `queue.mjs` owns it, recomputed per run.
+ *
+ * NOT RETROACTIVE — same reason and same dated shape as the budget above: the logs are
+ * append-only, so a rule written today cannot reach the entries below it.
+ */
+const POINTER = {
+  /**
+   * Entries dated on or after this are held to the rule. It is the date the rule shipped in
+   * the template — **an instance that adopts it later should move this forward to its own
+   * adoption date**, so pointers written before it are read as history rather than failures.
+   */
+  effectiveFrom: "2026-08-18",
+  /** A number bound to a queue noun, or a `N · N` count pair. */
+  counts: /\b\d+\s*(?:vocab|grammar|due|items?|rows?)\b|\b\d+\s*·\s*\d+\b/gi,
+} as const;
+
+describe.skipIf(!active)("session_log.md Next pointer", () => {
+  const raw = readFileSync(join(docsDir, "logs/session_log.md"), "utf8").split("\n");
+  const parsed: { id: string; date: string; line: number; body: string[] }[] = [];
+  raw.forEach((line, i) => {
+    const m = line.match(/^## (\d{4}-\d{2}-\d{2}) — (SES-\d{3,})$/);
+    if (m) parsed.push({ id: m[2], date: m[1], line: i + 1, body: [] });
+    else if (parsed.length) parsed[parsed.length - 1].body.push(line);
+  });
+
+  /** The pointer runs to the next top-level bullet — the same bound hub.mjs parses with. */
+  const pointerOf = (body: string[]) =>
+    body.join("\n").match(/\*\*Next\.\*\*([\s\S]*?)(?:\n\n|\n- \*\*|$)/)?.[1] ?? "";
+
+  it("states work, never a count of the queue", () => {
+    const offenders = parsed
+      .filter((e) => e.date >= POINTER.effectiveFrom)
+      .map((e) => ({ e, hits: pointerOf(e.body).match(POINTER.counts) ?? [] }))
+      .filter((x) => x.hits.length)
+      .map(
+        (x) =>
+          `session_log.md:${x.e.line} ${x.e.id} pointer measures the queue: ` +
+          `${x.hits.map((h) => `"${h.trim()}"`).join(", ")}\n` +
+          `      Name the set, not its size — "the 14 city words", not "87 vocab · 17 grammar".\n` +
+          `      queue.mjs owns live counts; a frozen one reappears in the hub panel tomorrow\n` +
+          `      beside the real one (session_format.md, close-out step 4).`,
+      );
+    expect(offenders, `pointer counts:\n  ${offenders.join("\n  ")}`).toEqual([]);
+  });
+
+  /**
+   * A fresh instance has no sessions, so this asserts the PARSER on whatever exists rather
+   * than requiring content: if there are entries, the newest one has a pointer to find. A
+   * silent empty from a broken regex would otherwise pass this file forever.
+   */
+  it("finds a pointer in the newest entry, when there is one", () => {
+    if (!parsed.length) return;
+    expect(pointerOf(parsed[0].body).trim().length).toBeGreaterThan(0);
+  });
+});

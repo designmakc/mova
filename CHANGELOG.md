@@ -4,6 +4,72 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.14.0 — 2026-08-17
+
+The hub stops publishing three signals and letting the learner arbitrate. It states one
+verdict: which block to run, and the arithmetic that picked it.
+
+instance-impact: **engine files auto-update.** Nothing to regenerate. Two things change on
+your hub the next time it builds: the "What to do next" panel now opens with a single
+recommendation, and every queue figure on the page drops rows you already reviewed today, so
+it agrees with `node scripts/queue.mjs`. **If your session log has entries whose `Next`
+pointer states a queue count, move `POINTER.effectiveFrom` in `docs/logs.entries.test.ts`
+forward to today's date** — the rule is not retroactive and those entries were written before
+it existed.
+
+- **The defect, inherited whole from limba (PORT-018).** The panel printed the last session's
+  pointer, a weekly pace verdict and the queue's size side by side. Each answers a different
+  question and nothing ranked them, so the surface whose job is *what do I do now* became
+  something to double-check. mova's copy was worse in two ways: it printed the pointer **twice**
+  — once as "Next block", then the whole sentence again four lines below — and it carried a
+  hardcoded **"a drill clears the queue in 10–15 minutes"**, which limba measured 68 minutes
+  wrong. That string also outlived 0.13.1, which had retracted predicted durations from
+  narration hours earlier: the rule shipped and a generated page went on contradicting it.
+- **`docs/mechanics/session_format.md` → *Which block to run*** is the new rule, and the
+  portable half of PORT-018. **The week's mix decides** — whichever side of the phase's load is
+  further behind its share over the trailing 7 days, each side being a target *and* a ceiling,
+  ties to the lesson. **The queue never decides**: it sizes part 1 and breaks a tie only toward
+  a drill, the one block where the queue is the whole session. **The pointer never decides**:
+  item (1) says what *leads* the block. Orient step 4 now routes here instead of reading two
+  numbers and stopping.
+- **One queue, one number.** `hub.mjs` counted every due row; `queue.mjs` drops the rows already
+  reviewed today, because part 1 cannot score them again — and said so in its own docstring the
+  whole time. Both now count `unseen`, the skipped rows are named in the tile rather than
+  silently dropped, and the panel does the subtraction it used to leave to the learner: how far
+  part 1's box reaches, how many keep their place in line, and what the alternative block would
+  cost from `srs.md`'s model.
+- **A pointer states work, never counts** (`docs/logs/README.md`, gated by
+  `docs/logs.entries.test.ts` from `POINTER.effectiveFrom`). Counts freeze at close-out while
+  every reader recomputes its own, so a pointer names the *set* — "the 14 city words" — and
+  `queue.mjs` owns the number. The gate is dated because append-only logs cannot be edited to
+  satisfy a later rule, and `hub.mjs` strips the frozen clause out of older pointers rather than
+  print two totals for one queue.
+- **The verdict never names a verb this focus mode refuses**, and the mix chips no longer score
+  a mode against one — 0.7.1's rule, which the chips had been quietly breaking. In a
+  drill-only instance there is no mix to weigh, so the panel states no verdict and falls back to
+  the pointer.
+- **Found while verifying, and fixed here: the verdict could name a drill with nothing to run.**
+  When the mix owes a drill and every due row was already reviewed today, a drill has no
+  content — its whole session *is* the queue. mova now runs the lesson and says why, keeping the
+  owed drill visible. limba's verdict has the same shape; the statement is in
+  [`upstream/backports/`](upstream/backports/) and the ranking rule may yet want a clause of its
+  own.
+- **`vitest.config.ts` is new (PORT-017), and ported against its `Kind: infra`.** Vitest's
+  default `exclude` covers `node_modules` and nothing else, so a full checkout sitting under the
+  repo root — an agent worktree — gets its `*.test.ts` files collected and run beside the real
+  suite. Every contract test here resolves its data relative to itself, so those runs report on
+  a tree the session cannot see, edit or fix, and "my mistake" becomes indistinguishable from "a
+  sibling mid-edit". It cost limba a blocked close-out after two sessions reported it and
+  correctly declined to delete someone else's directory. An instance inherits this the moment
+  any agent opens a worktree, and its human is a learner with no correct action available —
+  which is why the map now carries a row for a file limba filed as its own plumbing.
+- **The mechanics word budget did its job and is worth recording.** `session_format.md` had
+  ~13 words of headroom, so the new rule did not fit. What moved to `why/session_format.md` was
+  provenance: the file's header had grown a central list of markers while telling every reader
+  that provenance belongs in `why/`, plus three incident retellings. The rule file ends at
+  7,398 of 7,400 words.
+- `upstream/limba.lock` advances to PORT-018 (limba `a37d5ef`).
+
 ## 0.13.1 — 2026-08-17
 
 Two rules shipped this morning, corrected the same day by the repo they were sent to. No new

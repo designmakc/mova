@@ -387,16 +387,35 @@ function paceWeek(all) {
   };
 }
 
-/** The next block, taken from the newest session entry's Next pointer — the same
- *  sentence the orient ritual reads. Item (1) only: a pointer lists several things and
- *  the dashboard's job is to name the one to do now, not to re-publish the list.
- *  The pointer parse itself ended at a blank line only, so a long pointer running
- *  straight into the next bold field swallowed it and printed it as part of the action. */
+/**
+ * The newest session's Next pointer, item (1) — quoted ONCE and attributed, never a headline
+ * plus the same sentence again lower down. It is a quote, so it never carries this panel's
+ * verdict: item (1) says what LEADS the block (session_format.md → "Which block to run").
+ *
+ * The pointer parse ends at the next bold field as well as a blank line, so a long pointer
+ * running straight into one does not swallow it and print it as part of the action.
+ *
+ * Legacy guard: pointers written before the rule in docs/logs/README.md may state a queue
+ * count frozen at their close-out, while this panel states the live one a few lines above.
+ * Drop the measured clause rather than print two totals for one queue — the gate in
+ * docs/logs.entries.test.ts bars new ones, so this only has to age out.
+ */
 function nextBlock(all) {
   const raw = all[0] && all[0].next;
   if (!raw) return null;
   const one = /\(1\)\s*([\s\S]*?)(?=\*\*\(2\)|\(2\)|$)/.exec(raw);
-  const text = (one ? one[1] : raw).replace(/\*\*/g, "").trim().replace(/[\s,;]+$/, "");
+  const text = (one ? one[1] : raw)
+    .replace(/\*\*/g, "")
+    // The clause body may not contain another connector, so the SMALLEST clause carrying the
+    // count is the one dropped — "… due today and the queue is now 87 vocab" loses the half
+    // after "and", not the half before it.
+    .replace(
+      /\s*(?:,|;|—|\band\b)\s*(?:the\s+)?(?:(?!\band\b)[^.;—])*?\b\d+\s*(?:vocab|grammar|due|items?|rows?)\b[^.;—]*/gi,
+      "",
+    )
+    .replace(/\s+([.;,])/g, "$1")
+    .trim()
+    .replace(/[\s,;]+$/, "");
   return text ? text.slice(0, 260) : null;
 }
 
@@ -436,6 +455,18 @@ const vocab = ledger("state/vocab.md");
 const grammar = ledger("state/grammar.md");
 const all = [...vocab, ...grammar];
 const due = all.filter((r) => INT[r.tier] !== undefined && daysBetween(r.last, today) >= INT[r.tier]);
+/**
+ * A row reviewed today is still "due" — tier 1 is a zero-day interval — but part 1 cannot
+ * score it again (srs.md). `queue.mjs` drops those as the queue's tail and reports what
+ * remains, so **every figure on this page counts `unseen`**: two surfaces printing a
+ * different size for one queue is what made this panel unreadable (derived from limba,
+ * 2026-08-17, where the page said 108 and the orient command said 90). The skipped rows are
+ * named in the tile, never silently dropped.
+ */
+const seenToday = due.filter((r) => r.last === today).length;
+const unseen = due
+  .filter((r) => r.last !== today)
+  .sort((a, b) => (a.last === b.last ? (a.id < b.id ? -1 : 1) : a.last < b.last ? -1 : 1));
 /** What the deck actually holds — scripts/deck.mjs drops tier 0, seeded but never taught. */
 const deck = { words: vocab.filter((r) => r.tier >= 1).length, patterns: grammar.filter((r) => r.tier >= 1).length };
 deck.total = deck.words + deck.patterns;
@@ -453,9 +484,9 @@ const PACE = pace();
 /** ~10 items is one round trip in chat — the unit the per-block fixed cost is charged against. */
 const BLOCK_ITEMS = 10;
 const queue = {
-  recognise: due.filter((r) => r.tier === 1 || r.tier >= 4).length,
-  bare: due.filter((r) => r.tier === 2).length,
-  full: due.filter((r) => r.tier === 3).length,
+  recognise: unseen.filter((r) => r.tier === 1 || r.tier >= 4).length,
+  bare: unseen.filter((r) => r.tier === 2).length,
+  full: unseen.filter((r) => r.tier === 3).length,
   box: PACE.box,
 };
 queue.produce = queue.bare + queue.full;
@@ -465,6 +496,24 @@ queue.minutes =
   (queue.recognise * PACE.recognise + queue.bare * PACE.bare + queue.full * PACE.full) / 60 +
   queue.blocks * PACE.perBlock;
 queue.over = queue.minutes > queue.box;
+/**
+ * How far into the queue part 1 actually reaches — the oldest items whose running cost still
+ * fits the box, by the same model. A panel that prints the queue's size and part 1's box and
+ * leaves the subtraction to the learner is why a long queue reads as a job to finish today.
+ */
+queue.fits = (() => {
+  const cost = (r) => (r.tier === 2 ? PACE.bare : r.tier === 3 ? PACE.full : PACE.recognise);
+  let items = 0;
+  let secs = 0;
+  for (const r of unseen) {
+    const next = secs + cost(r);
+    if (next / 60 + Math.ceil((items + 1) / BLOCK_ITEMS) * PACE.perBlock > queue.box) break;
+    secs = next;
+    items += 1;
+  }
+  return items;
+})();
+queue.rest = unseen.length - queue.fits;
 
 /** The queue drawn against its box: the tick is the threshold, the fill is today. */
 function queueMeter() {
@@ -478,7 +527,7 @@ function queueMeter() {
           </div>
           <div class="qm-cap">≈ ${round(queue.minutes)} min · ${
             queue.over
-              ? `<b>past</b> the ${queue.box}′ a lesson gives review — a drill takes the whole hour`
+              ? `<b>past</b> the ${queue.box}′ a lesson gives review — the oldest ${queue.fits} fit, the rest waits`
               : queue.minutes >= queue.box * 0.85
                 ? `fills the ${queue.box}′ a lesson gives review`
                 : `inside the ${queue.box}′ a lesson gives review`
@@ -512,6 +561,106 @@ const partRows = lessonParts();
 const beatRows = teachingBeats();
 const calibRows = calibration();
 const last = ses[0];
+
+/**
+ * ONE verdict: the block to run, and the arithmetic that picked it.
+ *
+ * This panel used to print three signals side by side and leave the learner to arbitrate —
+ * the pointer's "run it first", a pace line reading "do a lesson, not a drill", and a queue
+ * meter reading "a drill takes the whole hour" (limba, 2026-08-17). session_format.md →
+ * "Which block to run" ranks them; this only renders the ranking:
+ *
+ *   the MIX decides    — whichever side of plan.md's weekly load is further behind its share;
+ *   the QUEUE does not — it sizes part 1, and breaks a tie only toward a drill;
+ *   the POINTER does not — it says what leads the block, quoted below.
+ *
+ * A verb this focus mode has switched off is never recommended (verbs.mjs) — 0.7.1's rule
+ * that the hub does not advertise what the workspace refuses.
+ */
+/** Does this focus mode answer to this verb at all? (verbs.mjs owns the rule.) */
+const live = (name) => verbs.some((v) => v.name === name);
+function blockVerdict() {
+  // A phase whose load names no lesson count — a mock cycle, a plan with no second side — has
+  // no mix to compare and therefore no verdict. The panel falls back to the pointer quote.
+  if (!target) return null;
+  // A mode with no lesson has no mix to weigh: whatever it runs, it runs every time.
+  if (!live("lesson")) return null;
+  const n = (x, w) => `${x} ${w}${x === 1 ? "" : "s"}`;
+  const owedL = target.lessons - week.lessons;
+  // A later phase may trade the drill for a write, or have no second side at all — read the
+  // label off the plan rather than assuming the pair.
+  const label = target.capLabel;
+  const owedB = target.capN === null || !live(label) ? null : target.capN - week.drills;
+  const lesson =
+    owedB === null || owedL > owedB || (owedL === owedB && !(label === "drill" && queue.over));
+
+  const standing = [];
+  const side = (owed, word) => {
+    if (owed > 0) standing.push(`${n(owed, word)} short`);
+    else if (owed < 0) standing.push(`${n(-owed, word)} over`);
+  };
+  side(owedL, "lesson");
+  if (owedB !== null) side(owedB, label);
+  const why = standing.length ? standing.join(", ") : "the week's mix is met";
+
+  /**
+   * A drill IS the queue (playbooks/drill.md: review only, no new material), so an empty
+   * queue leaves it with nothing to run — the mix can owe a drill that cannot happen. Say
+   * that, rather than naming a block whose whole content is missing. Found while verifying
+   * this panel against a seeded instance, 2026-08-17; limba's own verdict has the same shape
+   * and the statement for it is in upstream/backports/.
+   */
+  if (!lesson && label === "drill" && !unseen.length) {
+    return {
+      cmd: "lesson",
+      why: `${why}, but nothing is due and a drill is only the queue`,
+      opens: `Part 1 does not run — straight to ${nextUnit ? esc(nextUnit.id) : "the next unit"}.`,
+    };
+  }
+
+  if (lesson) {
+    return {
+      cmd: "lesson",
+      why,
+      opens: unseen.length
+        ? `The queue leads part 1, then ${nextUnit ? esc(nextUnit.id) : "the next unit"}.`
+        : `Nothing is due, so part 1 does not run — straight to ${
+            nextUnit ? esc(nextUnit.id) : "the next unit"
+          }.`,
+    };
+  }
+  return {
+    cmd: label,
+    why,
+    opens:
+      label === "drill"
+        ? "The queue is the whole session — repair only, no new material."
+        : "A composition against the goal contract, no new material.",
+  };
+}
+const verdict = blockVerdict();
+
+/**
+ * What the queue DOES inside today's block. This replaced a hardcoded "a drill clears the
+ * queue in 10–15 minutes", which was a predicted duration (narration.md § 1 bars those) and
+ * measured 68 minutes wrong upstream. Every figure here comes from srs.md's cost model.
+ */
+const queueLine = (() => {
+  if (!unseen.length) return null;
+  const mins = Math.round(queue.minutes);
+  const head = `<strong>${unseen.length} unseen, ≈${mins}′.</strong>`;
+  // session_format.md: past 100 items the budget is agreed out loud, before the first set.
+  const budget = unseen.length >= 100 ? " Agree a block budget before the first set." : "";
+  if (!queue.over) return `${head} Part 1 clears it inside its ${queue.box}′.${budget}`;
+  const rest =
+    ` Part 1's ${queue.box}′ reaches the oldest ${queue.fits}; the other ${queue.rest}` +
+    ` keep their place in line — the queue is oldest-first, so the tail can wait.`;
+  const drillIsTheBlock = (verdict && verdict.cmd === "drill") || !live("lesson");
+  const alt = drillIsTheBlock
+    ? ` The block is ≈${mins}′ over ${queue.blocks} blocks, most of it the ≈${PACE.perBlock}′ fixed per block.`
+    : ` A drill instead spends ≈${mins}′ on the same rows and teaches nothing new.`;
+  return `${head}${rest}${alt}${budget}`;
+})();
 
 const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
 
@@ -967,14 +1116,16 @@ ${FAVICON_LINK}
                color:var(--l2); font-weight:650; margin-bottom:6px; }
   .whatnow p { margin:0; font-size:14.5px; }
   .whatnow p + p { margin-top:9px; }
-  .whatnow-one { font-size:15px; margin:0 0 6px; }
+  /* The verdict leads the panel and is the only line set at emphasis weight — the mix chips,
+     the queue line and the pointer quote are its evidence, not competing instructions. */
+  .whatnow-do { font-size:15.5px; font-weight:600; }
+  .whatnow-q { font-size:13.5px; margin-top:9px; }
   .pace { display:flex; flex-wrap:wrap; gap:8px; margin:11px 0 2px; }
   .pace-i { display:flex; align-items:baseline; gap:6px; font-size:13px; padding:5px 11px;
             border:1px solid var(--line); border-radius:999px; background:var(--bg); }
   .pace-i b { font-size:14.5px; font-variant-numeric:tabular-nums; }
   .pace-i.over  { border-color:var(--bad); color:var(--bad); }
   .pace-i.under { border-color:var(--hi); color:var(--hi); }
-  .pace-v { font-size:13.5px; margin-top:9px; }
   .whatnow-next { color:var(--muted); font-size:13.5px; }
   .ecode { display:block; font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
            color:var(--muted); letter-spacing:.02em; }
@@ -1072,11 +1223,15 @@ ${FAVICON_LINK}
         : "all units covered") : ""}
     ${tp.length ? tile(`${tpCovered}/${tp.length}`, "topics taught", `individual points fully covered, out of everything ${goalLabel} needs`) : ""}
     ${tile(all.length, "things to remember", `${vocab.length} words · ${grammar.length} grammar patterns`)}
-    ${tile(due.length, "to review today", due.length
-        ? `${queue.produce} to produce · ${queue.recognise} to recognise`
-        : "nothing is scheduled — you are caught up",
-      due.length ? (queue.over ? "attention" : "") : "clear",
-      due.length ? queueMeter() : "")}
+    ${tile(unseen.length, "to review today", unseen.length
+        ? `${queue.produce} to produce · ${queue.recognise} to recognise${
+            seenToday ? ` · ${seenToday} more seen today, skipped` : ""
+          }`
+        : seenToday
+          ? `all ${seenToday} due rows were reviewed today — part 1 does not run`
+          : "nothing is scheduled — you are caught up",
+      unseen.length ? (queue.over ? "attention" : "") : "clear",
+      unseen.length ? queueMeter() : "")}
     ${tile(ses.length, "study sessions", last
         ? daysToGoal !== null
           ? `most recent was ${esc(last.date)}`
@@ -1100,7 +1255,7 @@ ${FAVICON_LINK}
     <div>
       <div class="deck-h">The deck <b>→</b></div>
       <div class="deck-s">${deck.words} words · ${deck.patterns} grammar patterns${
-        due.length ? ` · ${due.length} of them due today` : ""
+        unseen.length ? ` · ${unseen.length} of them due today` : ""
       } — each with its notes and, where it exists, its audio.</div>
       <div class="deck-s">Filter by unit, tier or part of speech and sort the same three ways;
         hide one side (${esc(T)} → ${esc(M)} or ${esc(M)} → ${esc(T)}) and reveal a row at a time.</div>
@@ -1115,33 +1270,21 @@ ${FAVICON_LINK}
         : ""
     }</div>
 
-  ${last || due.length ? `
+  ${last || unseen.length ? `
   <div class="whatnow">
     <div class="whatnow-h">What to do next</div>
-    ${due.length ? `<p><strong>${due.length} items are due.</strong> A <code>drill</code> clears the
-      queue in 10–15 minutes without teaching anything new; a <code>lesson</code> does the queue
-      first and then moves on to ${nextUnit ? esc(nextUnit.id) : "the next unit"}.</p>` : ""}
-    ${nextOne ? `<p class="whatnow-one"><strong>Next block:</strong> ${md(nextOne)}</p>` : ""}
+    ${verdict ? `<p class="whatnow-do">Run <code>${esc(verdict.cmd)}</code> — ${esc(verdict.why)}.
+      ${verdict.opens}</p>` : ""}
     ${target ? `
-    <div class="pace">
-      <span class="pace-i ${week.lessons < target.lessons ? "under" : ""}">
-        <b>${week.lessons}/${target.lessons}</b> lessons this week</span>
-      ${target.capN !== null ? `<span class="pace-i ${week.drills > target.capN ? "over" : ""}">
+    <div class="pace" title="The week's mix decides the block: whichever side is further behind its share over the last ${week.days} days. docs/plan.md's pacing table owns the load — ${esc(target.load)}.">
+      ${live("lesson") ? `<span class="pace-i ${week.lessons < target.lessons ? "under" : ""}">
+        <b>${week.lessons}/${target.lessons}</b> lessons this week</span>` : ""}
+      ${target.capN !== null && live(target.capLabel) ? `<span class="pace-i ${week.drills > target.capN ? "over" : ""}">
         <b>${week.drills}/${target.capN}</b> ${esc(target.capLabel)}s</span>` : ""}
       ${week.other ? `<span class="pace-i"><b>${week.other}</b> other</span>` : ""}
-    </div>
-    <p class="pace-v">${
-      week.lessons < target.lessons && target.capN !== null && week.drills > target.capN
-        ? `<strong>Do a lesson, not a ${esc(target.capLabel)}.</strong> The last ${week.days} days ran
-           ${week.drills} ${esc(target.capLabel)}s against ${week.lessons} lessons. The short block is the
-           cheaper one to say yes to, and the half of a unit it displaces is always the second
-           half — which is why a unit can stay open for days while the week looks busy.`
-        : week.lessons < target.lessons
-          ? `<strong>${target.lessons - week.lessons} lesson${target.lessons - week.lessons > 1 ? "s" : ""} short this week.</strong>
-             New material only arrives in lessons, so this is also the intake rate.`
-          : `<strong>On the plan's pace.</strong> ${esc(target.load)}, and the last ${week.days} days met it.`
-    }</p>` : ""}
-    ${last && last.next ? `<p class="whatnow-next"><strong>Last session left this pointer:</strong> ${md(last.next)}</p>` : ""}
+    </div>` : ""}
+    ${queueLine ? `<p class="whatnow-q">${queueLine}</p>` : ""}
+    ${nextOne && last ? `<p class="whatnow-next"><strong>${esc(last.id)} left:</strong> ${md(nextOne)}</p>` : ""}
   </div>` : ""}
 
   <div class="grid2" style="margin-top:14px">
@@ -1398,7 +1541,8 @@ ${FAVICON_LINK}
 
 writeFileSync(join(root, OUT), html);
 console.log(
-  `hub → ${OUT}  (${vis.length} visuals · ${all.length} items · ${due.length} due · ` +
+  `hub → ${OUT}  (${vis.length} visuals · ${all.length} items · ` +
+    `${unseen.length} unseen of ${due.length} due · ` +
     `${unCovered}/${un.length} units · ${tpCovered}/${tp.length} aspects` +
     (daysToGoal !== null ? ` · ${daysToGoal}d to ${goalKind})` : ")"),
 );

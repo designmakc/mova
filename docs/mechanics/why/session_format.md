@@ -10,6 +10,32 @@
 > reads it; that tag is what tells a session whether it may question the rule. Only the
 > story moves. Nothing here was summarised: every paragraph was moved verbatim.
 
+## What each rule was bought with — the markers
+
+Moved out of the rule file's header (2026-08-17), which had accumulated a central list of
+provenance markers while telling every reader that provenance belongs here. The rules that
+carry a marker at the point of use keep it; this is the part no single rule owned.
+
+- **The five parts and their time boxes** began as scaffold guesses, not measurements. Part 2
+  was widened once because a guess did not survive contact with a real session.
+- **The part 3/4 order is derived from limba SES-005**, where running the graded check before
+  the repair loop visibly worked.
+- **The repair loop's diagnosis step is derived from SES-007 and SES-009.** Its score arc is
+  retracted — see *The repair loop* below.
+- **The calibration split and the part-1 box rule are derived from SES-004.**
+- ⚠️ **Any score in either file predating 2026-08-09 may be inflated by answer leakage.**
+  limba's leak audit that day found sets where most answers were printed in other items'
+  prompts. The rules the audit produced are in the rule file; the audit itself is limba
+  history.
+
+## The deck is rebuilt by the session that moved a tier
+
+limba, 2026-08-10: its first-unit deck sat frozen while the ledgers moved underneath it, so the
+drill surface showed tiers that were no longer true. That is why close-out step 9 regenerates
+the deck rather than offering it as a choice.
+
+**Hard cap of 3 repair loops**: limba SES-007 stabilised on the third.
+
 ## The five parts
 
 **Parts 3 and 4 swapped** (limba SES-006 / 2026-08-03), after SES-005 ran them in this order

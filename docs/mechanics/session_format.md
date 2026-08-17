@@ -3,21 +3,12 @@
 
 > One session = one committed unit of progress. A session that isn't logged didn't happen.
 >
-> **Provenance** ([README.md](README.md)). Incidents cited as `SES-NNN` / `ERR-NNN` and every
-> Romanian example in this file are limba's — the reference implementation this engine was
-> extracted from. The five parts and their time boxes are **default (measured on limba's
-> learner — recalibrate)** — and even there they began as scaffold guesses; part 2 was
-> widened once because a guess did not survive contact. The **part 3/4 order is derived from
-> limba SES-005**, where running the check first visibly worked. The **repair loop's
-> diagnosis step is derived from SES-007 and SES-009**; its score arc is **retracted**
-> ([why/session_format.md](why/session_format.md)). The **calibration split** and the **part-1 box rule** are
-> derived from SES-004. Question the boxes freely; the derived rules need evidence of the
-> same kind that produced them.
->
-> ⚠️ **Any score quoted in this file predating 2026-08-09 may be inflated by answer leakage**
-> — limba's leak audit (2026-08-09) found sets where most answers were printed in other
-> items' prompts. The rules that audit produced live below; the audit itself is limba
-> history.
+> **Provenance** ([README.md](README.md)). Every `SES-NNN` / `ERR-NNN` incident and every
+> Romanian example here is limba's — the reference implementation this engine was extracted
+> from. **The five parts and their time boxes are default (measured on limba's learner —
+> recalibrate)**. Question the boxes freely; the derived rules need evidence of the same kind
+> that produced them, and [why/session_format.md](why/session_format.md) says which evidence
+> that was — including the scores it retracts.
 
 > **Rules live here; the story lives in [why/session_format.md](why/session_format.md).** This file is what a
 > session reads before it teaches. The incidents, audits and measurements that bought
@@ -76,6 +67,34 @@ The drill variant (10–15′) is parts 1 + 3 only, with error-pattern items mix
    grep -n "^## " docs/logs/session_log.md | head -1   # the newest entry, by structure
    git log --oneline -1                                # its SES-NNN, independently
    ```
+
+   **Neither one chooses the block.** The counts size part 1 and the pointer says what leads
+   it — the week's mix picks the block, per *Which block to run* below.
+
+## Which block to run — three signals, one verdict
+
+**Three surfaces answer "lesson or drill?", and none of them is the decision.** They answer
+different questions, so a surface that prints all three hands the learner an arbitration it
+could have computed ([narration.md](narration.md) § 5). The ranking:
+
+1. **The week's mix decides.** [../plan.md](../plan.md)'s pacing table states the phase's load
+   as a mix — `~4 lessons + 2 drills`, or whatever this plan says. Over the trailing 7 days, run
+   whichever side is **further behind its share**. Each side is a target *and* a ceiling:
+   lessons carry the unit pace, drills carry the queue, and a week of one kind fails at the
+   other. **Ties go to the lesson** — new material arrives only there.
+2. **The queue never decides.** It sizes part 1 — the oldest items whose cost fits the review
+   box ([srs.md](srs.md)) — and past that box it says what waits, not what to run. A queue over
+   its box is normal; it shrinks by promotion, not by one long sitting. It breaks a tie in 1
+   only **toward a drill**, the one block where the queue is the whole session.
+3. **The pointer never decides.** Item (1) says what **leads** the block: the set that jumps the
+   queue's oldest-first order. It names the set, never a count
+   ([../logs/README.md](../logs/README.md)). A session that means to force a block says so in
+   words, with the reason.
+
+**State the verdict, not the three inputs** — name the block, name what leads it, and stop.
+
+**A phase whose load names no lesson count** (a mock cycle, or one trading the drill for a
+write) has no mix: fall back to the pointer and say so.
 
 ## Placement — every session, every section
 
@@ -148,8 +167,8 @@ link shown comes from, or gets appended to,
 
 ## Session titles in the app
 
-Format: **`SES-NNN · <compact identifier>`** — limba's read `SES-003 · U01 sounds & a fi`,
-`SES-007 · drill ART-DEF`, `SES-012 · mock R`. The prefix maps a tab straight to its
+Format: **`SES-NNN · <compact identifier>`** — `SES-003 · U01 sounds & a fi`,
+`SES-007 · drill ART-DEF`. The prefix maps a tab straight to its
 [session log](../logs/session_log.md) entry.
 
 A session **cannot rename itself** — the rename tool refuses the current session. So each
@@ -192,7 +211,7 @@ second exposure is **aimed at the specific miss**, not at the item's schedule.
   today; name it and route it to a lesson. Grinding a third time teaches frustration.
 - **Boxed** — the time is spent. Stop mid-loop if you must, but **record what is still broken
   in the Next pointer** — an abandoned loop that leaves no trace is worse than not starting.
-- **Hard cap: 3 loops.** limba SES-007 stabilised on the third.
+- **Hard cap: 3 loops.**
 
 Available to any playbook. The drill playbook may run it as the whole session; the lesson
 playbook uses it when part 1 collapses (below); the write playbook uses it when one error
@@ -455,13 +474,10 @@ an illegitimate measurement. Run it freely. Then:
 - **Label the score `same-day, post-key`** wherever it is written down, and never compare it to
   a cold score.
 - **Every score that enters a log, a ledger note or a claim carries `same-day` or `held`** —
-  `held` reserved for a result at or beyond the item's own interval. Three separate places in
-  limba reported a within-session improvement as if it were retention: SES-005's
-  last-twenty-minutes repair (all four items wrong two days later), SES-007's 43→63→86 arc,
-  SES-011's interrogatives at 5/5 five hours after scoring 0/3. Only the third labelled itself,
-  and one of the other two became that repo's most-cited number. The repair loop's retest and
-  the SRS interval measure different things, and one vocabulary for both is what let them be
-  confused.
+  `held` reserved for a result at or beyond the item's own interval. The repair loop's retest
+  and the SRS interval measure different things, and one vocabulary for both is what lets them
+  be confused — three times over in the reference implementation, one of which became its
+  most-cited number ([why/session_format.md](why/session_format.md)).
 - **It cannot drive a promotion.** A tier moves on evidence at or beyond the item's own
   interval, not on a re-read minutes old.
 - `node scripts/leakcheck.mjs <set>.json --prior <key>` reports these as advisory. **It does not
@@ -520,29 +536,20 @@ a **path-named** `git add` line.
 3. **Check every causal claim before you write it down.** For each claim in the entry you are
    about to write, name the file that would falsify it — **and open it.** For a claim about
    words, `state/vocab.md`. About coverage, `topics.md`. About what a past session did, the log.
-   Most claims survive and the cost is a grep.
-   **Why this is a step and not advice.** limba SES-014's headline finding was that the three
-   words surviving 48 hours were *"the three with a transfer anchor"*. The retro checked the
-   ledger fifteen minutes later: **all sixteen rows already carried a hook**, written by the
-   session that taught them. The claim had already reached the session log, a repair page, a
-   scheduling proposal and the learner before one `grep` withdrew it. The workspace has
-   mechanical guards for the two ways a *score* can lie — `leakcheck.mjs` and the re-exposure
-   label — and had nothing for the way an *explanation* lies: a real pattern, an untested story
-   about its cause, published with the same confidence as the number. **A wrong score gets
-   re-measured next session; a wrong explanation gets built on.**
+   Most claims survive and the cost is a grep. **A wrong score gets re-measured next session;
+   a wrong explanation gets built on** — the workspace guards the two ways a score can lie and
+   has nothing that catches an untested story about a cause
+   ([why/session_format.md](why/session_format.md)).
 4. Append the `SES-NNN` entry to [../logs/session_log.md](../logs/session_log.md) —
    type, covered, SRS counts, score, **duration**, next pointer, **open questions**.
-   - **Duration** is wall-clock, learner-facing time. It exists because the size rule's rates
-     under-predicted a real drill by ~5× and nobody could re-fit them: the logs had no durations
-     to fit to ([srs.md](srs.md), the cost model). Recording one is how that gets fixed — and
-     how this learner's own constants replace limba's defaults.
-   - **Open questions** is any question put to the learner that they did not answer. limba
-     SES-016 asked whether a misspelling was a slip; the session closed unanswered, and the
-     *observation* survived in a ledger note while the **pending decision vanished** — the next
-     session would read a neutral description and never know one was owed. This is not rare:
-     the learner-authority rule tells sessions to ask, and asking opens a window that can
-     close. The Next pointer is for work the next session can *do*; this is something it must
-     **ask**. Write the line even if it is `none`.
+   - **Duration** is wall-clock, learner-facing time. Recording it is what lets this learner's
+     measured constants replace the defaults in [srs.md](srs.md)'s cost model — which could not
+     be re-fit at all while the logs carried no durations to fit to.
+   - **Open questions** is any question put to the learner that they did not answer. The Next
+     pointer is for work the next session can *do*; this is something it must **ask**. Write
+     the line even if it is `none` — the learner-authority rule tells sessions to ask, and
+     asking opens a window that can close unnoticed
+     ([why/session_format.md](why/session_format.md)).
 5. Append any `ERR-NNN` entries with **`node scripts/log-append.mjs error --file <body>.md`** —
    it takes a lock, re-reads the log inside it, and derives the ID there. Two limba sessions
    took `ERR-033` in the same seconds on 2026-08-12; CI caught that duplicate, but it cannot
@@ -574,8 +581,7 @@ a **path-named** `git add` line.
    `node scripts/deck.mjs` rebuilds
    [../../work/visuals/deck.html](../../work/visuals/deck.html) from the ledgers this
    session just updated — the drill surface is only honest if the session that moved a tier
-   rebuilds it (limba, 2026-08-10; its frozen first-unit deck is why this is a step and not a
-   choice). Then `node scripts/hub.mjs` **again** — a page built this session already put
+   rebuilds it — a step, not a choice ([why/session_format.md](why/session_format.md)). Then `node scripts/hub.mjs` **again** — a page built this session already put
    itself on the hub (step 7), but every *number* on it moved afterwards. It rebuilds
    [../../work/visuals/index.html](../../work/visuals/index.html) from the ledgers, the
    topic map, the curriculum, the logs and the visuals index, so the learner's one bookmark
@@ -592,7 +598,8 @@ a **path-named** `git add` line.
 10. `npm test` if `docs/plan.md`, `docs/curriculum.md`, `docs/reference/topics.md`, or
     `docs/projects/` changed (the ledger and log tests run in the full suite anyway — run it
     when in doubt). **A failure in a file this session did not touch is probably another
-    session mid-edit** — say so and leave it; do not fix it.
+    session mid-edit** — say so and leave it; do not fix it. A sibling in a git
+    worktree cannot cause this: `vitest.config.ts` keeps worktrees out of collection.
 11. `git commit` — message `SES-NNN: <one-line summary>`, **naming the paths this session
     wrote**. The tree is shared; `git add -A` sweeps another session's unfinished work into
     your commit.
