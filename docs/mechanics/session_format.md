@@ -288,29 +288,33 @@ The band's numbers are **default (measured on limba's learner — recalibrate)**
 Teaching new material onto failed retention is how a backlog compounds: the queue grows while
 the part of it that is already shaky never gets fixed.
 
-### What the graded check must sample (limba, 2026-08-12)
+### What the graded check must sample
 
 - **Sample at least 3 of the day's new words**, whatever else the check covers. Fewer means the
   session has no first-exposure number for its own intake.
-- **If the grammar genuinely needs all ten items**, run a separate **unscored first-exposure
-  sweep** of the remaining new words before close-out. It is not a measurement, so it does not
-  collide with the re-exposure rules, and it costs a minute.
-- **Why this matters whenever the intake number is on trial:** in limba, 16 words taught on
-  2026-08-10 returned 2 at 48 hours, which is why its intake was cut to 12. The read-out is
-  the 48-hour retest, and a retest with no first-exposure baseline for nine of twelve words
-  cannot say much.
+- **If the grammar needs all ten items**, run a separate **unscored first-exposure sweep** of
+  the remaining new words before close-out. It is not a measurement, so it does not collide
+  with the re-exposure rules, and it costs a minute.
+- **Why this matters whenever the intake number is on trial:** the read-out is the 48-hour
+  retest, and a retest with no first-exposure baseline for most of the words cannot say much
+  ([why/session_format.md](why/session_format.md)).
+- **Two numbers, and only grammar is graded against the band.** They answer different
+  questions, and one blended figure hides the answer to both. Write
+  `- **Score.** grammar N/M = P% · vocabulary N/M = P%`, or `vocabulary none`.
+- **A lesson entry without a parseable grammar score fails CI** (`docs/logs.entries.test.ts`).
+  A lesson that genuinely ran no check says so with `<!-- no-graded-check: <reason> -->`: what
+  the gate removes is skipping it *silently*, not the option of skipping it.
 
 ### Part 1's time box against the queue
 
 `queue.mjs` caps at **55**; part 1 is boxed at **~10′** (both defaults from limba's learner).
-Those numbers agree *only* because of the review-mode split ([srs.md](srs.md)) — production
-items run ~20 seconds, recognition sweeps ~3. A queue that is mostly **tier 1–2 is all
-production**, so 40 due items is already ~13 minutes, over the box.
+Those numbers agree *only* because of the review-mode split ([srs.md](srs.md)): a queue that is
+mostly **tier 1–2 is all production**, so 40 due items is already over the box.
 
 **Take the oldest items that fit the box and let the rest surface next session** — the queue is
 oldest-first precisely so this is safe. **Never speed-run production items to make the count.**
 
-#### This box is lesson-scoped. It does not bind the drill playbook. (limba, 2026-08-09)
+#### This box is lesson-scoped. It does not bind the drill playbook.
 
 The rule above exists because part 1 competes with four other parts for one hour. **On a drill
 the queue is the entire session and nothing competes with it**, so the box was being applied
@@ -575,30 +579,32 @@ a **path-named** `git add` line.
    again: each file is either indexed and committed, or deleted. Nothing survives the
    session untracked — an untracked artifact is invisible to the next session, which is how
    one got overwritten unread. `docs/visuals.index.test.ts` enforces the indexed half.
-9. **Regenerate the deck and the hub. Announce this stretch before it starts**
+9. **Regenerate the three generated pages. Announce this stretch before it starts**
    ([narration.md](narration.md) § 2) — it is the one silence that lands *after* the learner
    has been told they are done, and it reads as a crash rather than as work. If this session
-   added vocabulary, run
-   `node scripts/tts-warm.mjs` first — it is the only script that reaches the network for
-   audio, one call per uncached row, and without it the new rows ship mute (`deck.mjs` warns
-   when any do). Then
+   added vocabulary, run `node scripts/tts-warm.mjs` first — the only script that reaches the network for
+   audio, one call per uncached row; without it the new rows ship mute (`deck.mjs` warns). Then
    `node scripts/deck.mjs` rebuilds
    [../../work/visuals/deck.html](../../work/visuals/deck.html) from the ledgers this
-   session just updated — the drill surface is only honest if the session that moved a tier
-   rebuilds it — a step, not a choice ([why/session_format.md](why/session_format.md)). Then `node scripts/hub.mjs` **again** — a page built this session already put
+   session just updated — a step, not a choice
+   ([why/session_format.md](why/session_format.md)). Then `node scripts/profilepage.mjs`
+   rebuilds [../../work/visuals/profile.html](../../work/visuals/profile.html), the record
+   surface — **before** the hub, for the reason in `why/`. Then
+   `node scripts/hub.mjs` **again** — a page built this session already put
    itself on the hub (step 7), but every *number* on it moved afterwards. It rebuilds
    [../../work/visuals/index.html](../../work/visuals/index.html) from the ledgers, the
    topic map, the curriculum, the logs and the visuals index, so the learner's one bookmark
-   is current. **Commit both like any other page** — with local delivery there is nothing else
-   to do; an instance with a `publishing:` capability adds its own republish step
+   is current. **Commit all three like any other page** — with local delivery there is nothing
+   else to do; a `publishing:` capability adds its own republish step
    ([media.md](media.md) → Delivering a visual).
-   **These two files are generated and cannot hold an edit** — every number in them comes from a
-   repo file, and both carry a `GENERATED … do not edit` banner. So a conflict in either is
-   never a merge: *regenerate and overwrite*, and the newer generation wins by construction.
+   **These three files cannot hold an edit** — every number comes from a repo file and each
+   carries a `GENERATED … do not edit` banner, so a conflict is never a merge: *regenerate and
+   overwrite*, and the newer generation wins by construction.
+   `closeout.mjs --finish` runs the chain in this order; adding a page to it is four edits
+   ([../visual/SPEC.md](../visual/SPEC.md) → Generated pages).
    **Then hand the hub over as a clickable `file://` link in the close-out message**
-   ([media.md](media.md) → Delivering a visual). A bookmark the learner has to assemble out
-   of a repo path is not a bookmark, and this is the one step of the ritual whose entire
-   product is a page they are meant to open.
+   ([media.md](media.md) → Delivering a visual; the reason is in
+   [why/session_format.md](why/session_format.md)).
 10. `npm test` if `docs/plan.md`, `docs/curriculum.md`, `docs/reference/topics.md`, or
     `docs/projects/` changed (the ledger and log tests run in the full suite anyway — run it
     when in doubt). **A failure in a file this session did not touch is probably another

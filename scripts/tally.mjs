@@ -163,6 +163,26 @@ const rootTally = new Map();
 const liveTally = new Map();
 const moved = [];
 const banked = [];
+/**
+ * CODE → { first, last } — when a zone was first and last seen, over LIVE occurrences only.
+ *
+ * The dates were already parsed and thrown away. They answer the question the whole
+ * `Measured:` mechanism exists for and a bare count cannot: a zone at 16× that has not
+ * recurred in two weeks and a zone at 16× that fired this morning are the same number and
+ * opposite problems.
+ *
+ * Live-only on purpose — a banked occurrence has already been answered by a clean re-test,
+ * and dating a zone by it would report the problem as older than it is.
+ */
+const span = new Map();
+const seen = (code, date) => {
+  const cur = span.get(code);
+  if (!cur) span.set(code, { first: date, last: date });
+  else {
+    if (date < cur.first) cur.first = date;
+    if (date > cur.last) cur.last = date;
+  }
+};
 
 const add = (m, k, n) => m.set(k, (m.get(k) || 0) + n);
 
@@ -178,7 +198,7 @@ for (const e of entries.values()) {
   // before — a finding from the same day as the measurement is not covered by it.
   const m = measured.get(code);
   if (m && e.date < m.date) banked.push({ id: e.id, code, n: e.n, by: m });
-  else add(liveTally, code, e.n);
+  else { add(liveTally, code, e.n); seen(code, e.date); }
 
   if (code !== e.code) moved.push({ id: e.id, from: e.code, to: code, via: target.id });
 }
@@ -214,6 +234,8 @@ const sorted = (m) => [...m.entries()].sort((a, b) => b[1] - a[1] || a[0].locale
     retired: [...retired].sort(),
     measured: [...measured.entries()].map(([code, m]) => ({ code, ...m })),
     banked,
+    /** Per-code first/last live sighting — see `span` above. */
+    span: Object.fromEntries(span),
   };
 }
 

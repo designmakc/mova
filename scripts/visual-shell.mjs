@@ -62,6 +62,32 @@ export function frame(starterHtml = readFileSync(join(ROOT, STARTER), "utf8")) {
   return { head, scripts };
 }
 
+/**
+ * Just the token block — the pinned theme, with no layout attached.
+ *
+ * A GENERATED DASHBOARD NEEDS THE PALETTE AND NONE OF THE PAGE. The hub, the deck and the
+ * profile page each lay themselves out; what they must share is the theme, or the workspace
+ * stops reading as one set of pages. Before this export the token block lived in four
+ * places — here, hub.mjs, deck.mjs, and a fourth the moment a profile page was proposed —
+ * which is the drift this module was written to end, one level up (limba PORT-022).
+ *
+ * The slice is delimited by the two banner comments starter.html already carries, so the
+ * theme stays editable as CSS in the file a human looks at. Both banners missing is a
+ * malformed reference page and throws: silently returning an empty palette would ship a
+ * dashboard with no colours and no error.
+ */
+export function tokens(starterHtml = readFileSync(join(ROOT, STARTER), "utf8")) {
+  const from = starterHtml.indexOf("/* ============ TOKEN BLOCK");
+  const to = starterHtml.indexOf("/* ============ COMPONENTS");
+  if (from === -1 || to === -1 || to <= from) {
+    throw new Error(
+      `${STARTER}: the TOKEN BLOCK / COMPONENTS banner comments delimit the palette — ` +
+        `one of them is missing or out of order, so no theme can be extracted.`,
+    );
+  }
+  return starterHtml.slice(from, to).trimEnd();
+}
+
 /** Strip the reference page's own identity so a generated page carries its own. */
 function retitle(head, { title, marker }) {
   return head

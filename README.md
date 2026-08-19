@@ -40,8 +40,8 @@ made and how to use it, and one word to say when you're ready to begin.
 ## How you use it
 
 **Chat is the only thing you operate.** You say a word; your agent runs the playbook behind
-it and operates everything else — every script, every file, every check. The hub and the
-deck are pages you read, never type into. Your job is to answer questions and study.
+it and operates everything else — every script, every file, every check. The hub, the deck
+and your profile page are read, never typed into. Your job is to answer questions and study.
 
 Three words carry an ordinary week:
 
@@ -87,14 +87,18 @@ guess, so no later session mistakes it for a measurement.
 3. **The session closes itself.** Ledgers updated, coverage flipped, the session logged,
    the hub and deck rebuilt, the tests run, the work committed — then a plain-language
    summary of what changed for you today, with no codes and no file paths.
-4. **Between sessions, open the deck.** Every word and pattern you hold, filtered by unit,
+4. **Between sessions, open the deck or your profile page.** The deck holds every word and
+   pattern you hold, filtered by unit,
    tier or part of speech, with either side hidden and revealed a row at a time. This is
-   where you go over what *you* want to practice, rather than what the queue chose.
+   where you go over what *you* want to practice, rather than what the queue chose. The
+   profile page is the other direction: what this workspace has settled about you — and
+   every claim there is one you can read and argue with.
 5. **Come back through the hub.** It lists every study page ever built for you, so any
    topic you have covered is one click away — the page it was taught from, with its audio.
 
-That bookmark is the only one you need: **the deck** (`work/visuals/deck.html`) sits next
-to the hub in your copy of the repo, and is one click from it. Both are regenerated from
+That bookmark is the only one you need: **the deck** (`work/visuals/deck.html`) and your
+**profile page** (`work/visuals/profile.html`) sit next to the hub in your copy of the repo,
+one click from it and from each other. All three are regenerated from
 the files that own each number, never hand-written. Study pages are self-contained HTML
 with the audio embedded — they open from disk, work offline, and keep working forever.
 

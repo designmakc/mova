@@ -4,6 +4,109 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.16.0 — 2026-08-19
+
+Your workspace grows a second page. The hub becomes the page you act **from** — one
+instruction, and the arithmetic behind it folded away — and a new **Profile & stats** page
+becomes the page you look back from. Three numbers that were quietly wrong get fixed, and the
+one that had gone dark for twelve days now fails CI rather than disappearing.
+
+instance-impact: **engine files auto-update, then run one command.** After the update, run
+`node scripts/profilepage.mjs` once, add its output to your visuals folder, and commit it —
+or just close out a session, which now does it for you. Three things change in what you read:
+your hub's opening panel is much shorter, with everything it used to say one click away; "this
+week" now means Monday to Sunday instead of the last seven days, so the number resets; and your
+review queue is reported as two numbers instead of one, because half of it was never a backlog.
+**One thing changes in what you write**: a lesson's close-out asks for two scores — grammar and
+vocabulary — and a lesson entry with no grammar number now fails `npm test`. Entries you have
+already written are exempt.
+
+- **A second page, and the hub could finally stop saying everything.** The hub's opening band
+  had grown to six blocks before it said what to do. It now shows one instruction, the material
+  waiting, and the week's mix — with the lead sentence, the parts still open, the queue
+  arithmetic and the last session's pointer folded behind one disclosure. Everything that came
+  off it is on the profile page at the length it deserves: the claims this workspace is
+  operating on about you, the coverage ranking in full, every graded check ever recorded, the
+  whole error history, and the marking sheets, which nothing had ever read.
+- **A summary that is a truncated copy is worth less than a link.** The first attempt put a
+  shortened version of the fuller view on the hub. Four bars off a thirteen-bar ranking is too
+  few to rank anything by and too many to skim past, on the page you act from. Five hub tiles
+  now carry a link instead, **anchored to the section** rather than the top of the page —
+  landing on a long page and hunting for the thing you clicked is a hint, not a link. The ids
+  are declared in one map and a section with no anchor **fails the build**: a link that quietly
+  stops working is worse than one that stops loudly.
+- **One unit state, computed once.** The hub derived "how far into this unit are we" three
+  separate times, and none of the three could see that a page had been built and not yet
+  taught. So a finished page could sit on disk while its own unit's row read *not opened*. One
+  function now answers it — `taught` · `part-taught` · `staged` · `not-opened` · `unmapped`,
+  with "material waiting" reported alongside, because a part-taught unit can also have its
+  second half already built. A free audit falls out: when your curriculum's own status line and
+  its aspect statuses disagree — which happens exactly when a close-out flipped one and forgot
+  the other — the page shows the disagreement instead of picking a side.
+- **THE WEEK was a rolling seven days, so it could never be pointed at.** It never reset, which
+  meant "this week" was a different window every morning and your plan's weekly load had nothing
+  to be scored against. It is now Monday to Sunday, labelled with its dates and its days
+  remaining. *Monday to Sunday, not Monday to Friday*: upstream ran a quarter of its sessions at
+  a weekend, and a working-week window would have silently dropped every one. Measure your own
+  record rather than inheriting that ratio.
+- **THE QUEUE could not reach zero, and said so in the alarm colour.** Tier 1 has a zero-day
+  interval, so a tier-1 row falls due again every morning however often you answer it. Blended
+  into one total and printed as a debt, a perfectly healthy queue read as an unpayable one.
+  Split into **what came around on schedule** — which reaches zero, and is the only half that
+  earns an alarm — and **the daily recognition pool**, sized in minutes and never as a count to
+  clear. `queue.mjs --counts` prints the same split, so triage and the dashboard tell one story.
+  The general rule: **a metric that cannot reach zero must not be rendered as a backlog.**
+- **THE GRADED CHECK had gone dark and nothing noticed, including the check itself.** Two
+  independent failures. The close-out template asked for `N/M = P%` while the parser demanded a
+  literal `/10`, so the score chart could freeze without anything failing — *the two ends of one
+  pipeline disagreed and no test compared them*. And a lesson could close with no score at all
+  and no surface anywhere would say so. Now the same reader serves the page and the test, the
+  chart plots **percentages** so a test of ten and a test of twenty-one compare, the template
+  asks for grammar and vocabulary separately, and a lesson entry with no grammar number fails
+  CI. A lesson that genuinely ran no check says so on the record with
+  `<!-- no-graded-check: <reason> -->` — what the gate removes is skipping it *silently*.
+- **The same-day warning stopped naming rows you cannot see.** The queue is oldest-first, so
+  rows you already answered today are its tail — and once the backlog runs past the display cap,
+  that tail is exactly the part not on screen. The verdict now distinguishes what is shown from
+  what is merely due. A surface that makes you re-derive it by hand is the failure the verdict
+  was added to remove.
+- **Density, measured rather than felt.** A cap on a clamped element is now derived **from** the
+  clamp: a card's description was capped looser than the three lines it renders in, so a cell
+  could pass its own test and still be cut off mid-word. Long lists fold — a unit's aspects
+  after five, and the claims about you to the claim plus its date and evidence, because a
+  settled fact nobody scrolls to cannot be contested, which is the only reason that half of the
+  page exists. The page you are on now carries the colour in the nav; it used to render muted
+  while the pages you could still take rendered coloured, which is the state and the affordance
+  exactly backwards.
+- **The frame stopped being copied.** The token block was in three places and a fourth was
+  about to be written. It now has one definition — `scripts/page-shell.mjs`, which imports the
+  pinned theme rather than restating it — and every reader every generated page shares lives in
+  `scripts/sources.mjs`. Two new contract tests hold both. Alongside them the rule that decides
+  whether a section renders when empty: a **specification** with zero rows is a broken parser
+  and throws; a **record** with zero rows is a young workspace, renders nothing, and **names
+  what it skipped**, so a section missing from the page *and* from that line is a bug.
+- **An error taxonomy needs a code for the letters of a word you already know.** Vowels and
+  consonants are siblings, not a hierarchy: a run of one with none of the other means something
+  a merged code would delete. The Romanian pack gains `ORTH-SEQ`; every pack's taxonomy gains
+  the rule that decides such a case — a near-neighbour earns its own code when its **repair
+  route** differs. This one routes to writing practice and never to meeting the word again,
+  which is the opposite of what a vocabulary gap prescribes.
+- **Two tests were failing in your copy and passing in the template's, which is the worst
+  direction for a test to be wrong in.** Both were found by running the whole suite against a
+  generated workspace rather than against this repo, and neither has anything to do with the
+  rest of this release. The visuals index checked its own authoring guidance as though the
+  example filename in it were a real page, so a freshly generated workspace failed on a file
+  that was never meant to exist — comments are now stripped before links are read, the same
+  discipline the error tally uses for tokens it discusses rather than declares. And a pack
+  check asserted that *this repo's* word lists were empty, which stops being true the moment
+  you learn your first word; it now makes its claim against a fixture, where the claim is
+  actually about the parser.
+- **The word budget did its job three times in this release**, which is worth recording because
+  it is the mechanism nobody sees working. Every rule added here had to pay for itself: the
+  session mechanic and the media mechanic each went over their ceiling, and each time the fix
+  was the one the failure message names — provenance moved to `why/`, and the rules a study
+  session never needs moved to the page spec, where whoever builds a generator will look.
+
 ## 0.15.0 — 2026-08-17
 
 A page build no longer happens in silence. The rule that says so gets the first enforcement

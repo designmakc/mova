@@ -34,6 +34,7 @@ codes are appended in the session that first needs them, never invented ahead of
 | ORTH-DIA | diacritics | ✗ *fara* → fără (graded error, not a typo) |
 | ORTH-CG | soft/hard c and g spelling | ✗ *ingener* → inginer, ✗ *cheasi* → ceasuri (`ch` is [k], `ce` is [t͡ʃ]) |
 | ORTH-VOW | vowel or diphthong choice and order | ✗ *frumaos* → frumoas(ă), ✗ *saere* → seara (only when the learner declares it genuine) |
+| ORTH-SEQ | consonants of a known word dropped or transposed — the lexeme is right, the letter sequence is not | ✗ *așepta* → aștepta, ✗ *bicileta* → bicicletă (same learner-declares-it rule as ORTH-VOW) |
 | PRON | pronunciation (round-trip miss) | said „fără", machine heard „fata" twice — ă not landing |
 | LEX-FF | false friend / wrong-lexeme selection by similarity | ✗ *prost* meant as "simple"; also RO-internal: *a locui* / *a lucra* |
 | LEX-GAP | the word is not there — output is a plausible-shaped invention | ✗ *scaulă* for **scaun**, ✗ *o bură* for **un birou** |
@@ -52,6 +53,15 @@ Scope rulings that keep the codes sharp (each earned by a misrouted drill):
   the drain every slip flows into, and the tally stops pointing anywhere.
 - **ORTH-VOW** is vowel/diphthong choice or order *inside* the word, and only when the
   learner, asked per item, declares it genuine. A declared slip is not coded at all.
+- **ORTH-SEQ and ORTH-VOW are siblings, not a hierarchy.** One output path, two letter
+  classes, and the split carries information a merged code would delete: a run of ORTH-SEQ
+  with no ORTH-VOW means something different from an even mix. ORTH-SEQ takes the same
+  learner-declares-it rule. A limba session produced six of these in one sitting, three of
+  each class, and half of them were uncodable (2026-08-19).
+- **An ORTH-SEQ entry routes to writing practice, never to re-exposure of the word.** The
+  lexeme was retrieved correctly — meeting it again repairs nothing. That is the opposite
+  of what LEX-GAP prescribes, which is why filing these under LEX-GAP would send drilling
+  at the wrong thing. Not LEX-END either: the break is inside the stem, not the ending.
 - **LEX-GAP vs NOUN-GEN**: nine wrong-gender nouns in one limba session all sat on words
   the learner could not retrieve (*scaulă, o bură, o țitili*…) — the default invention
   shape is `o …ă` because `-ă` really is a reliable feminine signal. Code the retrieval

@@ -253,6 +253,21 @@ describe("docs/mechanics word budget", () => {
     // cap and filed the tradeoff as an open question — do not resolve a design question
     // with this number.
     "narration.md": 900,
+    /**
+     * INSTANCE-ONLY — generated at setup, so this entry skips in the template repo and
+     * binds the moment a learner has one. Its ceiling is the one number here that is not
+     * today's weight, because there is no file to weigh: it is upstream's, where a
+     * taxonomy that started at nine codes reached this cap in three months.
+     *
+     * A taxonomy accretes provenance faster than any other rule file, because each new
+     * code arrives WITH the incident that earned it — and the incident is the longer half.
+     * Upstream added one code on 2026-08-19 and went straight over, which is the mechanism
+     * working: the session moved four incident paragraphs to why/error_taxonomy.md,
+     * leaving a one-line pointer where each had stood, and the code table stayed. Expect
+     * the same sequence here. A new code costs roughly its own length in provenance, and
+     * this number is what decides where the provenance lives.
+     */
+    "error_taxonomy.md": 2750,
   };
 
   const words = (rel: string) => read(rel).split(/\s+/).filter(Boolean).length;

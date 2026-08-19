@@ -35,18 +35,22 @@
  * read-only except for its one output, and overwrites — so an extra run can only make the
  * page fresher. Zero dependencies.
  */
-import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { readdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { loadProfile } from "./profile.mjs";
-import { liveVerbs } from "./verbs.mjs";
 import { loadPack } from "./pack.mjs";
 import { canVerify } from "./dictionary.mjs";
 import { FAVICON_LINK } from "./favicon.mjs";
+import {
+  DASH_TOKENS, CHROME, BOARD, NAV_CSS, nav, OPEN_TARGET_JS, anchorOf, linkTo,
+} from "./page-shell.mjs";
+import {
+  root, read, readMaybe, todayISO, daysBetween, must, when, skipped,
+  intervals, pace, ledger, visuals, topics, units, sessions, errorTally, currentPhase,
+  lessonParts, teachingBeats, pacing, calibration, weeklyTarget, paceWeek, unitState,
+  commands,
+} from "./sources.mjs";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const read = (rel) => readFileSync(join(root, rel), "utf8");
-const readMaybe = (rel) => (existsSync(join(root, rel)) ? read(rel) : null);
 const OUT = "work/visuals/index.html";
 
 const profile = loadProfile();
@@ -65,335 +69,13 @@ const goalKind = profile.get("goal_kind", "goal");
 /** The goal phrase the learner reads — e.g. "B1 exam". Falls back to the goal kind. */
 const goalLabel = profile.get("goal_label", goalKind);
 
-/* ------------------------------------------------------------------ helpers */
-
-/** Markdown table rows with exactly `n` cells, header and separator dropped.
- *
- *  A header is identified structurally — it is the row immediately followed by the
- *  `|---|---|` separator — not by matching its first cell against a list of known
- *  column names. The list version silently emitted "Where it failed | What it means"
- *  as a data row the first time a table used unlisted headers, which is exactly the
- *  failure mode a hardcoded list guarantees eventually (limba). */
-function rows(text, n) {
-  const out = [];
-  let pending = null; // last candidate row, held until we know if a separator follows
-  const flush = () => { if (pending) out.push(pending); pending = null; };
-
-  for (const line of text.split("\n")) {
-    const t = line.trim();
-    if (!t.startsWith("|") || !t.endsWith("|")) { flush(); continue; }
-    const cells = t.slice(1, -1).split("|").map((c) => c.trim());
-    if (cells.every((c) => /^:?-{2,}:?$/.test(c))) { pending = null; continue; } // header above
-    if (cells.length !== n) { flush(); continue; }
-    flush();
-    pending = cells;
-  }
-  flush();
-  return out;
-}
-
-/** Body of one `##`/`###` section, up to the next heading at the same level or above.
- *  Lets a table be read from the file that owns it without matching lookalike tables. */
-function section(text, headingRe) {
-  const lines = text.split("\n");
-  let start = -1, level = 0;
-  for (let i = 0; i < lines.length; i++) {
-    const m = /^(#{2,4})\s+(.+)$/.exec(lines[i]);
-    if (!m) continue;
-    if (start === -1) {
-      if (headingRe.test(m[2])) { start = i + 1; level = m[1].length; }
-      continue;
-    }
-    if (m[1].length <= level) return lines.slice(start, i).join("\n");
-  }
-  return start === -1 ? "" : lines.slice(start).join("\n");
-}
-
-/* esc + md live in ./inline-md.mjs — extracted (limba, 2026-08-12) so they have a test. */
-
-const todayISO = () => {
-  const n = new Date();
-  const p = (x) => String(x).padStart(2, "0");
-  return `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())}`;
-};
-
-const daysBetween = (aISO, bISO) => {
-  const u = (s) => {
-    const [y, m, d] = s.split("-").map(Number);
-    return Date.UTC(y, m - 1, d);
-  };
-  return Math.round((u(bISO) - u(aISO)) / 86_400_000);
-};
-
-/* ------------------------------------------------------------------ parsers */
-
-/** Interval table from srs.md — canonical. Never re-declare these numbers here. */
-function intervals() {
-  const map = {};
-  for (const c of rows(read("docs/mechanics/srs.md"), 4)) {
-    const tier = Number(c[0]);
-    const days = /(\d+)\s*days?/.exec(c[2]);
-    if (Number.isInteger(tier) && days) map[tier] = Number(days[1]);
-  }
-  if (!Object.keys(map).length) throw new Error("hub: could not read the tier table from srs.md");
-  return map;
-}
-
-/**
- * What a review costs and how long there is for it — all of it from srs.md, which owns them.
- *
- * The ladder charges a different rate per rung: tier 1 is recognition, tier 2 is bare
- * production, tier 3 is the full package, tiers 4–5 sweep. On top of the per-item rates
- * there is a fixed cost **per block** — composing the set, leakcheck, the learner reading
- * and typing, marking, publishing the sheet, the grouped diagnosis. The per-item-only
- * model this replaced under-predicted a real drill by ~5× (limba, 2026-08-12).
- *
- * All five numbers are read from the prose that states them, and this throws rather than
- * guessing: a silently-wrong estimate is printed on the learner's own bookmark.
- */
-function pace() {
-  const src = read("docs/mechanics/srs.md").replace(/\s+/g, " ");
-  const grab = (re, what) => {
-    const m = re.exec(src);
-    if (!m) {
-      throw new Error(
-        `hub: could not read ${what} from srs.md — the "What a review block costs" cost-model ` +
-          `paragraph must still state it in the shape this regex expects: ${re}`,
-      );
-    }
-    return Number(m[1]);
-  };
-  return {
-    recognise: grab(/recognition ~(\d+) s per item/, "the recognition rate"),
-    bare: grab(/bare production ~(\d+) s per item/, "the bare-production rate"),
-    full: grab(/the full package ~(\d+) s per item/, "the full-package rate"),
-    perBlock: grab(/~(\d+) minutes fixed per block/, "the per-block fixed cost"),
-    box: grab(/review block (\d+) minutes/, "the review box"),
-  };
-}
-
-/** The 8-cell count is a silent contract (limba widened it once and documented why): a
- *  wrong count matches nothing and renders a hub reporting zero tracked items with no
- *  error. Empty IS legal here — a fresh instance has ledgers with only their header — so
- *  the guard is the header shape, not the row count. */
-function ledger(rel) {
-  const text = read(rel);
-  const out = rows(text, 8).map((c) => ({
-    id: c[0], target: c[1], en: c[2], tier: Number(c[3]), added: c[4], last: c[5],
-    topic: c[6], notes: c[7],
-  }));
-  if (!out.length && !/^\|\s*id\s*\|/m.test(text)) {
-    throw new Error(`hub: ${rel} has neither data rows nor the schema header — the ledger shape changed.`);
-  }
-  return out;
-}
-
-/** `Units` is space-separated so one page can belong to every unit it touches, and `Kind`
- *  is declared rather than guessed (limba, 2026-08-09). Empty is legal — a fresh instance
- *  has built no pages yet. */
-function visuals() {
-  const text = readMaybe("work/visuals/README.md");
-  if (!text) return [];
-  return rows(text, 5).map((c) => {
-    const file = /\(([^)]+\.(?:html|svg))\)/.exec(c[1]);
-    const name = /\[([^\]]+)\]/.exec(c[1]);
-    return {
-      date: c[0],
-      name: name ? name[1] : c[1],
-      file: file ? file[1] : null,
-      teaches: c[2],
-      units: c[3].split(/\s+/).filter(Boolean),
-      kind: c[4],
-      superseded: /superseded/i.test(c[2]),
-      /** No delivery date = prepared, not taught yet. Pages are indexed the moment they
-       *  pass the gate (media.md → Delivering a visual, rule 3), so this is the state most
-       *  rows start in — the card has to say so, or the learner reads unfinished material
-       *  as this session's lesson. */
-      built: !/^\d{4}-\d{2}-\d{2}$/.test(c[0]),
-    };
-  });
-}
-
-function topics() {
-  const text = readMaybe("docs/reference/topics.md");
-  if (!text) return [];
-  const out = [];
-  let sectionName = "—";
-  for (const line of text.split("\n")) {
-    const h = /^## (.+)$/.exec(line.trim());
-    if (h) { sectionName = h[1]; continue; }
-    const t = line.trim();
-    if (!t.startsWith("|") || !t.endsWith("|")) continue;
-    const c = t.slice(1, -1).split("|").map((x) => x.trim());
-    if (c.length !== 5 || /^-{2,}$/.test(c[0]) || c[0] === "ID") continue;
-    out.push({ section: sectionName, id: c[0], aspect: c[1], unit: c[2], exam: c[3], status: c[4] });
-  }
-  return out;
-}
-
-function units() {
-  const text = readMaybe("docs/curriculum.md");
-  if (!text) return [];
-  const lines = text.split("\n");
-  const out = [];
-  for (let i = 0; i < lines.length; i++) {
-    const h = /^## (U\d+)\s+—\s+(.+)$/.exec(lines[i]);
-    if (!h) continue;
-    const s = /^status:\s*(.+)$/.exec((lines[i + 1] || "").trim());
-    out.push({ id: h[1], title: h[2], status: s ? s[1] : "pending" });
-  }
-  return out;
-}
-
-function sessions() {
-  const text = readMaybe("docs/logs/session_log.md");
-  if (!text) return [];
-  const parts = text.split(/^## /m).slice(1);
-  return parts.map((block) => {
-    const head = /^(\d{4}-\d{2}-\d{2}) — (SES-\d+)/.exec(block);
-    if (!head) return null;
-    const type = /\*\*Type\.\*\*\s*([^.—\n]+)/.exec(block);
-    // MUST be anchored to the words "graded check". A bare /\d+\/10/ also matches
-    // drill item counts — in limba it once plotted a drill count as a graded score
-    // for a session that had no graded check at all. A dashboard that invents a
-    // data point is worse than one that omits it.
-    const score = /graded check[^\n]{0,40}?(\d+(?:\.\d+)?)\s*\/\s*10/i.exec(block);
-    const next = /\*\*Next\.\*\*\s*([\s\S]*?)(?:\n\n|$)/.exec(block);
-    return {
-      date: head[1], id: head[2],
-      type: type ? type[1].trim() : "—",
-      score: score ? Number(score[1]) : null,
-      next: next ? next[1].replace(/\s+/g, " ").trim() : null,
-    };
-  }).filter(Boolean);
-}
-
-/** The ROOT tally, from scripts/tally.mjs — the same list the drill playbook acts on.
- *  Imported rather than recomputed: a dashboard showing a different ranking from the one
- *  driving practice is worse than no dashboard. */
-function errorTally() {
-  const { live: counts, root, surface, moved, measured, banked } = tally();
-  const z = zones();
-  return {
-    rows: counts.map(([code, n]) => ({ code, n, zone: z[code] || "" })),
-    moved,
-    differs: JSON.stringify(counts) !== JSON.stringify(surface),
-    // What a later clean measurement has answered — shown, not hidden, so the learner can see
-    // why a zone they remember failing is missing from the list.
-    measured: measured.map((m) => ({
-      ...m,
-      n: banked.filter((b) => b.code === m.code).reduce((a, b) => a + b.n, 0),
-      zone: z[m.code] || "",
-    })),
-    allTime: root,
-  };
-}
-
-/** The `(current)` marker on a plan.md phase heading. The old pattern was
- *  `[^\n(]+?`, which stops at the FIRST `(` — so it matched a bare title and returned
- *  null the moment a phase carried its own parenthetical, which is the normal shape
- *  (`## Phase 1 — A1 foundations (U01–U10) (current)`). Null renders as an empty
- *  string: the page still draws, it just silently stops saying which phase the learner
- *  is in. That is exactly the failure `must()` exists to prevent, so this throws.
- *
- *  No plan.md at all is a different case and stays legal — that is maintainer mode, or
- *  an instance before setup finishes. Absent means "nothing to say"; present-but-
- *  unmarked means someone broke the contract. */
-function currentPhase() {
-  const text = readMaybe("docs/plan.md");
-  if (!text) return null;
-  const marked = [...text.matchAll(/^## (Phase \d+ — .+?)\s*\(current\)\s*$/gm)];
-  if (marked.length !== 1) {
-    throw new Error(
-      `hub: found ${marked.length} plan.md phase headings marked "(current)", expected exactly 1. ` +
-        `Mark the open phase in docs/plan.md rather than shipping a dashboard with no phase.`,
-    );
-  }
-  return marked[0][1].trim();
-}
-
-/* The learning design, read from the files that define it — the parts from
-   session_format.md, the beats from teaching.md, the phase plan from plan.md.
-   Retyping any of it here would make the hub another place these rules live. */
-/** A heading rename must break loudly. In limba, renaming a beats heading silently
- *  emptied this table once — the page still rendered, just with nothing in it,
- *  which is the worst failure mode a generated dashboard has. */
-function must(label, list) {
-  if (!list.length) {
-    throw new Error(
-      `hub: parsed 0 rows for "${label}" — a heading or table shape changed. ` +
-        `Fix the pattern in scripts/hub.mjs rather than shipping an empty section.`,
-    );
-  }
-  return list;
-}
-
-const lessonParts = () =>
-  must("the five parts", rows(section(read("docs/mechanics/session_format.md"), /^The five parts/), 4));
-const teachingBeats = () =>
-  must("the beats", rows(section(read("docs/mechanics/teaching.md"), /beats — in order/), 3));
-/** The pacing table is instance content inside plan.md — absent is legal (a no-deadline
- *  instance may plan without one), so this one degrades instead of throwing. */
-const pacing = () => {
-  const text = readMaybe("docs/plan.md");
-  return text ? rows(section(text, /^Pacing table/), 5) : [];
-};
-/* ------------------------------------------------- the weekly pace instruction
- * The weekly load is NOT retyped here — it is read out of the current phase's own row
- * in plan.md's pacing table, which is where the plan states it. Change the plan and
- * this surface changes with it; that is the whole point.
- *
- * Ported from limba, 2026-08-15. Its weekly review found 11 sessions in 7 days — 3
- * lessons and 8 drills against a planned 4 + 2 — and no unit closed for five days,
- * because the second half of a unit is the half a drill displaces without anything
- * looking skipped. Every one of those numbers was in the log the whole time and nothing
- * added them up. A rule nobody can see the score against is a preference, not a rule. */
-function weeklyTarget(phaseName) {
-  const n = /Phase (\d+)/.exec(phaseName || "");
-  if (!n) return null;
-  const row = pacing().find((r) => r[0].trim() === n[1]);
-  if (!row) return null;
-  const load = row[4] || "";
-  const lessons = /(\d+)\s*lessons?/i.exec(load);
-  // A late phase may trade drills for writes, or have neither — read the label off the
-  // plan rather than assuming the pair. An unparseable cell degrades to "no target".
-  const second = /(\d+)\s*(drills?|writes?)/i.exec(load);
-  if (!lessons) return null;
-  return {
-    lessons: Number(lessons[1]),
-    capN: second ? Number(second[1]) : null,
-    capLabel: second ? second[2].replace(/s$/, "") : null,
-    load: load.trim(),
-  };
-}
-
-/** Sessions in the trailing 7 days, split by what they actually were. `sessions()`
- *  already parses the Type line; this only classifies it. Anything that is neither a
- *  lesson nor a drill (a review, a mock) is counted separately and held OUT of both
- *  scores — a review is not a study block and must not flatter the lesson count. */
-function paceWeek(all) {
-  const since = 6; // today plus the six days before it
-  const recent = all.filter((x) => {
-    const age = daysBetween(x.date, today);
-    return age >= 0 && age <= since;
-  });
-  const is = (x, re) => re.test(x.type);
-  return {
-    days: since + 1,
-    lessons: recent.filter((x) => is(x, /^lesson/i)).length,
-    drills: recent.filter((x) => is(x, /^drill/i)).length,
-    other: recent.filter((x) => !is(x, /^lesson/i) && !is(x, /^drill/i)).length,
-    total: recent.length,
-  };
-}
-
 /**
  * The newest session's Next pointer, item (1) — quoted ONCE and attributed, never a headline
  * plus the same sentence again lower down. It is a quote, so it never carries this panel's
  * verdict: item (1) says what LEADS the block (session_format.md → "Which block to run").
  *
- * The pointer parse ends at the next bold field as well as a blank line, so a long pointer
- * running straight into one does not swallow it and print it as part of the action.
+ * Hub-only, unlike everything in sources.mjs: this is not a reader of a file, it is one
+ * surface's editorial rule about how much of a pointer to show.
  *
  * Legacy guard: pointers written before the rule in docs/logs/README.md may state a queue
  * count frozen at their close-out, while this panel states the live one a few lines above.
@@ -419,34 +101,6 @@ function nextBlock(all) {
   return text ? text.slice(0, 260) : null;
 }
 
-const calibration = () =>
-  must("difficulty calibration", rows(section(read("docs/mechanics/session_format.md"), /^Difficulty calibration/), 3));
-
-/** The verb list, from playbooks/*.md frontmatter — the agent-neutral home of what limba
- *  kept in .claude/skills/, narrowed to the verbs THIS instance answers to
- *  ([verbs.mjs](verbs.mjs): focus mode, plus the goal contract for tutor-prep). The shell
- *  command list comes from AGENTS.md's ## Commands block, when it has one. */
-function commands() {
-  const focus = profile ? profile.get("focus", "full") : "full";
-  const verbs = liveVerbs({
-    root,
-    focus,
-    // `tutor-prep` is live only when the goal contract has a Tuition section — that section
-    // existing IS the tuition scenario (playbooks/tutor-prep.md § Activation rule).
-    tuition: /^##\s+Tuition\b/m.test(readMaybe("docs/reference/goal.md") || ""),
-  });
-
-  const agentsMd = readMaybe("AGENTS.md") || "";
-  const block = /## Commands\s*```([\s\S]*?)```/.exec(agentsMd);
-  const shell = block
-    ? block[1].split("\n").map((l) => l.trim()).filter(Boolean).map((l) => {
-        const i = l.indexOf("#");
-        return i > 0 ? { cmd: l.slice(0, i).trim(), desc: l.slice(i + 1).trim() } : { cmd: l, desc: "" };
-      })
-    : [];
-  return { verbs, shell, focus };
-}
-
 /* --------------------------------------------------------------- assembling */
 
 const today = todayISO();
@@ -467,6 +121,23 @@ const seenToday = due.filter((r) => r.last === today).length;
 const unseen = due
   .filter((r) => r.last !== today)
   .sort((a, b) => (a.last === b.last ? (a.id < b.id ? -1 : 1) : a.last < b.last ? -1 : 1));
+
+/**
+ * A METRIC THAT CANNOT REACH ZERO MUST NOT BE RENDERED AS A BACKLOG (limba PORT-024).
+ *
+ * Tier 1 has a zero-day interval, so a tier-1 row falls due again every morning however
+ * often it is answered — it is a rotation, not a debt, and it can never be cleared. Blended
+ * into one total and printed in the attention colour, a healthy queue reads as an unpayable
+ * one: upstream's tile said 79 due and "past the 10′" when 64 of those were the pool and the
+ * other 15 were a single day past a three-day interval. Nothing was behind, and the page was
+ * shouting it beside a verdict that said to run a lesson.
+ *
+ * So the two populations are named apart. `scheduled` genuinely came around, genuinely
+ * reaches zero, and is the only half that earns an alarm. `pool` is sized in minutes and
+ * never as a count to clear. Any SRS with a zero-interval bottom rung has this shape.
+ */
+const scheduled = unseen.filter((r) => r.tier >= 2);
+const pool = unseen.filter((r) => r.tier === 1);
 /** What the deck actually holds — scripts/deck.mjs drops tier 0, seeded but never taught. */
 const deck = { words: vocab.filter((r) => r.tier >= 1).length, patterns: grammar.filter((r) => r.tier >= 1).length };
 deck.total = deck.words + deck.patterns;
@@ -481,6 +152,10 @@ deck.total = deck.words + deck.patterns;
  * (session_format.md). That is the threshold the tile draws.
  */
 const PACE = pace();
+/** The recognition pool sized the way it should be reported — in minutes, never as a count
+ *  to clear. srs.md's own rate; no per-block cost, because the pool is a sweep inside a
+ *  block that is being charged for anyway. */
+const poolMinutes = (pool.length * PACE.recognise) / 60;
 /** ~10 items is one round trip in chat — the unit the per-block fixed cost is charged against. */
 const BLOCK_ITEMS = 10;
 const queue = {
@@ -542,7 +217,74 @@ const tp = topics();
 const tpCovered = tp.filter((t) => /^covered/i.test(t.status)).length;
 const un = units();
 const unCovered = un.filter((u) => /^covered/i.test(u.status)).length;
-const nextUnit = un.find((u) => !/^covered/i.test(u.status));
+const vis = visuals();
+/* ------------------------------------------------------------ the unit board
+ *
+ * One row per unit, each an aggregate over the ASPECTS the topic map assigns to it —
+ * never over the unit itself. The difference is the whole point: a unit is a delivery
+ * schedule, so "U01 is covered" can be true while a session is still drilling one of its
+ * aspects and rolling an item back a tier (limba SES-011). Aspects move whenever anything
+ * touches them, from any session, in any unit, and every unit that owns the aspect moves
+ * with it.
+ *
+ * Two numbers, never blended. `taught` is delivery, from the aspect statuses; `retained`
+ * is the tier spread of the items filed under those aspects. Their DIVERGENCE is the
+ * finding — limba's U03 came out four aspects of five taught and one item of twenty-five
+ * above tier 2, which a single averaged figure would have reported as roughly sixty
+ * percent.
+ *
+ * Tier 0 is excluded from `retained`: it means seeded and not yet taught, so counting it
+ * as un-retained would punish a unit for material it has not been given.
+ */
+const board = un.map((u) => {
+  const asps = tp.filter((t) => t.unit === u.id);
+  const ids = new Set(asps.map((a) => a.id));
+  const items = all.filter((i) => ids.has(i.topic));
+  const live = items.filter((i) => i.tier >= 1);
+  const dates = asps
+    .filter((a) => /^covered/i.test(a.status))
+    .map((a) => a.status.replace(/^covered\s+/i, ""))
+    .sort();
+  const pages = vis
+    .filter((v) => v.units.includes(u.id))
+    // Chronological, and an undated page sorts LAST: no delivery date means built and not
+    // yet taught, which makes it the newest thing in the unit, not the oldest.
+    .sort((x, y) => (x.date || "9999").localeCompare(y.date || "9999"));
+  const st = unitState(u, asps, pages);
+  /**
+   * A FREE AUDIT FALLS OUT OF HAVING ONE STATE (limba PORT-023). curriculum.md's `status:`
+   * line and the aspect statuses are two authored claims about the same thing, and they
+   * diverge exactly when a close-out flipped one and forgot the other. Shown, not thrown:
+   * `must()` is for a table that changed shape, and a disagreement between two files a
+   * human writes is a finding the learner should see, not a build failure.
+   */
+  const claimed = /^covered/i.test(u.status);
+  return {
+    ...u,
+    asps,
+    pages,
+    ...st,
+    disagrees: claimed !== (st.state === "taught"),
+    first: dates[0] || null,
+    last: dates[dates.length - 1] || null,
+    live,
+    solid: live.filter((i) => i.tier >= 3).length,
+    shaky: live.filter((i) => i.tier <= 2),
+    seeded: items.filter((i) => i.tier === 0).length,
+  };
+});
+
+
+/**
+ * The unit to open next, from the ONE state rather than from curriculum.md's status line.
+ * A unit whose material is already built and waiting outranks the next untouched one:
+ * that page exists precisely so the next session does not start from nothing.
+ */
+const nextUnit =
+  board.find((b) => b.state === "part-taught") ||
+  board.find((b) => b.state === "staged") ||
+  board.find((b) => b.state !== "taught") ||
+  null;
 const ses = sessions();
 const scored = ses.filter((s) => s.score !== null).slice(0, 8).reverse();
 const errs = errorTally();
@@ -551,11 +293,10 @@ const daysToGoal = goalDate ? daysBetween(today, goalDate) : null;
 /** No deadline ⇒ no countdown or pace UI. What IS computable there: volume and recency. */
 const last7 = ses.filter((s) => daysBetween(s.date, today) < 7).length;
 const phase = currentPhase();
-const vis = visuals();
-const { verbs, shell, focus } = commands();
+const { verbs, shell, focus } = commands(profile.get("focus", "full"));
 const pacingRows = pacing();
 const target = weeklyTarget(phase);
-const week = paceWeek(ses);
+const week = paceWeek(ses, today);
 const nextOne = nextBlock(ses);
 const partRows = lessonParts();
 const beatRows = teachingBeats();
@@ -639,6 +380,22 @@ function blockVerdict() {
   };
 }
 const verdict = blockVerdict();
+
+/**
+ * ONE BAND, TWO FACES, NEVER BOTH (limba PORT-023).
+ *
+ * *In progress* and *what to do next* are the same slot. When a unit is in flight the band
+ * offers to continue it and carries what the board row cannot — the can-do line, the parts
+ * still open, and the material as direct links. When the week's mix points somewhere else
+ * the VERDICT WINS and the band stays *what to do next*, with the unit surviving as one
+ * clause inside the folded arithmetic.
+ *
+ * This is the same rule that collapsed three competing signals into one verdict: a page
+ * offering two answers makes the reader arbitrate, which is the job the page was supposed
+ * to do. session_format.md already ranks these signals; the band only renders the ranking.
+ */
+const inFlight = nextUnit && nextUnit.state === "part-taught" ? nextUnit : null;
+const continuing = inFlight && (!verdict || verdict.cmd === "lesson") ? inFlight : null;
 
 /**
  * What the queue DOES inside today's block. This replaced a hardcoded "a drill clears the
@@ -743,13 +500,25 @@ function factsCell() {
 
 /* ---------------------------------------------------------------- rendering */
 
-const tile = (value, label, sub = "", state = "", extra = "") => `
-      <div class="tile${state ? " " + state : ""}">
+/**
+ * One headline number.
+ *
+ * `href` makes the whole tile the way through to wherever that number is unpacked — see
+ * page-shell.mjs's ANCHOR map for why the target is a section and not a page. A linked tile
+ * carries a corner arrow: anything clickable says so, and says it before the pointer
+ * arrives.
+ */
+const tile = (value, label, sub = "", state = "", extra = "", href = null) => {
+  const cls = `tile${state ? " " + state : ""}${href ? " go" : ""}`;
+  const inner = `
         <div class="tile-v">${esc(value)}</div>
         <div class="tile-l">${esc(label)}</div>
         ${sub ? `<div class="tile-s">${md(sub)}</div>` : ""}
-        ${extra}
-      </div>`;
+        ${extra}`;
+  return href
+    ? `\n      <a class="${cls}" href="${href}">${inner}\n      </a>`
+    : `\n      <div class="${cls}">${inner}\n      </div>`;
+};
 
 const bar = (label, done, total) => `
       <div class="bar-row${done === 0 ? " untouched" : ""}">
@@ -793,51 +562,6 @@ const card = (v) => `
           </div>
         </article>`;
 
-/* ------------------------------------------------------------ the unit board
- *
- * One row per unit, each an aggregate over the ASPECTS the topic map assigns to it —
- * never over the unit itself. The difference is the whole point: a unit is a delivery
- * schedule, so "U01 is covered" can be true while a session is still drilling one of its
- * aspects and rolling an item back a tier (limba SES-011). Aspects move whenever anything
- * touches them, from any session, in any unit, and every unit that owns the aspect moves
- * with it.
- *
- * Two numbers, never blended. `taught` is delivery, from the aspect statuses; `retained`
- * is the tier spread of the items filed under those aspects. Their DIVERGENCE is the
- * finding — limba's U03 came out four aspects of five taught and one item of twenty-five
- * above tier 2, which a single averaged figure would have reported as roughly sixty
- * percent.
- *
- * Tier 0 is excluded from `retained`: it means seeded and not yet taught, so counting it
- * as un-retained would punish a unit for material it has not been given.
- */
-const board = un.map((u) => {
-  const asps = tp.filter((t) => t.unit === u.id);
-  const ids = new Set(asps.map((a) => a.id));
-  const items = all.filter((i) => ids.has(i.topic));
-  const live = items.filter((i) => i.tier >= 1);
-  const dates = asps
-    .filter((a) => /^covered/i.test(a.status))
-    .map((a) => a.status.replace(/^covered\s+/i, ""))
-    .sort();
-  return {
-    ...u,
-    asps,
-    covered: dates.length,
-    first: dates[0] || null,
-    last: dates[dates.length - 1] || null,
-    live,
-    solid: live.filter((i) => i.tier >= 3).length,
-    shaky: live.filter((i) => i.tier <= 2),
-    seeded: items.filter((i) => i.tier === 0).length,
-    pages: vis
-      .filter((v) => v.units.includes(u.id))
-      // Chronological, and an undated page sorts LAST: no delivery date means built and
-      // not yet taught, which makes it the newest thing in the unit, not the oldest.
-      .sort((a, b) => (a.built ? "9999" : a.date).localeCompare(b.built ? "9999" : b.date)),
-  };
-});
-
 /** Weakest first, the same doctrine as the topic-coverage panel: worst-covered leads
  *  because that ordering IS the information. Units holding nothing measurable trail —
  *  they are not doing well, they are simply not yet answerable. */
@@ -870,6 +594,19 @@ const pageGroup = (b, kind) => {
 };
 
 const SHOW_SHAKY = 10;
+/** Five aspects is the point past which the list stops being read and starts being
+ *  scrolled. The number is this board's; the rule that produced it is the portable half. */
+const SHOW_ASPECTS = 5;
+
+/** The five states of unitState(), in the learner's words. One derived value, one label
+ *  table — the pill, the open attribute and `nextUnit` can no longer disagree. */
+const STATE_LABEL = {
+  taught: "taught in full",
+  "part-taught": "part-taught",
+  staged: "material waiting",
+  "not-opened": "not opened",
+  unmapped: "no aspects mapped",
+};
 
 const unitRow = (b) => {
   const r = b.live.length ? pct(b.solid, b.live.length) : null;
@@ -877,12 +614,13 @@ const unitRow = (b) => {
   const rest = b.shaky.length - shaky.length;
   const span = b.first ? (b.first === b.last ? b.first : `${b.first} → ${b.last}`) : null;
   return `
-      <details class="unit" data-weak="${weakKey(b)}"${b.covered && b.covered < b.asps.length ? " open" : ""}>
+      <details class="unit" data-weak="${weakKey(b)}"${b.state === "part-taught" ? " open" : ""}>
         <summary class="ustrip">
           <div class="uhead">
             <span class="uid">${esc(b.id)}</span>
             <span class="utitle">${esc(b.title.replace(/\s*\([^)]*\)\s*$/, ""))}</span>
-            <span class="upill">${b.covered === b.asps.length && b.asps.length ? "taught in full" : b.covered ? "part-taught" : "not opened"}</span>
+            <span class="upill">${esc(STATE_LABEL[b.state])}</span>
+            ${b.staged.length && b.state !== "staged" ? `<span class="upill" title="a page for this unit is built and no session has taught it yet">${b.staged.length} waiting</span>` : ""}
           </div>
           <div class="ubars">
             <div>
@@ -904,8 +642,22 @@ const unitRow = (b) => {
           <div class="ucols">
             <div>
               <h4>What this unit owns</h4>
-              ${b.asps.length ? b.asps.map(aspectLine).join("") : `<div class="note">No aspects assigned yet in the topic map.</div>`}
+              ${b.asps.length
+                ? b.asps.slice(0, SHOW_ASPECTS).map(aspectLine).join("") +
+                  // FOLD A LIST WHOSE TAIL DOES NOT EARN ITS HEIGHT (PORT-026). One unit
+                  // upstream owned fifteen aspects and ran 491px open, on a board whose
+                  // job is to be scanned.
+                  (b.asps.length > SHOW_ASPECTS
+                    ? `<details class="fold"><summary>${b.asps.length - SHOW_ASPECTS} more</summary>
+                       ${b.asps.slice(SHOW_ASPECTS).map(aspectLine).join("")}</details>`
+                    : "")
+                : `<div class="note">No aspects assigned yet in the topic map.</div>`}
               ${span ? `<div class="note" style="margin-top:8px">Taught ${esc(span)}.</div>` : ""}
+              ${b.disagrees ? `<div class="note" style="margin-top:8px;color:var(--hi)">
+                <strong>These two disagree.</strong> The curriculum's own line says
+                <code>${esc(b.status)}</code>, the aspects say ${esc(STATE_LABEL[b.state])}. One of
+                the two was flipped at a close-out and the other was not — fix the file that
+                is wrong, not this page.</div>` : ""}
             </div>
             <div>
               <h4>${b.live.length ? `${b.live.length} things to remember` : "Nothing tracked yet"}</h4>
@@ -935,277 +687,17 @@ const html = `<!doctype html>
 ${FAVICON_LINK}
 <title>${esc(T)} — hub</title>
 <style>
-  /* Tokens are the workspace's — the hub is part of the same set of pages, not a separate
-     product. --ok/--bad/--hi are semantic state and stay independent of --l2/--l1, which
-     mean "the target language" and "the support-language anchor". */
-  :root {
-    --bg:#faf9f7; --fg:#1c1a17; --muted:#6b645c; --line:#ddd7cf; --card:#fff;
-    --ok:#1a7a4c; --bad:#b3261e; --hi:#8a5a00; --hiBg:#fff6e0;
-    --l1:#0a58ca; --l2:#a3391c; --new:#7a1fa2; --newBg:#f6ecfb;
-    --solid:#7ba05b; --shaky:#dfa63c;
-    /* The ladder runs at-risk → secure. That axis is the information, not decoration. */
-    --t1:#b3261e; --t2:#cc6a1a; --t3:#a8891b; --t4:#5d8a3f; --t5:#1a7a4c;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:#16151a; --fg:#eceaf0; --muted:#a09aa8; --line:#33303a; --card:#1e1d24;
-      --ok:#4ad48c; --bad:#ff8a80; --hi:#ffc76b; --hiBg:#2b2413;
-      --l1:#7fb0ff; --l2:#ff9d7a; --new:#d9a6f5; --newBg:#2a1d33;
-      --solid:#6fae67; --shaky:#d9a441;
-      --t1:#ff8a80; --t2:#ffab6b; --t3:#ffc76b; --t4:#a9d98a; --t5:#4ad48c;
-    }
-  }
-  /* The viewer's toggle stamps data-theme on :root and must win over the media query
-     in BOTH directions — hence the explicit light block too. */
-  :root[data-theme="dark"] {
-    --bg:#16151a; --fg:#eceaf0; --muted:#a09aa8; --line:#33303a; --card:#1e1d24;
-    --ok:#4ad48c; --bad:#ff8a80; --hi:#ffc76b; --hiBg:#2b2413;
-    --l1:#7fb0ff; --l2:#ff9d7a; --new:#d9a6f5; --newBg:#2a1d33;
-    --solid:#6fae67; --shaky:#d9a441;
-    --t1:#ff8a80; --t2:#ffab6b; --t3:#ffc76b; --t4:#a9d98a; --t5:#4ad48c;
-  }
-  :root[data-theme="light"] {
-    --bg:#faf9f7; --fg:#1c1a17; --muted:#6b645c; --line:#ddd7cf; --card:#fff;
-    --ok:#1a7a4c; --bad:#b3261e; --hi:#8a5a00; --hiBg:#fff6e0;
-    --l1:#0a58ca; --l2:#a3391c; --new:#7a1fa2; --newBg:#f6ecfb;
-    --solid:#7ba05b; --shaky:#dfa63c;
-    --t1:#b3261e; --t2:#cc6a1a; --t3:#a8891b; --t4:#5d8a3f; --t5:#1a7a4c;
-  }
-  * { box-sizing:border-box; }
-  body {
-    margin:0; background:var(--bg); color:var(--fg);
-    font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    -webkit-text-size-adjust:100%;
-  }
-  a:focus-visible, .lnk:focus-visible { outline:2px solid var(--l2); outline-offset:3px; border-radius:3px; }
-  .wrap { max-width:1080px; margin:0 auto; padding:28px 20px 72px; }
-  header.top { display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; margin-bottom:6px; }
-  header.top h1 { font-size:26px; margin:0; letter-spacing:-.01em; }
-  header.top .sub { color:var(--muted); font-size:14px; }
-  .stamp { color:var(--muted); font-size:13px; margin-bottom:26px; }
-  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted);
-       margin:34px 0 12px; font-weight:600; }
-  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
-  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
-  .tile { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
-  .tile-v { font-size:26px; font-weight:650; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
-  .tile-l { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-top:2px; }
-  .tile-s { font-size:13px; color:var(--muted); margin-top:6px; }
-  /* The queue against its box. The tick is the threshold that decides lesson vs drill, so
-     it is drawn on the same axis as the fill — a number alone cannot be compared to it. */
-  .qm { margin-top:9px; }
-  .qm-track { position:relative; height:6px; background:var(--line); border-radius:99px; }
-  .qm-fill { height:6px; background:var(--ok); border-radius:99px; }
-  .qm-fill.over { background:var(--hi); }
-  /* The tick has to stay legible ON TOP of the fill — that is the whole case where it
-     matters — so it carries a halo in the tile's own background rather than an opacity. */
-  .qm-mark { position:absolute; top:-4px; width:2px; height:14px; background:var(--fg);
-             border-radius:2px; box-shadow:0 0 0 1.5px var(--card); }
-  .qm-cap { font-size:12px; color:var(--muted); margin-top:5px; }
-  /* State reads before the number does. */
-  .tile.attention { border-color:var(--hi); background:var(--hiBg); }
-  .tile.attention .tile-v { color:var(--hi); }
-  .tile.clear .tile-v { color:var(--ok); }
-  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; }
-  .bar-row + .bar-row { margin-top:11px; }
-  .bar-head { display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px; gap:10px; }
-  .bar-head span:last-child { font-variant-numeric:tabular-nums; }
-  .bar { height:8px; background:var(--line); border-radius:99px; overflow:hidden; display:flex;
-         gap:2px; }
-  .bar-fill { height:100%; background:var(--l2); border-radius:99px; }
-  /* Retained is one bar carrying two facts, so the two halves have to separate at a glance.
-     --ok and --bad are TEXT colours: side by side as fills, two dark saturated blocks of
-     equal weight fight each other and the boundary disappears (limba learner, 2026-08-10).
-     These are fills — lighter, less saturated, and split by hue AND lightness. Shaky is
-     amber, not red: tier 1–2 is work outstanding, not a failure, and green-against-amber
-     survives colour-blindness where green-against-red does not. The 2px gap is the seam. */
-  .bar-fill.ok { background:var(--solid); border-radius:99px 0 0 99px; }
-  .bar-fill.no { background:var(--shaky); border-radius:0 99px 99px 0; }
-  /* Delivery is not a state to feel anything about, so the taught bar is deliberately
-     neutral. Left at the default --l2 it read as a full alarm bar next to the green
-     of the retained one — the opposite of what "15 of 15 taught" means. */
-  .bar-fill.tt { background:var(--muted); }
-  .bar.none { background:transparent; border:1px dashed var(--line); }
-  .lbl { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); }
-  /* The percentage is text, so it keeps the darker text tokens — but it follows the bar's
-     reading: below half is attention, not alarm. */
-  .r-solid { color:var(--ok); } .r-shaky { color:var(--hi); }
-  /* Untouched ≠ barely started. A dashed track says "not begun", not "0% done". */
-  .bar-row.untouched .bar { background:transparent; border:1px dashed var(--line); height:7px; }
-  .bar-row.untouched .bar-head { color:var(--muted); }
-  .muted { color:var(--muted); }
-  .tierbar { display:flex; height:26px; border-radius:8px; overflow:hidden; margin-top:4px; }
-  .seg { display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff; min-width:22px; }
-  .seg-1{background:var(--t1)} .seg-2{background:var(--t2)} .seg-3{background:var(--t3)}
-  .seg-4{background:var(--t4)} .seg-5{background:var(--t5)}
-  .legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:9px; font-size:12.5px; color:var(--muted); }
-  .legend i { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; }
-  /* The band is the 60–70% calibration target from session_format.md — the bars are only
-     readable against it, so it is drawn, not captioned. */
-  .spark { display:flex; align-items:flex-end; gap:7px; height:86px; margin-top:22px;
-           position:relative; }
-  /* Band = the 60–70% calibration target. Fill sits behind the bars; the ceiling line is
-     drawn IN FRONT, or a bar that clears the target hides the very reference it beat. */
-  .spark::before { content:""; position:absolute; left:0; right:0; bottom:60%; height:10%;
-                   background:var(--ok); opacity:.12; pointer-events:none; z-index:0; }
-  .spark::after { content:""; position:absolute; left:0; right:0; bottom:70%; height:0;
-                  border-top:1px dashed var(--ok); opacity:.55; pointer-events:none; z-index:3; }
-  .spark div { flex:1; background:var(--l2); border-radius:4px 4px 0 0; min-height:3px;
-               position:relative; opacity:.5; z-index:1; }
-  .spark div:last-child { opacity:1; }
-  .spark-cap { font-size:11.5px; color:var(--muted); margin-top:8px; }
-  .spark span { position:absolute; top:-17px; left:0; right:0; text-align:center;
-                font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
-  .spark-x { display:flex; gap:7px; font-size:11px; color:var(--muted); margin-top:5px; }
-  .spark-x div { flex:1; text-align:center; }
-  table.k { width:100%; border-collapse:collapse; font-size:14px; }
-  table.k td { padding:5px 0; border-bottom:1px solid var(--line); }
-  table.k tr:last-child td { border-bottom:0; }
-  table.k td:last-child { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
-  code { background:var(--hiBg); color:var(--hi); padding:1px 5px; border-radius:4px;
-         font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
-  time { font-variant-numeric:tabular-nums; }
-  .cmd { display:grid; grid-template-columns:minmax(120px,auto) 1fr; gap:8px 16px; font-size:14px; }
-  .cmd dt code { white-space:nowrap; }
-  .cmd dd { margin:0; color:var(--muted); }
-  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:12px;
-          padding:15px 16px; display:flex; flex-direction:column; position:relative; }
-  .card:hover { border-color:var(--l2); }
-  /* Superseded pages are dimmed AND labelled. Opacity alone is a signal nobody can read. */
-  .card.superseded { opacity:.62; }
-  .card.superseded:hover { opacity:1; }
-  /* Stretched link: the whole card is the target. */
-  .card-link { color:inherit; text-decoration:none; }
-  .card-link::after { content:""; position:absolute; inset:0; border-radius:12px; z-index:1; }
-  .card-link:focus-visible::after { outline:2px solid var(--l2); outline-offset:2px; }
-  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-  .card-top h3 { margin:0; font-size:16px; }
-  .pills { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
-  .pill { font-size:11px; color:var(--muted); border:1px solid var(--line);
-          border-radius:99px; padding:2px 9px; white-space:nowrap; }
-  .pill.old { color:var(--hi); border-color:var(--hi); background:var(--hiBg); }
-  .pill.built { border-style:dashed; }
-  .nodate { font-style:italic; }
-  .teaches { font-size:13.5px; color:var(--muted); margin:9px 0 14px; flex:1; }
-  .card-foot { display:flex; justify-content:space-between; align-items:center;
-               font-size:12.5px; color:var(--muted); gap:10px; flex-wrap:wrap; }
-  .links { display:flex; gap:10px; align-items:center; }
-  .lnk { color:var(--l2); text-decoration:none; font-weight:550; }
-  .lnk:hover { text-decoration:underline; }
-  .lnk.dim { color:var(--muted); font-weight:400; cursor:help; }
-  .note { font-size:13px; color:var(--muted); margin-top:10px; }
-  /* The one thing the page is for: what to do when you open it. */
-  /* The deck is the only page here the learner opens on their own initiative, so it gets a
-     gateway of its own rather than a line of prose inside another panel. */
-  .deck { display:grid; grid-template-columns:auto 1fr; gap:0 20px; align-items:center;
-          background:var(--card); border:1px solid var(--line); border-radius:12px;
-          padding:16px 18px; margin-top:14px; text-decoration:none; color:inherit; }
-  .deck:hover { border-color:var(--l2); }
-  .deck-n { font-size:34px; font-weight:650; letter-spacing:-.02em; line-height:1.05;
-            font-variant-numeric:tabular-nums; text-align:center; }
-  .deck-nl { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
-             color:var(--muted); text-align:center; margin-top:3px; }
-  .deck-h { font-size:17px; font-weight:650; }
-  .deck-h b { color:var(--l2); font-weight:650; }
-  .deck-s { font-size:13.5px; color:var(--muted); margin-top:3px; }
-  .deck-foot { font-size:12.5px; color:var(--muted); margin-top:6px; }
-  .whatnow { background:var(--card); border:1px solid var(--line); border-left:3px solid var(--l2);
-             border-radius:4px 12px 12px 4px; padding:15px 18px; margin-top:14px; }
-  .whatnow-h { font-size:12px; text-transform:uppercase; letter-spacing:.08em;
-               color:var(--l2); font-weight:650; margin-bottom:6px; }
-  .whatnow p { margin:0; font-size:14.5px; }
-  .whatnow p + p { margin-top:9px; }
-  /* The verdict leads the panel and is the only line set at emphasis weight — the mix chips,
-     the queue line and the pointer quote are its evidence, not competing instructions. */
-  .whatnow-do { font-size:15.5px; font-weight:600; }
-  .whatnow-q { font-size:13.5px; margin-top:9px; }
-  .pace { display:flex; flex-wrap:wrap; gap:8px; margin:11px 0 2px; }
-  .pace-i { display:flex; align-items:baseline; gap:6px; font-size:13px; padding:5px 11px;
-            border:1px solid var(--line); border-radius:999px; background:var(--bg); }
-  .pace-i b { font-size:14.5px; font-variant-numeric:tabular-nums; }
-  .pace-i.over  { border-color:var(--bad); color:var(--bad); }
-  .pace-i.under { border-color:var(--hi); color:var(--hi); }
-  .whatnow-next { color:var(--muted); font-size:13.5px; }
-  .ecode { display:block; font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
-           color:var(--muted); letter-spacing:.02em; }
-  .ezone { display:block; font-size:14px; color:var(--fg); }
-  .pill.practice { color:var(--new); border-color:var(--new); background:var(--newBg); }
-  .pill.repair { color:var(--bad); border-color:var(--bad); }
-
-  /* ---- the unit board ---- */
-  .sortbar { display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
-  .grow { flex:1; }
-  .sortb { font:inherit; font-size:12.5px; padding:3px 11px; border-radius:99px; cursor:pointer;
-           background:transparent; color:var(--muted); border:1px solid var(--line); }
-  .sortb:hover { color:var(--fg); border-color:var(--muted); }
-  .sortb.on { color:var(--l2); border-color:var(--l2); }
-  .sortb:focus-visible { outline:2px solid var(--l2); outline-offset:2px; }
-  .key { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
-  /* One swatch class for one concept: the board legend and the per-unit counts read the
-     same bar, so they carry the same two fills — not the text tokens. */
-  .sw { display:inline-block; width:14px; height:6px; border-radius:99px; margin-right:4px; }
-  .sw.ok { background:var(--solid); } .sw.no { background:var(--shaky); }
-  .unit { background:var(--card); border:1px solid var(--line); border-radius:12px; margin-bottom:9px; }
-  .unit[open] { border-color:var(--muted); }
-  .ustrip { cursor:pointer; padding:13px 15px; list-style:none; display:block; }
-  .ustrip::-webkit-details-marker { display:none; }
-  .ustrip:focus-visible { outline:2px solid var(--l2); outline-offset:2px; border-radius:12px; }
-  .uhead { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
-  .uid { font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--muted); }
-  .utitle { font-size:15.5px; }
-  .upill { margin-left:auto; font-size:11.5px; color:var(--muted); border:1px solid var(--line);
-           border-radius:99px; padding:2px 9px; white-space:nowrap; }
-  /* The chevron is the only affordance saying a row opens — details' native marker is off. */
-  .uhead::after { content:"›"; color:var(--muted); font-size:17px; line-height:1;
-                  transform:rotate(90deg); transition:transform .15s; }
-  .unit[open] .uhead::after { transform:rotate(270deg); }
-  .ubars { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px; }
-  .ubars .bar-head { font-size:12.5px; }
-  .upanel { padding:0 15px 15px; }
-  .ucols { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;
-           border-top:1px solid var(--line); padding-top:13px; }
-  .upanel h4 { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted);
-               margin:0 0 8px; font-weight:600; }
-  .asp { display:flex; justify-content:space-between; gap:12px; font-size:13.5px; padding:3px 0; }
-  .asp.pending { color:var(--muted); }
-  .asp-r { color:var(--muted); font-size:11.5px; white-space:nowrap; letter-spacing:.06em; }
-  .chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:9px; }
-  .chip { font-size:12.5px; padding:2px 9px; border-radius:99px; border:1px solid var(--line); }
-  .chip.t1 { color:var(--t1); border-color:var(--t1); }
-  .chip.t2 { color:var(--t2); border-color:var(--t2); }
-  .chip.more { color:var(--muted); }
-  .upages { margin-top:16px; border-top:1px solid var(--line); padding-top:13px; }
-  .pgroup + .pgroup { margin-top:16px; }
-  .pg-l { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted);
-          font-weight:600; margin-bottom:9px; }
-  .drawer { margin-top:38px; border-top:1px solid var(--line); padding-top:16px; }
-  .drawer summary { cursor:pointer; font-size:13px; text-transform:uppercase;
-                    letter-spacing:.09em; color:var(--muted); font-weight:600; }
-  .drawer summary:hover { color:var(--fg); }
-  .drawer summary:focus-visible { outline:2px solid var(--l2); outline-offset:3px; border-radius:3px; }
-  .drawer + .drawer { margin-top:14px; border-top:0; padding-top:0; }
-  .howto h4 { font-size:14px; margin:26px 0 6px; }
-  .howto h4:first-child { margin-top:0; }
-  .howto p { margin:0 0 12px; font-size:14px; color:var(--muted); max-width:68ch; }
-  .howto-note { border-left:2px solid var(--line); padding-left:12px; }
-  .howto-src { font-size:12.5px !important; border-bottom:1px solid var(--line);
-               padding-bottom:14px; margin-bottom:22px !important; }
-  table.k.wide td, table.k.wide th { padding:7px 14px 7px 0; vertical-align:top; }
-  table.k.wide th { font-size:11px; text-transform:uppercase; letter-spacing:.06em;
-                    color:var(--muted); font-weight:600; text-align:left;
-                    border-bottom:1px solid var(--line); }
-  table.k.wide td:last-child, table.k.wide th:last-child { text-align:left; color:inherit; }
-  table.k.wide td:first-child { white-space:nowrap; color:var(--muted); }
-  table.k.wide tr.now td { background:var(--hiBg); }
-  table.k.wide tr.now td:first-child { color:var(--hi); font-weight:650; }
-  .next { background:var(--hiBg); border-left:3px solid var(--l2);
-          border-radius:0 8px 8px 0; padding:11px 14px; font-size:14px; margin-top:12px; }
-  .overflow { overflow-x:auto; }
+${DASH_TOKENS()}
+  /* ============ CHROME — the frame every generated dashboard shares =============== */
+${CHROME}
+${NAV_CSS}
+  /* ============ BOARD — this page's own furniture ================================= */
+${BOARD}
 </style>
 </head>
 <body>
 <div class="wrap">
+  ${nav("index.html")}
 
   <header class="top">
     <h1>${esc(T)}</h1>
@@ -1217,26 +709,30 @@ ${FAVICON_LINK}
 
   <h2>Where things stand</h2>
   <div class="tiles">
-    ${daysToGoal !== null ? tile(daysToGoal, goalKind === "exam" ? "days to exam" : "days to goal", `${goalDate} — the working target`) : ""}
+    ${daysToGoal !== null ? tile(daysToGoal, goalKind === "exam" ? "days to exam" : "days to goal",
+        `${goalDate} — the working target`, "", "", linkTo("profile.html", "pace")) : ""}
     ${un.length ? tile(`${unCovered}/${un.length}`, "units done", nextUnit
         ? `next up: **${nextUnit.id}** — ${nextUnit.title.replace(/\s*\([^)]*\)\s*$/, "")}`
-        : "all units covered") : ""}
-    ${tp.length ? tile(`${tpCovered}/${tp.length}`, "topics taught", `individual points fully covered, out of everything ${goalLabel} needs`) : ""}
-    ${tile(all.length, "things to remember", `${vocab.length} words · ${grammar.length} grammar patterns`)}
-    ${tile(unseen.length, "to review today", unseen.length
-        ? `${queue.produce} to produce · ${queue.recognise} to recognise${
-            seenToday ? ` · ${seenToday} more seen today, skipped` : ""
+        : "all units covered", "", "", `#${anchorOf("board")}`) : ""}
+    ${tp.length ? tile(`${tpCovered}/${tp.length}`, "grammar taught",
+        `individual points fully covered, out of everything ${goalLabel} needs`,
+        "", "", linkTo("profile.html", "coverage")) : ""}
+    ${tile(all.length, "things to remember", `${vocab.length} words · ${grammar.length} grammar patterns`,
+        "", "", linkTo("profile.html", "ladder"))}
+    ${tile(scheduled.length, "came around today", scheduled.length || pool.length
+        ? `${pool.length ? `plus a **${Math.round(poolMinutes)}′** recognition pool that recycles daily` : "nothing recycling today"}${
+            seenToday ? ` · ${seenToday} already answered today` : ""
           }`
         : seenToday
           ? `all ${seenToday} due rows were reviewed today — part 1 does not run`
           : "nothing is scheduled — you are caught up",
-      unseen.length ? (queue.over ? "attention" : "") : "clear",
+      scheduled.length ? (queue.over ? "attention" : "") : "clear",
       unseen.length ? queueMeter() : "")}
     ${tile(ses.length, "study sessions", last
         ? daysToGoal !== null
           ? `most recent was ${esc(last.date)}`
           : `most recent was ${esc(last.date)} · ${last7} in the last 7 days`
-        : "")}
+        : "", "", "", linkTo("profile.html", "history"))}
     ${target ? tile(
         `${week.lessons}/${target.lessons}`,
         "lessons this week",
@@ -1244,6 +740,7 @@ ${FAVICON_LINK}
           ? `on the plan's pace — **${esc(target.load)}**`
           : `**${target.lessons - week.lessons} short** of the plan's **${esc(target.load)}**`,
         week.lessons >= target.lessons ? "clear" : "attention",
+        "", linkTo("profile.html", "rhythm"),
       ) : ""}
   </div>
 
@@ -1272,19 +769,43 @@ ${FAVICON_LINK}
 
   ${last || unseen.length ? `
   <div class="whatnow">
-    <div class="whatnow-h">What to do next</div>
-    ${verdict ? `<p class="whatnow-do">Run <code>${esc(verdict.cmd)}</code> — ${esc(verdict.why)}.
-      ${verdict.opens}</p>` : ""}
+    <div class="whatnow-h">${continuing ? `In progress — ${esc(continuing.id)}` : "What to do next"}</div>
+    ${continuing ? `
+    <p class="whatnow-do">Carry on with <strong>${esc(continuing.title.replace(/\s*\([^)]*\)\s*$/, ""))}</strong>${
+      continuing.cando ? ` — so you can ${esc(continuing.cando.replace(/\.$/, ""))}` : ""
+    }.</p>
+    ${continuing.pages.length ? `<p class="whatnow-q">Material already built:
+      ${continuing.pages.map((v) => `<a class="lnk" href="${esc(v.file || "#")}">${esc(v.name)}</a>${
+        v.built ? " <span class=\"muted\">(not taught yet)</span>" : ""
+      }`).join(" · ")}</p>` : ""}`
+    : verdict ? `<p class="whatnow-do">Run <code>${esc(verdict.cmd)}</code> — ${esc(verdict.why)}.
+      ${verdict.opens}${
+        // The unit in flight survives as ONE clause. It has not stopped being open; it has
+        // stopped being what to do first, and a band that drops it entirely reads as if the
+        // unit were finished.
+        inFlight && (!verdict || verdict.cmd !== "lesson")
+          ? ` <span class="muted">${esc(inFlight.id)} stays open underneath.</span>`
+          : ""
+      }</p>` : ""}
     ${target ? `
-    <div class="pace" title="The week's mix decides the block: whichever side is further behind its share over the last ${week.days} days. docs/plan.md's pacing table owns the load — ${esc(target.load)}.">
+    <div class="pace" title="The week's mix decides the block: whichever side is further behind its share. docs/plan.md's pacing table owns the load — ${esc(target.load)}.">
       ${live("lesson") ? `<span class="pace-i ${week.lessons < target.lessons ? "under" : ""}">
-        <b>${week.lessons}/${target.lessons}</b> lessons this week</span>` : ""}
+        <b>${week.lessons}/${target.lessons}</b> lessons</span>` : ""}
       ${target.capN !== null && live(target.capLabel) ? `<span class="pace-i ${week.drills > target.capN ? "over" : ""}">
         <b>${week.drills}/${target.capN}</b> ${esc(target.capLabel)}s</span>` : ""}
       ${week.other ? `<span class="pace-i"><b>${week.other}</b> other</span>` : ""}
+      <span class="pace-i muted">week of ${esc(week.from)}, ${week.left} ${week.left === 1 ? "day" : "days"} left</span>
     </div>` : ""}
-    ${queueLine ? `<p class="whatnow-q">${queueLine}</p>` : ""}
-    ${nextOne && last ? `<p class="whatnow-next"><strong>${esc(last.id)} left:</strong> ${md(nextOne)}</p>` : ""}
+    ${queueLine || inFlight || (nextOne && last) ? `
+    <details class="fold" style="margin-top:11px"><summary>What is still open, and the arithmetic behind this</summary>
+      ${inFlight ? `<p class="whatnow-q"><strong>${esc(inFlight.id)}</strong> —
+        ${inFlight.total - inFlight.covered} of its ${inFlight.total} parts are still open:
+        ${inFlight.asps.filter((a) => !/^covered/i.test(a.status)).map((a) => md(a.aspect)).join(" · ")}.</p>` : ""}
+      ${continuing && verdict ? `<p class="whatnow-q">The week's mix would otherwise pick
+        <code>${esc(verdict.cmd)}</code> — ${esc(verdict.why)}.</p>` : ""}
+      ${queueLine ? `<p class="whatnow-q">${queueLine}</p>` : ""}
+      ${nextOne && last ? `<p class="whatnow-next"><strong>${esc(last.id)} left:</strong> ${md(nextOne)}</p>` : ""}
+    </details>` : ""}
   </div>` : ""}
 
   <div class="grid2" style="margin-top:14px">
@@ -1299,7 +820,8 @@ ${FAVICON_LINK}
     </div>
 
     <div class="panel">
-      <strong>Memory ladder</strong>
+      <strong>Memory ladder</strong> —
+        <a class="lnk" href="${linkTo("profile.html", "ladder")}">the full spread →</a>
       <div class="note" style="margin-top:2px">Where the ${all.length} tracked items sit. Tier 1 is shaky, tier 5 is cold storage.</div>
       <div class="tierbar">${tierBar}</div>
       <div class="legend">
@@ -1308,18 +830,21 @@ ${FAVICON_LINK}
       ${scored.length ? `
       <div style="margin-top:22px"><strong>End-of-lesson test scores</strong></div>
       <div class="note" style="margin-top:2px">
-        Each lesson ends with ten questions on that day's material, marked out of 10.
-        <strong>Landing inside the green band is the goal, not beating it</strong> — 6–7 out of 10
-        means the material was pitched right. Consistently above 8 means it was too easy and the
-        pace should go up; below 5 means slow down.
+        Each lesson ends with a short test on that day's new grammar.
+        <strong>Landing inside the green band is the goal, not beating it</strong> — 60–70%
+        means the material was pitched right. Consistently above 80% means it was too easy and
+        the pace should go up; below 50% means slow down.
       </div>
       <div class="spark">
-        ${scored.map((s) => `<div style="height:${Math.max(4, s.score * 10)}%" title="${esc(s.id)} — ${esc(s.date)}"><span>${s.score}</span></div>`).join("")}
+        ${scored.map((x) => `<div style="height:${Math.max(4, x.score)}%" title="${esc(x.id)} — ${esc(x.date)}"><span>${x.score}%</span></div>`).join("")}
       </div>
-      <div class="spark-x">${scored.map((s) => `<div>${esc(s.date.slice(5))}</div>`).join("")}</div>
+      <div class="spark-x">${scored.map((x) => `<div>${esc(x.date.slice(5))}</div>`).join("")}</div>
       <div class="spark-cap">
-        One bar per lesson, oldest first; the newest is highlighted. Drills, reviews and mocks
-        have no end-of-lesson test, so they leave no bar — the gaps are not missed sessions.
+        One bar per lesson, oldest first; the newest is highlighted. Bars are
+        <strong>percentages</strong>, not marks — a test of ten and a test of twenty-one are
+        otherwise plotted as if they were the same scale. Only the grammar half is graded
+        against the band. Drills, reviews and mocks have no end-of-lesson test, so they leave
+        no bar — the gaps are not missed sessions.
       </div>` : ""}
     </div>
   </div>
@@ -1361,7 +886,7 @@ ${FAVICON_LINK}
         <table class="k">
           ${ses.length ? ses.slice(0, 6).map((s) => `<tr>
             <td><span class="ecode">${esc(s.date)}</span><span class="ezone">${md(s.type)}</span></td>
-            <td>${s.score !== null ? esc(s.score) + "/10" : "—"}</td></tr>`).join("")
+            <td>${s.score !== null ? esc(s.score) + "%" : "—"}</td></tr>`).join("")
             : `<tr><td class="muted">no sessions logged yet</td><td></td></tr>`}
         </table>
       </div>
@@ -1384,7 +909,7 @@ ${FAVICON_LINK}
     <span class="grow"></span>
     <span class="key"><i class="sw ok"></i>solid <i class="sw no"></i>shaky</span>
   </div>
-  <div id="board">${board.map(unitRow).join("")}</div>` : `
+  <div id="${anchorOf("board")}">${board.map(unitRow).join("")}</div>` : `
   <h2>The units</h2>
   <div class="panel"><div class="note" style="margin-top:0">No curriculum yet — the unit board
   appears once <code>docs/curriculum.md</code> has its units. Setup generates it; the review
@@ -1510,6 +1035,8 @@ ${FAVICON_LINK}
 
 </div>
 <script>
+${OPEN_TARGET_JS}
+
   /* Reordering, not filtering — every unit stays on the page in both orders. "Weakest
      first" ranks by the retained bar, so the units carrying the most shaky material lead;
      units with nothing measurable yet trail, because they are not doing badly, they are
@@ -1546,6 +1073,9 @@ console.log(
     `${unCovered}/${un.length} units · ${tpCovered}/${tp.length} aspects` +
     (daysToGoal !== null ? ` · ${daysToGoal}d to ${goalKind})` : ")"),
 );
+/** A section missing from the page AND from this line is the bug — see `when()`. */
+const gone = skipped();
+if (gone.length) console.log(`  sections skipped (no record yet): ${gone.join(", ")}`);
 
 // --stripped <path>: same page without the <!doctype>/<html>/<head>/<body> wrapper, which
 // is what an artifact-publishing platform expects. Capability-gated on the profile's

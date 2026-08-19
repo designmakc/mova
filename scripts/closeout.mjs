@@ -38,7 +38,7 @@
  *   and calls log-append.mjs. Anything else re-opens that race.
  *
  * Zero dependencies. --start and --brief are read-only. --finish writes only through the
- * generators it calls (deck.mjs, hub.mjs), each of which owns its own output file.
+ * generators it calls (deck.mjs, profilepage.mjs, hub.mjs), each of which owns its output.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { execSync } from "node:child_process";
@@ -73,7 +73,7 @@ const CONTRACT = {
   visualsDir: "work/visuals",
   visualsIndex: "work/visuals/README.md",
   /** Generated pages: rebuilt every close-out, never hand-indexed. */
-  generated: new Set(["index.html", "deck.html"]),
+  generated: new Set(["index.html", "deck.html", "profile.html"]),
   /**
    * Session-scoped scratch. Deliberately OUTSIDE the repo: a state directory inside the
    * tree shows up as an untracked path in the very `git status` this script reads, so it
@@ -147,7 +147,7 @@ function auditVisuals() {
     else { state = "residue"; note = "untracked and in no index — a session that reached no exit left this. Read before writing near it."; }
     rows.push({ f, state, note });
   }
-  // Only real pages, never the index itself and never the generated pair — `dirty` is a
+  // Only real pages, never the index itself and never the generated ones — `dirty` is a
   // raw git listing and contains README.md, which is not a page and has no gate to pass.
   const dirtyPages = rows.filter((r) => dirty.has(r.f)).map((r) => r.f);
   return { rows, dirtyPages };
@@ -203,7 +203,14 @@ const T = {
       "- **SRS.** <N due · N reviewed · N promoted · N demoted · N new rows —",
       "  or `skipped — <reason>` when part 1 did not run (session_format.md); a skip and a",
       "  collapse both leave no score and mean opposite things>",
-      "- **Score.** <graded check N/M = P%; name any contamination in the same line>",
+      "- **Score.** grammar <N/M = P%> · vocabulary <N/M = P%>",
+      "  (TWO numbers, not one, and only the grammar half is graded against the 60-70% band —",
+      "   session_format.md, \"What the graded check must sample\". Grammar and vocabulary answer",
+      "   different questions and a single blended headline can read `pace down` while the clean",
+      "   grammar sub-block inside it reads `pace up`. Write `vocabulary none` when the check",
+      "   sampled no words, and name any contamination in the same line. A lesson entry with no",
+      "   parseable grammar number fails docs/logs.entries.test.ts; a lesson that genuinely ran",
+      "   no check says so with `<!-- no-graded-check: <reason> -->`.)",
       "- **Duration.** <N minutes, learner-facing wall clock>",
       "- **Next.** <what the next session should DO>",
       "- **Open questions.** <a question put to the learner and left unanswered, or `none`>",
@@ -389,6 +396,9 @@ function finish() {
     console.log("  script that reaches the network; running it with nothing to fetch is pure latency).");
   }
   run("deck.mjs", "node scripts/deck.mjs");
+  // Before the hub, so a run that dies mid-chain leaves the two record surfaces consistent
+  // with each other rather than one of them a session behind.
+  run("profilepage.mjs", "node scripts/profilepage.mjs");
   run("hub.mjs", "node scripts/hub.mjs");
 
   const { dirtyPages: gate } = auditVisuals();
@@ -401,9 +411,13 @@ function finish() {
 
   const paths = changedPaths();
   const before = readSnapshot();
-  // The generated pair is always ours to commit: --finish just rebuilt both, and a conflict
+  // The generated pages are always ours to commit: --finish just rebuilt them, and a conflict
   // in either is settled by regeneration, never by merge.
-  const regenerated = [`${CONTRACT.visualsDir}/deck.html`, `${CONTRACT.visualsDir}/index.html`];
+  const regenerated = [
+    `${CONTRACT.visualsDir}/deck.html`,
+    `${CONTRACT.visualsDir}/profile.html`,
+    `${CONTRACT.visualsDir}/index.html`,
+  ];
   const mine = before === null
     ? paths
     : paths.filter((p) => !before.includes(p) || regenerated.includes(p));

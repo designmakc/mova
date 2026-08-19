@@ -68,7 +68,7 @@ import { FAVICON_LINK } from "./favicon.mjs";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 /** Generated files — rebuilt by scripts at close-out, checked at their source. */
-export const GENERATED = new Set(["index.html", "deck.html"]);
+export const GENERATED = new Set(["index.html", "deck.html", "profile.html"]);
 
 /**
  * The date `scripts/visual-shell.test.ts` reserves for its fixture. **Nothing else may use
@@ -289,7 +289,11 @@ export function checkAnswerLeak(path, html) {
  */
 export function checkHubLink(html, { engineDir = false } = {}) {
   const offences = [];
-  const tag = html.match(/<a\s+class="tohub"[^>]*>/)?.[0];
+  // `tohub` may sit beside other classes. A generated page's nav carries it on the hub
+  // entry so that one element is both the nav item and the back-link — two elements pointing
+  // at the same place is how one of them goes stale. The class is a marker, not the whole
+  // attribute, so it is matched as a word inside the list.
+  const tag = html.match(/<a\s+class="[^"]*\btohub\b[^"]*"[^>]*>/)?.[0];
   if (!tag) return ['no <a class="tohub"> — every page carries the hub link'];
   const href = tag.match(/href="([^"]*)"/)?.[1];
   if (href === undefined) {

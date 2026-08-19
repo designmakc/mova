@@ -45,14 +45,46 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join, basename } from "node:path";
 import { FIXTURE_DATE } from "../scripts/visualcheck.mjs";
+// @ts-expect-error — plain JS on purpose; the generators are CLIs that share this module.
+import { TEACHES_MAX } from "../scripts/page-shell.mjs";
+// @ts-expect-error — same.
+import { BUILT_RE } from "../scripts/sources.mjs";
 
 const CONTRACT = {
   dir: "work/visuals",
   index: "work/visuals/README.md",
   extensions: [".html", ".svg"],
-  /** Generated, not authored — index.html renders the index instead of being listed in
-   *  it; deck.html is the ledger drill surface, rebuilt on demand by scripts/deck.mjs. */
-  exclude: ["index.html", "deck.html"],
+  /** Generated, not authored, so none of them is a teaching page with a row of its own:
+   *  index.html renders this index rather than appearing in it, deck.html is the ledger
+   *  drill surface from scripts/deck.mjs, and profile.html is the learner's own record from
+   *  scripts/profilepage.mjs. All three are rebuilt at every close-out. */
+  exclude: ["index.html", "deck.html", "profile.html"],
+  /**
+   * THE TEACHES CELL IS A CARD, AND A CARD HAS TO FIT ON A CARD.
+   *
+   * The hub renders this cell verbatim as the page's description, so its length **is** the
+   * card's length. Upstream's inflated 25× in three weeks — 133 characters in July, 3,786
+   * in August — until one card in a unit's grid ran several screens tall and the board
+   * around it could not be read. Nothing had capped it because nothing had noticed the cell
+   * doing two jobs: a learner-facing description and an agent-facing build report.
+   *
+   * THE NUMBER IS IMPORTED, NOT RESTATED. It is the card's clamp — `.teaches` shows three
+   * lines and three lines is about that many characters at the card's width — and a cap
+   * looser than the clamp would pass this test while the card still cut the sentence off
+   * mid-word. Green gate, broken artifact. page-shell.mjs owns the clamp, so it owns the
+   * cap; changing one without the other is not possible from here.
+   *
+   * NOT DATED, unlike the log-facing rules in docs/logs.entries.test.ts and visualcheck's
+   * GATED_FROM. Those exempt earlier work because a log is append-only and a delivered page
+   * is an artifact, and neither can be edited to satisfy a rule written after it. An index
+   * is neither. It is a mutable registry: every row is rewritten to the cap in the same pass
+   * that adopts it, and a date gate would exempt all of them and enforce nothing.
+   *
+   * The long form is not lost — it moves to the "Build notes" section below the table, which
+   * nothing renders and which a later session reads to decide whether to reuse a page,
+   * improve it in place, or supersede it.
+   */
+  teachesMax: TEACHES_MAX,
 } as const;
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -113,14 +145,29 @@ function indexRows(): { cells: string[]; lineNo: number }[] {
 
 /** `Built —` opens the Teaches cell of a page prepared but not taught. The dash is part of
  *  the marker on purpose: a delivered page whose description merely starts with the word
- *  "Built" must not be read as undelivered. */
-const BUILT_MARKER = /^built\s*[—–-]/i;
+ *  "Built" must not be read as undelivered.
+ *
+ *  IMPORTED, NOT RESTATED. The registry, both generated pages and this test all have to
+ *  agree on the shape, and they did not: this file's own copy refused the bold form
+ *  (`**Built —**`) that rows are actually written in, so a correctly staged page failed CI
+ *  here while `unitState()` read it as staged. One definition, in scripts/sources.mjs. */
+const BUILT_MARKER = BUILT_RE;
 const DELIVERED_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const NO_DATE = /^[—–-]?$/;
 
-/** Files the index links to, from `[name](file.html)` in any row. */
+/**
+ * Files the index links to, from `[name](file.html)` in any row.
+ *
+ * HTML COMMENTS ARE STRIPPED FIRST — a commented-out example is discussion, not a row. The
+ * README's own authoring guidance shows the row's shape (`[name](<date>_<slug>.html)`), and
+ * that shape is a link like any other to a regex. It ships verbatim into every instance
+ * (setup step 9 copies the template as-is), so without this every freshly generated
+ * workspace failed the dangling check on a filename that was never meant to be a file.
+ * Same discipline as the tally's backtick rule: writing *about* a token must not declare one.
+ */
 function linkedFiles(): string[] {
-  return [...indexText.matchAll(/\]\(([^)]+\.(?:html|svg))\)/g)].map((m) => m[1]);
+  const prose = indexText.replace(/<!--[\s\S]*?-->/g, "");
+  return [...prose.matchAll(/\]\(([^)]+\.(?:html|svg))\)/g)].map((m) => m[1]);
 }
 
 describe.skipIf(!active)("work/visuals index", () => {
@@ -156,6 +203,29 @@ describe.skipIf(!active)("work/visuals index", () => {
         `pacing read it as evidence (media.md → "Delivering a visual"; session_format.md → ` +
         `the materials-prepared exit).`,
     ).toEqual([]);
+  });
+
+  /** The hub renders this cell as the card body, so its length IS the card's length. */
+  it(`no Teaches cell exceeds ${CONTRACT.teachesMax} characters`, () => {
+    const over = indexRows()
+      .filter((r) => r.cells[2].length > CONTRACT.teachesMax)
+      .map((r) => `${CONTRACT.index}:${r.lineNo} ${r.cells[1].slice(0, 48)} — ${r.cells[2].length} chars`);
+    expect(
+      over,
+      `the Teaches cell is the card's description on the hub: one sentence saying what the\n` +
+        `page gives the learner, ${CONTRACT.teachesMax} characters. The cap is the card's clamp — a longer\n` +
+        `cell is cut off mid-word on the page. Put the long form in "Build notes" below the\n` +
+        `table (media.md → Delivering a visual, rule 3).\nover:\n  ${over.join("\n  ")}`,
+    ).toEqual([]);
+  });
+
+  it("every Teaches cell still says something", () => {
+    // A silent zero on the parser would let this file pass forever, so the floor is checked
+    // in the same pass as the ceiling.
+    const empty = indexRows()
+      .filter((r) => r.cells[2].replace(BUILT_MARKER, "").trim().length < 20)
+      .map((r) => `${CONTRACT.index}:${r.lineNo}`);
+    expect(empty, `a Teaches cell under 20 characters is not a description`).toEqual([]);
   });
 
   it("every index row points at a file that exists", () => {

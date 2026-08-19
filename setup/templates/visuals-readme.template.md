@@ -30,15 +30,36 @@
      start. The day it was *built* is already in the filename; the session
      that teaches the page fills the Date in at its close-out, and until then the column must
      not be guessed (docs/mechanics/media.md → Delivering a visual).
-     Page is the markdown link: `[name](YYYY-MM-DD_slug.html)`.
-     Teaches is one line, and it also carries row status: `Built —` opens the line of a page
-     prepared but not delivered; "(superseded by …)" marks one a later page replaced.
+     Page is the markdown link, and THE LINK TEXT IS A TITLE, NOT THE SLUG: write the page a
+     name in the meta-language — `[Gender and the article](2026-08-12_articol.html)`. The
+     filename is the address and stays in the target language; the title is what the learner
+     reads on the card. The two are different jobs and one column was doing both, so every
+     card read as its own slug.
+     Teaches is one line — ONE SENTENCE, 120 CHARACTERS, checked by
+     docs/visuals.index.test.ts. The hub renders this cell verbatim as the card's
+     description, so its length IS the card's length, and the cap is the card's three-line
+     clamp rather than a matter of taste: a longer cell passes nothing and is cut off
+     mid-word on the page. Write what the page GIVES THE LEARNER. Anything longer — what was
+     tried, what the page deliberately omits, what a later session should know before reusing
+     it — goes in `## Build notes` at the bottom of this file, which nothing renders.
+     The cell also carries row status: `Built —` opens the line of a page prepared but not
+     delivered; "(superseded by …)" marks one a later page replaced.
      Units is one or more UNN, space-separated — a page naming two units appears under both
      on the hub. Kind is `teach` · `drill` · `repair`.
      SCHEMA — five columns, this order. `scripts/hub.mjs` reads them positionally and
      `docs/consequential.test.ts` reads the first cell as a date; a sixth column or a
      reordering silently empties the hub's visuals section instead of failing loudly. Change
      the table and its readers together, or not at all. -->
+
+## Build notes
+
+<!-- The long form the index row has no space for. One `### <file>` per page, added when
+     there is something a later session would want before deciding to reuse, improve or
+     supersede it: what was tried, what the page deliberately leaves out, which claims are
+     still unverified. NOTHING RENDERS THIS SECTION — it is for the next agent, not the
+     learner, which is exactly why it can be as long as it needs to be. It exists because
+     the Teaches cell was doing both jobs and grew 25× in three weeks until one card ran
+     several screens tall on the hub (upstream, 2026-08-19). -->
 
 ## Retired claims
 

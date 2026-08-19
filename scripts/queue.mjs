@@ -19,6 +19,16 @@
  * memory instead. The rule is session_format.md, "Part 1 runs only when it can produce
  * something"; the same-day half of it is srs.md, "Due when the row was already reviewed today".
  *
+ * THE VERDICT NAMES ROWS THE SESSION CAN ACTUALLY SEE (ported from limba, 2026-08-19).
+ * "The rows dated today are the queue's tail — stop where it starts" is true of the QUEUE
+ * and false of the LISTING whenever the backlog runs past the cap: the queue is oldest-first,
+ * so today's rows are its tail, and a tail past row 55 is a tail nobody is looking at. limba
+ * printed the same claim under a 141-row queue about 10 rows none of which were on screen,
+ * and the session re-derived the truth by reading every displayed date by eye. A surface that
+ * makes a session check it by hand is the failure the verdict was added to remove. So the
+ * verdict takes what is shown as an argument and branches on three cases: all of them
+ * visible, none of them visible, or a split.
+ *
  * Requires no profile — the queue must work in any instance the moment the ledgers exist,
  * and the ledgers ship with the template. Read-only, zero dependencies, always exits 0.
  * Malformed rows are skipped here — state/ledgers.test.ts is the strict gate that fails CI
@@ -83,7 +93,7 @@ const seenToday = due.filter((r) => r.last === todayISO).length;
  * NOT dated today, and when there are none it does not run at all. The queue sorts oldest
  * `last` first, which is exactly why today's rows are its tail.
  */
-function part1Verdict() {
+function part1Verdict(shown = null) {
   const fresh = due.length - seenToday;
   if (due.length === 0) return "part 1: nothing due — the block does not run";
   if (fresh === 0) {
@@ -94,10 +104,22 @@ function part1Verdict() {
   }
   if (seenToday > 0) {
     const tail = seenToday === 1 ? "1 row dated today is" : `${seenToday} rows dated today are`;
-    return (
-      `part 1: runs on the ${fresh} not seen today; the ${tail} the queue's tail` +
-      ` — stop where it starts`
-    );
+    // With no listing to speak of (--counts), the queue's own shape is all there is to say.
+    if (shown === null) {
+      return (
+        `part 1: runs on the ${fresh} not seen today; the ${tail} the queue's tail` +
+        ` — stop where it starts`
+      );
+    }
+    const here = shown.filter((r) => r.last === todayISO).length;
+    const where =
+      here === 0
+        ? `the ${tail} past today's cap — every row above is fair game`
+        : here === seenToday
+          ? `the ${tail} the tail of the list above — stop where it starts`
+          : `${here} of the rows above are dated today (${seenToday} in the whole queue)` +
+            ` — stop where they start`;
+    return `part 1: runs on the ${fresh} not seen today; ${where}`;
   }
   return `part 1: runs — ${due.length} rows to review, oldest first`;
 }
@@ -109,6 +131,20 @@ if (process.argv.includes("--counts")) {
   console.log(
     `due: ${dueV} vocab · ${dueG} grammar${seen}` +
       ` (tracked: ${vocab.length} vocab, ${grammar.length} grammar)`,
+  );
+  /**
+   * THE SAME SPLIT THE HUB PRINTS. One total blends two populations that mean opposite
+   * things: tier 1 has a zero-day interval, so it falls due again every morning and can
+   * never be cleared, while tier 2+ genuinely comes around and genuinely reaches zero.
+   * Reported as one number, a healthy queue reads as an unpayable debt. Triage and the
+   * dashboard must say the same thing, or the learner arbitrates between two surfaces.
+   */
+  const fresh = due.filter((r) => r.last !== todayISO);
+  const sched = fresh.filter((r) => r.tier >= 2).length;
+  const recycling = fresh.filter((r) => r.tier === 1).length;
+  console.log(
+    `  ⇒ ${sched} came around on schedule · ${recycling} in the daily recognition pool` +
+      ` (tier 1 recycles every morning by design — a rotation, not a backlog)`,
   );
   console.log(`  ⇒ ${part1Verdict()}`);
 } else {
@@ -125,7 +161,7 @@ if (process.argv.includes("--counts")) {
 
   section("VOCAB DUE", shown.filter((r) => r.id.startsWith("V-")));
   section("GRAMMAR DUE", shown.filter((r) => r.id.startsWith("G-")));
-  console.log(`\n  ⇒ ${part1Verdict()}`);
+  console.log(`\n  ⇒ ${part1Verdict(shown)}`);
   if (overflow > 0) {
     console.log(`\n  +${overflow} more due beyond today's cap of ${CAP} — they surface next session.`);
   }

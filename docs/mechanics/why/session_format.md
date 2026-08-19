@@ -293,3 +293,51 @@ spot with nothing in the mechanics behind it. It is the right call and now it is
 log is append-only, so the closed entry cannot grow, and a second entry keeps the IDs clean,
 the pacing arithmetic honest and the SRS counts attributable. Re-run the close-out for the new
 ID; do not amend the old one.
+
+## Why the hub is handed over as a `file://` link (close-out step 9)
+
+A bookmark the learner has to assemble out of a repo path is not a bookmark. Step 9 is the one
+step of the whole ritual whose entire product is a page the learner is meant to open, and a
+close-out that names the path instead of linking it leaves that product undelivered.
+
+## Why the deck is rebuilt by the session that moved a tier (close-out step 9)
+
+The drill surface is only honest if the session that moved a tier rebuilds it. A deck carrying
+last session's tiers is not a stale page, it is a wrong one: it asks the learner to practise a
+schedule the ledgers no longer hold.
+
+## Why the profile page regenerates before the hub (close-out step 9, 2026-08-19)
+
+The two pages read the same records and state overlapping numbers. A chain that dies half-way
+through leaves whichever ran second a session behind, and two record surfaces disagreeing is
+worse than both being stale: the learner has no way to tell which one is the old one. Ordering
+them makes a partial run consistent instead of contradictory.
+
+Registering a new generated page takes four edits — the reduced gate set in `visualcheck.mjs`,
+the index-row exemption in `docs/visuals.index.test.ts`, the `--finish` chain, and this step.
+Miss the second and CI demands an index row for a page that is not a teaching page; miss the
+third and the page silently goes a session stale. (Ported from limba PORT-022.)
+
+## Why the graded check samples the day's new words (limba, 2026-08-12)
+
+16 words taught on 2026-08-10 returned 2 at 48 hours, which is why limba's intake was cut to
+12. That read-out only exists because there was a first-exposure baseline to compare against.
+
+## Why grammar and vocabulary are reported separately (limba PORT-024, 2026-08-19)
+
+A review on 2026-08-15 found three lessons in a row whose single headline score read *pace
+down* while the clean grammar sub-block inside each read *pace up*. The instrument was the
+fault, not the pacing.
+
+The rule was ruled and then never built, and nothing noticed: in the five sessions to
+2026-08-19 the graded check ran **once**. Two independent failures kept it invisible. The
+close-out template asked for `N/M = P%` while the parser demanded a literal `/10`, so only four
+entries in the whole log ever matched and the dashboard chart sat frozen for twelve days — **the
+two ends of one pipeline disagreed and no test compared them**. And no surface anywhere noticed
+a lesson closing with no number at all.
+
+Both halves are now one contract: `gradedScore()` in `scripts/sources.mjs` is the single
+reader, `docs/logs.entries.test.ts` imports it, and the close-out template emits what it parses.
+The gate is dated from the day after it shipped, because the log is append-only and entries
+written under the old instrument cannot be edited to satisfy it.
+

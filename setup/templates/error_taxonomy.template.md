@@ -20,7 +20,10 @@
     learner meets the zone in the first weeks; (b) codeable — you can state its boundary
     against its neighbours in one line (that line is its Scope ruling); (c) not a drain
     every slip flows into. Zones that fail (b) wait for the session that first needs
-    them. Never pad to reach six, and never fuse two genuinely distinct zones to stay
+    them. A fourth test decides whether a NEAR-NEIGHBOUR deserves its own code rather than
+    a note: **it earns one when its repair route differs.** Two codes that drill the same
+    way are one code; two that send the session to opposite remedies must never be fused,
+    however alike the errors look on the page. Never pad to reach six, and never fuse two genuinely distinct zones to stay
     under ten — a fused code's tally points nowhere, which is the failure this whole file
     exists to prevent. A close pair or a three-anchor ladder legitimately produces more:
     eleven, on a German/English/French → Romanian instance. (Found generating a
@@ -84,6 +87,13 @@ tatsächlich`. (Found in the generated German instance, 2026-08-15.)
      flows into — a drain's tally points nowhere. -->
 
 - {{RULING}} (assumed)
+
+**Sibling zones are not a hierarchy.** Where one production path can break in two ways —
+two letter classes, two morphological slots — the split is worth two codes, because a run
+of one with none of the other means something a merged tally cannot say. limba found the
+second half of exactly this hole three months in: it had a code for vowel-order errors and
+none for consonants, and a single session produced six of these, half of them uncountable
+(2026-08-19).
 
 ## Log entry format (docs/logs/error_log.md)
 

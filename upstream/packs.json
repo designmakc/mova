@@ -1,6 +1,6 @@
 {
-  "generated": "2026-08-17",
-  "template_version": "0.15.0",
+  "generated": "2026-08-19",
+  "template_version": "0.16.0",
   "packs": {
     "de": {
       "dictionary.mjs": "f2cd730651455ca3e6dd3fde707087c0005b3b696a14aef80d262a8a3f7016c5",
@@ -75,7 +75,7 @@
       "golden/pairs.json": "af8a80afc62c5188f2acc2b4bbee1cb1988124e2ce68b380d3d00f89ea9031cb",
       "golden/words.json": "e6746bce85b7bb3336a6c1c37aeb2503f23b3168300af27b9fc185682d00a6dd",
       "normalize.mjs": "2d5d191ff733d6f1d1d8220e9f8795ae39afe44f8ecfcf19536b92f511050b6c",
-      "notes.md": "85979e23213b51ee08e29a97cbd8eb76ae93b33281e9ff5f3095c12e28bf6468",
+      "notes.md": "34d5ca8b5ac6ce2eed11ef07b3bf27e2ede9d3707198407d51a986cabdec80cd",
       "pack.md": "b10211955bcc2fbf6fcdf9c0bcff5702d8bc7580c20b7b296e704fd61fb0e504",
       "pos-tables.mjs": "9f813d5b8971623ced51c113421dd64f5cb740091cb8ec4b233aa1a08a4cdba7"
     }

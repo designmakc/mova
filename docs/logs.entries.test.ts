@@ -299,3 +299,110 @@ describe.skipIf(!active)("session_log.md Next pointer", () => {
     expect(pointerOf(parsed[0].body).trim().length).toBeGreaterThan(0);
   });
 });
+
+/* ------------------------------------------- a lesson must carry a graded-check number */
+
+/**
+ * A LESSON THAT SHIPS WITHOUT A SCORE IS A LESSON NOTHING CAN BE CALIBRATED AGAINST.
+ *
+ * The graded check is part 3 of five (session_format.md) and its number drives the only
+ * pace rule the workspace has: 60–70% is right, consistently above 80% means speed up,
+ * below 50% means slow down. Nothing enforced it, and upstream's drift was total and silent
+ * — in five sessions the check ran ONCE, and no surface anywhere noticed a lesson closing
+ * with no number. Meanwhile the dashboard chart sat frozen for twelve days, because the
+ * close-out template emitted `N/M = P%` while the parser demanded a literal `/10` and no
+ * test compared the two ends of one pipeline.
+ *
+ * SO THE FORMAT AND ITS PRESENCE ARE CHECKED TOGETHER, BY THE READER THE PAGES USE.
+ * `gradedScore` lives in scripts/sources.mjs and is imported here rather than reimplemented:
+ * a parser change that breaks the chart now breaks CI in the same run instead of going dark
+ * for a fortnight. That import IS the contract.
+ *
+ * WHY ONLY LESSONS. A drill has no target score by rule — the band is fitted to questions on
+ * the day's NEW material, and a drill measures retention of old material, where the same
+ * number means the opposite thing. A review or a mock is not a teaching block at all.
+ *
+ * THE ESCAPE HATCH IS THE POINT, and it is the same shape the entry budget above uses. A
+ * lesson that genuinely ran no check says so on the record with
+ * `<!-- no-graded-check: <reason> -->`. What this removes is skipping it *silently*.
+ *
+ * NOT RETROACTIVE, for the reason every dated rule here is not: the log is append-only, so
+ * an old entry cannot be edited to satisfy a rule written after it. The date is SPLIT_FROM's
+ * — one constant, so the gate and the parser cannot disagree about which entries are new.
+ */
+// @ts-expect-error — plain JS on purpose; the generated pages are CLIs that share it.
+import { gradedScore, SPLIT_FROM } from "../scripts/sources.mjs";
+
+const SCORE = {
+  /** Entries dated on or after this must carry a parseable grammar number. */
+  effectiveFrom: SPLIT_FROM as string,
+  /** Only a lesson has a graded check. */
+  applies: /^lesson/i,
+  /** An entry carrying this ran no check, on purpose and on the record. */
+  override: /<!--\s*no-graded-check:\s*\S/,
+} as const;
+
+describe("session_log.md graded check", () => {
+  const raw = readFileSync(join(docsDir, "logs/session_log.md"), "utf8").split("\n");
+  const parsed: { id: string; date: string; line: number; body: string[] }[] = [];
+  raw.forEach((line, i) => {
+    const m = line.match(/^## (\d{4}-\d{2}-\d{2}) — (SES-\d{3,})$/);
+    if (m) parsed.push({ id: m[2], date: m[1], line: i + 1, body: [] });
+    else if (parsed.length) parsed[parsed.length - 1].body.push(line);
+  });
+  const typeOf = (body: string[]) =>
+    body.join("\n").match(/\*\*Type\.\*\*\s*([A-Za-z ,]+)/)?.[1].trim() ?? "";
+
+  const held = parsed.filter(
+    (e) =>
+      e.date >= SCORE.effectiveFrom &&
+      SCORE.applies.test(typeOf(e.body)) &&
+      !SCORE.override.test(e.body.join("\n")),
+  );
+
+  it(`every lesson from ${SCORE.effectiveFrom} carries a grammar number`, () => {
+    const missing = held
+      .filter((e) => gradedScore(e.body.join("\n"), typeOf(e.body), e.date).grammar === null)
+      .map((e) => `session_log.md:${e.line} ${e.id}`);
+    expect(
+      missing,
+      `a lesson entry must carry \`- **Score.** grammar <N/M = P%> · vocabulary <N/M = P%>\`.\n` +
+        `      Only the grammar half is graded against the 60-70% band. A lesson that ran no\n` +
+        `      check says so with \`<!-- no-graded-check: <reason> -->\`.\nmissing:\n  ${missing.join("\n  ")}`,
+    ).toEqual([]);
+  });
+
+  /* The parser itself, against the shapes the close-out template emits and the shapes the
+     log already holds. These run in template mode too — they need no session log, which is
+     the point: the contract is the parser, not this instance's history. */
+
+  it("reads the two-number format the close-out template emits", () => {
+    const entry = "- **Score.** grammar 8.5/10 = 85% · vocabulary 1/4 = 25%\n\n";
+    expect(gradedScore(entry, "lesson", "2099-01-01")).toMatchObject({
+      grammar: 85, vocabulary: 25, split: true,
+    });
+  });
+
+  it("refuses a drill's block scores, which mean the opposite thing", () => {
+    const entry = "- **Score.** grammar 9/10 = 90%\n\n";
+    expect(gradedScore(entry, "Drill, sweep mode", "2099-01-01").grammar).toBeNull();
+  });
+
+  it("still reads the historical shapes, so older bars survive", () => {
+    expect(gradedScore("- **Score. Graded check 7.7/10 = 77%** — above\n\n", "lesson", "2026-08-07").grammar).toBe(77);
+    expect(gradedScore("- **Scores — 6.5/21 = 31% on the graded check, and**\n\n", "lesson", "2026-08-12").grammar).toBe(31);
+  });
+
+  it("returns percentages, so runs of different lengths compare", () => {
+    // The whole reason the reader does not return raw marks: 6.5/21 and 7.7/10 were plotted
+    // on one axis as 6.5 and 7.7, which reads as two near-identical sessions.
+    expect(gradedScore("- **Score.** graded check 6.5/21 = 31%\n\n", "lesson", "2026-08-12").grammar).toBe(31);
+  });
+
+  it("does not read a pre-rule entry's prose as a split score", () => {
+    // A first-exposure baseline is not a graded check, and before the rule those words sit
+    // beside ordinary fractions all through the prose.
+    const entry = "- **Score.** Part 1 **2/2**. Baseline **grammar 0/5, vocabulary 0/2** — the\n\n";
+    expect(gradedScore(entry, "lesson", "2026-08-17").grammar).toBeNull();
+  });
+});

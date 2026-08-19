@@ -12,7 +12,8 @@
  * actually do to each other.
  */
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, mkdirSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { diffRows, diffManifests, orphanedLevels, readLedgerRows } from "./packdiff.mjs";
@@ -98,13 +99,39 @@ describe("orphanedLevels", () => {
 
 describe("readLedgerRows", () => {
   /**
-   * The template's ledgers are header-only. A parser that let the header or the `|---|`
-   * separator through would report them as unclassifiable rows on every swap — a false
-   * alarm on a workspace with nothing in it.
+   * A parser that let the header or the `|---|` separator through would report them as
+   * unclassifiable rows on every swap — a false alarm on a workspace with nothing in it.
+   *
+   * CHECKED AGAINST A FIXTURE, NOT THE LIVE TREE. It used to assert that this repo's own
+   * ledgers came back empty, which is true of the template and false of every instance the
+   * moment it learns its first word: `npm test` is required green in an instance
+   * (setup/smoke.md § 1), and this went red as soon as a learner had vocabulary. The claim
+   * being made is about the PARSER, so the fixture is the honest way to make it.
    */
+  const fixture = mkdtempSync(join(tmpdir(), "packdiff-"));
+  mkdirSync(join(fixture, "state"), { recursive: true });
+  writeFileSync(
+    join(fixture, "state/vocab.md"),
+    "| id | target | translation | tier | added | last | topic | notes |\n" +
+      "| --- | --- | --- | --- | --- | --- | --- | --- |\n",
+  );
+
   it("returns nothing for header-only ledgers, and never the header itself", () => {
-    const rows = readLedgerRows(root);
-    expect(rows).toEqual([]);
+    expect(readLedgerRows(fixture)).toEqual([]);
+  });
+
+  it("reads a data row, so the emptiness above is the header being dropped", () => {
+    // Without this the check above passes just as well on a parser that reads nothing at all.
+    writeFileSync(
+      join(fixture, "state/grammar.md"),
+      "| id | target | translation | tier | added | last | topic | notes |\n" +
+        "| --- | --- | --- | --- | --- | --- | --- | --- |\n" +
+        "| G-0001 | a fi | to be | 2 | 2026-08-01 | 2026-08-02 | T-0002 | copula |\n",
+    );
+    expect(readLedgerRows(fixture)).toMatchObject([{ id: "G-0001", target: "a fi" }]);
+  });
+
+  it("the shipped ledgers still carry the schema header the parser drops", () => {
     expect(readFileSync(join(root, "state/vocab.md"), "utf8")).toContain("| id | target |");
   });
 });

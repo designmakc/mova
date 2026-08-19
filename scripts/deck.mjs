@@ -55,6 +55,7 @@ import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
 import { FAVICON_LINK } from "./favicon.mjs";
+import { NAV_CSS, nav } from "./page-shell.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -341,9 +342,7 @@ ${FAVICON_LINK}
   body { margin:0; background:var(--bg); color:var(--fg);
     font:16px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
   .wrap { max-width:920px; margin:0 auto; padding:26px 18px 70px; }
-  .tohub { display:inline-block; margin:0 0 16px; padding:.15rem .62rem; border:1px solid var(--line);
-    border-radius:999px; font-size:12.5px; color:var(--muted); text-decoration:none; }
-  .tohub:hover { border-color:var(--fg); color:var(--fg); }
+${NAV_CSS}
   h1 { font-size:24px; margin:0 0 2px; letter-spacing:-.01em; }
   h2.grp { font-size:12px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted);
     margin:26px 0 4px; font-weight:600; }
@@ -429,7 +428,7 @@ ${FAVICON_LINK}
 </head>
 <body class="m-browse">
 <div class="wrap">
-  <a class="tohub" href="index.html">← hub</a>
+  ${nav("deck.html")}
   <h1>The deck</h1>
   <div class="meta">generated <b>${todayISO}</b> from the ledgers · ${filterLabel} · ${rows.length} rows
   (${vocab.length} words, ${grammar.length} patterns) ${tierCounts}<br>

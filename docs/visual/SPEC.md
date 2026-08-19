@@ -248,3 +248,38 @@ page mean one thing only.
 Beat ⑥ is the one that gets dropped, and both first-generated pages dropped it. It is not
 padding: it is what makes `complete` believable everywhere else, because a learner who can
 see the named gaps can trust the unnamed absences.
+
+## Generated pages — the rules a generator must keep
+
+A **generated page** is one no human edits: the hub, the deck, the profile page. Every number
+on it is read from the file that owns it at build time. These rules are for whoever writes or
+changes a generator; a session that builds a *teaching* page needs none of them.
+
+**Registering a new generated page is four edits, not one.** `GENERATED` in
+`scripts/visualcheck.mjs` (it gets the reduced gate set), `CONTRACT.exclude` in
+`docs/visuals.index.test.ts` (it is not a teaching page and has no index row), the `--finish`
+chain in `scripts/closeout.mjs`, and close-out step 9 in
+[../mechanics/session_format.md](../mechanics/session_format.md). Miss the second and CI
+demands an index row for a page that teaches nothing; miss the third and the page goes a
+session stale in silence.
+
+**A specification throws on zero rows; a record renders nothing and says what it skipped.**
+Zero rows in the interval table means a heading was renamed and the parser is now reading
+nothing — that is `must()`, and it throws. Zero sessions means a young workspace — that is
+`when()`, which renders nothing and remembers the skip. **The source decides which applies,
+never the author's taste**, or "should this section render when empty?" gets answered once per
+section by whoever writes it and a fresh instance inherits the outline of someone else's
+history. Every skipped section is named on stdout, because the gate's own failure mode — a
+broken parser silently deleting a section on a mature workspace — is otherwise invisible. A
+section missing from the page *and* from that line is the bug. Both live in
+`scripts/sources.mjs`, whose docstring carries the incidents behind them.
+
+**The frame has one definition.** `scripts/page-shell.mjs` holds the palette, the chrome and
+the nav for every generated dashboard, and it imports the pinned theme from
+`scripts/visual-shell.mjs` rather than restating it. A frame with one definition cannot drift;
+a frame that is copied always will.
+
+**Anchors are declared, not derived.** `ANCHOR` in `scripts/page-shell.mjs` maps every
+linkable section to its id, and building a section with no anchor throws. Deriving the id from
+the heading means renaming a heading silently breaks a link on another page.
+
