@@ -194,6 +194,10 @@ export const CHROME = `  * { box-sizing:border-box; }
   .pill.built { border-style:dashed; }
   .pill.practice { color:var(--new); border-color:var(--new); background:var(--newBg); }
   .pill.repair { color:var(--bad); border-color:var(--bad); }
+  /* Reference: a cheat sheet reprints tables the units below already taught, so it reads as
+     neither new teaching nor a repair. limba tints this pill with its morpheme colour; mova
+     has no such token, and a dotted edge says "not a lesson" without inventing one. */
+  .pill.reference { border-style:dotted; color:var(--muted); border-color:var(--muted); }
   .nodate { font-style:italic; }
   /* Clamped to three lines — and TEACHES_MAX above is derived from this number, not
      guessed alongside it. */
@@ -392,6 +396,7 @@ export const nav = (here) =>
 export const ANCHOR = {
   /* the hub's own */
   board: "board",
+  shelf: "shelf",
   /* the profile page's */
   claims: "claims",
   coverage: "coverage",

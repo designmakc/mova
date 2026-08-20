@@ -45,7 +45,12 @@
      The cell also carries row status: `Built —` opens the line of a page prepared but not
      delivered; "(superseded by …)" marks one a later page replaced.
      Units is one or more UNN, space-separated — a page naming two units appears under both
-     on the hub. Kind is `teach` · `drill` · `repair`.
+     on the hub. Kind is `teach` · `drill` · `repair` · `reference`.
+     U00 IS THE CHEAT-SHEET SHELF, NOT A UNIT. A page whose Units cell is U00 belongs to no
+     single unit: it holds tables several units have already taught, side by side, and takes
+     Kind `reference`. The hub renders the shelf above the unit board. It is deliberately not
+     a unit in `docs/curriculum.md` — everything that counts units would have counted it, and
+     a page that teaches nothing new must move none of those numbers.
      SCHEMA — five columns, this order. `scripts/hub.mjs` reads them positionally and
      `docs/consequential.test.ts` reads the first cell as a date; a sixth column or a
      reordering silently empties the hub's visuals section instead of failing loudly. Change

@@ -4,6 +4,40 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.17.0 — 2026-08-20
+
+Your workspace gets a shelf for cheat sheets — pages that hold several units' tables side by
+side — and, before you have one, a prompt telling you a cheat sheet is worth asking for. Two
+pages that were rendering nowhere now say so out loud.
+
+instance-impact: **engine files auto-update.** Nothing to run and nothing to rewrite. After the
+update your hub can show one new section above the unit board, and `node scripts/hub.mjs` can
+print one new warning line. What changes in what you *write* is optional: a page that belongs to
+no single unit is filed with `U00` in its index row's Units cell and `reference` as its Kind.
+
+- **A shelf for pages that belong to no single unit.** Once several grammar systems have been
+  taught, their tables start being confused for one another rather than simply not known — and
+  the answer is one page holding them side by side. That page fits no unit, so it goes on the
+  `U00` shelf, which the hub renders above the unit board. **It is deliberately not a unit in
+  your curriculum**: everything that counts units would have counted it — units done, your pace
+  against the goal date, the aspect map CI requires every unit to appear in — and a page that
+  re-prints delivered material must move none of those numbers.
+- **The hub tells you a cheat sheet is worth having, before you have one.** A section that only
+  appears after you have already made a cheat sheet can never tell you cheat sheets exist.
+  Upstream, the feature arrived because the learner happened to say the tables were mixing.
+  So the slot has two faces and never an empty one: the shelf when you have sheets, and before
+  that an offer — fired on the actual symptom, live mistakes spread across three or more systems
+  you have already been taught, with those systems named in the sentence. Below that, nothing
+  renders at all.
+- **A page filed under a unit that does not exist rendered nowhere.** Not on the unit board, not
+  anywhere — while its index row still read as filed, so nothing looked wrong. The hub now names
+  those pages on stdout, the same rule it already follows for sections it skipped: a thing that
+  vanishes without being named is the bug. The report stays quiet until you have a curriculum, so
+  a fresh template checkout is not told every page it owns is an orphan.
+- Ported from limba PORT-028. Two divergences, both owed back upstream and written down in
+  `upstream/backports/`: limba renders the shelf with an inline conditional that bypasses its own
+  skip-and-name gate, and limba has no offer — its learner already knows the shelf is there.
+
 ## 0.16.0 — 2026-08-19
 
 Your workspace grows a second page. The hub becomes the page you act **from** — one

@@ -543,7 +543,8 @@ const tierBar = Object.keys(INT).map((t) => {
  *  ("deck" or "drill" ⇒ practice) could not see the difference between a drill surface and
  *  a repair sheet built to fix one specific failure — which is the distinction a unit's
  *  history is actually made of. */
-const KIND_LABEL = { teach: "explainer", drill: "practice", repair: "repair" };
+const KIND_LABEL = { teach: "explainer", drill: "practice", repair: "repair",
+                     reference: "reference" };
 const kindOf = (v) => KIND_LABEL[v.kind] || v.kind;
 
 const card = (v) => `
@@ -561,6 +562,65 @@ const card = (v) => `
             ${v.built ? `<span class="nodate">built, waiting for a session</span>` : `<time>${esc(v.date)}</time>`}
           </div>
         </article>`;
+
+/* ------------------------------------------------------------------- the shelf
+ *
+ * U00 IS A SHELF, NOT A UNIT (limba PORT-028). It holds the pages that belong to no single
+ * unit — cheat sheets and cross-system reference, built out of material several units have
+ * already taught. The alternative, a curriculum unit, would have been counted as one by
+ * everything that counts units: the units-done tile, the pace against the goal date, and
+ * the aspect map CI requires every unit to appear in. A page that teaches nothing new must
+ * move none of those numbers, so the shelf lives here, above the board and outside its
+ * arithmetic.
+ *
+ * Newest first, and an undated page sorts LAST — the same rule the board uses. A cheat
+ * sheet is superseded by a later one far more often than a unit page is, so the top of the
+ * shelf is the current view.
+ */
+const SHELF = "U00";
+const shelf = vis
+  .filter((v) => v.units.includes(SHELF))
+  .sort((a, b) => (a.built !== b.built ? (a.built ? 1 : -1) : (b.date || "").localeCompare(a.date || "")));
+
+/**
+ * A page filed under a unit that does not exist renders NOWHERE — not on the board, not on
+ * the shelf — and the index row it has still reads as filed. Naming it on stdout is the
+ * same doctrine as `skipped()`: a section that vanishes without being named is the bug.
+ *
+ * Gated on there being a curriculum at all, which limba's copy has no need to do. In this
+ * repo `docs/curriculum.md` is absent until setup runs, and without the gate a template
+ * checkout reports every page it has as an orphan — a warning that fires when nothing is
+ * wrong trains the reader to skip the line that matters.
+ */
+const orphans = un.length
+  ? vis.filter((v) => !v.units.some((u) => u === SHELF || un.some((x) => x.id === u)))
+  : [];
+
+/**
+ * ONE SLOT, TWO FACES — the shelf, or the offer to start one, never both and never empty.
+ *
+ * The same rule the band above runs on. An empty "cheat sheets" box in a fresh workspace is
+ * the outline of someone else's history, which is what `when()` exists to refuse. But a
+ * section that only ever appears after the learner has already done the thing can never
+ * teach them the thing is available — so the slot spends its first life as the offer.
+ *
+ * THE OFFER IS EVIDENCE, NOT A NUDGE. It fires on the symptom a cheat sheet answers:
+ * live mistakes spread across several systems that were each already taught, which is when
+ * their tables start being confused for one another rather than simply not known. The zone
+ * names go in the sentence, so the learner reads why it is being suggested now.
+ *
+ * The floor is three zones — `derived from` limba's one case, where the learner asked for
+ * the shelf unprompted with ten systems delivered. It is a floor, not a measurement: below
+ * three there is nothing to hold side by side, and no workspace has yet measured where the
+ * confusion actually starts.
+ */
+const ZONES_FOR_SHEET = 3;
+const liveZones = [...new Set(errs.rows.map((e) => e.zone).filter(Boolean))];
+const shelfSlot = shelf.length
+  ? { mode: "shelf", pages: shelf }
+  : liveZones.length >= ZONES_FOR_SHEET
+    ? { mode: "offer", zones: liveZones }
+    : null;
 
 /** Weakest first, the same doctrine as the topic-coverage panel: worst-covered leads
  *  because that ordering IS the information. Units holding nothing measurable trail —
@@ -893,6 +953,21 @@ ${BOARD}
     </div>
   </div>
 
+  ${when("cheat sheets", shelfSlot, (sl) => sl.mode === "shelf" ? `
+  <h2 id="${anchorOf("shelf")}">Cheat sheets — several units' tables on one page</h2>
+  <div class="note" style="margin-bottom:14px">Filed under <strong>U00</strong>, which is a
+    shelf rather than a unit: these pages teach nothing new, so they move none of the counts
+    above. They are where the tables of the units below are held side by side.</div>
+  <div class="cards">${sl.pages.map(card).join("")}</div>` : `
+  <h2 id="${anchorOf("shelf")}">Worth a cheat sheet</h2>
+  <div class="next" style="margin:0 0 14px">
+    <strong>Live mistakes are spread across ${sl.zones.length} systems you have already been
+    taught</strong> — ${sl.zones.map(esc).join(", ")}. That is where tables start being
+    confused for one another rather than simply not known, and one page holding them side by
+    side is the usual answer. Ask for a cheat sheet next session: it is filed on the
+    <strong>U00</strong> shelf, it asserts nothing new, and it moves none of the counts above.
+  </div>`)}
+
   ${un.length ? `
   <h2>The ${un.length} units — what each one has given you</h2>
   <div class="note" style="margin-bottom:14px">
@@ -1067,6 +1142,13 @@ ${OPEN_TARGET_JS}
 `;
 
 writeFileSync(join(root, OUT), html);
+if (orphans.length) {
+  console.log(
+    `hub: ${orphans.length} visual(s) render nowhere — their Units cell names neither ` +
+      `${SHELF} nor a unit in the curriculum: ` +
+      orphans.map((v) => `${v.file} (${v.units.join(" ") || "no unit"})`).join(", "),
+  );
+}
 console.log(
   `hub → ${OUT}  (${vis.length} visuals · ${all.length} items · ` +
     `${unseen.length} unseen of ${due.length} due · ` +

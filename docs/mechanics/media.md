@@ -181,6 +181,10 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    index is invisible to every later session — the same failure as an unlogged one
    ([why/media.md](why/media.md)).
 
+   **Cross-unit reference goes on the `U00` shelf** — `Units: U00`, `Kind: reference` — which
+   the hub renders above the unit board. `U00` is not a curriculum unit, so a page that
+   teaches nothing new moves none of the counts ([why/media.md](why/media.md)).
+
    **The `Teaches` cell is one sentence, capped at 120 characters, and the cap is set to the
    clamp rather than to taste** — the hub renders the cell verbatim as the card's description,
    so its length *is* the card's length, and a looser cap passes the test while cutting the

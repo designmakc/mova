@@ -21,6 +21,48 @@
    can only make it fresher. Close-out then **re-runs it** over ledgers the session moved,
    and confirms the row (session_format.md, close-out steps 7 and 9).
 
+## Why the `U00` shelf is not a 31st unit (ported from limba PORT-028, 2026-08-20)
+
+Upstream the learner asked for one place to keep sheets that hold several units' tables side by
+side: *"all of these tables are starting to mix in my head."* By then ten grammar systems had
+been taught across nineteen pages, each page owning one of them.
+
+**A shelf, because everything here that counts units would have counted a unit.** The hub's
+units-done tile, the pace against the goal date, and the aspect map `docs/topics.test.ts`
+requires every curriculum unit to appear in — the last of which would have forced inventing
+aspects for a page that teaches nothing new. A cheat sheet re-prints delivered material, so it
+must move none of those numbers. `docs/curriculum.md` therefore keeps its unit count, and the
+shelf lives in the visual index and the hub instead.
+
+**The failure the same change closed.** A visual whose `Units` cell named a unit the curriculum
+does not define rendered nowhere at all — the board iterates curriculum units — while its index
+row still read as filed. The hub now names such pages on stdout, the same doctrine as
+`skipped()`. Here that report is gated on there being a curriculum at all: before setup runs
+there is none, and an ungated warning would name every page in the repo.
+
+## Why the shelf's slot spends its first life as an offer (2026-08-20)
+
+limba renders the shelf with an inline `shelf.length ? … : ""`. That is the shape this repo
+refuses: a section that can vanish can also vanish by accident, and the skip is then silent by
+construction. The shelf goes through `when()` instead, so the empty case is named on stdout.
+
+**But `when()` alone makes the feature undiscoverable.** A section that appears only after the
+learner has already asked for a cheat sheet can never tell them a cheat sheet is available —
+upstream that gap was closed by the learner happening to say the right sentence, which is not a
+mechanism. So the slot has two faces, the same one-slot-two-states rule the band above it runs
+on: the shelf when sheets exist, and before that an offer.
+
+**The offer fires on evidence, not on a counter.** A permanent pointer is standing text nobody
+acts on, and a page-count threshold guesses. What a cheat sheet answers is one specific symptom
+— live mistakes spread across several systems that were *each already taught*, which is when
+their tables start being confused for one another rather than simply not known. The zone names
+go in the sentence so the learner reads why it is being suggested now.
+
+**Three zones is a floor, `derived from` one case.** limba's learner asked unprompted with ten
+systems delivered; below three there is nothing to hold side by side. No workspace has yet
+measured where the confusion actually starts, and the first one that does should replace this
+number rather than defend it.
+
 ## Why audio is embedded, not commanded
 
 Added in limba (SES-003 / 2026-07-30): a `speak.sh` command printed in chat is gone the
