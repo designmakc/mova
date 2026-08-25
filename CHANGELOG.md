@@ -4,6 +4,39 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.18.0 — 2026-08-25
+
+Building a page and putting it on your board are now one job, not one job and a habit. If a page
+is in your index but missing from the hub, `npm test` says so instead of leaving you to notice.
+
+instance-impact: **engine files auto-update, then run one command.** After the update, run
+`node scripts/hub.mjs` and commit the result — if your board was already current, that is a
+no-op. From then on CI fails when a page you have indexed is missing from the board, with the
+fix in the failure message. Nothing changes in what you write.
+
+- **The order has a name now: gate green → index row → hub → send.** It holds for every page
+  the board renders — a drill surface, a cheat sheet, a superseded row — not lessons alone.
+  The board is generated *from* the index, so a row reaches you only when the generator
+  re-runs, and **indexed but not on the board is reachable only by filename, which is not
+  reachable.** The hub is your one bookmark; a page it does not carry is a page you have to
+  remember the name of.
+- **A test holds it, and it checks containment rather than freshness.** The obvious check is to
+  regenerate and diff, and it is the wrong one: your hub also prints queue counts and a
+  countdown to your goal date, so it differs from its own regeneration most mornings and would
+  go red on a clean tree while catching nothing. Whether every page the index links to appears
+  on the board is deterministic, and it is exactly what goes wrong. Verified by taking one
+  filename out of a generated hub and watching the check fail.
+- **The failure names both ways a page goes missing.** Either the board is stale, or the row's
+  Units cell names no unit your curriculum defines and no `U00` — in which case the generator
+  renders that page nowhere and says so on stdout, and regenerating will never fix it. Fix the
+  cell, then regenerate.
+- Ported from limba PORT-029. Upstream this was a rule promotion; here the instruction was
+  already the index rule's own heading, so what arrived was the enforcement. One divergence,
+  owed back upstream and written down in `upstream/backports/`: limba's failure message names
+  only the stale board, which sends a session with a mis-filed row round a loop that never goes
+  green. Two incidents moved from `docs/mechanics/media.md` to `docs/mechanics/why/media.md` to
+  pay for the new words — the word budget working as designed.
+
 ## 0.17.0 — 2026-08-20
 
 Your workspace gets a shelf for cheat sheets — pages that hold several units' tables side by

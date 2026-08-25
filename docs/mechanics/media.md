@@ -181,6 +181,15 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    index is invisible to every later session — the same failure as an unlogged one
    ([why/media.md](why/media.md)).
 
+   **The order is gate green → index row → hub → send**, and it holds for every page the
+   board renders — a drill surface, a cheat sheet, a superseded row — not lessons alone. The
+   board is generated *from* the index, so a row reaches the learner only when the generator
+   re-runs: **indexed but not on the board is reachable only by filename, which is not
+   reachable.** `docs/visuals.index.test.ts` fails when an indexed page is missing from the
+   board. Close-out regenerates it again over ledgers the session moved
+   ([session_format.md](session_format.md) close-out step 9) — that is the later of two runs,
+   never a replacement for this one.
+
    **Cross-unit reference goes on the `U00` shelf** — `Units: U00`, `Kind: reference` — which
    the hub renders above the unit board. `U00` is not a curriculum unit, so a page that
    teaches nothing new moves none of the counts ([why/media.md](why/media.md)).
@@ -208,16 +217,13 @@ Added in limba, 2026-07-31 (SES-004), after two failures in one session:
    `Built —` opening its Teaches cell** (2026-08-15). The row records the unit the material
    is for and where the session stopped; the session that later *teaches* the page fills the
    Date in at its close-out. Until then the schema has no honest date to offer, and both
-   first generated lesson pages paid for the gap: one wrote the build date into a column
-   that means *delivered*, the other left the page out of the index entirely — and out of
-   the hub, so the learner could not open it at all (found in the first generated lesson
-   pages, 2026-08-15). **Never date a delivery that has not happened**: the ledgers
+   first generated lesson pages paid for the gap ([why/media.md](why/media.md)).
+   **Never date a delivery that has not happened**: the ledgers
    and the pacing arithmetic read this column as evidence about what the learner has seen.
    The rest of that state — commit, hub, where you stopped — is
    [session_format.md](session_format.md) → the materials-prepared exit.
-4. **Never describe a page you have not read** (limba, 2026-08-12). A session told the learner
-   the hub *"still shows 9 visuals"*; it showed **8** and a stamp five days old, and the
-   session had no basis for the claim at all — the learner's screenshot is what settled it.
+4. **Never describe a page you have not read** (limba, 2026-08-12, after a session stated a
+   hub count it had no basis for — [why/media.md](why/media.md)).
    Read the repo file: with local delivery it is exactly what the learner opens. Two gaps
    survive that, both about *time*, not copies: this workspace can run several sessions at
    once, so another session's commit moves the state under you — and a `publishing:` instance

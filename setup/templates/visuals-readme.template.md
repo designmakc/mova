@@ -14,7 +14,9 @@
 > row the moment it passes `visualcheck`, and the hub is regenerated then** — not at
 > close-out, so the page is reachable from the learner's one bookmark as soon as it is
 > real (`docs/mechanics/media.md` → Delivering a visual, rule 3).
-> `docs/visuals.index.test.ts` fails CI if a committed visual has no row here. A page
+> `docs/visuals.index.test.ts` fails CI if a committed visual has no row here, and again if
+> an indexed page is missing from `index.html` — indexed but not on the board is reachable
+> only by filename, which is not reachable. A page
 > **built but not yet taught** carries **no Date** and `Built —` opening its Teaches cell;
 > the session that teaches it fills the Date in at close-out
 > (`docs/mechanics/session_format.md` → the materials-prepared exit). Superseded visuals

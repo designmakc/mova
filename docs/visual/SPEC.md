@@ -201,7 +201,8 @@ Live examples with usage notes: [gallery.html](gallery.html). Summary:
 8. **Add the index row in `work/visuals/README.md`, then run `node scripts/hub.mjs`** —
    the moment the gate passes, not at close-out. A visual the learner cannot reopen does
    not exist, and the hub is what they reopen it from (`docs/mechanics/media.md` →
-   Delivering a visual, rule 3). Date the row only if you are handing the page over now;
+   Delivering a visual, rule 3). Both commands, in that order, before the page is sent:
+   `docs/visuals.index.test.ts` fails on an indexed page the board does not carry. Date the row only if you are handing the page over now;
    otherwise `—` plus `Built —` opening the Teaches cell.
 
 ## 6. Start from the generator, which starts from starter.html

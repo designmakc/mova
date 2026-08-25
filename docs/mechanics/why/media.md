@@ -21,6 +21,40 @@
    can only make it fresher. Close-out then **re-runs it** over ledgers the session moved,
    and confirms the row (session_format.md, close-out steps 7 and 9).
 
+## Why regenerating the hub is its own step (ported from limba PORT-029, 2026-08-25)
+
+Upstream the instruction already existed — *"Green, then index, then hub"*, five words inside a
+rule about the index row — and it was skipped the day it mattered. A lesson page passed the
+gate, took its row, was committed and taught, and reaching the board took a commit of its own
+the next day. **A rule that lands as a clause inside another rule has not landed**, which is the
+same finding PORT-019 made about rules living in a mechanic and not in the verb that runs it.
+
+**Containment is the check, not freshness.** Regenerate-and-diff is the obvious test and it
+fails on a clean tree most mornings: the hub prints queue counts and a countdown to the goal
+date, both of which move with the date rather than with any edit. Whether every indexed page
+appears on the board is deterministic, and it is exactly the failure that happened.
+
+**Here the message names a second cause upstream's does not.** This repo's generator drops a
+page whose `Units` cell matches neither a curriculum unit nor the `U00` shelf, and reports it on
+stdout instead (the orphan report, in the `U00` section below). For that page "run `hub.mjs`" is advice that cannot
+work — the check would send a session round a loop that never goes green. Owed back to limba,
+which has the same orphan report and the same one-cause message.
+
+## Why a built-but-untaught row leaves its date empty (2026-08-15)
+
+Both first generated lesson pages ended in that state with no way to say so. One wrote the build
+date into a column that means *delivered*; the other left the page out of the index entirely —
+and so out of the hub, where the learner could not open it at all. The ledgers and the pacing
+arithmetic read the Date column as evidence about what the learner has actually seen, so a date
+guessed at build time is not a small inaccuracy in a registry: it is false evidence in the
+arithmetic that decides what gets built next.
+
+## Why a page is described only after it is read (limba, 2026-08-12)
+
+A session told the learner the hub *"still shows 9 visuals"*. It showed **8**, under a stamp
+five days old, and the session had no basis for the claim at all — the learner's screenshot is
+what settled it.
+
 ## Why the `U00` shelf is not a 31st unit (ported from limba PORT-028, 2026-08-20)
 
 Upstream the learner asked for one place to keep sheets that hold several units' tables side by
