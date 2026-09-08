@@ -4,6 +4,70 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.19.0 — 2026-09-08
+
+When a mark says you were wrong, the sheet now says whether anything checked that mark or
+whether it is the agent's reading. When you say the agent is wrong, it checks before it
+answers, instead of agreeing first and finding sources afterward. And a workspace whose
+language pack has no dictionary tells you so at the start of every session, not only on the
+hub.
+
+instance-impact: **engine files auto-update, then run `npm test`.** Every marked sheet already
+in `work/sets/` that scores something wrong and carries no `Source:` line fails the new check,
+and the failure message gives the one line to add — for a sheet nobody checked at the time,
+`Source: the agent's word — unverified`. From then on every sheet is written with its trail:
+`?` after each mark nothing attested, a `Source:` line at the foot, one sentence inviting a
+dispute. Nothing else you write changes.
+
+- **Marking is a checkpoint of the verification rule.** A ❌ or 🟡 is a claim about the
+  language — the agent's reading against yours — and takes the same three states as a ledger
+  row: attested through the pack's dictionary, tutor-confirmed, or marked `?`. A word's meaning
+  or form goes through the adapter before the sheet is published. What no adapter can check —
+  what a clause means, which reading a form allows — wears `?`, counts in the score until it is
+  disputed, and the sheet says you may dispute it. `work/sets/marked.test.ts` holds the trail.
+  It is the marked-sheet twin of `visualcheck.mjs`'s check 10 and deliberately as crude: it
+  cannot tell a grammar mark from a spelling mark, so it asks for the sheet-level trail
+  whenever anything is marked wrong and trusts the rule for the per-mark `?`. Its trail key is
+  structural (`Source:` opening a line), not a wording, because sheets are written in your
+  meta-language.
+- **A dispute is a check, not a concession.** When you contradict a mark or a taught claim, the
+  first sentence back names the check, never the verdict; the next reports what the check found
+  and where; then the item is re-scored. Where nothing can check it, the `?` stays, both
+  readings go into the sheet, the score line says *disputed*, and the item joins the list a
+  tutor clears. The rule cuts both ways on purpose: an agent that yields to pushback cannot tell
+  a right learner from a wrong one.
+- **The null adapter speaks at the door.** The session opener carries one line — every fact
+  today is the agent's word until a tutor confirms it — whenever the pack declares no
+  dictionary. The hub already said it; a banner on a page you open later is not a sentence at
+  the start.
+- **The incident.** The first study session ever to run to completion on this engine — a
+  Turkish instance under ChatGPT's Codex agent, 2026-08-24, on a pack built at setup with no
+  dictionary — scored a correct reading of a time clause as wrong, built the repair lesson on
+  its own wrong rule, and reversed itself on the learner's word with no `?` anywhere. The
+  learner left. The story is in `docs/mechanics/why/verification.md`, which is new:
+  verification.md's own preamble and incidents moved there, verbatim, to pay for the rules.
+- **What this buys, said plainly.** It does not lower the model's error rate. It guarantees you
+  can always tell a checked mark from the agent's guess, and that a dispute triggers a check
+  instead of a flip. On a pack with no dictionary every grammar-meaning mark is `?` by
+  construction; the only route to attested is the tutor loop.
+- **The word budgets held.** session_format.md gained the sheet trail, the dispute bullet in
+  the correction policy, the door line and the sheet's file name, and paid by moving nine
+  provenance paragraphs verbatim to `why/session_format.md`: 7,399 of 7,400 words. verification.md is
+  1,298 of 1,300 after its preamble left. teaching.md's "absolutes have to be earned" gained
+  one item: a ❌ on what a sentence means is an absolute about your reading, earned the same
+  way. verification.md's Status section, which still said the enforcement tooling was
+  unshipped, now names what enforces what.
+- **Also.** The profile page counts sheets named `_marked.md` as well as `-marked.md` — the
+  first instance to write one used the underscore, and a sheet the stats page cannot see reads
+  as a session with nothing wrong. AGENTS.md's Status no longer says no session has run. The
+  close-out failure the same session reported (`tts: say` stopped `closeout.mjs`) shipped as
+  0.18.1.
+- **The release manifest describes this tree only.** `scripts/manifest.mjs` now skips agent
+  worktrees (`.claude/worktrees/`, `.worktrees/`), the same rule `vitest.config.ts` already
+  applies. Cutting this release with a sibling worktree open hashed 121 of its files into the
+  engine manifest — paths `/update` would have offered every instance as new engine files.
+- **Owed to limba**, written down in `upstream/backports/2026-09-08_marking-is-a-claim.md`.
+
 ## 0.18.1 — 2026-09-08
 
 Your close-out finishes on every voice setting. A workspace whose profile says `tts: say` could

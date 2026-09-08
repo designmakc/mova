@@ -251,6 +251,8 @@ a word already on the syllabus.
 3. **A rule that cannot be broken by any word is usually a betting rule** — say so on the
    page. limba's gender sheet's "default feminine, memorise the short masculine set" is the
    model: it names itself a bet, so a miss discredits the bet, not the page.
+4. **A ❌ on what a sentence means is an absolute about the learner's reading**, earned the
+   same way — checked, or worn with `?` ([verification.md](verification.md) § Marking time).
 
 The **session** carries the same statement one level up: which unit of the curriculum, what
 it opens or closes, what the learner will and will not be able to do afterwards.

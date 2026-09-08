@@ -43,7 +43,9 @@ here: a snapshot is named by its date and frozen, so a wrong one is expensive to
    playback is the fallback). Speaking-type sections run as a typed simulation unless a
    tutor mock is arranged (see the tutor-prep playbook).
 3. **Score** against the section's task structure; report per-task, total, and pass-margin
-   judgment plainly — against the pass bar the goal contract states.
+   judgment plainly — against the pass bar the goal contract states. The marked sheet carries
+   its trail like any other — `?` after every mark nothing attested, a `Source:` line at its
+   foot ([docs/mechanics/verification.md](../docs/mechanics/verification.md) § Marking time).
 4. **Debrief**: every error → taxonomy code → error log; patterns → repair items.
 5. **Freeze the snapshot**: date-named, with `## Method` (exactly what was exercised,
    source of the paper, timing) and a **"Not exercised:"** list. The filename is the

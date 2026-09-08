@@ -100,12 +100,16 @@ contract tests, the visual system), seven language packs, all twelve playbooks,
 and the setup system. Three instances have been generated from this template and each
 passed its own contract suite.
 
-**Not yet exercised:** an actual study session — no lesson, drill, review or tutor pack
-has ever run to completion. Adapters have only been generated for Claude Code. Seven
-language packs ship, but only Romanian was extracted from a measured learner — Spanish,
-French, German, Italian, Portuguese and Greek were built from references and have taught
-nobody, and each says so in its own notes. The update, sync and feedback paths are written but
-unrun.
+**Exercised once:** one study session has run to completion — a Turkish instance under
+ChatGPT's Codex agent on 2026-08-24, driven from this file's verb table: placement, a repair
+lesson, close-out. It found the marking gap 0.19.0 closes
+([docs/mechanics/why/verification.md](docs/mechanics/why/verification.md)) and a close-out
+failure on the `say` voice (fixed in 0.18.1), and it lost the learner. No drill, review or tutor pack has run.
+Adapters have only been generated for Claude Code. Seven language packs ship, but only
+Romanian was extracted from a measured learner — Spanish, French, German, Italian, Portuguese
+and Greek were built from references and have taught nobody, and each says so in its own
+notes; Turkish has none, so that instance built its own at setup and runs on the null
+adapter. The update, sync and feedback paths are written but unrun.
 Treat those as untested, not as broken — and **report what you find**: an engine-shaped
 finding goes back to the template through [playbooks/feedback.md](playbooks/feedback.md),
 not into a local file nobody upstream reads.

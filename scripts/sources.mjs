@@ -598,12 +598,16 @@ export function claims(text, headingRe) {
  *
  * A sheet with no glyphs is skipped and NAMED by the caller, never counted as a zero — a
  * silent zero would read as a session that got everything wrong.
+ *
+ * Named `…-marked.md` by session_format.md's close-out step 6; `_marked.md` is accepted too —
+ * the first instance to write one used it (2026-08-24), and a sheet this cannot see reads as
+ * a session with nothing wrong. work/sets/marked.test.ts scans the same names.
  */
 export function markedSets() {
   const dir = join(root, "work/sets");
   if (!existsSync(dir)) return [];
   const out = [];
-  for (const f of readdirSync(dir).filter((n) => n.endsWith("-marked.md")).sort()) {
+  for (const f of readdirSync(dir).filter((n) => /marked\.md$/.test(n)).sort()) {
     const text = readFileSync(join(dir, f), "utf8");
     const count = (re) => (text.match(re) || []).length;
     const ok = count(/✅/g), half = count(/🟡/g), bad = count(/❌/g);

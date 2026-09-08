@@ -35,11 +35,9 @@ The drill variant is parts 1 + 3 only, with error-pattern items mixed in
 1. **Read [../reference/profile.md](../reference/profile.md).** Who is on the other side —
    the language ranking a contrast must come from (`contrast_ranking`), the input method that
    is never an error (the pack's `normalize.mjs` — [verification.md](verification.md)), and
-   what has already been settled. Skipping it is how a keyboard preference spent five days in
-   limba's error tally shaping what got drilled.
+   what has already been settled ([why/session_format.md](why/session_format.md)).
 2. **Run `date`.** Never take today's date from context — it may be stale, and every date
-   here is load-bearing (SRS due-ness, pacing, snapshot order). One wrong date propagated
-   across five files (limba, 2026-07-31).
+   here is load-bearing (SRS due-ness, pacing, snapshot order).
 3. **Run `node scripts/closeout.mjs --start`** — it answers this step (the `work/` audit,
    computed) and the next one, and it records which files were **already dirty before this
    session touched anything**. That snapshot is what lets the close-out name paths instead of
@@ -103,7 +101,9 @@ write) has no mix: fall back to the pointer and say so.
 The learner runs many sessions and returns cold. **State position before content:**
 
 - **Session opener** — which unit of the curriculum, which phase, what it opens or closes,
-  and what the learner will and will not be able to do afterwards.
+  and what the learner will and will not be able to do afterwards. **On a pack with no
+  dictionary, one line more**: every fact today is the agent's word until a tutor confirms it
+  ([verification.md](verification.md) § The null adapter).
 - **Every teaching section** — the Placement beat from [teaching.md](teaching.md) ①,
   derived from [../reference/topics.md](../reference/topics.md), never improvised.
 - **The clock, not only the material** ([narration.md](narration.md) § 7) — what the verb
@@ -141,7 +141,8 @@ cost plainly first — *without a measured starting level I pick the unit by gue
 have to move you later* — then:
 
 - **Probed** — probe across the curriculum's early units instead of working through material
-  (limba's placement probed the first half), write `docs/snapshots/YYYY-MM-DD_placement.md`
+  (limba's placement probed the first half), mark it as a sheet like any other (below), write
+  `docs/snapshots/YYYY-MM-DD_placement.md`
   with `## Method` and its "Not exercised:" list, then tick the plan's placement milestone and
   update its pacing at close-out.
 - **Declined** — write the same snapshot anyway, and make the guess legible in it:
@@ -195,7 +196,8 @@ second exposure is **aimed at the specific miss**, not at the item's schedule.
 
 1. **Test** — a bounded set over the target material. Bounded means counted before it is
    asked (see the size rule below).
-2. **Key** — mark it and show the correct answers plainly, all at once.
+2. **Key** — mark it and show the correct answers plainly, all at once, as a marked sheet
+   (below).
 3. **Diagnose by cause, not by item.** Group the misses. *Why* did each fail? This is the
    step that carries the loop: SES-007's grouping revealed 4/4 correct on the two verbs ever
    taught as full paradigms and **0/4** on the three handed over as dictionary entries — a
@@ -354,35 +356,28 @@ more than an unreviewed item.
 ## Grade everything the learner produces (limba, 2026-08-09)
 
 **Every piece of learner output is graded and recorded, whether or not it is what the exercise
-was measuring.** limba's learner asked for this rule after a gender-and-plural drill: they
-attached a translation to all fourteen answers, and the session scored only the gender and the
-plural. Thirteen correct translations went unrecorded — real evidence, volunteered, thrown away
-because it was off-target.
+was measuring** ([why/session_format.md](why/session_format.md)).
 
 - An exercise has a *target*, not a *scope*. The target decides what gets taught and retested;
   it does not decide what counts as data.
-- This is how the **meaning-versus-form split** becomes visible at all. limba SES-009 read 9/10
-  and 13/14 on meaning against 55% on written production — a diagnosis that only exists because
-  both halves were counted. Grading the target alone would have reported one number and hidden
-  the finding.
+- This is how the **meaning-versus-form split** becomes visible at all — a diagnosis that only
+  exists because both halves were counted.
 - It applies in both directions: an unprompted correct form is a promotion, and a slip inside
   an answer that was otherwise right is still an error. Volunteered output is not a free move.
-- Cost is near zero — the learner already produced it. The only work is looking at it.
 
 ### Publish the whole marked sheet, not just the misses (limba, 2026-08-09)
 
 **Every scored set comes back to the learner in full — one row per item, in the order it was
-asked.** Requested by limba's learner after three consecutive marked sets that listed only what
-went wrong. A miss-only table hides two things: how much was right (there is no sense of
-proportion in "here are your four errors"), and *where inside the answer* it broke.
+asked.** A miss-only table hides how much was right, and *where inside the answer* it broke
+([why/session_format.md](why/session_format.md)).
 
 Each row carries five things:
 
 | Part | Rule |
 | --- | --- |
-| **What was asked** | The prompt itself, restated in a few words — `mulțumesc → EN`, `"to work" → RO`, `nume: article + plural`. **Not an index number.** The learner reads the sheet cold, often after the questions have scrolled away; a row that says only "7" forces them back up the transcript to find out what 7 was. Added at the learner's request (limba, 2026-08-09), one exchange after the sheet itself. |
+| **What was asked** | The prompt itself, restated in a few words — `mulțumesc → EN`, `"to work" → RO`, `nume: article + plural`. **Not an index number.** The learner reads the sheet cold, often after the questions have scrolled away; a row that says only "7" forces them back up the transcript to find out what 7 was. |
 | **The learner's own answer** | Quoted back verbatim, with the failing segment **bolded inside it**. Seeing `ing`**`e`**`ner` is not the same as being told the answer is *inginer* — one shows the break, the other replaces it. |
-| **Status** | ✅ correct · 🟡 partly correct · ❌ wrong. One glyph, scannable down the column. |
+| **Status** | ✅ correct · 🟡 partly correct · ❌ wrong — `?` after the glyph when nothing attested the mark ([verification.md](verification.md) § Marking time). One glyph, scannable down the column. |
 | **The correct form** | Only when the answer was not ✅. |
 | **Why** | Only where it adds something. A ✅ needs no paragraph, and a wrong ending that has already been explained twice needs a pointer, not a re-explanation. |
 
@@ -390,11 +385,16 @@ Each row carries five things:
   forms of two verbs is four answers; scoring it ❌ throws away the one that was right.
 - **🟡 is not a soft ❌.** Use it where a real component landed — right stem wrong ending, right
   gender wrong plural, right meaning wrong register — because that split is the diagnosis.
+- **A ❌ is a claim, and the sheet carries its trail** ([verification.md](verification.md)
+  § Marking time). A mark on what a word means or what form it takes is checked through the
+  adapter before the sheet goes out; a mark on what a clause means is the agent's reading and
+  wears `?`. The sheet ends with a `Source:` line and one sentence inviting the learner to
+  dispute any `?` mark; the dispute runs § A dispute is a check, not a concession.
+  `work/sets/marked.test.ts` holds the trail.
 - **Fold the learner's input-method look-alikes before marking.** The folding table is the
   pack's `normalize.mjs`; the principle — **an input-method artifact is never a language
   error** — is engine ([verification.md](verification.md)). They never appear as an error in
-  the sheet, not even as a 🟡 (limba's case: `ǎ ş ţ` from a legacy keyboard layout). A
-  *missing* diacritic still does.
+  the sheet, not even as a 🟡. A *missing* diacritic still does.
 - The per-item sheet is the marking; the **grouped diagnosis** ([the repair loop](#the-repair-loop--test-diagnose-repair-retest) step 3)
   still follows it. The sheet says what happened, the diagnosis says why — do not let the table
   replace the grouping.
@@ -521,6 +521,10 @@ gets written into the ledgers, the log and the learner profile as evidence.
   source when there is one — ranked per the profile's `contrast_ranking`.
 - Recurring errors (3+ occurrences) get logged to
   [../logs/error_log.md](../logs/error_log.md); one-off slips are corrected but not logged.
+- **The learner may correct you.** A dispute over a mark or a taught claim is checked before
+  it is answered — name the check, run it, report what it found, then re-score
+  ([verification.md](verification.md) § A dispute is a check, not a concession). Agreement is
+  never the first sentence.
 
 ## The close-out ritual (every session, every playbook)
 
@@ -560,11 +564,10 @@ a **path-named** `git add` line.
    it takes a lock, re-reads the log inside it, and derives the ID there. Two limba sessions
    took `ERR-033` in the same seconds on 2026-08-12; CI caught that duplicate, but it cannot
    see a whole-file rewrite that drops the other writer's entry entirely.
-6. **Save every scored set into `work/`** — the items, the key, and the marked sheet. The page
-   the learner reads is the deliverable; this is the repo's own record of it. limba's leak
-   audit had to reconstruct past sets from agent transcript files, and **one session's
-   transcript was already gone** — the one mechanism that can check a historical claim had
-   silently lost a session.
+6. **Save every scored set into `work/sets/`** — the items, the key, and the marked sheet as
+   `YYYY-MM-DD_<slug>-marked.md`, the name the profile page counts. The page the learner
+   reads is the deliverable; this is the repo's own record of it
+   ([why/session_format.md](why/session_format.md)).
 7. **Confirm the index rows and date the deliveries.** Every visual this session created or
    updated was indexed and put on the hub **when it was built**, before it was taught
    ([media.md](media.md) → Delivering a visual, rule 3) — so this step is the audit, not the

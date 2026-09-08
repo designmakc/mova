@@ -50,6 +50,13 @@ const SKIP_DIRS = new Set([
   ".tts-cache",
   ".obsidian",
   "materials", // untracked copyrighted study material
+  // Agent worktrees are a second checkout under the repo root (Claude Code:
+  // .claude/worktrees/<name>/), and every engine file in one carries the marker. Hashing
+  // them once put 121 sibling-tree paths into a release manifest (2026-09-08), which /update
+  // would then have offered to every instance as new engine files. Same rule as
+  // vitest.config.ts: a manifest describes THIS tree.
+  ".claude",
+  ".worktrees",
 ]);
 
 const ext = (name) => {

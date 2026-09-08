@@ -91,6 +91,11 @@ review ([playbooks/review.md](../../playbooks/review.md)) — not guessed.
 
 ## The orient ritual
 
+Moved out of the rule file (2026-09-08), verbatim — step 1, on reading the profile: *Skipping
+it is how a keyboard preference spent five days in limba's error tally shaping what got
+drilled.* Step 2, on running `date`: *One wrong date propagated across five files (limba,
+2026-07-31).*
+
 Added in limba, 2026-08-07, after its housekeeping audit found the shared steps living in one
 playbook out of six: `rename` and `topics.md` appeared only in the lesson playbook,
 `git status` in none. The cost was not theoretical — a skipped rename the learner had to ask
@@ -341,3 +346,44 @@ reader, `docs/logs.entries.test.ts` imports it, and the close-out template emits
 The gate is dated from the day after it shipped, because the log is append-only and entries
 written under the old instrument cannot be edited to satisfy it.
 
+## Grade everything the learner produces (limba, 2026-08-09)
+
+Moved out of the rule file (2026-09-08), verbatim:
+
+limba's learner asked for this rule after a gender-and-plural drill: they attached a
+translation to all fourteen answers, and the session scored only the gender and the plural.
+Thirteen correct translations went unrecorded — real evidence, volunteered, thrown away because
+it was off-target.
+
+limba SES-009 read 9/10 and 13/14 on meaning against 55% on written production — a diagnosis
+that only exists because both halves were counted. Grading the target alone would have reported
+one number and hidden the finding.
+
+Cost is near zero — the learner already produced it. The only work is looking at it.
+
+## Publish the whole marked sheet (limba, 2026-08-09)
+
+Moved out of the rule file (2026-09-08), verbatim:
+
+Requested by limba's learner after three consecutive marked sets that listed only what went
+wrong. A miss-only table hides two things: how much was right (there is no sense of proportion
+in "here are your four errors"), and *where inside the answer* it broke.
+
+"What was asked" — added at the learner's request (limba, 2026-08-09), one exchange after the
+sheet itself.
+
+Fold the look-alikes before marking — limba's case: `ǎ ş ţ` from a legacy keyboard layout.
+
+## A ❌ is a claim, and the learner may correct you (2026-09-08)
+
+The sheet's trail, the `?` after the glyph, the door line in the opener and the dispute bullet
+in the correction policy were bought with the first completed study session (2026-08-24). The
+story lives once, in [verification.md](verification.md) of this directory.
+
+## Save every scored set (close-out step 6)
+
+Moved out of the rule file (2026-09-08), verbatim:
+
+limba's leak audit had to reconstruct past sets from agent transcript files, and **one
+session's transcript was already gone** — the one mechanism that can check a historical claim
+had silently lost a session.

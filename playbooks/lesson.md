@@ -149,8 +149,11 @@ carries. A fixed denominator cannot describe a conditional first part.
    checks — write the answers out first and run `node scripts/leakcheck.mjs` on the set).
    For the **page**, the single gate is `node scripts/visualcheck.mjs <file>` — it runs
    the leak check itself and fails on HIGH, so a page is not finished until it exits 0.
-   Score it, say the score plainly, publish the whole marked sheet. **It runs before
-   practice**: the check measures what the teaching alone landed, uncontaminated.
+   Score it, say the score plainly, publish the whole marked sheet — `?` after every mark
+   nothing attested, a `Source:` line at its foot, one sentence inviting a dispute
+   ([docs/mechanics/verification.md](../docs/mechanics/verification.md) § Marking time).
+   **It runs before practice**: the check measures what the teaching alone landed,
+   uncontaminated.
 4. **Applied practice (~15′)**: a short reading or guided dialogue in a format adjacent to the
    goal contract's assessment, **aimed at what part 3 just missed**, forcing today's new + due
    items into use. Correct per policy, code errors. This is targeted repair, not generic use —
