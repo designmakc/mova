@@ -47,6 +47,7 @@ import { dirname, join, basename } from "node:path";
 import { tmpdir } from "node:os";
 import { createHash } from "node:crypto";
 import { loadProfile } from "./profile.mjs";
+import { ttsCache } from "./tts-cache.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -83,8 +84,14 @@ const CONTRACT = {
   scratch: join(tmpdir(), `mova-closeout-${createHash("sha1").update(ROOT).digest("hex").slice(0, 12)}`),
 };
 
-/** Audio is capability-gated: an instance with `tts: none` has no cache to warm. */
-const HAS_TTS = (profile.config.tts || "none") !== "none" && profile.config.audio !== "false";
+/**
+ * Whether there is a TTS cache to warm — the verdict tts-warm.mjs and deck.mjs act on, taken
+ * from the one place that holds it. This script once kept its own copy ("any voice but
+ * none") and the warmer kept another ("edge only"), so a `tts: say` instance could not close
+ * a session that added a word: step 9 ran a warmer that refused. `CACHE.why` is the line
+ * printed in place of running it.
+ */
+const CACHE = ttsCache(profile);
 
 const sh = (cmd) => execSync(cmd, { cwd: ROOT, encoding: "utf8" }).trim();
 const shSoft = (cmd) => { try { return sh(cmd); } catch { return ""; } };
@@ -385,8 +392,8 @@ function finish() {
 
   const added = newVocabRows();
   console.log("Regenerating the learner's surfaces (step 9):");
-  if (!HAS_TTS) {
-    console.log("  audio is off in the profile — no TTS cache to warm.");
+  if (!CACHE.on) {
+    console.log(`  ${CACHE.why}`);
   } else if (added > 0) {
     console.log(`  ${added} line(s) added to ${CONTRACT.vocabLedger} — warming the TTS cache first,`);
     console.log("  or the new rows ship mute.");

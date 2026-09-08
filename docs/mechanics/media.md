@@ -49,8 +49,8 @@ the registry are the fallback for everything.
 ```
 scripts/speak.sh "<text>"          # speak the target language — the pack's neural voice (manifest tts_edge; MOVA_VOICE=<voice> to switch)
 scripts/speak.sh "<text>" --slow   # ~25% slower for new sounds
-node scripts/tts-embed.mjs <f.html># fill a visual's audio placeholders with playable neural audio
-node scripts/tts-warm.mjs          # voice every drillable ledger row into the cache, for the deck (--dry lists)
+node scripts/tts-embed.mjs <f.html># fill a visual's audio placeholders with playable neural audio (`tts: edge` only)
+node scripts/tts-warm.mjs          # voice every drillable ledger row into the cache, for the deck (`tts: edge` only; --dry lists)
 afplay materials/<file>.mp3        # play downloaded goal-source audio (Ctrl-C to stop)
 open work/visuals/<file>.html      # open a generated visual in the browser
 scripts/pronounce.sh "<text>" [s]  # pronunciation round-trip (mic → whisper.cpp → diff)

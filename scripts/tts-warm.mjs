@@ -21,6 +21,12 @@
  *
  * Tier 0 rows are seeded-not-taught and never drilled, so they are not spoken either.
  * Read-only except for the cache. Zero dependencies.
+ *
+ * On a profile with no cache to warm (`tts: say`, `tts: none`, `audio: false`) this prints
+ * one line saying so and exits 0. Nothing to warm is a state, not a failure: closeout.mjs
+ * treats this script as a required step, and a `say` instance's close-out once stopped here
+ * on an exit 1 (Turkish, 2026-08-24). The verdict comes from tts-cache.mjs, shared with
+ * closeout.mjs, deck.mjs and tts-embed.mjs, so the four cannot disagree about it again.
  */
 import { readFileSync, existsSync, mkdirSync, statSync, rmSync } from "node:fs";
 import { execFile } from "node:child_process";
@@ -29,6 +35,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
+import { ttsCache } from "./tts-cache.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CACHE = join(root, ".tts-cache");
@@ -41,12 +48,10 @@ if (!profile) {
   console.error("tts-warm: no docs/reference/profile.md — this is template mode. Run setup first.");
   process.exit(1);
 }
-if (profile.get("tts", "none") !== "edge") {
-  console.error(
-    `tts-warm: profile says tts: ${profile.get("tts", "none")} — the cache holds edge-voice ` +
-      `clips only, so there is nothing to warm. Set tts: edge in the profile to enable deck audio.`,
-  );
-  process.exit(1);
+const cache = ttsCache(profile);
+if (!cache.on) {
+  console.log(`tts-warm: ${cache.why}`);
+  process.exit(0);
 }
 const pack = await loadPack();
 const { createClassifier } = await import("./pos.mjs");

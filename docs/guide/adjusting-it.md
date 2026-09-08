@@ -78,7 +78,7 @@ zero-dependency Node or shell, and read-only apart from its single output.
 | `node scripts/leakcheck.mjs <set.json>` | Refuse to ship a scored set that contains its own answers |
 | `node scripts/factcheck.mjs` | Sweep the vocabulary ledger against the pack's dictionary |
 | `node scripts/dictionary.mjs <word>` | One live lookup through the pack's adapter |
-| `node scripts/tts-warm.mjs` · `tts-embed.mjs` | Voice new rows into the cache; embed audio into a study page |
+| `node scripts/tts-warm.mjs` · `tts-embed.mjs` | Voice new rows into the cache; embed audio into a study page (`tts: edge` only) |
 | `scripts/speak.sh "<text>"` | Say it aloud in a neural voice (`--slow` for new sounds) |
 | `scripts/pronounce.sh "<text>"` | Record you, transcribe locally, print target versus heard |
 | `node scripts/log-append.mjs` · `scripts/feedback.sh` | Locked, ID-deriving appends to the shared logs |

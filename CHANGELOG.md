@@ -4,6 +4,49 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.18.1 — 2026-09-08
+
+Your close-out finishes on every voice setting. A workspace whose profile says `tts: say` could
+not close a session that added a word: the close-out ran the audio warmer, the warmer refused, and
+the ritual stopped at a step it treats as required.
+
+instance-impact: **engine files auto-update.** Nothing to run and nothing to rewrite. If your
+profile says `tts: say` or `tts: none`, the close-out now prints one line saying why there is no
+audio cache to warm and carries on. Your deck never carried embedded sound on those settings, and
+that has not changed. One new engine test arrives with the update and runs inside your `npm test`:
+it fails if the profile's `tts:` value is not one setup writes (`edge`, `say`, `none`), with the
+fix in the message.
+
+- **Two scripts held two copies of one rule, and they disagreed.** The audio cache holds
+  edge-voice clips only, so `tts: say` has nothing to warm — `speak.sh` speaks the system voice
+  live, never through the cache. The close-out's gate said *any voice but `none`*; the warmer's
+  said *`edge` only*, with exit 1. `say` is a value setup writes, and the first real instance to
+  finish a session hit it (Turkish, ChatGPT Codex, 2026-08-24): the agent ran the regeneration
+  chain by hand and reported the script as tripping on `tts: say`.
+- **The verdict lives once now.** `scripts/tts-cache.mjs` answers *is the cache in play* from
+  the profile's `audio:` and `tts:` together, and the four scripts that read or fill the cache —
+  the deck, the warmer, the embedder, the close-out — take it from there. The deck's rule was
+  already the right one (`audio: true` and `tts: edge`); the other three now match it. One
+  consequence worth naming: the warmer and the embedder no longer run on `audio: false`, because
+  the deck would not have embedded what they produced.
+- **"Nothing to warm" is a state, not a failure.** The warmer exits 0 with one line on a profile
+  with no cache, so a close-out that follows step 9 literally on a `say` profile is not stopped
+  by it. The embedder keeps its exit 1: a page authored with audio placeholders that ships mute
+  is the failure it exists to catch (limba, 2026-08-12), and a `say` profile authors that page
+  mute instead.
+- **A test holds the four to one gate, across every value setup writes.** The list of values is
+  read off the profile template, so a value added there without a verdict fails; every cache
+  script must import the verdict and keep no `"edge"` comparison of its own — source-level and
+  crude, the way the narration gate is crude; and in an instance the profile's own value must be
+  documented, and on a profile with no cache the warmer must exit 0. Verified by hand against
+  `say`, `none`, `edge` and `audio: false` fixture profiles, including a full `--finish` on `say`.
+- **Not a port, and nothing owed back.** limba's close-out has no profile gate at all — one
+  learner, one voice — so the disagreement was born in the port. `docs/mechanics/media.md` marks
+  the two cache fillers as `tts: edge` only in its toolbox (3,095 of 3,100 words); the incident
+  went to `why/media.md`. Close-out step 9 in `session_format.md` keeps its wording — *run the
+  warmer first* is now true on every profile, because the warmer answers for itself — and the
+  file is 2 words under its budget.
+
 ## 0.18.0 — 2026-08-25
 
 Building a page and putting it on your board are now one job, not one job and a habit. If a page

@@ -28,8 +28,9 @@
  *   - notes are folded by default and open per row.
  *
  * Audio comes from the shared TTS cache (same sha1 key as speak.sh / tts-embed.mjs), and
- * only when the profile says `audio: true` and `tts: edge` — the cache is keyed by the
- * pack's edge voice, so any other tts setting would only produce a page of warnings.
+ * only when tts-cache.mjs says the cache is in play (`audio: true` and `tts: edge`) — the
+ * cache is keyed by the pack's edge voice, so any other tts setting would only produce a
+ * page of warnings. tts-warm.mjs and closeout.mjs act on the same verdict.
  * Cached headwords are embedded; uncached ones are skipped silently — this script NEVER
  * goes to the network, so it is safe mid-session and offline.
  *
@@ -54,6 +55,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
+import { ttsCache } from "./tts-cache.mjs";
 import { FAVICON_LINK } from "./favicon.mjs";
 import { NAV_CSS, nav } from "./page-shell.mjs";
 
@@ -71,7 +73,7 @@ const { parse, classify, speech, TYPES, TYPE_LABEL, ARTICLE } = createClassifier
 
 const T = profile.require("target_language"); // e.g. "Romanian"
 const M = profile.require("meta_language"); // e.g. "English"
-const audioOn = profile.get("audio", "false") === "true" && profile.get("tts", "none") === "edge";
+const audioOn = ttsCache(profile).on;
 const CACHE = join(root, ".tts-cache");
 const VOICE = process.env.MOVA_VOICE || pack.manifest.tts_edge || "";
 const OUT = join(root, "work", "visuals", "deck.html");

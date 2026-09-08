@@ -30,6 +30,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { loadProfile } from "./profile.mjs";
 import { loadPack } from "./pack.mjs";
+import { ttsCache } from "./tts-cache.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CACHE = join(ROOT, ".tts-cache");
@@ -40,10 +41,13 @@ if (!profile) {
   console.error("tts-embed: no docs/reference/profile.md — this is template mode. Run setup first.");
   process.exit(1);
 }
-if (profile.get("tts", "none") !== "edge") {
+// Same verdict as deck.mjs and tts-warm.mjs (tts-cache.mjs). Unlike the warmer this stays an
+// exit 1: a page authored with audio placeholders that ships mute is the failure named above.
+const cache = ttsCache(profile);
+if (!cache.on) {
   console.error(
-    `tts-embed: profile says tts: ${profile.get("tts", "none")} — embedding needs the edge ` +
-      `neural voice (the cache is keyed by it). Enable it in the profile or author the page mute.`,
+    `tts-embed: ${cache.why}\n` +
+      `           Embedding needs the cache. Set tts: edge in the profile, or author the page mute.`,
   );
   process.exit(1);
 }

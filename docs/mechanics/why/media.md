@@ -104,6 +104,21 @@ moment the conversation scrolls, and a visual that tells the learner to open Ter
 outsourced its own job. **Visuals carry their audio** (when the profile has TTS at all — a
 `tts: none` instance leans on the registry's native links instead, and its pages say so).
 
+## Why the TTS cache has one gate (2026-08-24)
+
+The cache holds edge-voice clips only, so `tts: say` has nothing to warm and nothing to embed —
+`speak.sh` speaks the system voice live. Four scripts each kept their own copy of that
+comparison, and two disagreed: the close-out ran the warmer for any voice but `none`, the warmer
+refused any voice but `edge` with exit 1, and the close-out treats the warmer as a required step.
+The first real instance to finish a session (Turkish, ChatGPT Codex, 2026-08-24) hit it on a
+`say` profile the moment a session added a word, and the agent ran the regeneration chain by hand.
+The verdict now lives once, in `scripts/tts-cache.mjs`; the deck, the warmer, the embedder and
+the close-out take it from there; `scripts/tts-cache.test.ts` holds them to it across every value
+setup writes; and the warmer answers "nothing to warm" with exit 0. A profile with no cache is a
+state, not a failure. The embedder keeps its exit 1: a page authored with audio placeholders that
+ships mute is the failure it exists to catch (limba, 2026-08-12), and a `say` profile authors
+that page mute instead.
+
 ## Why a view of moving state must be regenerated
 
 limba's first-unit deck hardcoded its tier and miss tags into the HTML. It began lying about
