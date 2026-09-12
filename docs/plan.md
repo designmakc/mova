@@ -47,12 +47,10 @@ Goal: the workspace exists and is trusted; the first placement snapshot replaces
 interview's guesses with data.
 
 - [x] Workspace generated and smoke-tested — 2026-09-12.
-- [ ] **Placement calibration session.** The first `lesson` probes instead of teaching; writes a `docs/snapshots/` placement with Method + "Not exercised:" — 🟢 Med · 🧠
-  <!-- This box stays OPEN when the learner declines the probe. A decline is legitimate and
-       the session records the level as GUESSED in the placement snapshot's Method
-       (docs/mechanics/session_format.md § The placement calibration) — but a guessed level
-       is a debt, not a measurement, and the first real measurement is what closes this box.
-       Do not tick it because a session happened. -->
+- [x] **Placement calibration session.** Probed 2026-09-12 across U01-U03 —
+  `docs/snapshots/2026-09-12_placement.md`. Confirms true-beginner production (article
+  omission, missing 3sg -s, unknown irregular plurals) with stronger-than-expected reading
+  comprehension; U01 confirmed as the right starting unit.
 - [ ] First scenario baseline — run all 5 goal scenarios once, unrehearsed, to see where each one actually starts — 🟢 Med · ⚙️
 - [ ] Acquire first reading materials into untracked `materials/` (one design-system doc page, one UX article) — 🟡 Low · 🔧
 
