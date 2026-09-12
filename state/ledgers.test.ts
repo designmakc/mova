@@ -235,9 +235,18 @@ for (const ledger of CONTRACT.ledgers) {
     });
 
     it.skipIf(!pack)("no look-alike characters the pack's normalize() would fold", () => {
+      // Scoped to the TARGET cell only (index 1). The pack's normalize() folds a stray
+      // keystroke from the learner's OTHER keyboard layout landing inside a TARGET-language
+      // word (packs/en/normalize.mjs's own docstring: "a stray Cyrillic keystroke landing
+      // inside an English word"). Running it over every cell false-positives on any ledger
+      // whose translation/notes columns are legitimately written in the meta-language itself
+      // (Russian glosses, Russian notes) — found first taught session, 2026-09-12, an
+      // English/Russian-meta pack's first-ever ledger content. Reported upstream via
+      // playbooks/feedback.md; this scoping is the local workaround pending that fix.
       const offences: string[] = [];
       for (const row of data) {
-        for (const cell of row.cells) {
+        const cell = row.cells[1];
+        {
           const folded = pack!.normalize(cell);
           if (folded !== cell) {
             offences.push(

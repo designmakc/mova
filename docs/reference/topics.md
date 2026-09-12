@@ -47,7 +47,7 @@ early error traffic here.
 
 | ID | Aspect | Unit | Exam | Status |
 | --- | --- | --- | --- | --- |
-| T-0004 | Articles: a/an vs the (definiteness) | U01 | R W | pending |
+| T-0004 | Articles: a/an vs the (definiteness) | U01 | R W | covered 2026-09-12 |
 | T-0005 | Zero article with plurals and uncountables | U03 | R | pending |
 | T-0006 | Article use in technical documentation (generic reference) | U08 | R | pending |
 
@@ -98,7 +98,7 @@ pure pattern-drilling from nothing, not correcting an existing instinct.
 
 | ID | Aspect | Unit | Exam | Status |
 | --- | --- | --- | --- | --- |
-| T-0022 | Basic SVO sentence structure | U01 | R W | pending |
+| T-0022 | Basic SVO sentence structure | U01 | R W | covered 2026-09-12 |
 | T-0023 | Adverb placement | U07 | W | pending |
 
 ## Register
