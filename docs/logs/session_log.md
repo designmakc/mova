@@ -6,6 +6,19 @@
 > Append via `node scripts/log-append.mjs session --file <body>` — the script assigns
 > the ID under a lock.
 
+## 2026-09-13 — SES-002
+
+- **Type.** lesson — continuing U01, no new material (SRS + targeted repair + applied practice only).
+- **Covered.** SRS reinforcement of G-0001, G-0002 (both `covered` since SES-001). Two repair sub-points folded under existing topics, no new T-numbers (topics.md's unit-level granularity): "X of Y" possession under T-0004; silent-h a/an exception under T-0001's named scope. T-0004 confirmed `covered 2026-09-12`, unchanged. **T-0001 stays `pending`** — today's silent-h bit was a reactive patch, not T-0001's structured overview run through teaching.md's eight beats; flipping it now would overclaim, against the closing prompt's lean.
+- **SRS.** 15/15 vocab (recognition, clean) · 2/2 grammar rows, production mode, held at tier 1 — see state/grammar.md for the promotion-gate ambiguity (srs.md's "two clean passes" gate is written for vocab's recognition mode; grammar's production mode has no defined analogue, so neither row was promoted, including G-0002's clean word-order run).
+- **Score.** grammar — no graded check today. <!-- no-graded-check: SRS/repair/practice-only session, no part 2/3 --> vocabulary none.
+- **Errors.** ERR-004 (ART-MISS), ERR-005 (VRB-AUX, new code added to error_taxonomy.md), ERR-006 (PREP, omission case flagged as a taxonomy gap), ERR-007 (SPELL-MEM, observed only, not taught-material — same convention as ERR-003).
+- **Applied practice.** 4 free-production sentences, escalating: last one clean, combining silent-h + continuous aux + "of" pattern first-try.
+- **Duration.** not recorded — reported-after-the-fact close-out, no live wall-clock capture.
+- **Curriculum.** U01 → `covered 2026-09-13`. Across SES-001/002 the learner repeats correct articles once corrected, has internalized "of", and produced one clean sentence combining articles + "of" + silent-h. Meets U01's can-do, scored on T-0004/T-0022 (both `covered`) — not on T-0001, which stays pending as a carried-forward gap, not swept under the close.
+- **Next.** Open U02 (present tense, 3sg -s — ERR-003's predicted risk is now live). Give T-0001 a real structured lesson rather than counting today's patch. Watch ERR-007 (future/feature) recurring at U11.
+- **Open questions.** none.
+
 ## 2026-09-12 — SES-001
 
 <!-- long-entry: first taught session — the 40% vs 80% split and the U01 close/no-close call both need the full reasoning on the record. -->

@@ -27,6 +27,7 @@ for this specific learner, not ported wholesale.
 | VRB-3SG | third-person -s dropped | ✗ *she design the layout* → she designs the layout (assumed) |
 | VRB-TENSE | tense/aspect substitution | ✗ *I work on this project since March* → I have been working on this project since March (assumed) |
 | VRB-PRINPART | irregular verb principal parts wrong | ✗ *I writed the spec* → I wrote the spec (assumed) |
+| VRB-AUX | dropped copula/auxiliary in a continuous (or other periphrastic) construction | ✗ *The team testing a new feature* → The team is testing a new feature (added SES-002, 2026-09-13) |
 | PREP | preposition selection | ✗ *depends of the design* → depends on the design (assumed) |
 | WO-ADV | adverb placement | ✗ *I read always the documentation* → I always read the documentation (assumed) |
 | WO-QINV | missing question inversion/do-support | ✗ *You have read this article?* → Have you read this article? (assumed) |
@@ -80,6 +81,18 @@ meaning together on the ✗ side, and `→ current` is the target-language repai
   English preposition choice is idiomatic collocation rather than rule-governed, and a
   finer split should wait for real session data on which specific pairs this learner
   actually confuses, rather than guessing a taxonomy ahead of evidence. (assumed)
+- **PREP currently covers both omission and misselection, unlike ART-MISS/ART-CHOICE's
+  split.** SES-002 (2026-09-13) hit an omission case — "a component system" for "a
+  component *of* the system", the linking preposition dropped entirely rather than a
+  wrong one substituted — and no PREP-MISS code exists to hold it separately. Coded PREP
+  for now rather than forcing ART-MISS's omission logic onto a different word class; flagged
+  here as a real gap, not a considered ruling — a PREP-MISS/PREP-CHOICE split should be
+  made if omission cases keep recurring.
+- **VRB-AUX added SES-002 (2026-09-13)** for a dropped copula/auxiliary in a continuous
+  construction ("The team testing" for "The team is testing") — distinct from VRB-3SG
+  (a wrong verb form once one is produced) and from VRB-TENSE (a wrong tense/aspect
+  choice): here no auxiliary was attempted at all, an omission rather than a substitution,
+  same shape as the ART-MISS/ART-CHOICE split but for the auxiliary slot.
 
 **Sibling zones are not a hierarchy.** Where one production path can break in two ways —
 two letter classes, two morphological slots — the split is worth two codes, because a run

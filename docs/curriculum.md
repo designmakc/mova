@@ -20,7 +20,7 @@
 ## Phase 1 — Foundations: articles, sentence structure, core UX vocabulary
 
 ## U01 — Articles and basic sentence structure (A1)
-status: pending
+status: covered 2026-09-13
 - **Grammar:** a/an vs the (T-0004); basic SVO sentence structure (T-0022); overview of
   English's sound-to-spelling mismatch, framing why spelling will need deliberate practice
   (T-0001).

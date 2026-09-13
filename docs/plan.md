@@ -78,7 +78,7 @@ Goal: the learner can produce a grammatically complete sentence with a correctly
 article most of the time, and can skim a short technical passage for gist. Target: U03
 covered.
 
-- [ ] U01 — articles and basic sentence structure — 🟢 Med · 🧠
+- [x] U01 — articles and basic sentence structure
 - [ ] U02 — present tense and everyday verbs — 🟢 Med · 🧠
 - [ ] U03 — reading short technical text; adjectives — 🟢 Med · 🧠
 - [ ] Phase 1 gate: scenario 1 re-run, scored against its probe — 🟡 Low · ⚙️
