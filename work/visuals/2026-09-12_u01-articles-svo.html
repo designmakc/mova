@@ -1,0 +1,501 @@
+<!-- mova:instance -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23945a00'/%3E%3Ctext%20x='16'%20y='16.5'%20text-anchor='middle'%20dominant-baseline='central'%20font-family=%22Georgia,'Iowan%20Old%20Style',Palatino,serif%22%20font-size='22'%20font-weight='700'%20fill='%23f8f5ef'%3Em%3C/text%3E%3C/svg%3E">
+<title>Артикли и структура предложения — U01</title>
+<style>
+  /* ============ TOKEN BLOCK — keys are the contract, values are the pinned theme ==== */
+  :root{
+    /* CORE */
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    /* LANGUAGE */
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    /* MORPHEME — delete if the pack declares inflection: false */
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    /* GENDER — English (packs/en) declares no genders; no tokens needed */
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+      --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+      --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+      --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+      --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+      --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+      --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+      --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+      --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+    --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+    --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+    --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+    --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+    --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+    --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+    --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+    --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+  }
+  :root[data-theme="light"]{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+  }
+  :root{
+    --font-display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:24px; --space-6:40px; --space-7:64px;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.7,0,.84,0);
+    --ease-in-out:cubic-bezier(.65,0,.35,1); --dur-1:120ms; --dur-2:240ms;
+  }
+  /* ============ COMPONENTS — the functional layer (docs/visual/SPEC.md) ============ */
+  *{box-sizing:border-box}
+  body{margin:0;padding:2.2rem 1.2rem 4rem;background:var(--bg);color:var(--fg);
+    font:16px/1.6 var(--font-body)}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font:700 1.7rem/1.25 var(--font-display);margin:0 0 .2rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 2rem;font-size:.95rem}
+  h2{font-size:1.05rem;margin:2.8rem 0 .9rem;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);font-weight:600}
+  h2 .n{color:var(--hi);margin-right:.35rem}
+  h3{font-size:.95rem;margin:1.6rem 0 .6rem;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:1.1rem 1.2rem;margin-bottom:.7rem}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .l2{font-weight:600;color:var(--l2)}
+  .l1{color:var(--l1)}
+  .ok{color:var(--ok);font-weight:600}
+  .bad{color:var(--bad);font-weight:600}
+  .muted{color:var(--muted)}
+  code{font:.88em var(--font-mono);background:var(--hiBg);color:var(--hi);
+    padding:.1rem .35rem;border-radius:4px}
+  b.mk{color:var(--mk);background:var(--mkBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  b.st{color:var(--st);background:var(--stBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  .key{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.84rem;color:var(--muted);
+    margin:.2rem 0 1.4rem;align-items:center;border:1px solid var(--line);
+    border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+  .lede{border-left:3px solid var(--hi);background:var(--hiBg);padding:.8rem 1rem;
+    border-radius:0 8px 8px 0;margin:.9rem 0}
+  .rule{border-left:3px solid var(--ok);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0;font-weight:600}
+  .warn{border-left:3px solid var(--bad);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .anchor{border-left:3px solid var(--l1);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .rev{margin-top:.5rem;padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--fg);cursor:pointer;font-size:.85rem;
+    transition:background var(--dur-1) var(--ease-out),border-color var(--dur-1) var(--ease-out)}
+  .rev:hover{background:var(--hiBg);border-color:var(--hi)}
+  .rev:focus-visible,.tts-play:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+  .ans{display:none;margin-top:.5rem;padding:.6rem .8rem;border-left:3px solid var(--ok);
+    background:var(--card);border-radius:0 8px 8px 0}
+  .ans.show{display:block}
+  .q{font-weight:600;margin-bottom:.1rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:.1rem .45rem;border-radius:5px;text-transform:uppercase;white-space:nowrap}
+  .big{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin:.4rem 0}
+  .stripe{border-top:2px dashed var(--line);margin:1.6rem 0 1.2rem}
+  .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
+    color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
+    border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  /* Verification (docs/mechanics/verification.md). .unv is the "?" marker sitting on the
+     form it doubts; .src is the page's source note. A page that asserts language facts
+     carries one or both — visualcheck fails it otherwise. */
+  .unv{color:var(--bad);font-weight:800;font-size:.9em;vertical-align:super;
+    line-height:1;cursor:help}
+  .src{font-size:.84rem;color:var(--muted);background:var(--card);
+    border-left:3px solid var(--muted);border-radius:0 8px 8px 0;
+    padding:.55rem .85rem;margin:1.6rem 0 .4rem}
+  .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
+    border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
+  .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--muted);font-size:.78rem;cursor:pointer}
+</style>
+<style>
+  /* Two-layer drill surface (SPEC.md → "Two-layer reveal"). Scoped to .vocab so the rest
+     of the page is untouched. A test mode hides the answer side and EVERYTHING that names
+     it — translation, gender, plural, the note — a mode that hides only one row type
+     leaks the rest (limba u01-deck defect, 2026-08-10). */
+  .vocab .modes{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+  .vocab .modes button{padding:.35rem .8rem;border:1px solid var(--line);border-radius:999px;
+    background:var(--bg);color:var(--muted);cursor:pointer;font-size:.82rem}
+  .vocab .modes button.on{background:var(--hi);border-color:var(--hi);color:var(--bg)}
+  .vocab th.au,.vocab td.au{width:2.9rem;padding-right:0}
+  .vocab td.au .tts-row{display:block;padding:0;border-bottom:0}
+  .vocab td.au .tts-label{display:none}
+  .vocab .cover{display:none;color:var(--muted);letter-spacing:.2em}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .val,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .val{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .cover,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .cover{display:inline}
+  /* The audio must not out-speak the concealment: L2→L1 plays the prompt clip alone until
+     the row is revealed, and the paired clip after; L1→L2 has no prompt to offer, so its
+     button stays hidden until reveal. The fix is a second clip, not a hidden button
+     (limba learner, 2026-08-10). */
+  .vocab .au-sg{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .au-sg{display:block}
+  .vocab.m-l2l1 tr.row:not(.open) .au-pair{display:none}
+  .vocab.m-l1l2 tr.row:not(.open) td.au .tts-row{visibility:hidden}
+  .vocab.m-l2l1 tr.row,.vocab.m-l1l2 tr.row{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="tohub" href="index.html">← hub</a>
+<button class="themebtn" id="themeBtn" aria-label="Switch theme">theme: auto</button>
+<h1>Артикли и структура предложения</h1>
+<p class="sub">Юнит 1 — a / an / the, и порядок слов в предложении (SVO). Материал готов, ещё не пройден.</p>
+<div class="key">
+  <span><span class="unv">?</span> непроверено — для этого пакета не настроен словарный адаптер (null adapter); каждый факт ниже — слово агента, пока не подтвердит репетитор</span>
+</div>
+<div class="lede">
+  <div class="scroll">
+    <table>
+      <tr><th>Тема</th><th>Этот раздел</th><th>Охват</th><th>Отложено</th><th>Раздел цели</th></tr>
+      <tr>
+        <td>Система артиклей</td>
+        <td>a / an / the для исчисляемых существительных в единственном числе</td>
+        <td>частично (3 из 4 форм)</td>
+        <td>нулевой артикль для множественного числа и неисчисляемых → U03</td>
+        <td>R W</td>
+      </tr>
+      <tr>
+        <td>Порядок слов и структура предложения</td>
+        <td>Базовые утвердительные предложения (подлежащее-сказуемое-дополнение)</td>
+        <td>частично</td>
+        <td>вопросы (инверсия), отрицание (do-support) → U07</td>
+        <td>R W</td>
+      </tr>
+    </table>
+  </div>
+  <p style="margin:.8rem 0 0">Это первый юнит — до него ничего не проходили, поэтому здесь нет повторения. После
+  этой страницы вы сможете написать простое законченное предложение об элементе интерфейса, чаще всего с
+  правильным артиклем. Пока вы не сможете: говорить о множественном числе или общих категориях без артикля
+  (U03), правильно задавать вопросы или говорить "не" (U07), использовать техническое/обобщающее "the" из
+  документации (U08).</p>
+</div>
+
+<h2><span class="n">1</span> Вся система</h2>
+<div class="card">
+  <p>В английском ровно четыре артикля. В этом юните — три из них; четвёртый (нулевой артикль) только
+  упоминается в разделе 6 и разбирается в U03. Для <strong>исчисляемого существительного в единственном
+  числе</strong> выбор — это решение в два шага:</p>
+  <div class="scroll">
+    <table>
+      <tr><th>Шаг</th><th>Вопрос</th><th>Ответ</th><th>Форма</th><th>Пример</th></tr>
+      <tr>
+        <td>1</td>
+        <td>Это конкретная вещь, которую слушатель/читатель уже может определить — упоминалась раньше,
+        единственная в своём роде, или понятна из контекста?</td>
+        <td>Да</td>
+        <td class="l2">the</td>
+        <td><span class="l2">The button</span> you clicked <span class="l1">(та самая кнопка, которую мы оба
+        имеем в виду)</span></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>(тот же вопрос)</td>
+        <td>Нет — новое, одно из многих, первое упоминание</td>
+        <td>переходим к шагу 2</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Какой первый <em>звук</em> у слова сразу после артикля?</td>
+        <td>Согласный звук</td>
+        <td class="l2">a</td>
+        <td><span class="l2">a <b class="mk">t</b>eam</span>, <span class="l2">a <b class="mk">u</b>ser</span>
+        <span class="l1">(u звучит как «ю» — согласный звук)</span></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>(тот же вопрос)</td>
+        <td>Гласный звук</td>
+        <td class="l2">an</td>
+        <td><span class="l2">an <b class="mk">i</b>nterface</span>, <span class="l2">an <b class="mk">e</b>lement</span></td>
+      </tr>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:.6rem">Шаг 2 идёт по <strong>звуку, а не по букве</strong> — именно
+  поэтому «a user» и «an hour» оба правильны одновременно.</p>
+</div>
+
+<h2><span class="n">2</span> Что нужно запомнить</h2>
+<div class="rule">
+  <span class="cnt">2</span> факта для запоминания, а не 15 — это совсем не похоже на список родов.
+  <ol style="margin:.5rem 0 0;padding-left:1.2rem;font-weight:400">
+    <li>Новое / одно из многих → <code>a</code> или <code>an</code>, по звуку сразу после артикля.</li>
+    <li>Уже известное / конкретное / единственное в своём роде → <code>the</code>.</li>
+  </ol>
+  Ни одному из сегодняшних 15 существительных не нужен свой отдельный запомненный факт — ни у одного
+  английского слова нет «своего» артикля так, как у румынского существительного есть род. Артикль каждый раз
+  выбирается заново из контекста, а не хранится вместе со словом.
+</div>
+
+<h2><span class="n">3</span> Разница с русским/украинским</h2>
+<div class="anchor">
+  В русском и украинском <strong>артиклей нет вообще</strong> — не «другие», а полное отсутствие
+  (<code>docs/reference/transfer.md</code> § Morphology traps). <span class="l1">«Я открыл дизайн файл»</span>
+  — полное, правильное русское предложение, и в нём нигде нет «дырки» на месте артикля — переводить артикль
+  попросту не из чего. Для вашей связки языков (русский первым, украинский даёт тот же пробел здесь, так что
+  одной опоры достаточно — не наслаиваем).
+</div>
+<div class="warn">
+  <strong>Ловушка: пропуск, а не неправильный выбор.</strong> Поскольку такой категории нет ни в одном из
+  ваших языков, куда вероятнее ошибка — вообще не поставить артикль
+  (<code>ART-MISS</code>: ✗ "I opened design file"), а не поставить не тот
+  (<code>ART-CHOICE</code>: ✗ "I sent a feedback"). Ожидайте, что в проверочном задании будет преобладать
+  именно ART-MISS.</div>
+
+<h2><span class="n">4</span> Примеры с разбором</h2>
+<div class="card">
+  <p class="big">A designer opens <span class="l2">a</span> new project.</p>
+  <p class="l1">Дизайнер открывает новый проект.</p>
+  <p class="muted">«Project» здесь новое, один из множества возможных проектов, и начинается с согласного
+  звука → <code>a</code>. Обратите внимание — в русском на этом месте вообще ничего нет.</p>
+
+  <p class="big" style="margin-top:1.3rem">The designer is testing <span class="l2">the</span> layout now.</p>
+  <p class="l1">Дизайнер сейчас тестирует этот макет.</p>
+  <p class="muted">«The layout» — один конкретный макет, который оба собеседника уже держат в уме (шаг 1 = да)
+  → <code>the</code>, независимо от того, с какого звука начинается слово.</p>
+
+  <p class="big" style="margin-top:1.3rem">This is <span class="l2">an</span> interface, and <span class="l2">a</span> user is testing it.</p>
+  <p class="l1">Это интерфейс, и пользователь его тестирует.</p>
+  <p class="muted">«Interface» начинается с гласного звука /ɪ/ → <code>an</code>. «User» начинается с буквы u,
+  но <em>звучит</em> как «ю» (согласный звук) → <code>a</code>, а не «an» — правило шага 2 работает по звуку,
+  и это как раз та строка, ради которой оно и существует.</p>
+</div>
+
+<h2><span class="n">5</span> Упомянуто, но не пройдено</h2>
+<div class="card">
+  <ul style="margin:.3rem 0 0;padding-left:1.2rem">
+    <li><strong>Нулевой артикль</strong> (∅) — множественное число и неисчисляемые существительные в общем
+    смысле ("<span class="l2">∅ Buttons</span> should be consistent", "<span class="l2">∅ Feedback</span>
+    matters") — четвёртая форма системы выше. → <strong>U03</strong> (T-0005).</li>
+    <li><strong>Неправильное множественное число</strong> (mouse/mice) — пока не нужно, все сегодняшние
+    существительные остаются в единственном числе. → <strong>U03</strong> (T-0008).</li>
+    <li><strong>Обобщающее/техническое "the"</strong> в языке документации ("the user clicks the button" как
+    общая инструкция, а не про конкретного пользователя) — более тонкое использование того же слова. →
+    <strong>U08</strong> (T-0006).</li>
+  </ul>
+  <p class="muted" style="margin-top:.6rem">Процедура шаг-1/шаг-2 выше полная для исчисляемых существительных
+  в единственном числе — эти три пункта — отдельные ветки системы артиклей, а не дыры в том, что уже прошли.</p>
+</div>
+
+<h2><span class="n">6</span> Ваша очередь</h2>
+<div class="card">
+  <div class="q">1. I opened ___ project yesterday, and now ___ project is almost finished.</div>
+  <button class="rev">Показать</button>
+  <div class="ans"><span class="l2">a</span> project … <span class="l2">the</span> project — первое упоминание
+  (новое, одно из многих) → <code>a</code>; второе упоминание (теперь уже конкретный, о котором оба знаете) →
+  <code>the</code>.</div>
+</div>
+<div class="card">
+  <div class="q">2. She is building ___ prototype for ___ new feature. (<em>prototype</em> — новое слово,
+  начинается с согласного звука "pr")</div>
+  <button class="rev">Показать</button>
+  <div class="ans"><span class="l2">a</span> prototype … <span class="l2">a</span> new feature — оба слова
+  новые, оба «одно из многих», оба начинаются с согласного звука → дважды <code>a</code>.</div>
+</div>
+<div class="card">
+  <div class="q">3. Незнакомое слово — вы видите его впервые: <strong>wireframe</strong>. "___ wireframe is
+  a common tool in this project."</div>
+  <button class="rev">Показать</button>
+  <div class="ans"><span class="l2">A</span> wireframe — новое/первое упоминание, и «wireframe» начинается с
+  согласного звука /w/ → <code>a</code>. Та же самая процедура из двух шагов работает и на слове, которого вы
+  раньше вообще не видели, даже на этой странице оно нигде не объяснялось.</div>
+</div>
+
+<h2><span class="n">7</span> Правило на запоминание</h2>
+<div class="rule">
+  Уже известное → <code>the</code>. Новое/одно из многих → <code>a</code>/<code>an</code>, по
+  <strong>звуку</strong>, который вы произносите, а не по букве, которую видите.
+  <p class="muted" style="font-weight:400;margin:.5rem 0 0">Проверено на самой сложной строке таблицы выше:
+  «user» начинается с буквы u, но звучит как «ю» — это правило всё равно даёт <code>a user</code>, правильно,
+  потому что называет звук, а не букву. Правило вида «гласная буква → an» на этом самом слове бы не сработало.</p>
+</div>
+
+<div class="src">
+  У этого пакета нет словарного адаптера (<code>packs/en/pack.md</code> § Dictionary reachability — null
+  adapter). Поэтому каждый английский факт на этой странице — процедура выбора артикля, значения слов,
+  примеры предложений — <strong>непроверен (unverified)</strong>: это слово агента, не подтверждённое словарём или
+  репетитором (<code>docs/mechanics/verification.md</code>). Сами правила артиклей — это стандартная,
+  хорошо задокументированная грамматика EFL (a/an по звуку; определённость через "the"), а не спорный
+  частный случай, так что практический риск невелик — но пометка всё равно стоит на каждой строке словаря
+  ниже, по общему правилу разметки. Если сомневаетесь в любой пометке <span class="unv">?</span> — скажите,
+  я проверю прежде, чем менять оценку.
+</div>
+
+<h2><span class="n">8</span> Слова</h2>
+<p class="muted">На этой странице нет звука — у этого пространства нет возможности аудио/синтеза речи
+(<code>audio: false</code>, <code>tts: none</code>, <code>docs/reference/profile.md</code>), так что это
+не пропущенный шаг, а честное ограничение окружения.</p>
+<div class="vocab m-browse" id="vocab">
+  <div class="modes">
+    <button class="on" data-m="m-browse">все сразу</button>
+    <button data-m="m-l2l1">английский → русский</button>
+    <button data-m="m-l1l2">русский → английский</button>
+  </div>
+  <div class="scroll">
+    <table>
+      <tr><th>английский</th><th>русский</th><th>пример / заметка</th></tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">design<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">дизайн</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"This <b>design</b> uses a lot of white space." — знакомое заимствование в русском IT-жаргоне; риск ART-MISS всё равно есть (в русском на месте артикля вообще ничего нет).</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">interface<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">интерфейс</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"The <b>interface</b> is simple and clean." — родственное слово; начинается с гласного звука → "an interface".</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">layout<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">макет</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"The <b>layout</b> has three columns." — созвучия с русским нет; здесь стоит ожидать именно ART-MISS, а не неправильный выбор слова.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">component<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">компонент</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"This button is a <b>component</b> of the design system." — родственное слово; значение переносится без искажений.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">feature<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">функция / фича</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"This <b>feature</b> helps users save time." — на заметку: разговорное русское «фича» уже разошлось по смыслу с формальным «функция»; здесь ближе именно к «фиче».</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">project<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">проект</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"Our <b>project</b> has a tight deadline." — родственное слово; согласный звук → "a project".</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">team<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">команда</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"The <b>team</b> is testing a new prototype." — созвучия нет; ожидаемая ловушка — ART-MISS.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">button<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">кнопка</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"Click the <b>button</b> to submit the form." — на экране читателя она ровно одна, поэтому здесь "the" уже при первом упоминании — так пишут в реальных интерфейсах.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">screen<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">экран</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"The <b>screen</b> shows an error message." — созвучия нет; согласный звук → "a screen" при первом упоминании.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">user<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">пользователь</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"A <b>user</b> opened the app for the first time." — самая сложная строка: начинается с буквы u, но звучит «ю» → "a user", никогда не "an user".</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">product<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">продукт</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"The <b>product</b> needs a new onboarding flow." — родственное слово; согласный звук.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">tool<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">инструмент</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"Figma is a useful <b>tool</b> for designers." — созвучия нет; территория ART-MISS.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">system<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">система</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"The design <b>system</b> has many components." — родственное слово; согласный звук.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">page<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">страница</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"This <b>page</b> has too much text." — созвучия нет; слово "this" уже делает предмет конкретным, отдельный артикль не нужен.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">element<span class="unv">?</span> <em>(n)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">элемент</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">"Every <b>element</b> on the page needs a clear purpose." — родственное слово; гласный звук → "an element" при первом упоминании.</span><span class="cover">•••</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+<script>
+  /* Theme switcher: auto (system) → light → dark. */
+  (function(){
+    var b=document.getElementById("themeBtn"),order=["","light","dark"],i=0;
+    b.addEventListener("click",function(){
+      i=(i+1)%order.length;
+      if(order[i]) document.documentElement.setAttribute("data-theme",order[i]);
+      else document.documentElement.removeAttribute("data-theme");
+      b.textContent="theme: "+(order[i]||"auto");
+    });
+  })();
+</script>
+<script>
+  /* Two-layer drill surface: mode filter + per-row reveal. Playback stops on every state
+     change — a clip started before a reveal toggles keeps speaking the answer after the
+     text is gone (limba, 2026-08-10). */
+  (function(){
+    var box=document.getElementById("vocab");
+    if(!box) return;
+    function hush(scope){
+      scope.querySelectorAll("audio").forEach(function(a){a.pause();a.currentTime=0;});
+      scope.querySelectorAll(".tts-play").forEach(function(b){b.classList.remove("on");b.textContent="▶";});
+    }
+    box.querySelectorAll(".modes button").forEach(function(b){
+      b.addEventListener("click",function(){
+        box.className="vocab "+b.dataset.m;
+        box.querySelectorAll(".modes button").forEach(function(o){o.classList.toggle("on",o===b);});
+        box.querySelectorAll("tr.row").forEach(function(r){r.classList.remove("open");});
+        hush(box);
+      });
+    });
+    box.querySelectorAll("tr.row").forEach(function(r){
+      r.addEventListener("click",function(ev){
+        if(box.classList.contains("m-browse"))return;
+        if(ev.target.closest(".tts-play"))return;
+        r.classList.toggle("open");
+        hush(r);
+      });
+    });
+  })();
+</script>
+<script>
+  /* Per-item reveal for guided attempts (.rev/.ans pairs). */
+  document.querySelectorAll('.rev').forEach(function(b){
+    b.addEventListener('click',function(){
+      var a=b.nextElementSibling;
+      a.classList.toggle('show');
+      b.textContent=a.classList.contains('show')?'Hide':'Show';
+    });
+  });
+</script>
+<!-- No player script here: tts-embed.mjs appends it once, behind its own marker. -->
+</body>
+</html>

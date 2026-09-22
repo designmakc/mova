@@ -1,0 +1,77 @@
+[
+  {
+    "input": "аrt",
+    "expected": "art",
+    "note": "a with Cyrillic а U+0430 → Latin a"
+  },
+  {
+    "input": "Аrt",
+    "expected": "Art",
+    "note": "Cyrillic А U+0410 → Latin A, uppercase"
+  },
+  {
+    "input": "tеst",
+    "expected": "test",
+    "note": "Cyrillic е U+0435 → Latin e"
+  },
+  {
+    "input": "Еagle",
+    "expected": "Eagle",
+    "note": "Cyrillic Е U+0415 → Latin E, uppercase, word-initial"
+  },
+  {
+    "input": "gоal",
+    "expected": "goal",
+    "note": "Cyrillic о U+043E → Latin o"
+  },
+  {
+    "input": "Оpen",
+    "expected": "Open",
+    "note": "Cyrillic О U+041E → Latin O, uppercase"
+  },
+  {
+    "input": "helр",
+    "expected": "help",
+    "note": "Cyrillic р U+0440 → Latin p"
+  },
+  {
+    "input": "Рlan",
+    "expected": "Plan",
+    "note": "Cyrillic Р U+0420 → Latin P, uppercase"
+  },
+  {
+    "input": "cliсk",
+    "expected": "click",
+    "note": "Cyrillic с U+0441 → Latin c"
+  },
+  {
+    "input": "Сlick",
+    "expected": "Click",
+    "note": "Cyrillic С U+0421 → Latin C, uppercase"
+  },
+  {
+    "input": "boх",
+    "expected": "box",
+    "note": "Cyrillic х U+0445 → Latin x"
+  },
+  {
+    "input": "Хray",
+    "expected": "Xray",
+    "note": "Cyrillic Х U+0425 → Latin X, uppercase, word-initial"
+  },
+  {
+    "input": "café",
+    "expected": "café",
+    "note": "NFD paste — e + combining acute U+0301; NFC composes it to café before any fold runs"
+  },
+  {
+    "input": "design",
+    "expected": "design",
+    "note": "already canonical — unchanged"
+  },
+  {
+    "input": "naive",
+    "expected": "naive",
+    "note": "missing OPTIONAL diacritic (naive for naïve) — never folded; both spellings are legitimate English, this is a spelling choice, not an input-method slip"
+  }
+]

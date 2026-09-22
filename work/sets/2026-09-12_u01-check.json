@@ -1,0 +1,15 @@
+{
+  "title": "U01 graded check — articles + SVO",
+  "items": [
+    { "id": "1", "ask": "Our team has one main quarterly target. ___ (fill the blank, noun included) is to improve onboarding.", "answer": "The target" },
+    { "id": "2", "ask": "She opened ___ (fill the blank, noun included) in Figma this morning, one of several she is running.", "answer": "a project" },
+    { "id": "3", "ask": "This screen needs ___ (fill the blank, noun included) that grabs attention.", "answer": "an element" },
+    { "id": "4", "ask": "___ (fill the blank, noun included) reported that the button is hard to find.", "answer": "A user" },
+    { "id": "5", "ask": "I already told you about ___ (fill the blank, noun included) we use for prototyping — open it now.", "answer": "the tool" },
+    { "id": "6", "ask": "Arrange into a correct sentence: interface / an / owns / the / product", "answer": "The product owns an interface." },
+    { "id": "7", "ask": "Arrange into a correct sentence: reviews / designer / the / layout / the", "answer": "The designer reviews the layout." },
+    { "id": "8", "ask": "In 'This button belongs to a component of the design system,' does 'component' count as known or unknown information to the reader, and why does it take 'a' rather than 'the'?", "answer": "unknown/new to the reader — first mention, so it takes 'a', not 'the'" },
+    { "id": "9", "ask": "Our workspace doesn't have ___ (fill the blank, noun included) yet for organizing components — we're building the first one now.", "answer": "a system" },
+    { "id": "10", "ask": "___ (fill the blank, noun included) you asked about yesterday is finally ready.", "answer": "The feature" }
+  ]
+}

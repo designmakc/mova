@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23945a00'/%3E%3Ctext%20x='16'%20y='16.5'%20text-anchor='middle'%20dominant-baseline='central'%20font-family=%22Georgia,'Iowan%20Old%20Style',Palatino,serif%22%20font-size='22'%20font-weight='700'%20fill='%23f8f5ef'%3Em%3C/text%3E%3C/svg%3E">
+<title>English — hub</title>
+<style>
+/* ============ TOKEN BLOCK — keys are the contract, values are the pinned theme ==== */
+  :root{
+    /* CORE */
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    /* LANGUAGE */
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    /* MORPHEME — delete if the pack declares inflection: false */
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    /* GENDER — one pair per pack gender label (ro reference: m f n) */
+    --g-m:oklch(47% 0.13 250); --g-mBg:oklch(94% 0.030 250);
+    --g-f:oklch(47% 0.15 350); --g-fBg:oklch(94% 0.035 350);
+    --g-n:oklch(47% 0.11 120); --g-nBg:oklch(94% 0.040 120);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+      --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+      --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+      --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+      --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+      --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+      --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+      --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+      --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+      --g-m:oklch(76% 0.10 250); --g-mBg:oklch(27% 0.050 250);
+      --g-f:oklch(78% 0.12 350); --g-fBg:oklch(27% 0.050 350);
+      --g-n:oklch(80% 0.10 120); --g-nBg:oklch(27% 0.050 120);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+    --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+    --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+    --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+    --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+    --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+    --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+    --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+    --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+    --g-m:oklch(76% 0.10 250); --g-mBg:oklch(27% 0.050 250);
+    --g-f:oklch(78% 0.12 350); --g-fBg:oklch(27% 0.050 350);
+    --g-n:oklch(80% 0.10 120); --g-nBg:oklch(27% 0.050 120);
+  }
+  :root[data-theme="light"]{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    --g-m:oklch(47% 0.13 250); --g-mBg:oklch(94% 0.030 250);
+    --g-f:oklch(47% 0.15 350); --g-fBg:oklch(94% 0.035 350);
+    --g-n:oklch(47% 0.11 120); --g-nBg:oklch(94% 0.040 120);
+  }
+  :root{
+    --font-display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:24px; --space-6:40px; --space-7:64px;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.7,0,.84,0);
+    --ease-in-out:cubic-bezier(.65,0,.35,1); --dur-1:120ms; --dur-2:240ms;
+  }
+  :root {
+    --solid:oklch(66% 0.10 130); --shaky:oklch(75% 0.13 75);
+    --t1:oklch(52% 0.17 27); --t2:oklch(58% 0.15 55); --t3:oklch(62% 0.12 90);
+    --t4:oklch(62% 0.12 135); --t5:oklch(52% 0.13 155);
+  }
+  @media (prefers-color-scheme:dark) {
+    :root {
+      --solid:oklch(70% 0.11 135); --shaky:oklch(76% 0.12 80);
+      --t1:oklch(74% 0.14 25); --t2:oklch(78% 0.12 55); --t3:oklch(80% 0.11 85);
+      --t4:oklch(80% 0.12 135); --t5:oklch(78% 0.13 155);
+    }
+  }
+  :root[data-theme="dark"] {
+    --solid:oklch(70% 0.11 135); --shaky:oklch(76% 0.12 80);
+    --t1:oklch(74% 0.14 25); --t2:oklch(78% 0.12 55); --t3:oklch(80% 0.11 85);
+    --t4:oklch(80% 0.12 135); --t5:oklch(78% 0.13 155);
+  }
+  :root[data-theme="light"] {
+    --solid:oklch(66% 0.10 130); --shaky:oklch(75% 0.13 75);
+    --t1:oklch(52% 0.17 27); --t2:oklch(58% 0.15 55); --t3:oklch(62% 0.12 90);
+    --t4:oklch(62% 0.12 135); --t5:oklch(52% 0.13 155);
+  }
+  /* ============ CHROME — the frame every generated dashboard shares =============== */
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 var(--font-body); -webkit-text-size-adjust:100%;
+  }
+  a:focus-visible, .lnk:focus-visible, button:focus-visible {
+    outline:2px solid var(--l2); outline-offset:3px; border-radius:3px; }
+  .wrap { max-width:1080px; margin:0 auto; padding:28px 20px 72px; }
+  header.top { display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; margin-bottom:6px; }
+  header.top h1 { font:700 26px/1.2 var(--font-display); margin:0; letter-spacing:-.01em; }
+  header.top .sub { color:var(--muted); font-size:14px; }
+  .stamp { color:var(--muted); font-size:13px; margin-bottom:26px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.09em; color:var(--muted);
+       margin:34px 0 12px; font-weight:600; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .tile { background:var(--card); border:1px solid var(--line); border-radius:12px;
+          padding:14px 16px; position:relative; }
+  .tile-v { font-size:26px; font-weight:650; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+  .tile-l { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-top:2px; }
+  .tile-s { font-size:13px; color:var(--muted); margin-top:6px; }
+  /* State reads before the number does. */
+  .tile.attention { border-color:var(--hi); background:var(--hiBg); }
+  .tile.attention .tile-v { color:var(--hi); }
+  .tile.clear .tile-v { color:var(--ok); }
+  /* ANYTHING CLICKABLE SAYS SO, and says it before the pointer arrives. The arrow is always
+     visible rather than shown on hover: a hover-only cue tells the reader nothing until they
+     are already on top of it, which is after the moment it was needed (limba PORT-027). */
+  a.tile { text-decoration:none; color:inherit; display:block; }
+  a.tile:hover { border-color:var(--l2); }
+  .go::after { content:"↗"; position:absolute; top:11px; right:12px; font-size:13px;
+               color:var(--muted); line-height:1; }
+  a.tile:hover .tile-l, a.tile:hover.go::after { color:var(--l2); }
+  .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:14px; }
+  .bar-row + .bar-row { margin-top:11px; }
+  .bar-head { display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px; gap:10px; }
+  .bar-head span:last-child { font-variant-numeric:tabular-nums; }
+  .bar { height:8px; background:var(--line); border-radius:99px; overflow:hidden; display:flex; gap:2px; }
+  .bar-fill { height:100%; background:var(--l2); border-radius:99px; }
+  /* Retained is one bar carrying two facts, so the halves separate at a glance. The 2px gap
+     is the seam; the colours are fills, never the text tokens (see DASH_EXTRA). */
+  .bar-fill.ok { background:var(--solid); border-radius:99px 0 0 99px; }
+  .bar-fill.no { background:var(--shaky); border-radius:0 99px 99px 0; }
+  /* Delivery is not a state to feel anything about, so the taught bar is deliberately
+     neutral. Left at --l2 it read as a full alarm bar beside the green of the retained one
+     — the opposite of what "15 of 15 taught" means. */
+  .bar-fill.tt { background:var(--muted); }
+  .bar.none { background:transparent; border:1px dashed var(--line); }
+  .lbl { font-size:11.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); }
+  .r-solid { color:var(--ok); } .r-shaky { color:var(--hi); }
+  /* Untouched is not "barely started". A dashed track says "not begun", not "0% done". */
+  .bar-row.untouched .bar { background:transparent; border:1px dashed var(--line); height:7px; }
+  .bar-row.untouched .bar-head { color:var(--muted); }
+  .muted { color:var(--muted); }
+  .tierbar { display:flex; height:26px; border-radius:8px; overflow:hidden; margin-top:4px; }
+  .seg { display:flex; align-items:center; justify-content:center; font-size:12px;
+         color:var(--bg); min-width:22px; }
+  .seg-1{background:var(--t1)} .seg-2{background:var(--t2)} .seg-3{background:var(--t3)}
+  .seg-4{background:var(--t4)} .seg-5{background:var(--t5)}
+  .legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:9px; font-size:12.5px; color:var(--muted); }
+  .legend i { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; }
+  /* The band is the calibration target from session_format.md — the bars are only readable
+     against it, so it is drawn rather than captioned. The fill sits behind the bars; the
+     ceiling line is drawn IN FRONT, or a bar that clears the target hides the very
+     reference it beat. */
+  .spark { display:flex; align-items:flex-end; gap:7px; height:86px; margin-top:22px; position:relative; }
+  .spark::before { content:""; position:absolute; left:0; right:0; bottom:60%; height:10%;
+                   background:var(--ok); opacity:.12; pointer-events:none; z-index:0; }
+  .spark::after { content:""; position:absolute; left:0; right:0; bottom:70%; height:0;
+                  border-top:1px dashed var(--ok); opacity:.55; pointer-events:none; z-index:3; }
+  .spark div { flex:1; background:var(--l2); border-radius:4px 4px 0 0; min-height:3px;
+               position:relative; opacity:.5; z-index:1; }
+  .spark div:last-child { opacity:1; }
+  .spark-cap { font-size:11.5px; color:var(--muted); margin-top:8px; }
+  .spark span { position:absolute; top:-17px; left:0; right:0; text-align:center;
+                font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .spark-x { display:flex; gap:7px; font-size:11px; color:var(--muted); margin-top:5px; }
+  .spark-x div { flex:1; text-align:center; }
+  table.k { width:100%; border-collapse:collapse; font-size:14px; }
+  table.k td { padding:5px 0; border-bottom:1px solid var(--line); }
+  table.k tr:last-child td { border-bottom:0; }
+  table.k td:last-child { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; }
+  table.k.wide td, table.k.wide th { padding:7px 14px 7px 0; vertical-align:top; }
+  table.k.wide th { font-size:11px; text-transform:uppercase; letter-spacing:.06em;
+                    color:var(--muted); font-weight:600; text-align:left;
+                    border-bottom:1px solid var(--line); }
+  table.k.wide td:last-child, table.k.wide th:last-child { text-align:left; color:inherit; }
+  table.k.wide td:first-child { white-space:nowrap; color:var(--muted); }
+  table.k.wide tr.now td { background:var(--hiBg); }
+  table.k.wide tr.now td:first-child { color:var(--hi); font-weight:650; }
+  code { background:var(--hiBg); color:var(--hi); padding:1px 5px; border-radius:4px;
+         font:13px/1.4 var(--font-mono); }
+  time { font-variant-numeric:tabular-nums; }
+  .cmd { display:grid; grid-template-columns:minmax(120px,auto) 1fr; gap:8px 16px; font-size:14px; }
+  .cmd dt code { white-space:nowrap; }
+  .cmd dd { margin:0; color:var(--muted); }
+  .ecode { display:block; font:12px/1.4 var(--font-mono); color:var(--muted); letter-spacing:.02em; }
+  .ezone { display:block; font-size:14px; color:var(--fg); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px;
+          padding:15px 16px; display:flex; flex-direction:column; position:relative; }
+  .card:hover { border-color:var(--l2); }
+  /* Superseded pages are dimmed AND labelled. Opacity alone is a signal nobody can read. */
+  .card.superseded { opacity:.62; }
+  .card.superseded:hover { opacity:1; }
+  /* Stretched link: the whole card is the target. */
+  .card-link { color:inherit; text-decoration:none; }
+  .card-link::after { content:""; position:absolute; inset:0; border-radius:12px; z-index:1; }
+  .card-link:focus-visible::after { outline:2px solid var(--l2); outline-offset:2px; }
+  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  /* TWO LINES RESERVED FOR THE TITLE, three for the body, so every card in a row is the
+     same height — which is what turns a grid into a list you can scan down (PORT-026). */
+  .card-top h3 { margin:0; font-size:16px; min-height:2.5em; display:-webkit-box;
+                 -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .pills { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .pill { font-size:11px; color:var(--muted); border:1px solid var(--line);
+          border-radius:99px; padding:2px 9px; white-space:nowrap; }
+  .pill.old { color:var(--hi); border-color:var(--hi); background:var(--hiBg); }
+  .pill.built { border-style:dashed; }
+  .pill.practice { color:var(--new); border-color:var(--new); background:var(--newBg); }
+  .pill.repair { color:var(--bad); border-color:var(--bad); }
+  /* Reference: a cheat sheet reprints tables the units below already taught, so it reads as
+     neither new teaching nor a repair. limba tints this pill with its morpheme colour; mova
+     has no such token, and a dotted edge says "not a lesson" without inventing one. */
+  .pill.reference { border-style:dotted; color:var(--muted); border-color:var(--muted); }
+  .nodate { font-style:italic; }
+  /* Clamped to three lines — and TEACHES_MAX above is derived from this number, not
+     guessed alongside it. */
+  .teaches { font-size:13.5px; color:var(--muted); margin:9px 0 14px; flex:1;
+             display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+             overflow:hidden; }
+  .card-foot { display:flex; justify-content:space-between; align-items:center;
+               font-size:12.5px; color:var(--muted); gap:10px; flex-wrap:wrap; }
+  .card .go::after { top:auto; bottom:13px; right:14px; }
+  .links { display:flex; gap:10px; align-items:center; }
+  .lnk { color:var(--l2); text-decoration:none; font-weight:550; }
+  .lnk:hover { text-decoration:underline; }
+  .lnk.dim { color:var(--muted); font-weight:400; cursor:help; }
+  .note { font-size:13px; color:var(--muted); margin-top:10px; }
+  .next { background:var(--hiBg); border-left:3px solid var(--l2);
+          border-radius:0 8px 8px 0; padding:11px 14px; font-size:14px; margin-top:12px; }
+  .overflow { overflow-x:auto; }
+  .drawer { margin-top:38px; border-top:1px solid var(--line); padding-top:16px; }
+  .drawer summary { cursor:pointer; font-size:13px; text-transform:uppercase;
+                    letter-spacing:.09em; color:var(--muted); font-weight:600; }
+  .drawer summary:hover { color:var(--fg); }
+  .drawer summary:focus-visible { outline:2px solid var(--l2); outline-offset:3px; border-radius:3px; }
+  .drawer + .drawer { margin-top:14px; border-top:0; padding-top:0; }
+  .howto h4 { font-size:14px; margin:26px 0 6px; }
+  .howto h4:first-child { margin-top:0; }
+  .howto p { margin:0 0 12px; font-size:14px; color:var(--muted); max-width:68ch; }
+  .howto-note { border-left:2px solid var(--line); padding-left:12px; }
+  .howto-src { font-size:12.5px !important; border-bottom:1px solid var(--line);
+               padding-bottom:14px; margin-bottom:22px !important; }
+  /* FOLD A LIST WHOSE TAIL DOES NOT EARN ITS HEIGHT (PORT-026). A settled fact nobody
+     scrolls to cannot be contested, which is the only reason half these sections exist. */
+  .fold > summary { cursor:pointer; font-size:12.5px; color:var(--muted); list-style:none; }
+  .fold > summary::-webkit-details-marker { display:none; }
+  .fold > summary::before { content:"›"; display:inline-block; margin-right:6px;
+                            transition:transform .15s var(--ease-out); }
+  .fold[open] > summary::before { transform:rotate(90deg); }
+  .fold > summary:hover { color:var(--fg); }
+  /* A link that lands on a collapsed row has to open it — see openTarget() below. */
+  :target { scroll-margin-top:16px; }
+  .nav { display:flex; gap:4px; margin-bottom:20px; flex-wrap:wrap;
+         border-bottom:1px solid var(--line); }
+  .nav a { font-size:13.5px; padding:7px 13px; text-decoration:none; color:var(--muted);
+           border-bottom:2px solid transparent; margin-bottom:-1px; }
+  .nav a:hover { color:var(--fg); }
+  /* THE PAGE YOU ARE ON CARRIES THE COLOUR (PORT-026). It rendered muted while the two you
+     could still take rendered coloured, so the state read as the affordance and the
+     affordances read as state. Exactly backwards. */
+  .nav a.here { color:var(--l2); border-bottom-color:var(--l2); font-weight:600; }
+  /* ============ BOARD — this page's own furniture ================================= */
+  /* The queue against its box. The tick is the threshold that decides lesson vs drill, so
+     it is drawn on the same axis as the fill — a number alone cannot be compared to it. */
+  .qm { margin-top:9px; }
+  .qm-track { position:relative; height:6px; background:var(--line); border-radius:99px; }
+  .qm-fill { height:6px; background:var(--ok); border-radius:99px; }
+  .qm-fill.over { background:var(--hi); }
+  /* The tick has to stay legible ON TOP of the fill — that is the whole case where it
+     matters — so it carries a halo in the tile's own background rather than an opacity. */
+  .qm-mark { position:absolute; top:-4px; width:2px; height:14px; background:var(--fg);
+             border-radius:2px; box-shadow:0 0 0 1.5px var(--card); }
+  .qm-cap { font-size:12px; color:var(--muted); margin-top:5px; }
+
+  /* The one thing the page is for: what to do when you open it. */
+  /* The deck is the only page here the learner opens on their own initiative, so it gets a
+     gateway of its own rather than a line of prose inside another panel. */
+  .deck { display:grid; grid-template-columns:auto 1fr; gap:0 20px; align-items:center;
+          background:var(--card); border:1px solid var(--line); border-radius:12px;
+          padding:16px 18px; margin-top:14px; text-decoration:none; color:inherit; }
+  .deck:hover { border-color:var(--l2); }
+  .deck-n { font-size:34px; font-weight:650; letter-spacing:-.02em; line-height:1.05;
+            font-variant-numeric:tabular-nums; text-align:center; }
+  .deck-nl { font-size:11px; text-transform:uppercase; letter-spacing:.07em;
+             color:var(--muted); text-align:center; margin-top:3px; }
+  .deck-h { font-size:17px; font-weight:650; }
+  .deck-h b { color:var(--l2); font-weight:650; }
+  .deck-s { font-size:13.5px; color:var(--muted); margin-top:3px; }
+  .deck-foot { font-size:12.5px; color:var(--muted); margin-top:6px; }
+  .whatnow { background:var(--card); border:1px solid var(--line); border-left:3px solid var(--l2);
+             border-radius:4px 12px 12px 4px; padding:15px 18px; margin-top:14px; }
+  .whatnow-h { font-size:12px; text-transform:uppercase; letter-spacing:.08em;
+               color:var(--l2); font-weight:650; margin-bottom:6px; }
+  .whatnow p { margin:0; font-size:14.5px; }
+  .whatnow p + p { margin-top:9px; }
+  /* The verdict leads the panel and is the only line set at emphasis weight — the mix chips,
+     the queue line and the pointer quote are its evidence, not competing instructions. */
+  .whatnow-do { font-size:15.5px; font-weight:600; }
+  .whatnow-q { font-size:13.5px; margin-top:9px; }
+  .pace { display:flex; flex-wrap:wrap; gap:8px; margin:11px 0 2px; }
+  .pace-i { display:flex; align-items:baseline; gap:6px; font-size:13px; padding:5px 11px;
+            border:1px solid var(--line); border-radius:999px; background:var(--bg); }
+  .pace-i b { font-size:14.5px; font-variant-numeric:tabular-nums; }
+  .pace-i.over  { border-color:var(--bad); color:var(--bad); }
+  .pace-i.under { border-color:var(--hi); color:var(--hi); }
+  .whatnow-next { color:var(--muted); font-size:13.5px; }
+
+  /* ---- the unit board ---- */
+  .sortbar { display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  .grow { flex:1; }
+  .sortb { font:inherit; font-size:12.5px; padding:3px 11px; border-radius:99px; cursor:pointer;
+           background:transparent; color:var(--muted); border:1px solid var(--line); }
+  .sortb:hover { color:var(--fg); border-color:var(--muted); }
+  .sortb.on { color:var(--l2); border-color:var(--l2); }
+  .sortb:focus-visible { outline:2px solid var(--l2); outline-offset:2px; }
+  .key { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+  /* One swatch class for one concept: the board legend and the per-unit counts read the
+     same bar, so they carry the same two fills — not the text tokens. */
+  .sw { display:inline-block; width:14px; height:6px; border-radius:99px; margin-right:4px; }
+  .sw.ok { background:var(--solid); } .sw.no { background:var(--shaky); }
+  .unit { background:var(--card); border:1px solid var(--line); border-radius:12px; margin-bottom:9px; }
+  .unit[open] { border-color:var(--muted); }
+  .ustrip { cursor:pointer; padding:13px 15px; list-style:none; display:block; }
+  .ustrip::-webkit-details-marker { display:none; }
+  .ustrip:focus-visible { outline:2px solid var(--l2); outline-offset:2px; border-radius:12px; }
+  .uhead { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .uid { font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--muted); }
+  .utitle { font-size:15.5px; }
+  .upill { margin-left:auto; font-size:11.5px; color:var(--muted); border:1px solid var(--line);
+           border-radius:99px; padding:2px 9px; white-space:nowrap; }
+  /* The chevron is the only affordance saying a row opens — details' native marker is off. */
+  .uhead::after { content:"›"; color:var(--muted); font-size:17px; line-height:1;
+                  transform:rotate(90deg); transition:transform .15s; }
+  .unit[open] .uhead::after { transform:rotate(270deg); }
+  .ubars { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px; }
+  .ubars .bar-head { font-size:12.5px; }
+  .upanel { padding:0 15px 15px; }
+  .ucols { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;
+           border-top:1px solid var(--line); padding-top:13px; }
+  .upanel h4 { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted);
+               margin:0 0 8px; font-weight:600; }
+  .asp { display:flex; justify-content:space-between; gap:12px; font-size:13.5px; padding:3px 0; }
+  .asp.pending { color:var(--muted); }
+  .asp-r { color:var(--muted); font-size:11.5px; white-space:nowrap; letter-spacing:.06em; }
+  .chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:9px; }
+  .chip { font-size:12.5px; padding:2px 9px; border-radius:99px; border:1px solid var(--line); }
+  .chip.t1 { color:var(--t1); border-color:var(--t1); }
+  .chip.t2 { color:var(--t2); border-color:var(--t2); }
+  .chip.more { color:var(--muted); }
+  .upages { margin-top:16px; border-top:1px solid var(--line); padding-top:13px; }
+  .pgroup + .pgroup { margin-top:16px; }
+  .pg-l { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted);
+          font-weight:600; margin-bottom:9px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav"><a class="here tohub" href="index.html">Hub</a><a class="" href="deck.html">The deck</a><a class="" href="profile.html">Profile & stats</a></nav>
+
+  <header class="top">
+    <h1>English</h1>
+    <span class="sub">Reading &amp; writing English for UX/UI work — the workspace hub</span>
+  </header>
+  <div class="stamp">Generated 2026-09-13 by <code>scripts/hub.mjs</code> · Phase 0 — Setup and placement (2026-09-12 – placement). Every number is read from the file that owns it — nothing here is hand-maintained.</div>
+
+  <h2>Where things stand</h2>
+  <div class="tiles">
+    
+    
+      <a class="tile go" href="#board">
+        <div class="tile-v">1/12</div>
+        <div class="tile-l">units done</div>
+        <div class="tile-s">next up: <strong>U01</strong> — Articles and basic sentence structure</div>
+        
+      </a>
+    
+      <a class="tile go" href="profile.html#coverage">
+        <div class="tile-v">2/32</div>
+        <div class="tile-l">grammar taught</div>
+        <div class="tile-s">individual points fully covered, out of everything Reading &amp; writing English for UX/UI work needs</div>
+        
+      </a>
+    
+      <a class="tile go" href="profile.html#ladder">
+        <div class="tile-v">17</div>
+        <div class="tile-l">things to remember</div>
+        <div class="tile-s">15 words · 2 grammar patterns</div>
+        
+      </a>
+    
+      <div class="tile clear">
+        <div class="tile-v">0</div>
+        <div class="tile-l">came around today</div>
+        <div class="tile-s">plus a <strong>1′</strong> recognition pool that recycles daily · 2 already answered today</div>
+        
+        <div class="qm" title="Tier 1 is recognition and tiers 4–5 sweep (≈3s an item); tier 2 is bare production (≈10s); tier 3 asks the full package (≈20s). Plus ≈6 min per block of composing, marking and publishing — 2 block(s) here. The tick is the 10 minutes a lesson gives its review block.">
+          <div class="qm-track">
+            <div class="qm-fill over" style="width:86.95652173913044%"></div>
+            <div class="qm-mark" style="left:68.20119352088662%"></div>
+          </div>
+          <div class="qm-cap">≈ 13 min · <b>past</b> the 10′ a lesson gives review — the oldest 10 fit, the rest waits</div>
+        </div>
+      </div>
+    
+      <a class="tile go" href="profile.html#history">
+        <div class="tile-v">2</div>
+        <div class="tile-l">study sessions</div>
+        <div class="tile-s">most recent was 2026-09-13 · 2 in the last 7 days</div>
+        
+      </a>
+    
+      <a class="tile clear go" href="profile.html#rhythm">
+        <div class="tile-v">2/1</div>
+        <div class="tile-l">lessons this week</div>
+        <div class="tile-s">on the plan's pace — <strong>~1 lesson</strong></div>
+        
+      </a>
+  </div>
+
+  <a class="deck" href="deck.html">
+    <div>
+      <div class="deck-n">17</div>
+      <div class="deck-nl">items in it</div>
+    </div>
+    <div>
+      <div class="deck-h">The deck <b>→</b></div>
+      <div class="deck-s">15 words · 2 grammar patterns · 15 of them due today — each with its notes and, where it exists, its audio.</div>
+      <div class="deck-s">Filter by unit, tier or part of speech and sort the same three ways;
+        hide one side (English → Russian or Russian → English) and reveal a row at a time.</div>
+    </div>
+  </a>
+  <div class="deck-foot">
+    <span class="deck-local">Opens <code>deck.html</code> next to this page — rebuilt from
+      the ledgers at every close-out, so it is current.</span></div>
+
+  
+  <div class="whatnow">
+    <div class="whatnow-h">In progress — U01</div>
+    
+    <p class="whatnow-do">Carry on with <strong>Articles and basic sentence structure</strong> — so you can write a simple, grammatically complete sentence describing a UI element.</p>
+    <p class="whatnow-q">Material already built:
+      <a class="lnk" href="2026-09-12_u01-articles-svo.html">Articles &amp; basic sentences</a></p>
+    
+    <div class="pace" title="The week's mix decides the block: whichever side is further behind its share. docs/plan.md's pacing table owns the load — ~1 lesson.">
+      <span class="pace-i ">
+        <b>2/1</b> lessons</span>
+      
+      
+      <span class="pace-i muted">week of 2026-09-07, 1 day left</span>
+    </div>
+    
+    <details class="fold" style="margin-top:11px"><summary>What is still open, and the arithmetic behind this</summary>
+      <p class="whatnow-q"><strong>U01</strong> —
+        1 of its 3 parts are still open:
+        Sound-to-spelling mismatch overview (why English spelling isn't phonemic the way Russian/Ukrainian mostly is).</p>
+      <p class="whatnow-q">The week's mix would otherwise pick
+        <code>lesson</code> — 1 lesson over.</p>
+      <p class="whatnow-q"><strong>15 unseen, ≈13′.</strong> Part 1's 10′ reaches the oldest 10; the other 5 keep their place in line — the queue is oldest-first, so the tail can wait. A drill instead spends ≈13′ on the same rows and teaches nothing new.</p>
+      <p class="whatnow-next"><strong>SES-002 left:</strong> Open U02 (present tense, third-person -s) — ERR-003's predicted VRB-3SG risk is now live material. Give T-0001 a real structured lesson (all eight beats) rather than treating today's silent-h patch as having covered it. Watch for the future/feature spelling co</p>
+    </details>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="panel">
+      <strong>Topic coverage</strong>
+      <div class="note" style="margin-top:2px">Least-covered system first — that ordering is the point.</div>
+      <div style="margin-top:12px">
+        
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Sound &amp; spelling system</span><span class="muted">0/3</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>The noun system</span><span class="muted">0/3</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>The verb system</span><span class="muted">0/5</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Negation &amp; question formation</span><span class="muted">0/2</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Adjectives &amp; comparison</span><span class="muted">0/3</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Prepositions</span><span class="muted">0/2</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Register</span><span class="muted">0/2</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Reading strategies</span><span class="muted">0/3</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Writing practice &amp; spelling drill</span><span class="muted">0/2</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Listening (secondary strand)</span><span class="muted">0/1</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row untouched">
+        <div class="bar-head"><span>Consolidation &amp; assessment</span><span class="muted">0/1</span></div>
+        <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span>The article system</span><span class="muted">1/3</span></div>
+        <div class="bar"><div class="bar-fill" style="width:33%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-head"><span>Word order &amp; sentence structure</span><span class="muted">1/2</span></div>
+        <div class="bar"><div class="bar-fill" style="width:50%"></div></div>
+      </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <strong>Memory ladder</strong> —
+        <a class="lnk" href="profile.html#ladder">the full spread →</a>
+      <div class="note" style="margin-top:2px">Where the 17 tracked items sit. Tier 1 is shaky, tier 5 is cold storage.</div>
+      <div class="tierbar"><div class="seg seg-1" style="flex:17" title="tier 1: 17 items">17</div></div>
+      <div class="legend">
+        <span><i class="seg-1" style="background:var(--t1)"></i>tier 1 · 0d</span><span><i class="seg-2" style="background:var(--t2)"></i>tier 2 · 3d</span><span><i class="seg-3" style="background:var(--t3)"></i>tier 3 · 7d</span><span><i class="seg-4" style="background:var(--t4)"></i>tier 4 · 21d</span><span><i class="seg-5" style="background:var(--t5)"></i>tier 5 · 60d</span>
+      </div>
+      
+      <div style="margin-top:22px"><strong>End-of-lesson test scores</strong></div>
+      <div class="note" style="margin-top:2px">
+        Each lesson ends with a short test on that day's new grammar.
+        <strong>Landing inside the green band is the goal, not beating it</strong> — 60–70%
+        means the material was pitched right. Consistently above 80% means it was too easy and
+        the pace should go up; below 50% means slow down.
+      </div>
+      <div class="spark">
+        <div style="height:40%" title="SES-001 — 2026-09-12"><span>40%</span></div>
+      </div>
+      <div class="spark-x"><div>09-12</div></div>
+      <div class="spark-cap">
+        One bar per lesson, oldest first; the newest is highlighted. Bars are
+        <strong>percentages</strong>, not marks — a test of ten and a test of twenty-one are
+        otherwise plotted as if they were the same scale. Only the grammar half is graded
+        against the band. Drills, reviews and mocks have no end-of-lesson test, so they leave
+        no bar — the gaps are not missed sessions.
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="panel">
+      <strong>Mistakes worth drilling</strong>
+      <div class="note" style="margin-top:2px">
+        Errors that recurred often enough to be logged, each counted against its
+        <strong>root cause</strong> rather than how it showed up, and weighted by how many
+        times it actually happened. Anything since re-tested clean drops off this list — it is
+        what is still open, not everything that ever went wrong.
+      </div>
+      <div class="overflow" style="margin-top:12px">
+        <table class="k">
+          <tr>
+            <td><span class="ecode">ART-CHOICE</span><span class="ezone">a/an/the misselection once attempted</span></td>
+            <td>5×</td></tr><tr>
+            <td><span class="ecode">VRB-AUX</span><span class="ezone">dropped copula/auxiliary in a continuous (or other periphrastic) construction</span></td>
+            <td>2×</td></tr><tr>
+            <td><span class="ecode">ART-MISS</span><span class="ezone">article omission</span></td>
+            <td>1×</td></tr><tr>
+            <td><span class="ecode">PREP</span><span class="ezone">preposition selection</span></td>
+            <td>1×</td></tr><tr>
+            <td><span class="ecode">SPELL-MEM</span><span class="ezone">spelling not reliably retained</span></td>
+            <td>1×</td></tr><tr>
+            <td><span class="ecode">VRB-</span></td>
+            <td>1×</td></tr>
+        </table>
+      </div>
+      
+      
+    </div>
+
+    <div class="panel">
+      <strong>Recent sessions</strong>
+      <div class="note" style="margin-top:2px">The last few study blocks and what each one was.</div>
+      <div class="overflow" style="margin-top:12px">
+        <table class="k">
+          <tr>
+            <td><span class="ecode">2026-09-13</span><span class="ezone">lesson</span></td>
+            <td>—</td></tr><tr>
+            <td><span class="ecode">2026-09-12</span><span class="ezone">lesson</span></td>
+            <td>40%</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  
+  <h2 id="shelf">Worth a cheat sheet</h2>
+  <div class="next" style="margin:0 0 14px">
+    <strong>Live mistakes are spread across 5 systems you have already been
+    taught</strong> — a/an/the misselection once attempted, dropped copula/auxiliary in a continuous (or other periphrastic) construction, article omission, preposition selection, spelling not reliably retained. That is where tables start being
+    confused for one another rather than simply not known, and one page holding them side by
+    side is the usual answer. Ask for a cheat sheet next session: it is filed on the
+    <strong>U00</strong> shelf, it asserts nothing new, and it moves none of the counts above.
+  </div>
+
+  
+  <h2>The 12 units — what each one has given you</h2>
+  <div class="note" style="margin-bottom:14px">
+    <strong>Click any unit to open it.</strong> Two bars, and they measure different things:
+    <strong>taught</strong> is how much of the unit's material has been delivered,
+    <strong>retained</strong> is how much of it you currently hold. They come apart — a unit can
+    be finished and still be shaky, which is the case the plain "covered" label could never show.
+    Every study page ever built for you sits inside the unit it belongs to.
+  </div>
+  <div class="sortbar">
+    <span class="lbl">order</span>
+    <button type="button" class="sortb on" data-sort="unit">by unit</button>
+    <button type="button" class="sortb" data-sort="weak">weakest first</button>
+    <span class="grow"></span>
+    <span class="key"><i class="sw ok"></i>solid <i class="sw no"></i>shaky</span>
+  </div>
+  <div id="board">
+      <details class="unit" data-weak="0" open>
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U01</span>
+            <span class="utitle">Articles and basic sentence structure</span>
+            <span class="upill">part-taught</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>2/3 aspects</span></div>
+              <div class="bar"><div class="bar-fill tt" style="width:67%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="r-shaky">0%</span></div>
+              <div class="bar">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:100%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Sound-to-spelling mismatch overview (why English spelling isn't phonemic the way Russian/Ukrainian mostly is)</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp">
+            <span>Articles: a/an vs the (definiteness)</span>
+            <span class="asp-r">R W</span>
+          </div><div class="asp">
+            <span>Basic SVO sentence structure</span>
+            <span class="asp-r">R W</span>
+          </div>
+              <div class="note" style="margin-top:8px">Taught 2026-09-12.</div>
+              <div class="note" style="margin-top:8px;color:var(--hi)">
+                <strong>These two disagree.</strong> The curriculum's own line says
+                <code>covered 2026-09-13</code>, the aspects say part-taught. One of
+                the two was flipped at a close-out and the other was not — fix the file that
+                is wrong, not this page.</div>
+            </div>
+            <div>
+              <h4>17 things to remember</h4>
+              
+                <div class="note"><i class="sw ok"></i>0 solid · <i class="sw no"></i>17 still shaky</div>
+                <div class="chips"><span class="chip t1">design</span><span class="chip t1">interface</span><span class="chip t1">layout</span><span class="chip t1">component</span><span class="chip t1">feature</span><span class="chip t1">project</span><span class="chip t1">team</span><span class="chip t1">button</span><span class="chip t1">screen</span><span class="chip t1">user</span><span class="chip more">+7 more</span></div>
+            </div>
+          </div>
+          <div class="upages">
+            <div class="pgroup">
+            <div class="pg-l">Taught by</div>
+            <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <h3><a class="card-link" href="2026-09-12_u01-articles-svo.html">Articles &amp; basic sentences</a></h3>
+            <span class="pills">
+              
+              
+              <span class="pill explainer">explainer</span>
+            </span>
+          </div>
+          <p class="teaches">Teaches a/an/the by definiteness and sound, basic SVO, 15 product-design nouns</p>
+          <div class="card-foot">
+            <time>2026-09-12</time>
+          </div>
+        </article></div>
+          </div>
+          </div>
+        </div>
+      </details>
+      <details class="unit" data-weak="1002">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U02</span>
+            <span class="utitle">Present tense and everyday verbs</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/2 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Regular plurals (-s / -es / -ies)</span>
+            <span class="asp-r">R W · pending</span>
+          </div><div class="asp pending">
+            <span>Present simple and third-person -s</span>
+            <span class="asp-r">R W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1003">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U03</span>
+            <span class="utitle">Reading short technical text; adjectives</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/5 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Zero article with plurals and uncountables</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Irregular plurals (mouse/mice, analysis/analyses)</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Regular comparison (-er / -est)</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Irregular comparison (good/better/best)</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Skimming for gist</span>
+            <span class="asp-r">R · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1004">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U04</span>
+            <span class="utitle">Writing short Slack-style messages</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/2 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Work-chat (Slack) register vs formal register</span>
+            <span class="asp-r">W · pending</span>
+          </div><div class="asp pending">
+            <span>Composing a clear 3-5 sentence Slack message</span>
+            <span class="asp-r">W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1005">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U05</span>
+            <span class="utitle">Past tense and irregular verbs</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/2 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Past simple, regular -ed</span>
+            <span class="asp-r">W · pending</span>
+          </div><div class="asp pending">
+            <span>Irregular verb principal parts (packs/en's required_fact)</span>
+            <span class="asp-r">W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1006">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U06</span>
+            <span class="utitle">Prepositions, collocations, count/mass nouns</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/3 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Count vs mass nouns (advice, information)</span>
+            <span class="asp-r">R W · pending</span>
+          </div><div class="asp pending">
+            <span>Verb + preposition collocations (depends on, agrees with)</span>
+            <span class="asp-r">R W · pending</span>
+          </div><div class="asp pending">
+            <span>Common preposition confusions (different from/than)</span>
+            <span class="asp-r">W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1007">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U07</span>
+            <span class="utitle">Questions and negation</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/3 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Do-support in negation</span>
+            <span class="asp-r">W · pending</span>
+          </div><div class="asp pending">
+            <span>Subject-auxiliary inversion in questions</span>
+            <span class="asp-r">W L · pending</span>
+          </div><div class="asp pending">
+            <span>Adverb placement</span>
+            <span class="asp-r">W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1008">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U08</span>
+            <span class="utitle">Reading UX articles: register, scanning, summarizing</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/5 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Article use in technical documentation (generic reference)</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Periphrastic more/most</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Technical/UX-article register conventions</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Scanning for specific facts in documentation</span>
+            <span class="asp-r">R · pending</span>
+          </div><div class="asp pending">
+            <span>Summarizing an article's main argument</span>
+            <span class="asp-r">R · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1009">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U09</span>
+            <span class="utitle">Present perfect and describing ongoing work</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/2 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Present perfect vs past simple — the aspect-mapping gap</span>
+            <span class="asp-r">W · pending</span>
+          </div><div class="asp pending">
+            <span>Present/past continuous (progressive -ing)</span>
+            <span class="asp-r">W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1010">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U10</span>
+            <span class="utitle">Listening to short work-call excerpts</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/1 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Extracting key points from a short spoken excerpt</span>
+            <span class="asp-r">L · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1011">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U11</span>
+            <span class="utitle">Spelling and vocabulary consolidation</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/3 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Common irregular spelling patterns (silent letters, doubled consonants)</span>
+            <span class="asp-r">W · pending</span>
+          </div><div class="asp pending">
+            <span>Homophones and near-homographs (e.g. resin/resign)</span>
+            <span class="asp-r">W · pending</span>
+          </div><div class="asp pending">
+            <span>Spelling recall from dictation/memory</span>
+            <span class="asp-r">W · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details>
+      <details class="unit" data-weak="1012">
+        <summary class="ustrip">
+          <div class="uhead">
+            <span class="uid">U12</span>
+            <span class="utitle">Consolidation and scenario-run gate</span>
+            <span class="upill">not opened</span>
+            
+          </div>
+          <div class="ubars">
+            <div>
+              <div class="bar-head"><span class="lbl">taught</span><span>0/1 aspects</span></div>
+              <div class="bar none"><div class="bar-fill tt" style="width:0%"></div></div>
+            </div>
+            <div>
+              <div class="bar-head"><span class="lbl">retained</span><span class="muted">—</span></div>
+              <div class="bar none">
+                <div class="bar-fill ok" style="width:0%"></div>
+                <div class="bar-fill no" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </summary>
+        <div class="upanel">
+          <div class="ucols">
+            <div>
+              <h4>What this unit owns</h4>
+              <div class="asp pending">
+            <span>Full scenario-run mock across reading, writing and listening</span>
+            <span class="asp-r">R W L · pending</span>
+          </div>
+              
+              
+            </div>
+            <div>
+              <h4>Nothing tracked yet</h4>
+              <div class="note">No word or pattern is filed under this unit yet. It arrives when the unit opens.</div>
+            </div>
+          </div>
+          
+        </div>
+      </details></div>
+
+  <h2>Confidence</h2>
+  
+  <div class="panel">
+    <table class="k">
+      <tr><td>Contract tests (<code>npm test</code>)</td>
+        <td>23 test files · last run not recorded — run <code>npm test</code> for a verdict</td></tr>
+      <tr><td>Enforcement</td><td>enforced</td></tr>
+      <tr><td>Language facts</td><td><b>runs unattested</b> — the en pack declares no dictionary, so every
+      fact is tutor-confirmed or carries the <code>?</code> marker (verification.md)</td></tr>
+      <tr><td>Rule provenance (<code>docs/mechanics/</code>)</td>
+        <td>0 measured · 0 derived ·
+            5 defaults from the reference learner (recalibrate) ·
+            20 marked assumed</td></tr>
+      <tr><td>Language pack</td>
+        <td>en (English) · dictionary:
+            none</td></tr>
+    </table>
+    <div class="note">How much to trust what this page claims — every line above is read
+    from a record, or says plainly that none exists. Conventions here are checked by CI, not by promises. Provenance counts are marker occurrences, not rules — an unmarked rule counts as
+    assumed by <code>docs/mechanics/README.md</code>'s own convention.</div>
+  </div>
+
+  <details class="drawer">
+    <summary>How the learning works — the shape of a session, and of the whole run</summary>
+    <div class="panel howto" style="margin-top:12px">
+      <p class="howto-src">The tables below are read straight out of the files that define
+      these rules — the phase plan from the plan, the five parts from the session mechanic,
+      the teaching beats from the teaching contract. They keep their working voice, file
+      references and all, because a friendlier paraphrase here would be a second copy free to
+      drift from the rules actually in force. Change a rule in its own file and this drawer
+      changes with it.</p>
+
+      <h4>1 · The run — 12 units, in phases</h4>
+      <p>Every unit is a themed block of grammar and vocabulary. Phases group them and each
+      ends with an assessment that gates the next one.
+      Right now you are in <strong>Phase 0 — Setup and placement (2026-09-12 – placement)</strong> — highlighted below.</p>
+      <div class="overflow"><table class="k wide">
+        <tr><th>Phase</th><th>Units</th><th>Weeks</th><th>Ends</th><th>Weekly load</th></tr>
+        <tr class="now">
+          <td>0</td><td>setup</td><td>1</td><td>placement complete</td><td>~1 lesson</td></tr><tr class="">
+          <td>1</td><td>U01-U03</td><td>5</td><td>U03 covered</td><td>~3 lessons + 1 write</td></tr><tr class="">
+          <td>2</td><td>U04-U08</td><td>8</td><td>U08 covered</td><td>~3 lessons + 1 write</td></tr><tr class="">
+          <td>3</td><td>U09-U12</td><td>6</td><td>U12 covered (goal gate)</td><td>~2 lessons + 1 write + 1 mock</td></tr>
+      </table></div>
+
+      <h4>2 · The week — which session type, how often</h4>
+      <p>Lessons carry new material; drills keep the old material warm without adding any;
+      the weekly review checks pace against the plan and changes the plan when reality
+      disagrees with it. Those three carry an ordinary week. Everything else you can say —
+      capture, writing, mocks, tutor prep, updates — is listed once, in
+      <strong>Commands</strong> at the foot of this page.</p>
+
+      <h4>3 · One lesson — five parts, in this order</h4>
+      <p>The order is deliberate: the graded check comes <em>before</em> applied practice, so
+      the check measures what the teaching alone landed, and practice becomes targeted repair
+      of whatever it just missed.</p>
+      <div class="overflow"><table class="k wide">
+        <tr><th>#</th><th>Part</th><th>Time</th><th>What happens</th></tr>
+        <tr><td>1</td><td>SRS review</td><td>~10′</td><td><code>node scripts/queue.mjs</code> → quiz due items <strong>at the mode their tier calls for</strong> (recognition at tier 1, bare production at 2, the full package as the tier-3 gate, sweep at 4–5 — srs.md); grammar items via one production sentence each → update <code>tier</code>/<code>last</code>. <strong>Conditional — see § Part 1 runs only when it can produce something</strong></td></tr><tr><td>2</td><td>New material</td><td>~30′</td><td>Current unit (../curriculum.md): <strong>10–20 new vocab items</strong> with the pack's per-item facts + transfer hooks; 1 grammar point — built per teaching.md, all eight beats, <strong>split chat/visual per its table</strong> (paradigms and word lists live in the visual, chat carries the contrast)</td></tr><tr><td>3</td><td>Graded check</td><td>~10′</td><td>10 questions over today's + due material, <strong>sampling at least 3 of the day's new words</strong> (see below); score recorded in the session log</td></tr><tr><td>4</td><td>Applied practice</td><td>~15′</td><td>Short reading or guided dialogue that forces due + new items into use, <strong>aimed at what part 3 just missed</strong>; goal-adjacent formats preferred</td></tr><tr><td>5</td><td>Close-out</td><td>~5′</td><td>The ritual below</td></tr>
+      </table></div>
+      <p>What happens when a part scores badly depends on <em>which</em> part — a bad SRS
+      review and a bad graded check mean opposite things:</p>
+      <div class="overflow"><table class="k wide">
+        <tr><th>Where it failed</th><th>What it means</th><th>What to do</th></tr>
+        <tr><td><strong>Part 3 — graded check</strong></td><td><em>Today's material</em> was too hard.</td><td>Target is <strong>60–70%</strong> — the challenge sweet spot. Two consecutive sessions <strong>&gt; 80%</strong> → pace up (more items, denser texts) at the next review. <strong>&lt; 50%</strong> → pace down and drill the gap before new material.</td></tr><tr><td><strong>Part 1 — SRS review</strong></td><td><em>Retention of already-taught material has failed.</em> The intake volume or the interval is wrong.</td><td><strong>&lt; 50% → do not teach a full part 2 on top of it.</strong> Cut the new intake hard or drop it entirely, spend the reclaimed time on a <strong>repair loop</strong> over the misses, and flag it for the review playbook — this is evidence about the ladder and the intake number, not about today's unit.</td></tr><tr><td><strong>Part 1, second session the same day</strong></td><td><em>Nothing.</em> Those rows were answered hours ago; tier 1 is a zero-day interval, so the queue reports them due again.</td><td><strong>The band does not apply, and the block itself usually does not run</strong> — § Part 1 runs only when it can produce something. Reading a low number here as failed retention would cut the day's new material for the opposite reason.</td></tr><tr><td><strong>A drill's SRS pass</strong></td><td><em>Nothing to calibrate.</em></td><td><strong>A drill has no target score.</strong> The band is calibrated for ten questions on the day's new material; a drill measures retention of old material, where the same number means the opposite thing. Report the number, do not grade the session against it (why/session_format.md).</td></tr>
+      </table></div>
+      <p class="howto-note">When something is genuinely broken, the fix is the
+      <strong>repair loop</strong>: test → show the answers → work out <em>why</em> each miss
+      happened → build the material that was missing → retest on new items covering the same
+      ground. Up to three rounds. It is the shape the reference learner invented mid-session,
+      where it took a score from 43% to 86% in one sitting (limba SES-007).</p>
+
+      <h4>4 · One teaching block — 8 beats, every time</h4>
+      <p>How the new-material half of a lesson is built. The rule behind the order: the whole
+      system first, the contrast with the languages you already hold second — the opposite
+      order is efficient only for someone who already holds the map.</p>
+      <div class="overflow"><table class="k wide">
+        <tr><th>#</th><th>Beat</th><th>What it does</th></tr>
+        <tr><td>①</td><td><strong>Placement</strong></td><td>Where this sits in its topic, what it exhausts, what's deferred and to which unit, which parts of the goal contract it serves</td></tr><tr><td>②</td><td><strong>The whole system</strong></td><td>The complete inventory — table, paradigm, or rule set — <em>before</em> any contrast</td></tr><tr><td>③</td><td><strong>The load</strong></td><td>What must actually be memorised, and what follows automatically from it</td></tr><tr><td>④</td><td><strong>The delta</strong></td><td>What differs from the learner's held languages, ranked per the profile's <code>contrast_ranking</code>, grounded per ../reference/transfer.md</td></tr><tr><td>⑤</td><td><strong>Worked examples</strong></td><td>2–3, fully translated, with a one-line &quot;what's happening&quot;</td></tr><tr><td>⑥</td><td><strong>First contact only</strong></td><td>What was <em>named but not taught</em>, and the unit where it returns</td></tr><tr><td>⑦</td><td><strong>Guided attempt</strong></td><td>2–3 low-stakes items with concealed answers — before anything graded</td></tr><tr><td>⑧</td><td><strong>The compressed rule</strong></td><td>One line to carry away</td></tr>
+      </table></div>
+
+      <h4>Underneath all of it — the memory ladder</h4>
+      <p>Every word and grammar pattern sits on the tier ladder shown above. Anything you
+      recall cleanly moves up a rung and comes back later; anything you miss drops one and
+      comes back sooner. Each rung asks a harder question than the one below it: tier 1 only
+      asks what a English word means, tier 2 asks you to produce the bare word from
+      Russian, and tier 3 asks the full package — every form and fact the ledger row
+      carries — which is the goal-shaped question and the gate into "owned". Tiers 4 and 5
+      are a fast recognition sweep that keeps it warm. Nothing is ever retired.</p>
+
+    </div>
+  </details>
+
+  <details class="drawer">
+    <summary>Commands — what to say to start a session</summary>
+    <div class="panel" style="margin-top:12px">
+      
+      <dl class="cmd">
+        <dt><code>drill</code></dt><dd>Short practice</dd><dt><code>feedback</code></dt><dd>Send a workspace defect back to the template</dd><dt><code>lesson</code></dt><dd>Run today's full session</dd><dt><code>mock</code></dt><dd>Timed mock of one assessment section, scored and frozen as a snapshot</dd><dt><code>retro</code></dt><dd>Harvest what a session learned about the workspace itself</dd><dt><code>review</code></dt><dd>Weekly progress review and replan</dd><dt><code>update</code></dt><dd>Check the template for changes and adopt them</dd><dt><code>vocab</code></dt><dd>Capture a word or phrase into the ledger</dd><dt><code>write</code></dt><dd>Writing practice in the goal contract's genres</dd>
+      </dl>
+      
+    </div>
+  </details>
+
+</div>
+<script>
+
+  (function () {
+    function openTarget() {
+      var id = location.hash.slice(1);
+      if (!id) return;
+      var el = document.getElementById(id);
+      while (el) {
+        if (el.tagName === "DETAILS") el.open = true;
+        el = el.parentElement;
+      }
+      var t = document.getElementById(id);
+      if (t) t.scrollIntoView();
+    }
+    window.addEventListener("hashchange", openTarget);
+    openTarget();
+  })();
+
+  /* Reordering, not filtering — every unit stays on the page in both orders. "Weakest
+     first" ranks by the retained bar, so the units carrying the most shaky material lead;
+     units with nothing measurable yet trail, because they are not doing badly, they are
+     simply not yet answerable. Sorted once up front and re-appended, so neither order can
+     drift as the other is used. */
+  (function () {
+    var board = document.getElementById("board");
+    if (!board) return;
+    var byUnit = [].slice.call(board.children);
+    var byWeak = byUnit.slice().sort(function (a, b) {
+      return Number(a.getAttribute("data-weak")) - Number(b.getAttribute("data-weak"));
+    });
+    var btns = [].slice.call(document.querySelectorAll(".sortb"));
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        btns.forEach(function (b) { b.classList.remove("on"); });
+        btn.classList.add("on");
+        (btn.getAttribute("data-sort") === "weak" ? byWeak : byUnit).forEach(function (el) {
+          board.appendChild(el);
+        });
+      });
+    });
+  })();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "title": "U01 repair loop — split probe, known/new vs sound",
+  "block1_known_new": [
+    { "id": "r1", "ask": "I have a laptop. ___ laptop is old.", "answer": "The" },
+    { "id": "r2", "ask": "We need ___ new icon for this page — haven't picked one yet.", "answer": "a" }
+  ],
+  "block2_sound": [
+    { "id": "r3", "ask": "___ orange", "answer": "an" },
+    { "id": "r4", "ask": "___ university", "answer": "a" },
+    { "id": "r5", "ask": "___ hour", "answer": "an" }
+  ]
+}

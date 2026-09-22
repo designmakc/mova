@@ -1,0 +1,130 @@
+[
+  {
+    "sg": "design",
+    "pl": "designs",
+    "expected": {
+      "sg": "design",
+      "pl": "design<b class=\"mk\">s</b>"
+    }
+  },
+  {
+    "sg": "layout",
+    "pl": "layouts",
+    "expected": {
+      "sg": "layout",
+      "pl": "layout<b class=\"mk\">s</b>"
+    }
+  },
+  {
+    "sg": "feature",
+    "pl": "features",
+    "expected": {
+      "sg": "featur<b class=\"st\">e</b>",
+      "pl": "featur<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "project",
+    "pl": "projects",
+    "expected": {
+      "sg": "project",
+      "pl": "project<b class=\"mk\">s</b>"
+    }
+  },
+  {
+    "sg": "team",
+    "pl": "teams",
+    "expected": {
+      "sg": "team",
+      "pl": "team<b class=\"mk\">s</b>"
+    }
+  },
+  {
+    "sg": "box",
+    "pl": "boxes",
+    "expected": {
+      "sg": "box",
+      "pl": "box<b class=\"mk\">es</b>"
+    }
+  },
+  {
+    "sg": "city",
+    "pl": "cities",
+    "expected": {
+      "sg": "cit<b class=\"st\">y</b>",
+      "pl": "cit<b class=\"mk\">ies</b>"
+    }
+  },
+  {
+    "sg": "mouse",
+    "pl": "mice",
+    "expected": {
+      "sg": "m<b class=\"st\">ous</b>e",
+      "pl": "m<b class=\"st\">ic</b>e"
+    }
+  },
+  {
+    "sg": "click",
+    "pl": "clicked",
+    "expected": {
+      "sg": "click",
+      "pl": "click<b class=\"mk\">ed</b>"
+    }
+  },
+  {
+    "sg": "test",
+    "pl": "tested",
+    "expected": {
+      "sg": "test",
+      "pl": "test<b class=\"mk\">ed</b>"
+    }
+  },
+  {
+    "sg": "write",
+    "pl": "wrote",
+    "expected": {
+      "sg": "wr<b class=\"st\">i</b>te",
+      "pl": "wr<b class=\"st\">o</b>te"
+    }
+  },
+  {
+    "sg": "simple",
+    "pl": "simpler",
+    "expected": {
+      "sg": "simpl<b class=\"st\">e</b>",
+      "pl": "simpl<b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "big",
+    "pl": "bigger",
+    "expected": {
+      "sg": "big",
+      "pl": "big<b class=\"st\">g</b><b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "quick",
+    "pl": "quicker",
+    "expected": {
+      "sg": "quick",
+      "pl": "quick<b class=\"mk\">er</b>"
+    }
+  },
+  {
+    "sg": "run",
+    "pl": "running",
+    "expected": {
+      "sg": "run",
+      "pl": "run<b class=\"st\">n</b><b class=\"mk\">ing</b>"
+    }
+  },
+  {
+    "sg": "sheep",
+    "pl": "sheep",
+    "expected": {
+      "sg": "sheep",
+      "pl": "sheep"
+    }
+  }
+]
