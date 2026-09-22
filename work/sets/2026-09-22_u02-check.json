@@ -1,0 +1,15 @@
+{
+  "title": "U02 graded check — present simple, third-person -s, regular plurals",
+  "items": [
+    { "id": "1", "ask": "Переведите на английский: «Она тестирует макет каждый спринт.» (регулярное действие)", "answer": "She tests the layout every sprint." },
+    { "id": "2", "ask": "Переведите на английский: «Команда выпускает новую функцию каждую пятницу.»", "answer": "The team ships a new feature every Friday." },
+    { "id": "3", "ask": "Переведите на английский: «Каждый дизайнер читает документацию.»", "answer": "Every designer reads the documentation." },
+    { "id": "4", "ask": "Переведите на английский: «Мы проектируем интерфейс.»", "answer": "We design the interface." },
+    { "id": "5", "ask": "Переведите на английский: «Он исправляет две ошибки.»", "answer": "He fixes two bugs." },
+    { "id": "6", "ask": "Переведите на английский: «Она пробует новый инструмент.»", "answer": "She tries a new tool." },
+    { "id": "7", "ask": "Новое слово, сегодня оно нигде не встречалось: to finish — заканчивать. Напишите по-английски: «Дизайнер заканчивает экран.»", "answer": "The designer finishes the screen." },
+    { "id": "8", "ask": "Три новых слова, сегодня они нигде не встречались: process (процесс), library (библиотека), survey (опрос). Напишите множественное число каждого.", "answer": "processes, libraries, surveys" },
+    { "id": "9", "ask": "Переведите на английский: «На этой странице три кнопки.»", "answer": "This page has three buttons." },
+    { "id": "10", "ask": "Переведите на английский: «Он понимает систему дизайна.»", "answer": "He understands the design system." }
+  ]
+}

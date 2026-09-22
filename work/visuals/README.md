@@ -27,6 +27,7 @@
 | Date | Page | Teaches | Units | Kind |
 | --- | --- | --- | --- | --- |
 | 2026-09-12 | [Articles & basic sentences](2026-09-12_u01-articles-svo.html) | Teaches a/an/the by definiteness and sound, basic SVO, 15 product-design nouns | U01 | teach |
+| — | [Настоящее время и глаголы работы](2026-09-22_u02-present-simple.html) | Built — present simple, окончание -s у he/she/it, те же правила множественного числа, 12 рабочих глаголов | U02 | teach |
 
 <!-- Date is the day the page REACHED THE LEARNER, `YYYY-MM-DD` — and `—` while the page is
      built but not yet taught. Rows are written at build time, so `—` is where most rows

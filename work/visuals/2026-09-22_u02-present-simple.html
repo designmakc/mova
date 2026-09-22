@@ -1,0 +1,578 @@
+<!-- mova:instance -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23945a00'/%3E%3Ctext%20x='16'%20y='16.5'%20text-anchor='middle'%20dominant-baseline='central'%20font-family=%22Georgia,'Iowan%20Old%20Style',Palatino,serif%22%20font-size='22'%20font-weight='700'%20fill='%23f8f5ef'%3Em%3C/text%3E%3C/svg%3E">
+<title>Настоящее время и глаголы работы — U02</title>
+<style>
+  /* ============ TOKEN BLOCK — keys are the contract, values are the pinned theme ==== */
+  :root{
+    /* CORE */
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    /* LANGUAGE */
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    /* MORPHEME — delete if the pack declares inflection: false */
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    /* GENDER — English (packs/en) declares no genders; no tokens needed */
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+      --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+      --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+      --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+      --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+      --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+      --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+      --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+      --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+    --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+    --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+    --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+    --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+    --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+    --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+    --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+    --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+  }
+  :root[data-theme="light"]{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+  }
+  :root{
+    --font-display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:24px; --space-6:40px; --space-7:64px;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.7,0,.84,0);
+    --ease-in-out:cubic-bezier(.65,0,.35,1); --dur-1:120ms; --dur-2:240ms;
+  }
+  /* ============ COMPONENTS — the functional layer (docs/visual/SPEC.md) ============ */
+  *{box-sizing:border-box}
+  body{margin:0;padding:2.2rem 1.2rem 4rem;background:var(--bg);color:var(--fg);
+    font:16px/1.6 var(--font-body)}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font:700 1.7rem/1.25 var(--font-display);margin:0 0 .2rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 2rem;font-size:.95rem}
+  h2{font-size:1.05rem;margin:2.8rem 0 .9rem;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);font-weight:600}
+  h2 .n{color:var(--hi);margin-right:.35rem}
+  h3{font-size:.95rem;margin:1.6rem 0 .6rem;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:1.1rem 1.2rem;margin-bottom:.7rem}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .l2{font-weight:600;color:var(--l2)}
+  .l1{color:var(--l1)}
+  .ok{color:var(--ok);font-weight:600}
+  .bad{color:var(--bad);font-weight:600}
+  .muted{color:var(--muted)}
+  code{font:.88em var(--font-mono);background:var(--hiBg);color:var(--hi);
+    padding:.1rem .35rem;border-radius:4px}
+  b.mk{color:var(--mk);background:var(--mkBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  b.st{color:var(--st);background:var(--stBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  .key{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.84rem;color:var(--muted);
+    margin:.2rem 0 1.4rem;align-items:center;border:1px solid var(--line);
+    border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+  .lede{border-left:3px solid var(--hi);background:var(--hiBg);padding:.8rem 1rem;
+    border-radius:0 8px 8px 0;margin:.9rem 0}
+  .rule{border-left:3px solid var(--ok);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0;font-weight:600}
+  .warn{border-left:3px solid var(--bad);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .anchor{border-left:3px solid var(--l1);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .rev{margin-top:.5rem;padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--fg);cursor:pointer;font-size:.85rem;
+    transition:background var(--dur-1) var(--ease-out),border-color var(--dur-1) var(--ease-out)}
+  .rev:hover{background:var(--hiBg);border-color:var(--hi)}
+  .rev:focus-visible,.tts-play:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+  .ans{display:none;margin-top:.5rem;padding:.6rem .8rem;border-left:3px solid var(--ok);
+    background:var(--card);border-radius:0 8px 8px 0}
+  .ans.show{display:block}
+  .q{font-weight:600;margin-bottom:.1rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:.1rem .45rem;border-radius:5px;text-transform:uppercase;white-space:nowrap}
+  .big{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin:.4rem 0}
+  .stripe{border-top:2px dashed var(--line);margin:1.6rem 0 1.2rem}
+  .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
+    color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
+    border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  /* Verification (docs/mechanics/verification.md). .unv is the "?" marker sitting on the
+     form it doubts; .src is the page's source note. A page that asserts language facts
+     carries one or both — visualcheck fails it otherwise. */
+  .unv{color:var(--bad);font-weight:800;font-size:.9em;vertical-align:super;
+    line-height:1;cursor:help}
+  .src{font-size:.84rem;color:var(--muted);background:var(--card);
+    border-left:3px solid var(--muted);border-radius:0 8px 8px 0;
+    padding:.55rem .85rem;margin:1.6rem 0 .4rem}
+  .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
+    border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
+  .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--muted);font-size:.78rem;cursor:pointer}
+</style>
+<style>
+  /* Two-layer drill surface (SPEC.md → "Two-layer reveal"). Scoped to .vocab so the rest
+     of the page is untouched. A test mode hides the answer side and EVERYTHING that names
+     it — translation, gender, plural, the note — a mode that hides only one row type
+     leaks the rest (limba u01-deck defect, 2026-08-10). */
+  .vocab .modes{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+  .vocab .modes button{padding:.35rem .8rem;border:1px solid var(--line);border-radius:999px;
+    background:var(--bg);color:var(--muted);cursor:pointer;font-size:.82rem}
+  .vocab .modes button.on{background:var(--hi);border-color:var(--hi);color:var(--bg)}
+  .vocab th.au,.vocab td.au{width:2.9rem;padding-right:0}
+  .vocab td.au .tts-row{display:block;padding:0;border-bottom:0}
+  .vocab td.au .tts-label{display:none}
+  .vocab .cover{display:none;color:var(--muted);letter-spacing:.2em}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .val,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .val,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .val{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .l1-side .cover,
+  .vocab.m-l2l1 tr.row:not(.open) .ans-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .l2-side .cover,
+  .vocab.m-l1l2 tr.row:not(.open) .ans-side .cover{display:inline}
+  /* The audio must not out-speak the concealment: L2→L1 plays the prompt clip alone until
+     the row is revealed, and the paired clip after; L1→L2 has no prompt to offer, so its
+     button stays hidden until reveal. The fix is a second clip, not a hidden button
+     (limba learner, 2026-08-10). */
+  .vocab .au-sg{display:none}
+  .vocab.m-l2l1 tr.row:not(.open) .au-sg{display:block}
+  .vocab.m-l2l1 tr.row:not(.open) .au-pair{display:none}
+  .vocab.m-l1l2 tr.row:not(.open) td.au .tts-row{visibility:hidden}
+  .vocab.m-l2l1 tr.row,.vocab.m-l1l2 tr.row{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="tohub" href="index.html">← hub</a>
+<button class="themebtn" id="themeBtn" aria-label="Switch theme">theme: auto</button>
+<h1>Настоящее время и глаголы работы</h1>
+<p class="sub">Юнит 2 — present simple, окончание -s у he/she/it, и множественное число существительных. Материал готов, ещё не пройден.</p>
+<div class="key">
+  <span><span class="unv">?</span> непроверено — для этого пакета не настроен словарный адаптер (null adapter); каждый факт ниже — слово агента, пока не подтвердит репетитор</span>
+  <span><b class="mk">-s</b> — окончание, которое добавляется; основа слова остаётся без подсветки</span>
+</div>
+<div class="lede">
+  <div class="scroll">
+    <table>
+      <tr><th>Тема</th><th>Этот раздел</th><th>Охват</th><th>Отложено</th><th>Раздел цели</th></tr>
+      <tr>
+        <td>Система глагола</td>
+        <td>Present simple, утвердительная форма: все 6 лиц правильного глагола</td>
+        <td>полностью (6 из 6 форм)</td>
+        <td>прошедшее время → U05 · формы длительного действия ("is testing") → U09 · вопросы и отрицание (do-support) → U07</td>
+        <td>R W</td>
+      </tr>
+      <tr>
+        <td>Система существительного</td>
+        <td>Регулярное множественное число: -s / -es / -ies</td>
+        <td>полностью (3 правила из 3)</td>
+        <td>неправильные формы (mouse/mice) → U03 · неисчисляемые (information) → U06 · нулевой артикль перед множественным числом → U03</td>
+        <td>R W</td>
+      </tr>
+    </table>
+  </div>
+  <p style="margin:.8rem 0 0">В U01 вы научились строить простое предложение и ставить артикль. Здесь добавляется
+  <strong>сам глагол</strong>: как он выглядит в настоящем времени и почему ровно одна его форма отличается от
+  остальных. После этой страницы вы сможете описать регулярное рабочее действие — «Она тестирует макет каждый
+  спринт» — с правильным согласованием, и образовать множественное число обычного существительного. Пока вы
+  не сможете: говорить о прошлом (U05), сказать «сейчас происходит» через "is testing" (U09), задать вопрос
+  или построить отрицание (U07).</p>
+</div>
+
+<h2><span class="n">1</span> Вся система</h2>
+<div class="card">
+  <p>Present simple — это описание того, что происходит <strong>регулярно, обычно, всегда</strong>: «каждый
+  спринт», «каждую пятницу», «обычно». Весь набор форм правильного глагола в настоящем времени — это
+  <strong>шесть строк</strong>, и пять из них совпадают с базовой формой слова. Ниже — глагол
+  <span class="l2">design</span> <span class="l1">(проектировать)</span> целиком, без сокращений:</p>
+  <div class="scroll">
+    <table>
+      <tr><th>Лицо</th><th>Форма глагола</th><th>Пример</th></tr>
+      <tr><td>I <span class="l1">(я)</span></td><td class="l2">design</td><td><span class="l2">I design the interface.</span> <span class="l1">Я проектирую интерфейс.</span></td></tr>
+      <tr><td>you <span class="l1">(ты)</span></td><td class="l2">design</td><td><span class="l2">You design the interface.</span> <span class="l1">Ты проектируешь интерфейс.</span></td></tr>
+      <tr><td>we <span class="l1">(мы)</span></td><td class="l2">design</td><td><span class="l2">We design the interface.</span> <span class="l1">Мы проектируем интерфейс.</span></td></tr>
+      <tr><td>you <span class="l1">(вы)</span></td><td class="l2">design</td><td><span class="l2">You design the interface.</span> <span class="l1">Вы проектируете интерфейс.</span></td></tr>
+      <tr><td>they <span class="l1">(они)</span></td><td class="l2">design</td><td><span class="l2">They design the interface.</span> <span class="l1">Они проектируют интерфейс.</span></td></tr>
+      <tr><td><strong>he / she / it</strong> <span class="l1">(он / она / оно)</span></td><td class="l2">design<b class="mk">s</b></td><td><span class="l2">She design<b class="mk">s</b> the interface.</span> <span class="l1">Она проектирует интерфейс.</span></td></tr>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:.6rem">Посмотрите на средний столбец сверху вниз: пять раз одно и то же
+  слово, и один раз то же слово с добавленным окончанием. Пустого места в пяти верхних строках нет — там
+  просто базовая форма, и это и есть их форма, а не «отсутствие окончания».</p>
+
+  <h3>Кто такой «he / she / it»</h3>
+  <p>Строка <span class="l2">he / she / it</span> — это не только эти три слова. Это <strong>любое
+  подлежащее в единственном числе, которое можно заменить на he, she или it</strong>: имя
+  (<span class="l2">Marina</span>), должность (<span class="l2">the designer</span> <span class="l1">— дизайнер</span>),
+  вещь (<span class="l2">the button</span> <span class="l1">— кнопка</span>), и — это важная ловушка —
+  <strong>группа людей, названная одним словом в единственном числе</strong>:
+  <span class="l2">the team</span> <span class="l1">(команда)</span> — это <span class="l2">it</span>, а не
+  <span class="l2">they</span>. Слова <span class="l2">every</span> <span class="l1">(каждый)</span> и
+  <span class="l2">each</span> <span class="l1">(каждый)</span> тоже всегда дают единственное число:
+  <span class="l2">every designer</span> = <span class="l2">it</span>.</p>
+
+  <h3>Одно и то же окончание — в двух системах</h3>
+  <p>То же самое <span class="l2">-s</span> стоит на конце существительного во множественном числе
+  (<span class="l2">button → buttons</span>). И пишется оно по одним и тем же правилам. Это одна таблица
+  правописания, а не две:</p>
+  <div class="scroll">
+    <table>
+      <tr><th>Чем кончается слово</th><th>Что добавляем</th><th>Глагол (he / she / it)</th><th>Существительное (мн. число)</th></tr>
+      <tr>
+        <td>шипящий или свистящий звук: -s, -x, -z, -ch, -sh</td>
+        <td class="l2">-es</td>
+        <td><span class="l2">fix → fix<b class="mk">es</b></span> <span class="l1">(исправлять)</span>, <span class="l2">watch → watch<b class="mk">es</b></span> <span class="l1">(смотреть)</span></td>
+        <td><span class="l2">box → box<b class="mk">es</b></span> <span class="l1">(поле, коробка)</span>, <span class="l2">search → search<b class="mk">es</b></span> <span class="l1">(поиск)</span></td>
+      </tr>
+      <tr>
+        <td>согласная + y</td>
+        <td class="l2">y меняется на -ies</td>
+        <td><span class="l2">try → tr<b class="mk">ies</b></span> <span class="l1">(пробовать)</span></td>
+        <td><span class="l2">category → categor<b class="mk">ies</b></span> <span class="l1">(категория)</span></td>
+      </tr>
+      <tr>
+        <td>гласная + y — <strong>не</strong> тот случай</td>
+        <td class="l2">-s</td>
+        <td><span class="l2">play → play<b class="mk">s</b></span> <span class="l1">(играть)</span></td>
+        <td><span class="l2">key → key<b class="mk">s</b></span> <span class="l1">(ключ)</span></td>
+      </tr>
+      <tr>
+        <td>-o (у глаголов)</td>
+        <td class="l2">-es</td>
+        <td><span class="l2">go → go<b class="mk">es</b></span> <span class="l1">(идти, ходить)</span>, <span class="l2">do → do<b class="mk">es</b></span> <span class="l1">(делать)</span></td>
+        <td>у существительных на -o правило <strong>не</strong> то же самое → U03</td>
+      </tr>
+      <tr>
+        <td>всё остальное</td>
+        <td class="l2">-s</td>
+        <td><span class="l2">build → build<b class="mk">s</b></span> <span class="l1">(строить, собирать)</span>, <span class="l2">read → read<b class="mk">s</b></span> <span class="l1">(читать)</span></td>
+        <td><span class="l2">button → button<b class="mk">s</b></span> <span class="l1">(кнопка)</span>, <span class="l2">screen → screen<b class="mk">s</b></span> <span class="l1">(экран)</span></td>
+      </tr>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:.6rem">Правая часть таблицы — это весь T-0007 (регулярное множественное
+  число) целиком: три правила, и четвёртой строки у них нет. Единственное место, где две системы расходятся —
+  слова на <span class="l2">-o</span>: у глаголов там всегда <span class="l2">-es</span>, а у существительных
+  бывает и так, и так (photos, но heroes), поэтому существительные на -o отложены в U03 и сегодня не
+  спрашиваются.</p>
+</div>
+
+<div class="card">
+  <h3>Процедура, если идти вперёд — от слова к форме</h3>
+  <p>Вы всегда начинаете с базовой формы глагола, которая лежит у вас в памяти. Три шага, в этом порядке:</p>
+  <ol style="margin:.3rem 0 0;padding-left:1.2rem">
+    <li><strong>Кто подлежащее?</strong> Можно заменить на he, she или it? Если <strong>нет</strong> (I, you, we, they, «дизайнеры» во множественном числе) — базовая форма, вы закончили.</li>
+    <li>Если <strong>да</strong> — посмотрите на <strong>последние буквы</strong> глагола.</li>
+    <li>Шипящий/свистящий конец или -o → <span class="l2">-es</span>; согласная + y → <span class="l2">-ies</span>; во всех остальных случаях → <span class="l2">-s</span>.</li>
+  </ol>
+</div>
+
+<h2><span class="n">2</span> Что нужно запомнить</h2>
+<div class="rule">
+  <span class="cnt">7</span> фактов, а не 72 клетки. Двенадцать сегодняшних глаголов × шесть лиц — это
+  72 формы, но запоминать нужно вот что:
+  <ol style="margin:.5rem 0 0;padding-left:1.2rem;font-weight:400">
+    <li>Окончание получает <strong>только</strong> he / she / it. Остальные пять лиц — базовая форма.</li>
+    <li>Шипящий/свистящий конец или -o → <code>-es</code>.</li>
+    <li>Согласная + y → <code>-ies</code>.</li>
+    <li>Всё остальное → <code>-s</code>.</li>
+    <li>Ломают правило ровно три глагола: <span class="l2">be</span> <span class="l1">(быть)</span> — am / is / are;</li>
+    <li><span class="l2">have</span> <span class="l1">(иметь)</span> → <span class="l2">ha<b class="st">s</b></span>, а не «haves»;</li>
+    <li><span class="l2">do</span> <span class="l1">(делать)</span> → <span class="l2">do<b class="mk">es</b></span> — пишется по правилу 2, но читается не так, как ожидается.</li>
+  </ol>
+  <p style="font-weight:400;margin:.6rem 0 0">Правила 2–4 работают <strong>сразу в двух системах</strong> —
+  и для глаголов, и для множественного числа существительных. Поэтому множественное число сегодня не
+  добавляет ни одного нового факта к этим семи: оно пользуется теми же тремя строками.</p>
+  <p style="font-weight:400;margin:.6rem 0 0">Отдельно стоит сказать про <em>неправильные</em> глаголы.
+  Пять из сегодняшних двенадцати неправильные: <span class="l2">write, understand, go, read, build</span>.
+  Но неправильные они <strong>только в прошедшем времени</strong> (это U05). В настоящем времени они ведут
+  себя как все: <span class="l2">write<b class="mk">s</b></span>, <span class="l2">understand<b class="mk">s</b></span>,
+  <span class="l2">read<b class="mk">s</b></span>, <span class="l2">build<b class="mk">s</b></span>,
+  <span class="l2">go<b class="mk">es</b></span>. То есть сегодня «неправильный глагол» не значит «ещё один
+  факт на запоминание».</p>
+</div>
+
+<h2><span class="n">3</span> Разница с русским/украинским</h2>
+<div class="anchor">
+  В русском <strong>окончание меняется у каждого лица</strong>: я дела<strong>ю</strong>, ты
+  дела<strong>ешь</strong>, он дела<strong>ет</strong>, мы дела<strong>ем</strong>, вы дела<strong>ете</strong>,
+  они дела<strong>ют</strong> — шесть разных окончаний, и по окончанию видно, кто действует, даже без
+  подлежащего («делаю» = «я делаю»). В английском окончание одно, и только у одного лица; кто действует,
+  говорит <strong>подлежащее</strong>, а не глагол (<code>docs/reference/transfer.md</code> § Morphology traps).
+  Украинский здесь устроен так же, как русский, отдельной опоры не даёт — не наслаиваем.
+</div>
+<div class="warn">
+  <strong>Ловушка: пропуск окончания, а не неправильное окончание.</strong> Ваш инстинкт говорит, что
+  окончание — это часть богатой системы; а раз пять английских форм голые, голая форма начинает ощущаться
+  как «нормальная везде». Поэтому ошибка почти всегда одна и та же —
+  <code>VRB-3SG</code>: ✗ "The team build a screen" вместо "The team build<b class="mk">s</b> a screen".
+  Эта ошибка у вас уже была записана <strong>дважды</strong> — до того, как тему вообще объясняли, оба раза
+  с подлежащим <span class="l2">the team</span>. Обратной ошибки (лишнее -s у I / we / they) в ваших записях
+  нет ни разу, и по устройству ваших языков её и не ожидается.
+</div>
+
+<h2><span class="n">4</span> Примеры с разбором</h2>
+<div class="card">
+  <p class="big">The team ship<b class="mk">s</b> a new feature every Friday.</p>
+  <p class="l1">Команда выпускает новую функцию каждую пятницу.</p>
+  <p class="muted">Шаг 1: подлежащее <span class="l2">the team</span> — одно слово, единственное число, это
+  <span class="l2">it</span> → окончание нужно. Шаг 2–3: <span class="l2">ship</span> кончается на обычную
+  согласную → <code>-s</code>. «Каждую пятницу» — это регулярное действие, ровно то, для чего существует
+  present simple.</p>
+
+  <p class="big" style="margin-top:1.3rem">I design the layout, and she test<b class="mk">s</b> it.</p>
+  <p class="l1">Я проектирую макет, а она его тестирует.</p>
+  <p class="muted">Два глагола в одном предложении, и разница между ними — только подлежащее.
+  <span class="l2">I</span> → шаг 1 отвечает «нет», базовая форма <span class="l2">design</span>, и это
+  законченная, правильная форма. <span class="l2">she</span> → шаг 1 отвечает «да», обычный конец →
+  <span class="l2">test<b class="mk">s</b></span>.</p>
+
+  <p class="big" style="margin-top:1.3rem">The designer fix<b class="mk">es</b> two bug<b class="mk">s</b> and write<b class="mk">s</b> three note<b class="mk">s</b>.</p>
+  <p class="l1">Дизайнер исправляет две ошибки и пишет три заметки.</p>
+  <p class="muted">Здесь видно, что окончание одно, а систем две. <span class="l2">fix</span> кончается на -x
+  → <code>-es</code>; <span class="l2">write</span> — обычный конец → <code>-s</code>. А
+  <span class="l2">bug</span> <span class="l1">(ошибка, баг)</span> и <span class="l2">note</span>
+  <span class="l1">(заметка)</span> получают то же <code>-s</code>, но уже за множественное число, а не за
+  лицо. Оба глагола относятся к одному подлежащему <span class="l2">the designer</span>, поэтому окончание
+  нужно обоим — второй глагол его не «наследует» автоматически, его нужно поставить самому.</p>
+</div>
+
+<h2><span class="n">5</span> Упомянуто, но не пройдено</h2>
+<div class="card">
+  <ul style="margin:.3rem 0 0;padding-left:1.2rem">
+    <li><strong>Прошедшее время</strong> — <span class="l2">designed</span>, <span class="l2">wrote</span>,
+    <span class="l2">went</span>. Именно там сегодняшние неправильные глаголы становятся по-настоящему
+    неправильными. → <strong>U05</strong> (T-0011, T-0012).</li>
+    <li><strong>"is testing" — форма длительного действия.</strong> Вы её уже писали, и её уже исправляли
+    в прошлой сессии: «The team testing» → «The team <span class="l2">is</span> testing». Это <em>не</em>
+    сегодняшняя тема и не другой способ сказать то же самое: <span class="l2">she tests</span> — «вообще,
+    регулярно», <span class="l2">she is testing</span> — «прямо сейчас, в этот момент». Сегодня нужна первая.
+    Разбор второй → <strong>U09</strong> (T-0014).</li>
+    <li><strong>Неправильное множественное число</strong> — <span class="l2">mouse → mice</span>
+    <span class="l1">(мышь → мыши)</span>. Закрытый короткий список, который не выводится из правил выше. →
+    <strong>U03</strong> (T-0008).</li>
+    <li><strong>Вопросы и отрицание</strong> — <span class="l2">Does she test it? / She does not test it.</span>
+    Обратите внимание: окончание там «переезжает» на <span class="l2">does</span>, а сам глагол становится
+    голым. Пока этого не делаем. → <strong>U07</strong> (T-0015, T-0016).</li>
+    <li><strong>Неисчисляемые существительные</strong> — <span class="l2">information</span>,
+    <span class="l2">feedback</span>: у них множественного числа просто нет, так что правила выше к ним не
+    применяются. → <strong>U06</strong> (T-0009).</li>
+  </ul>
+  <p class="muted" style="margin-top:.6rem">Таблица из шести строк в разделе 1 — это вся утвердительная форма
+  present simple для правильного глагола, целиком. Пять пунктов выше — соседние ветки, а не дырки в том, что
+  вы сегодня прошли.</p>
+</div>
+
+<h2><span class="n">6</span> Ваша очередь</h2>
+<div class="card">
+  <div class="q">1. Новый глагол, которого нет больше нигде на этой странице:
+  <strong>to publish</strong> <span class="l1">— публиковать</span>. Поставьте его в нужную форму:
+  "Marina ___ an article every Friday."</div>
+  <button class="rev">Показать</button>
+  <div class="ans"><span class="l2">publish<b class="mk">es</b></span> — шаг 1: <b>Marina</b>
+  это she → окончание нужно. Шаг 3: слово кончается на -sh, это шипящий конец → <code>-es</code>, а не просто
+  -s. Та же процедура сработала на слове, которого вы раньше не видели.</div>
+</div>
+<div class="card">
+  <div class="q">2. <strong>to upload</strong> <span class="l1">— загружать (на сервер)</span>:
+  "Every designer ___ the file before the review."</div>
+  <button class="rev">Показать</button>
+  <div class="ans"><span class="l2">upload<b class="mk">s</b></span> — ловушка в подлежащем.
+  <b>Every</b> значит «каждый», и по-русски за ним легко услышать множественное число, но в
+  английском это всегда единственное: «каждый дизайнер» = it → окончание нужно. Конец обычный → просто
+  <code>-s</code>.</div>
+</div>
+<div class="card">
+  <div class="q">3. Множественное число. Новое слово: <strong>story</strong>
+  <span class="l1">— история; в рабочем контексте «пользовательская история»</span>.
+  "This sprint has three ___."</div>
+  <button class="rev">Показать</button>
+  <div class="ans"><span class="l2">stor<b class="mk">ies</b></span> — перед y стоит согласная r, значит
+  вторая строка таблицы правописания: y уходит, приходит <code>-ies</code>. Правило для существительных и для
+  глаголов здесь буквально одно и то же.</div>
+</div>
+
+<h2><span class="n">7</span> Правило на запоминание</h2>
+<div class="rule">
+  Окончание получает только <strong>he / she / it</strong>. Шипящий конец или -o → <code>-es</code>;
+  <strong>согласная</strong> + y → <code>-ies</code>; всё остальное → <code>-s</code>. Те же три строки —
+  и для множественного числа существительных.
+  <p class="muted" style="font-weight:400;margin:.5rem 0 0">Проверено на самых трудных строках таблицы выше:
+  «watch» кончается на шипящее ch → watch<b class="mk">es</b> ✓; «try» — согласная r перед y →
+  tr<b class="mk">ies</b> ✓; «play» — перед y гласная a, а не согласная, поэтому правило про -ies не
+  срабатывает и слово падает в «всё остальное» → play<b class="mk">s</b> ✓; «go» кончается на -o →
+  go<b class="mk">es</b> ✓. Более короткая формулировка «перед y всегда -ies» здесь бы сломалась именно на
+  слове «play».</p>
+</div>
+
+<div class="src">
+  У этого пакета нет словарного адаптера (<code>packs/en/pack.md</code> § Dictionary reachability — null
+  adapter). Поэтому каждый английский факт на этой странице — формы глаголов, правила правописания, значения
+  слов, примеры предложений — <strong>непроверен (unverified)</strong>: это слово агента, не подтверждённое
+  словарём или репетитором (<code>docs/mechanics/verification.md</code>). Сами правила — это стандартная,
+  хорошо задокументированная грамматика EFL (present simple, согласование третьего лица, регулярное
+  множественное число), а не спорный частный случай, так что практический риск невелик — но пометка
+  <span class="unv">?</span> всё равно стоит на каждой строке словаря ниже, по общему правилу разметки.
+  Отдельно помечено как незакрытое: поведение существительных на -o (photos / heroes) в этом юните не
+  разбиралось и сознательно отложено в U03. Если сомневаетесь в любой пометке — скажите, я проверю прежде,
+  чем менять оценку.
+</div>
+
+<div class="stripe"></div>
+
+<h2><span class="n">8</span> Слова</h2>
+<p class="muted">На этой странице нет звука — у этого пространства нет возможности аудио/синтеза речи
+(<code>audio: false</code>, <code>tts: none</code>, <code>docs/reference/profile.md</code>), так что это
+не пропущенный шаг, а честное ограничение окружения.</p>
+<div class="vocab m-browse" id="vocab">
+  <div class="modes">
+    <button class="on" data-m="m-browse">все сразу</button>
+    <button data-m="m-l2l1">английский → русский</button>
+    <button data-m="m-l1l2">русский → английский</button>
+  </div>
+  <div class="scroll">
+    <table>
+      <tr><th>английский</th><th>русский</th><th>форма he/she/it, пример, заметка</th></tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">design<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">проектировать, разрабатывать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>designs</b> — "She <b>designs</b> design systems." Уже есть в вашем словаре как существительное «дизайн»; одно и то же слово работает и как существительное, и как глагол, ничего не меняя в написании.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">test<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">тестировать, проверять</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>tests</b> — "She <b>tests</b> the layout every sprint." Это ровно та фраза, которую вы должны уметь написать после этого юнита.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">click<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">нажимать, кликать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>clicks</b> — "The user <b>clicks</b> the button." Знакомое заимствование; обычный конец, обычное окончание.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">build<span class="unv">?</span> <em>(virr)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">строить, собирать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>builds</b> — "The team <b>builds</b> a screen." past: built; pp: built — неправильный, но только в прошедшем времени. Именно на этом глаголе у вас уже была ошибка «The team build».</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">write<span class="unv">?</span> <em>(virr)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">писать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>writes</b> — "He <b>writes</b> the documentation." past: wrote; pp: written.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">understand<span class="unv">?</span> <em>(virr)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">понимать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>understands</b> — "She <b>understands</b> the design system." past: understood; pp: understood.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">go<span class="unv">?</span> <em>(virr)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">идти, ходить</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>goes</b> — "The project <b>goes</b> to review on Friday." past: went; pp: gone. Кончается на -o, поэтому -es: это правило, а не исключение.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">read<span class="unv">?</span> <em>(virr)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">читать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>reads</b> — "Every designer <b>reads</b> the documentation." past: read; pp: read — пишется одинаково во всех трёх формах, а произносится по-разному.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">ship<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">выпускать, релизить</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>ships</b> — "The team <b>ships</b> a new feature every Friday." Рабочее слово: «выкатить в продакшн», не «отправить кораблём».</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">review<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">просматривать, рецензировать</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>reviews</b> — "She <b>reviews</b> the pull request." То же слово работает и как существительное: "a design <b>review</b>" — обсуждение работы.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">fix<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">исправлять, чинить</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>fixes</b> — "He <b>fixes</b> two bugs." Кончается на -x, поэтому -es. Одно из двух сегодняшних слов, где окончание длиннее одной буквы.</span><span class="cover">•••</span></td>
+      </tr>
+      <tr class="row">
+        <td class="l2-side"><span class="val l2">try<span class="unv">?</span> <em>(v)</em></span><span class="cover">•••</span></td>
+        <td class="l1-side"><span class="val l1">пробовать, пытаться</span><span class="cover">•••</span></td>
+        <td class="ans-side"><span class="val">he/she/it <b>tries</b> — "She <b>tries</b> a new tool." Согласная r перед y, поэтому y уходит и приходит -ies.</span><span class="cover">•••</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+<script>
+  /* Theme switcher: auto (system) → light → dark. */
+  (function(){
+    var b=document.getElementById("themeBtn"),order=["","light","dark"],i=0;
+    b.addEventListener("click",function(){
+      i=(i+1)%order.length;
+      if(order[i]) document.documentElement.setAttribute("data-theme",order[i]);
+      else document.documentElement.removeAttribute("data-theme");
+      b.textContent="theme: "+(order[i]||"auto");
+    });
+  })();
+</script>
+<script>
+  /* Two-layer drill surface: mode filter + per-row reveal. Playback stops on every state
+     change — a clip started before a reveal toggles keeps speaking the answer after the
+     text is gone (limba, 2026-08-10). */
+  (function(){
+    var box=document.getElementById("vocab");
+    if(!box) return;
+    function hush(scope){
+      scope.querySelectorAll("audio").forEach(function(a){a.pause();a.currentTime=0;});
+      scope.querySelectorAll(".tts-play").forEach(function(b){b.classList.remove("on");b.textContent="▶";});
+    }
+    box.querySelectorAll(".modes button").forEach(function(b){
+      b.addEventListener("click",function(){
+        box.className="vocab "+b.dataset.m;
+        box.querySelectorAll(".modes button").forEach(function(o){o.classList.toggle("on",o===b);});
+        box.querySelectorAll("tr.row").forEach(function(r){r.classList.remove("open");});
+        hush(box);
+      });
+    });
+    box.querySelectorAll("tr.row").forEach(function(r){
+      r.addEventListener("click",function(ev){
+        if(box.classList.contains("m-browse"))return;
+        if(ev.target.closest(".tts-play"))return;
+        r.classList.toggle("open");
+        hush(r);
+      });
+    });
+  })();
+</script>
+<script>
+  /* Per-item reveal for guided attempts (.rev/.ans pairs). */
+  document.querySelectorAll('.rev').forEach(function(b){
+    b.addEventListener('click',function(){
+      var a=b.nextElementSibling;
+      a.classList.toggle('show');
+      b.textContent=a.classList.contains('show')?'Скрыть':'Показать';
+    });
+  });
+</script>
+<!-- No player script here: tts-embed.mjs appends it once, behind its own marker. -->
+</body>
+</html>
