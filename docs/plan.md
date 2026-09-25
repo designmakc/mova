@@ -105,6 +105,7 @@ runs clean. Target: U12 covered — the goal's endgame.
 > them. Every bullet here carries the routing annotation like any open milestone.
 
 - Revisit `packs/en/dictionary.mjs` once network reachability is confirmed stable (see `packs/en/pack.md` § Dictionary reachability) — 🟠 Med · 🔧
+- U06 pressure: countability (T-0009) and verb+preposition (T-0020) hit 4× in free production across SES-003/004, ahead of their unit. Resequencing was offered to the learner on 2026-09-25 and **declined — stay on plan, U03 next**. Keep the tally; `review` re-weighs it with more data, and does not re-ask before then — 🟢 Low · 🧠
 
 ## Standing rules across all phases
 
