@@ -79,7 +79,7 @@ article most of the time, and can skim a short technical passage for gist. Targe
 covered.
 
 - [x] U01 — articles and basic sentence structure
-- [ ] U02 — present tense and everyday verbs — 🟢 Med · 🧠
+- [x] U02 — present tense and everyday verbs — covered 2026-09-25 (SES-003 taught, SES-004 measured and closed).
 - [ ] U03 — reading short technical text; adjectives — 🟢 Med · 🧠
 - [ ] Phase 1 gate: scenario 1 re-run, scored against its probe — 🟡 Low · ⚙️
 

@@ -40,7 +40,7 @@ status: covered 2026-09-13
   visual aids (the deck, `work/visuals/deck.html`) carry what would otherwise be spoken.
 
 ## U02 — Present tense and everyday verbs (A1)
-status: pending
+status: covered 2026-09-25
 - **Grammar:** present simple (T-0010); third-person singular -s (the ONE marked form in
   an otherwise unmarked paradigm — see transfer.md); regular noun plurals -s/-es/-ies
   (T-0007).

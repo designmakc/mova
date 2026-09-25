@@ -27,8 +27,8 @@
 | Date | Page | Teaches | Units | Kind |
 | --- | --- | --- | --- | --- |
 | 2026-09-12 | [Articles & basic sentences](2026-09-12_u01-articles-svo.html) | Teaches a/an/the by definiteness and sound, basic SVO, 15 product-design nouns | U01 | teach |
-| — | [Настоящее время и глаголы работы](2026-09-22_u02-present-simple.html) | Built — present simple, окончание -s у he/she/it, те же правила множественного числа, 12 рабочих глаголов | U02 | teach |
-| — | [Слова про слова: грамматические термины](2026-09-25_u00-grammar-terms.html) | Built — русские названия частей речи и членов предложения с украинскими дубликатами, на ваших же примерах | U00 | reference |
+| 2026-09-22 | [Настоящее время и глаголы работы](2026-09-22_u02-present-simple.html) | Present simple, окончание -s у he-she-it, те же правила множественного числа и 12 рабочих глаголов | U02 | teach |
+| 2026-09-25 | [Слова про слова: грамматические термины](2026-09-25_u00-grammar-terms.html) | Русские названия частей речи и членов предложения с украинскими дубликатами, на ваших же примерах | U00 | reference |
 
 <!-- Date is the day the page REACHED THE LEARNER, `YYYY-MM-DD` — and `—` while the page is
      built but not yet taught. Rows are written at build time, so `—` is where most rows
@@ -70,6 +70,31 @@
      learner, which is exactly why it can be as long as it needs to be. It exists because
      the Teaches cell was doing both jobs and grew 25× in three weeks until one card ran
      several screens tall on the hub (upstream, 2026-08-19). -->
+
+### 2026-09-22_u02-present-simple.html
+
+Delivered 2026-09-22 (SES-003) as a published artifact link, with the four chat beats
+(placement, the load as 7 facts, the one trap, the link) given live. The Date column holds
+that first delivery, per its own definition — the day the page reached the learner. It was
+then **reinforced across 2026-09-24/25 (SES-004)**: the readiness probe confirmed the page
+had been read (3/3), the graded check and the repair loop were run off it, and section 8's
+word list is where the 12 U02 verbs were finally read into `state/vocab.md` (V-0016…V-0026
+plus the verb sense folded into V-0001). The column takes one date and the reinforcement is
+not a second delivery, so it is recorded here rather than by widening the schema.
+
+Known gap this page leaves open, deliberately: nouns in -o (photos / heroes), deferred to
+U03. Everything on it is unverified (null dictionary adapter) and says so on the page.
+
+### 2026-09-25_u00-grammar-terms.html
+
+Built and taught the same day (SES-004), walked through in chat after delivery. The page
+answers the metalanguage finding recorded in `docs/reference/profile.md` § Measured, not
+assumed: 14 terms in Russian + Ukrainian + a plain definition + an example from this
+learner's own error history, two worked разборы, interactive identification items. Building
+it surfaced that **предлог, прилагательное and лицо had been used on this learner for three
+sessions without ever being named**. U00 is the cheat-sheet shelf, not a unit — this page
+moves no unit counter. New terms this workspace starts using should be added here rather
+than explained again from scratch.
 
 ## Retired claims
 

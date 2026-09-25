@@ -88,6 +88,24 @@ meaning together on the ✗ side, and `→ current` is the target-language repai
   for now rather than forcing ART-MISS's omission logic onto a different word class; flagged
   here as a real gap, not a considered ruling — a PREP-MISS/PREP-CHOICE split should be
   made if omission cases keep recurring.
+- **VRB-3SG covers BOTH directions, ruled SES-004 (2026-09-24).** The code's own row reads
+  "third-person -s dropped" — omission only — and SES-004's graded check produced the other
+  two shapes on the same paper: the ending ADDED after a plural subject ("We designers" for
+  "We design", item 4) and no finite form built at all ("The designer to finish", item 7),
+  alongside the ordinary omission (item 5). Nothing in the table held either. The ruling is
+  to widen this one code rather than open VRB-3SG-OVER, because the repair-loop diagnosis
+  found a single cause under all three: the subject decision is not being made, and the
+  direction of the resulting error is noise. A one-code tally therefore says something true
+  ("the agreement decision is not running"), where a split would have scattered one mechanism
+  across three lines. Reconsider only if over-marking ever appears WITHOUT under-marking in
+  the same learner-week — that would be a different mechanism and would earn its own code,
+  per "Sibling zones are not a hierarchy" below.
+- **PREP's omission/misselection gap now has one real instance of each (SES-004,
+  2026-09-24).** ERR-006 flagged the split as missing with only omissions in hand; SES-004's
+  free production supplied the first misselection — "The team works of a new feature" for
+  "works on", a wrong preposition chosen rather than a linker dropped (ERR-013). Still coded
+  PREP, and the gap is still open — but it is now a measured gap rather than a predicted one,
+  and a PREP-MISS/PREP-CHOICE split has the evidence a taxonomy change should wait for.
 - **VRB-AUX added SES-002 (2026-09-13)** for a dropped copula/auxiliary in a continuous
   construction ("The team testing" for "The team is testing") — distinct from VRB-3SG
   (a wrong verb form once one is produced) and from VRB-TENSE (a wrong tense/aspect

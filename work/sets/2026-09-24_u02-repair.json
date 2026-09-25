@@ -1,0 +1,9 @@
+{
+  "title": "U02 repair-loop retest — the third-person decision, three new items",
+  "note": "Same-day, post-key. Three items the learner had not seen, targeting the one diagnosed cause (the subject decision not being made), not the three failed items.",
+  "items": [
+    { "id": "1", "ask": "Поставьте глагол в нужную форму: \"The user (click) ___ the button.\"", "answer": "clicks" },
+    { "id": "2", "ask": "Поставьте глагол в нужную форму: \"Designers (write) ___ the documentation.\"", "answer": "write" },
+    { "id": "3", "ask": "Поставьте глагол в нужную форму: \"Every team (use) ___ a design system.\"", "answer": "uses" }
+  ]
+}

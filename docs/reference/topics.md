@@ -55,7 +55,7 @@ early error traffic here.
 
 | ID | Aspect | Unit | Exam | Status |
 | --- | --- | --- | --- | --- |
-| T-0007 | Regular plurals (-s / -es / -ies) | U02 | R W | pending |
+| T-0007 | Regular plurals (-s / -es / -ies) | U02 | R W | covered 2026-09-22 |
 | T-0008 | Irregular plurals (mouse/mice, analysis/analyses) | U03 | R | pending |
 | T-0009 | Count vs mass nouns (advice, information) | U06 | R W | pending |
 
@@ -63,7 +63,7 @@ early error traffic here.
 
 | ID | Aspect | Unit | Exam | Status |
 | --- | --- | --- | --- | --- |
-| T-0010 | Present simple and third-person -s | U02 | R W | pending |
+| T-0010 | Present simple and third-person -s | U02 | R W | covered 2026-09-22 |
 | T-0011 | Past simple, regular -ed | U05 | W | pending |
 | T-0012 | Irregular verb principal parts (packs/en's required_fact) | U05 | W | pending |
 | T-0013 | Present perfect vs past simple — the aspect-mapping gap | U09 | W | pending |

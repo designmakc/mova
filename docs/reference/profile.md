@@ -88,7 +88,15 @@ retro verb routes them here).
   generation from the general Cyrillic/Latin homoglyph risk, not yet measured against this
   learner's actual mis-keys.
 - **How this workspace talks to you** is an engine rule, not a per-learner setting —
-  `docs/mechanics/narration.md` owns it. No departure requested; the default applies.
+  `docs/mechanics/narration.md` owns it. **One departure, requested by the learner and
+  standing from 2026-09-24 (SES-004):** every grammatical term this workspace uses — in
+  chat, on a page, in a marked sheet, in a correction — is given with its **Ukrainian
+  equivalent in brackets** on first use in that surface: «глагол (дієслово)»,
+  «существительное (іменник)», «подлежащее (підмет)». The learner asked for this in those
+  words («Дублируй в скобках названия на украинском»); the measurement behind it is below,
+  under *Measured, not assumed*. The glossary page
+  `work/visuals/2026-09-25_u00-grammar-terms.html` is the reference this instruction points
+  at, and U00 is where later terms are added.
 - **Weak point, self-reported:** poor at memorising vocabulary and its spelling — see the
   intake snapshot (`docs/snapshots/2026-09-12_intake.md`) for the learner's own words. This
   is why `packs/en/notes.md` ranks SPELL-MEM as a high-traffic error code for this learner
@@ -99,7 +107,22 @@ retro verb routes them here).
 
 ## Measured, not assumed
 
-Nothing yet — this instance has not measured anything about its learner.
+- **The Russian grammatical metalanguage is not reliably held — the terms the rules were
+  wrapped in were themselves opaque** (SES-004, 2026-09-24; corroborated by SES-001–SES-003
+  and ERR-001…ERR-014). Volunteered mid-sitting, unprompted, verbatim: *«Я думаю что мне
+  сложно строить предложения и запоминать правила изза того что я не понимаю что такое
+  глагол или другие русские названия. Дублируй в скобках названия на украинском. Іменик
+  дієслова»*. What was measured: three sessions of grammar instruction had been delivered in
+  terms — «глагол», «существительное», «подлежащее» — that the learner could not resolve,
+  and a stock-take that same sitting found **предлог, прилагательное and лицо used on this
+  learner for three sessions without ever being named**. This is a plausible partial
+  mechanism for the standing pattern in the error log: rules land when demonstrated on
+  concrete examples (SES-001's split retest, SES-004's repair loop, both ~80–100%) and are
+  not retrievable when stated as rules (G-0001 missing in production in three consecutive
+  sittings). It is a contributing explanation, not a proven cause — nothing has yet
+  re-measured a rule-stated prompt after the glossary. Response the same sitting: the U00
+  glossary page (14 terms, Russian + Ukrainian + plain definition + an example from this
+  learner's own history), and the standing narration departure recorded above.
 
 **The accretion convention:** bullets arrive **dated, with the incident attached**
 (`SES-NNN` / `ERR-NNN` / snapshot), stating what was measured and how. The retro verb
