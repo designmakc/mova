@@ -1,0 +1,500 @@
+<!-- mova:instance -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23945a00'/%3E%3Ctext%20x='16'%20y='16.5'%20text-anchor='middle'%20dominant-baseline='central'%20font-family=%22Georgia,'Iowan%20Old%20Style',Palatino,serif%22%20font-size='22'%20font-weight='700'%20fill='%23f8f5ef'%3Em%3C/text%3E%3C/svg%3E">
+<title>Слова про слова — грамматические термины (RU / UA)</title>
+<style>
+  /* ============ TOKEN BLOCK — keys are the contract, values are the pinned theme ==== */
+  :root{
+    /* CORE */
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    /* LANGUAGE */
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    /* MORPHEME — delete if the pack declares inflection: false */
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+    /* GENDER — English (packs/en) declares no genders; no tokens needed */
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+      --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+      --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+      --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+      --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+      --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+      --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+      --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+      --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:oklch(20% 0.010 280); --fg:oklch(92% 0.008 280); --muted:oklch(68% 0.012 280);
+    --line:oklch(32% 0.012 280); --card:oklch(25% 0.012 280);
+    --ok:oklch(78% 0.13 155); --bad:oklch(74% 0.14 25);
+    --hi:oklch(80% 0.11 80); --hiBg:oklch(30% 0.045 80);
+    --l1:oklch(75% 0.10 250);  --l1Bg:oklch(30% 0.050 250);
+    --l2:oklch(75% 0.11 40);   --l2Bg:oklch(28% 0.050 40);
+    --new:oklch(80% 0.10 310); --newBg:oklch(29% 0.050 310);
+    --mk:oklch(80% 0.11 310);  --mkBg:oklch(31% 0.060 310);
+    --st:oklch(80% 0.09 200);  --stBg:oklch(28% 0.050 200);
+  }
+  :root[data-theme="light"]{
+    --bg:oklch(97% 0.008 85); --fg:oklch(24% 0.012 85); --muted:oklch(50% 0.014 85);
+    --line:oklch(88% 0.010 85); --card:oklch(99% 0.004 85);
+    --ok:oklch(52% 0.13 155); --bad:oklch(52% 0.17 27);
+    --hi:oklch(52% 0.12 70); --hiBg:oklch(95% 0.035 85);
+    --l1:oklch(48% 0.14 250);  --l1Bg:oklch(94% 0.030 250);
+    --l2:oklch(48% 0.14 35);   --l2Bg:oklch(94% 0.030 40);
+    --new:oklch(46% 0.14 310); --newBg:oklch(94% 0.035 310);
+    --mk:oklch(45% 0.15 310);  --mkBg:oklch(93% 0.045 310);
+    --st:oklch(45% 0.10 200);  --stBg:oklch(93% 0.040 200);
+  }
+  :root{
+    --font-display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --font-body:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+    --space-5:24px; --space-6:40px; --space-7:64px;
+    --ease-out:cubic-bezier(.16,1,.3,1); --ease-in:cubic-bezier(.7,0,.84,0);
+    --ease-in-out:cubic-bezier(.65,0,.35,1); --dur-1:120ms; --dur-2:240ms;
+  }
+  /* ============ COMPONENTS — the functional layer (docs/visual/SPEC.md) ============ */
+  *{box-sizing:border-box}
+  body{margin:0;padding:2.2rem 1.2rem 4rem;background:var(--bg);color:var(--fg);
+    font:16px/1.6 var(--font-body)}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font:700 1.7rem/1.25 var(--font-display);margin:0 0 .2rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 2rem;font-size:.95rem}
+  h2{font-size:1.05rem;margin:2.8rem 0 .9rem;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);font-weight:600}
+  h2 .n{color:var(--hi);margin-right:.35rem}
+  h3{font-size:.95rem;margin:1.6rem 0 .6rem;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:1.1rem 1.2rem;margin-bottom:.7rem}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:420px}
+  th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .l2{font-weight:600;color:var(--l2)}
+  .l1{color:var(--l1)}
+  .ok{color:var(--ok);font-weight:600}
+  .bad{color:var(--bad);font-weight:600}
+  .muted{color:var(--muted)}
+  code{font:.88em var(--font-mono);background:var(--hiBg);color:var(--hi);
+    padding:.1rem .35rem;border-radius:4px}
+  b.mk{color:var(--mk);background:var(--mkBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  b.st{color:var(--st);background:var(--stBg);padding:0 .15em;border-radius:3px;font-weight:700}
+  .key{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.84rem;color:var(--muted);
+    margin:.2rem 0 1.4rem;align-items:center;border:1px solid var(--line);
+    border-radius:10px;padding:.7rem .9rem;background:var(--card)}
+  .lede{border-left:3px solid var(--hi);background:var(--hiBg);padding:.8rem 1rem;
+    border-radius:0 8px 8px 0;margin:.9rem 0}
+  .rule{border-left:3px solid var(--ok);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0;font-weight:600}
+  .warn{border-left:3px solid var(--bad);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .anchor{border-left:3px solid var(--l1);padding:.8rem 1rem;margin:.9rem 0;
+    background:var(--card);border-radius:0 8px 8px 0}
+  .rev{margin-top:.5rem;padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);color:var(--fg);cursor:pointer;font-size:.85rem;
+    transition:background var(--dur-1) var(--ease-out),border-color var(--dur-1) var(--ease-out)}
+  .rev:hover{background:var(--hiBg);border-color:var(--hi)}
+  .rev:focus-visible,.tts-play:focus-visible{outline:2px solid var(--hi);outline-offset:2px}
+  .ans{display:none;margin-top:.5rem;padding:.6rem .8rem;border-left:3px solid var(--ok);
+    background:var(--card);border-radius:0 8px 8px 0}
+  .ans.show{display:block}
+  .q{font-weight:600;margin-bottom:.1rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+    padding:.1rem .45rem;border-radius:5px;text-transform:uppercase;white-space:nowrap}
+  .big{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin:.4rem 0}
+  .stripe{border-top:2px dashed var(--line);margin:1.6rem 0 1.2rem}
+  .cnt{display:inline-block;min-width:1.6rem;text-align:center;font-weight:800;
+    color:var(--hi);background:var(--hiBg);border:1px solid var(--hi);
+    border-radius:6px;padding:0 .3rem;font-size:.82rem}
+  /* Verification (docs/mechanics/verification.md). .unv is the "?" marker sitting on the
+     form it doubts; .src is the page's source note. A page that asserts language facts
+     carries one or both — visualcheck fails it otherwise. */
+  .unv{color:var(--bad);font-weight:800;font-size:.9em;vertical-align:super;
+    line-height:1;cursor:help}
+  .src{font-size:.84rem;color:var(--muted);background:var(--card);
+    border-left:3px solid var(--muted);border-radius:0 8px 8px 0;
+    padding:.55rem .85rem;margin:1.6rem 0 .4rem}
+  .tohub{display:inline-block;margin:0 0 16px;padding:.15rem .62rem;border:1px solid var(--line);
+    border-radius:999px;font-size:12.5px;color:var(--muted);text-decoration:none}
+  .themebtn{position:fixed;top:10px;right:10px;padding:.25rem .7rem;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--muted);font-size:.78rem;cursor:pointer}
+</style>
+<style>
+  /* Разбор предложения — не таблица, а строка слов: каждое слово стоит на своём месте в
+     предложении, а два его названия (русское и украинское) подписаны прямо под ним. */
+  .parse{display:flex;flex-wrap:wrap;gap:.5rem;align-items:flex-start;margin:.8rem 0 .2rem}
+  .pw{border:1px solid var(--line);border-radius:10px;padding:.5rem .6rem;background:var(--bg);
+    min-width:6.5rem;flex:1 1 auto}
+  .pw .w{font-weight:700;font-size:1.05rem;color:var(--l2);display:block;margin-bottom:.25rem}
+  .pw .ru{display:block;font-size:.82rem;font-weight:600}
+  .pw .ua{display:block;font-size:.82rem;color:var(--muted)}
+  .pw .why{display:block;font-size:.78rem;color:var(--muted);margin-top:.3rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="tohub" href="index.html">← hub</a>
+<button class="themebtn" id="themeBtn" aria-label="Switch theme">theme: auto</button>
+<h1>Слова про слова</h1>
+<p class="sub">Шпаргалка U00 — русские грамматические названия с украинскими дубликатами. Не урок английского, а словарь тех слов, которыми объясняются все остальные уроки. Материал готов, ещё не пройден.</p>
+<div class="key">
+  <span><span class="unv">?</span> непроверено — у пакета нет словарного адаптера (null adapter); каждый английский пример ниже — слово агента, пока не подтвердит репетитор</span>
+  <span><b class="mk">так</b> — подсвечена та часть примера, которую называет термин в этой строке (слово, группа слов или окончание)</span>
+</div>
+<div class="lede">
+  <div class="scroll">
+    <table>
+      <tr><th>Тема</th><th>Этот раздел</th><th>Охват</th><th>Отложено</th><th>Раздел цели</th></tr>
+      <tr>
+        <td>Метаязык — слова, которыми описывается грамматика</td>
+        <td>14 терминов: все, которые уже прозвучали на ваших занятиях SES-001 – SES-003 и на страницах U01 и U02</td>
+        <td>полностью (14 из 14 — по перечню в разделе 1)</td>
+        <td>наречие, местоимение, вспомогательный глагол, время глагола → раздел 5, с указанием юнита</td>
+        <td>R W</td>
+      </tr>
+    </table>
+  </div>
+  <p style="margin:.8rem 0 0">Вы сказали сегодня: «мне сложно строить предложения и запоминать правила из-за
+  того, что я не понимаю, что такое глагол или другие русские названия». Это не мелочь и не ваша ошибка — это
+  дефект в том, как вам до сих пор объясняли. Три занятия правил были упакованы в слова, которых у вас нет:
+  правило понятно, пока его показывают на примере, и перестаёт быть понятным, как только его произносят
+  словами. Эта страница чинит именно это. Новых английских слов здесь нет вообще — только названия частей,
+  и каждое привязано к предложению, которое вы <strong>уже писали или уже видели</strong> на занятиях.
+  После неё вы сможете читать инструкции вида «поставьте глагол в форму he/she/it» и «подлежащее решает,
+  нужно ли окончание». Пока вы не сможете: разбирать сложные предложения с двумя сказуемыми — этого пока
+  нигде и не требуется.</p>
+</div>
+
+<h2><span class="n">1</span> Вся система</h2>
+<div class="card">
+  <p>Весь список — <span class="cnt">14</span> названий. Ровно столько метаязыка использовалось на ваших
+  занятиях; больше ничего учить не нужно, и ничего сверх этого списка на страницах U01 и U02 не встречается.
+  Колонка «Что это» отвечает не определением, а вопросом, по которому эту часть можно найти, или действием,
+  которое с ней делают. Колонка «Пример» — настоящее предложение с вашего занятия, а не придуманное.</p>
+  <div class="scroll">
+    <table>
+      <tr><th>Русский</th><th>Українська</th><th>Что это — по какому вопросу найти</th><th>Слово</th><th>Пример из ваших занятий</th></tr>
+      <tr>
+        <td><strong>существительное</strong></td>
+        <td>іменник</td>
+        <td>Отвечает на «кто?» или «что?». Вещь, человек, понятие. Именно перед ним ставится артикль.</td>
+        <td class="l2">team<span class="unv">?</span></td>
+        <td><span class="l2">The <b class="mk">team</b> builds a <b class="mk">screen</b>.</span> <span class="l1">Команда собирает экран.</span> <span class="muted">SES-001, ваша фраза после исправления.</span></td>
+      </tr>
+      <tr>
+        <td><strong>глагол</strong></td>
+        <td>дієслово</td>
+        <td>Отвечает на «что делает?». Действие или состояние. Это то слово, которое меняет форму по лицу и времени.</td>
+        <td class="l2">builds<span class="unv">?</span></td>
+        <td><span class="l2">The team <b class="mk">builds</b> a screen.</span> <span class="l1">Команда собирает экран.</span> <span class="muted">Вы написали «The team build» — ошибка ERR-003 была ровно в форме глагола.</span></td>
+      </tr>
+      <tr>
+        <td><strong>подлежащее</strong></td>
+        <td>підмет</td>
+        <td>Кто или что выполняет действие. Найти: задать «кто?» к глаголу. От него зависит форма глагола.</td>
+        <td class="l2">the team<span class="unv">?</span></td>
+        <td><span class="l2">In an hour <b class="mk">the team</b> is testing a new feature.</span> <span class="l1">Через час команда тестирует новую функцию.</span> <span class="muted">SES-002, ваше чистое предложение.</span></td>
+      </tr>
+      <tr>
+        <td><strong>сказуемое</strong></td>
+        <td>присудок</td>
+        <td>Что говорится о подлежащем. Всегда содержит глагол — в английском всегда, даже когда по-русски глагола нет.</td>
+        <td class="l2">is testing<span class="unv">?</span></td>
+        <td><span class="l2">In an hour the team <b class="mk">is testing</b> a new feature.</span> <span class="l1">Через час команда тестирует новую функцию.</span> <span class="muted">Пропуск «is» — это ваша ошибка ERR-005.</span></td>
+      </tr>
+      <tr>
+        <td><strong>дополнение</strong></td>
+        <td>додаток</td>
+        <td>На что направлено действие. Найти: задать «кого?» или «что?» к сказуемому. В английском стоит после сказуемого, и место менять нельзя.</td>
+        <td class="l2">a new feature<span class="unv">?</span></td>
+        <td><span class="l2">In an hour the team is testing <b class="mk">a new feature</b>.</span> <span class="l1">Через час команда тестирует новую функцию.</span> <span class="muted">Третья часть схемы SVO из U01.</span></td>
+      </tr>
+      <tr>
+        <td><strong>прилагательное</strong></td>
+        <td>прикметник</td>
+        <td>Отвечает на «какой?». Признак вещи. В английском стоит перед существительным и никогда не меняет форму по числу.</td>
+        <td class="l2">new<span class="unv">?</span></td>
+        <td><span class="l2">a <b class="mk">new</b> feature</span> <span class="l1">новая функция</span> <span class="muted">SES-002. Сравните: «новая функция» / «новые функции», а по-английски new в обоих случаях.</span></td>
+      </tr>
+      <tr>
+        <td><strong>артикль</strong></td>
+        <td>артикль</td>
+        <td>Служебное слово перед существительным: a / an / the. Решает, новое это для собеседника или уже известное. В русском и украинском такого слова нет вообще.</td>
+        <td class="l2">an<span class="unv">?</span></td>
+        <td><span class="l2">In <b class="mk">an</b> hour the team is testing <b class="mk">a</b> new feature.</span> <span class="l1">Через час команда тестирует новую функцию.</span> <span class="muted">Юнит 1, T-0004.</span></td>
+      </tr>
+      <tr>
+        <td><strong>предлог</strong></td>
+        <td>прийменник</td>
+        <td>Маленькое слово, которое связывает два слова: of, for, in, to. В русском эту работу часто делает падежное окончание, а не отдельное слово.</td>
+        <td class="l2">of<span class="unv">?</span></td>
+        <td><span class="l2">The button is a component <b class="mk">of</b> the system.</span> <span class="l1">Кнопка — это компонент системы.</span> <span class="muted">Вы пропустили «of» — ошибка ERR-006. Термин называется здесь впервые.</span></td>
+      </tr>
+      <tr>
+        <td><strong>окончание</strong></td>
+        <td>закінчення</td>
+        <td>Буквы, которые дописываются в конец слова и меняют его смысл или форму. Основа слова при этом не трогается.</td>
+        <td class="l2">-s<span class="unv">?</span></td>
+        <td><span class="l2">She test<b class="mk">s</b> the layout every sprint.</span> <span class="l1">Она тестирует макет каждый спринт.</span> <span class="muted">Цель юнита 2: test — основа, -s — окончание.</span></td>
+      </tr>
+      <tr>
+        <td><strong>лицо</strong></td>
+        <td>особа</td>
+        <td>Кто именно: я / ты / он-она-оно / мы / вы / они. В английском важно ровно одно лицо — he / she / it, потому что только оно получает окончание.</td>
+        <td class="l2">she<span class="unv">?</span></td>
+        <td><span class="l2"><b class="mk">She</b> tests the layout.</span> <span class="l1">Она тестирует макет.</span> <span class="muted">Заголовок первой колонки таблицы в разделе 1 страницы U02.</span></td>
+      </tr>
+      <tr>
+        <td><strong>единственное и множественное число</strong></td>
+        <td>однина і множина</td>
+        <td>Один предмет или несколько. Найти: посчитать. В английском множественное число — это то же окончание -s / -es / -ies, что и у глагола, но работа у него другая.</td>
+        <td class="l2">stories<span class="unv">?</span></td>
+        <td><span class="l2">This sprint has three stor<b class="mk">ies</b>.</span> <span class="l1">В этом спринте три истории.</span> <span class="muted">Страница U02, раздел 6, задание 3.</span></td>
+      </tr>
+      <tr>
+        <td><strong>неисчисляемое существительное</strong></td>
+        <td>незлічуваний іменник</td>
+        <td>Существительное, которое нельзя посчитать штуками. Проверка: нельзя сказать «два …». У него просто нет множественного числа, поэтому правила выше к нему не применяются.</td>
+        <td class="l2">feedback<span class="unv">?</span></td>
+        <td><span class="l2"><b class="mk">Feedback</b> should be consistent.</span> <span class="l1">Обратная связь должна быть единообразной.</span> <span class="muted">Названо на страницах U01 и U02; разбирается в U06.</span></td>
+      </tr>
+      <tr>
+        <td><strong>начальная (словарная) форма и инфинитив</strong></td>
+        <td>початкова форма та інфінітив</td>
+        <td>Голое слово без окончаний — то, как оно записано в словаре. С частицей «to» перед ним это инфинитив: «to publish» = «публиковать».</td>
+        <td class="l2">to publish<span class="unv">?</span></td>
+        <td><span class="l2"><b class="mk">to publish</b></span> <span class="l1">публиковать</span> <span class="muted">Так подписаны задания в разделе 6 страницы U02 — «to publish», «to upload». Это и есть словарная форма.</span></td>
+      </tr>
+      <tr>
+        <td><strong>неправильный глагол</strong></td>
+        <td>неправильне дієслово</td>
+        <td>Глагол, у которого формы прошедшего времени не строятся по правилу, а запоминаются отдельно. В настоящем времени он ведёт себя как обычный.</td>
+        <td class="l2">build<span class="unv">?</span></td>
+        <td><span class="l2"><b class="mk">build</b> – built – built</span> <span class="l1">строить – строил – построенный</span> <span class="muted">Пометка (virr) в словаре страницы U02. Формально разбирается в U05.</span></td>
+      </tr>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:.6rem">Что могло бы сделать этот список неполным: термин, который
+  прозвучал в чате, но не попал ни на одну страницу. Проверено обратным ходом — по разделу 1 страниц U01 и
+  U02, по <code>docs/logs/session_log.md</code>, <code>docs/logs/error_log.md</code> и
+  <code>state/grammar.md</code>; из встреченных названий не попало в таблицу ни одного. «Полностью» здесь —
+  про охват уже сказанного, а не про весь русский грамматический словарь: он гораздо больше, и остальное
+  будет добавляться сюда по мере того, как понадобится.</p>
+</div>
+
+<h2><span class="n">2</span> Что нужно запомнить</h2>
+<div class="rule">
+  <span class="cnt">3</span> термина, а не 14. Остальные одиннадцать достаточно узнавать в таблице выше —
+  их не нужно помнить наизусть, страница никуда не денется.
+  <ol style="margin:.5rem 0 0;padding-left:1.2rem;font-weight:400">
+    <li><strong>подлежащее</strong> <span class="muted">(підмет)</span> — потому что оно решает, какую форму
+    примет глагол. Все правила про «-s» начинаются с него.</li>
+    <li><strong>окончание</strong> <span class="muted">(закінчення)</span> — потому что это единственное
+    место, где английское слово вообще меняется.</li>
+    <li><strong>глагол</strong> против <strong>существительного</strong>
+    <span class="muted">(дієслово / іменник)</span> — считайте это одним фактом, потому что различие всегда
+    задаётся парой. Одно и то же <code>-s</code> значит у них разное, и артикль ставится только перед вторым.</li>
+  </ol>
+  <p style="font-weight:400;margin:.6rem 0 0">Остальное выводится: сказуемое — это глагол плюс всё, что к
+  нему прицепилось; дополнение — то, что стоит после сказуемого; прилагательное — то, что стоит перед
+  существительным. Порядок слов в английском фиксирован, поэтому место в предложении почти всегда называет
+  часть за вас.</p>
+</div>
+
+<h2><span class="n">3</span> Разница с русским/украинским</h2>
+<div class="anchor">
+  Сами <strong>понятия</strong> во всех трёх языках одни и те же — школьная грамматика русского, украинского
+  и английского размечает предложение одинаково. Разные только вывески: <strong>іменник</strong> — это
+  существительное, <strong>дієслово</strong> — глагол, <strong>підмет</strong> — подлежащее,
+  <strong>присудок</strong> — сказуемое. Если украинское название всплывает первым — пользуйтесь им, оно
+  обозначает ровно то же самое. Дальше на занятиях я буду писать оба: «глагол (дієслово)».
+</div>
+<div class="warn">
+  <strong>Ловушка, из-за которой термины кажутся бесполезными.</strong> В русском и украинском сказуемое
+  можно не произносить: «Кнопка — компонент системы» — законченное правильное предложение без единого
+  глагола. По-английски сказуемое обязано быть: <span class="l2">The button <b class="mk">is</b> a component
+  of the system.</span> Ваши ошибки ERR-004 и ERR-005 — это не невнимательность, а ровно этот пробел:
+  в вашем родном предложении на месте «is» действительно ничего нет, оттуда нечего переносить. Поэтому
+  «найди сказуемое» — не школьное упражнение, а проверка, которая ловит самую частую вашу ошибку.
+</div>
+<div class="card">
+  <p><strong>Второе отличие — кто носит окончание.</strong> В русском окончания висят почти на каждом слове
+  сразу: «нов<b class="mk">ую</b> функци<b class="mk">ю</b>» — и прилагательное, и существительное согласованы.
+  В английском в этом же месте <span class="l2">a new feature</span> — ни одного окончания, потому что
+  прилагательное не меняется никогда, а существительное меняется только по числу. Отсюда практическое
+  следствие: искать окончание в английском предложении нужно в <strong>двух</strong> местах — у глагола
+  (лицо he/she/it) и у существительного (множественное число). Больше нигде.</p>
+</div>
+
+<h2><span class="n">4</span> Примеры с разбором</h2>
+<div class="card">
+  <p>Одно предложение целиком, с обоими названиями под каждой частью. Взято не из учебника: это ваша
+  собственная фраза из SES-002 — единственное предложение за два занятия, где артикль, исключение «an hour»
+  и вспомогательный глагол сошлись правильно с первой попытки.</p>
+  <p class="big">In an hour the team is testing a new feature.</p>
+  <p class="l1">Через час команда тестирует новую функцию.</p>
+  <div class="parse">
+    <div class="pw"><span class="w">In</span><span class="ru">предлог</span><span class="ua">прийменник</span><span class="why">связывает «час» с остальным предложением</span></div>
+    <div class="pw"><span class="w">an</span><span class="ru">артикль</span><span class="ua">артикль</span><span class="why">новое для собеседника + гласный звук в «hour»</span></div>
+    <div class="pw"><span class="w">hour</span><span class="ru">существительное</span><span class="ua">іменник</span><span class="why">что? — час</span></div>
+    <div class="pw"><span class="w">the</span><span class="ru">артикль</span><span class="ua">артикль</span><span class="why">команда одна и известна обоим</span></div>
+    <div class="pw"><span class="w">team</span><span class="ru">существительное — и здесь оно подлежащее</span><span class="ua">іменник — тут він підмет</span><span class="why">кто тестирует? — команда</span></div>
+    <div class="pw"><span class="w">is testing</span><span class="ru">сказуемое</span><span class="ua">присудок</span><span class="why">что делает команда? — тестирует</span></div>
+    <div class="pw"><span class="w">a</span><span class="ru">артикль</span><span class="ua">артикль</span><span class="why">функция новая, упоминается впервые</span></div>
+    <div class="pw"><span class="w">new</span><span class="ru">прилагательное</span><span class="ua">прикметник</span><span class="why">какая функция? — новая</span></div>
+    <div class="pw"><span class="w">feature</span><span class="ru">существительное — и здесь оно дополнение</span><span class="ua">іменник — тут він додаток</span><span class="why">тестирует что? — функцию</span></div>
+  </div>
+  <p class="muted" style="margin-top:.8rem">Обратите внимание на две строки, где названий по два.
+  <strong>Существительное</strong> — это то, чем слово является само по себе, всегда, даже в словаре.
+  <strong>Подлежащее</strong> и <strong>дополнение</strong> — это не свойства слова, а <em>роли</em>, которые
+  оно получает в конкретном предложении: «team» здесь подлежащее, а в «I called the team» то же самое слово
+  <span class="l1">(я позвонил команде)</span> будет дополнением. Отсюда и практическое правило: искать
+  подлежащее нужно каждый раз заново, а не запоминать вместе со словом.</p>
+</div>
+<div class="card">
+  <p>Короткий второй разбор — то же самое на предложении, которое вы писали с ошибкой. Здесь важно, что
+  сказуемое есть, хотя действия никакого нет.</p>
+  <p class="big">The button <b class="mk">is</b> a component of the system.</p>
+  <p class="l1">Кнопка — это компонент системы.</p>
+  <div class="parse">
+    <div class="pw"><span class="w">The button</span><span class="ru">подлежащее</span><span class="ua">підмет</span><span class="why">о чём говорится? — о кнопке</span></div>
+    <div class="pw"><span class="w">is</span><span class="ru">сказуемое</span><span class="ua">присудок</span><span class="why">по-русски здесь тире, по-английски обязано стоять слово</span></div>
+    <div class="pw"><span class="w">a component</span><span class="ru">существительное с артиклем</span><span class="ua">іменник з артиклем</span><span class="why">кнопка — что? — компонент</span></div>
+    <div class="pw"><span class="w">of</span><span class="ru">предлог</span><span class="ua">прийменник</span><span class="why">компонент чего? — в русском это окончание «-ы», в английском отдельное слово</span></div>
+    <div class="pw"><span class="w">the system</span><span class="ru">существительное с артиклем</span><span class="ua">іменник з артиклем</span><span class="why">та самая система, о которой речь</span></div>
+  </div>
+</div>
+
+<h2><span class="n">5</span> Упомянуто, но не пройдено</h2>
+<div class="card">
+  <ul style="margin:.3rem 0 0;padding-left:1.2rem">
+    <li><strong>вспомогательный глагол</strong> <span class="muted">(допоміжне дієслово)</span> — служебный
+    глагол внутри сказуемого, который сам ничего не значит, но несёт лицо и время: «is» в «is testing»,
+    «does» в отрицании. Сегодня он назван, но не разобран. → <strong>U07</strong> (T-0015, T-0016) и
+    <strong>U09</strong> (T-0014).</li>
+    <li><strong>время глагола</strong> <span class="muted">(час дієслова)</span> — настоящее, прошедшее,
+    будущее. Пока вы работали только в настоящем, поэтому слово не понадобилось.
+    → <strong>U05</strong> (T-0011), <strong>U09</strong> (T-0013).</li>
+    <li><strong>наречие</strong> <span class="muted">(прислівник)</span> — отвечает на «как? когда? где?»:
+    «every sprint», «now». Отдельная ловушка в том, куда его ставить. → <strong>U07</strong> (T-0023).</li>
+    <li><strong>местоимение</strong> <span class="muted">(займенник)</span> — слово вместо существительного:
+    I, you, she, it. Вы их уже видели в таблице лиц, но как класс слов они не назывались. → <strong>U04</strong>.</li>
+    <li><strong>степени сравнения</strong> <span class="muted">(ступені порівняння)</span> — «big – bigger –
+    the biggest». Относится к прилагательному, но это отдельная система. → <strong>U03</strong>
+    (T-0017, T-0018).</li>
+  </ul>
+  <p class="muted" style="margin-top:.6rem">Эти пять названий <strong>не нужно знать сегодня</strong>. Они
+  перечислены, чтобы список из 14 терминов в разделе 1 был честным: это не всё, что бывает в грамматике, —
+  это всё, что уже использовалось на ваших занятиях.</p>
+</div>
+
+<div class="stripe"></div>
+
+<h2><span class="n">6</span> Ваша очередь</h2>
+<p class="muted">Три предложения, которых нет больше нигде на этой странице. Задача не в переводе — вы его
+получаете сразу — а в том, чтобы назвать части. Отвечайте вслух или про себя и открывайте ответ.</p>
+<div class="card">
+  <div class="q">1. <span class="l2">The manager approves the budget every Monday.</span>
+  <span class="l1">— Менеджер утверждает бюджет каждый понедельник.</span> Где здесь подлежащее (підмет),
+  а где сказуемое (присудок)?</div>
+  <button class="rev">Показать</button>
+  <div class="ans">Подлежащее — «The manager»: спросите «кто утверждает?» и получите менеджера.
+  Сказуемое — «approves»: спросите «что менеджер делает?». Слова «every Monday» не входят ни в то, ни в
+  другое — это обстоятельство времени, отвечает на «когда?». Проверка формой: менеджер — это «он», значит на
+  глаголе обязано быть окончание, и оно там есть.</div>
+</div>
+<div class="card">
+  <div class="q">2. <span class="l2">On Friday the client opens two reports.</span>
+  <span class="l1">— В пятницу клиент открывает два отчёта.</span> Тот же вопрос — подлежащее и сказуемое.
+  И ещё: в этом предложении два окончания, найдите оба и скажите, чем они отличаются.</div>
+  <button class="rev">Показать</button>
+  <div class="ans">Подлежащее — «the client», хотя стоит не в начале строки: первым идёт «On Friday»,
+  и это ловушка. Спросите «кто открывает?» — клиент, а не пятница. Сказуемое — «opens». Окончаний два, и
+  работа у них разная: у «opens» окончание стоит потому, что клиент — это «он», а у «reports» — потому что
+  отчётов два. Одна и та же буква, две разные причины; именно это различение держится на паре
+  «дієслово / іменник».</div>
+</div>
+<div class="card">
+  <div class="q">3. <span class="l2">The prototype is ready.</span>
+  <span class="l1">— Прототип готов.</span> Здесь никто ничего не делает. Есть ли в этом предложении
+  сказуемое (присудок), и если да — какое слово?</div>
+  <button class="rev">Показать</button>
+  <div class="ans">Да, есть: это «is». Действия действительно нет, но сказуемое — это не обязательно
+  действие, а то, что говорится о подлежащем; связка «is» тоже сказуемое. По-русски вы скажете «прототип
+  готов» без всякого слова между ними, и как раз поэтому английское «is» так легко пропустить. Слово «ready»
+  сказуемым не является — это прилагательное, отвечает на «какой?».</div>
+</div>
+
+<h2><span class="n">7</span> Правило на запоминание</h2>
+<div class="rule">
+  Найдите <strong>подлежащее (підмет)</strong> — от него зависит форма глагола; посмотрите на
+  <strong>окончание (закінчення)</strong> — это единственное место, где английское слово меняется; и знайте,
+  <strong>глагол это или существительное (дієслово чи іменник)</strong> — от этого зависит, что означает
+  окончание и нужен ли артикль. Три вопроса покрывают все правила, которые вам давали до сих пор.
+  <p class="muted" style="font-weight:400;margin:.5rem 0 0">Проверено на самом трудном правиле из уже
+  пройденных — выборе артикля в U01: шаг 1 спрашивает, известна ли вещь собеседнику, шаг 2 — с какого звука
+  начинается слово. Ни там, ни там слово «подлежащее» не нужно, зато нужно «существительное»: артикль
+  ставится только перед ним. То есть на этом правиле строка держится своим третьим пунктом, а не первым —
+  и поэтому пункта три, а не один.</p>
+</div>
+
+<div class="src">
+  У этого пакета нет словарного адаптера (<code>packs/en/pack.md</code> § Dictionary reachability — null
+  adapter), поэтому каждый английский пример на этой странице <strong>непроверен (unverified)</strong>:
+  это слово агента, не подтверждённое словарём или репетитором
+  (<code>docs/mechanics/verification.md</code>). Разделение на два вида фактов, чтобы вы знали, чему тут
+  доверять: <strong>русские и украинские названия терминов</strong> — это школьная терминология, а не
+  утверждение о живом языке, и словарь английского их всё равно не проверил бы; <strong>английские
+  примеры</strong> — часть взята дословно из ваших собственных предложений и из страниц U01 и U02
+  (источники названы в каждой строке таблицы), остальные собраны из слов, которые уже есть в вашем словаре.
+  Пометка <span class="unv">?</span> стоит на каждой английской форме в колонке «Слово» по общему правилу
+  разметки. Отдельно помечаю как непроверенное репетитором: разбор «is testing» как единого сказуемого —
+  общепринятый школьный разбор, но существуют учебники, которые называют сказуемым только «testing», а «is»
+  — вспомогательным глаголом внутри него; на ваших занятиях будет использоваться первый вариант. Если
+  сомневаетесь в любой пометке — скажите, я проверю.
+</div>
+<p class="muted">На этой странице нет звука — у этого пространства нет возможности аудио/синтеза речи
+(<code>audio: false</code>, <code>tts: none</code>, <code>docs/reference/profile.md</code>), так что это
+не пропущенный шаг, а честное ограничение окружения. Нового словаря здесь тоже нет: страница не учит
+английским словам, она называет части, поэтому раздела со словами и тренировкой в две стороны на ней нет.</p>
+</div>
+<script>
+  /* Theme switcher: auto (system) → light → dark. */
+  (function(){
+    var b=document.getElementById("themeBtn"),order=["","light","dark"],i=0;
+    b.addEventListener("click",function(){
+      i=(i+1)%order.length;
+      if(order[i]) document.documentElement.setAttribute("data-theme",order[i]);
+      else document.documentElement.removeAttribute("data-theme");
+      b.textContent="theme: "+(order[i]||"auto");
+    });
+  })();
+</script>
+<script>
+  /* Per-item reveal for guided attempts (.rev/.ans pairs). */
+  document.querySelectorAll('.rev').forEach(function(b){
+    b.addEventListener('click',function(){
+      var a=b.nextElementSibling;
+      a.classList.toggle('show');
+      b.textContent=a.classList.contains('show')?'Скрыть':'Показать';
+    });
+  });
+</script>
+<!-- No player script here: tts-embed.mjs appends it once, behind its own marker. -->
+</body>
+</html>
